@@ -512,6 +512,272 @@ footer a:hover { color: var(--accent); }
 .placeholder p { color: var(--muted); margin: 6px 0; }
 .placeholder p a { color: var(--accent); }
 
+/* ===== Schedule page ===== */
+.pickers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-left: auto;
+}
+.picker-group { position: relative; }
+.picker-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  font-family: inherit;
+  color: var(--fg);
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.picker-chip:hover { border-color: var(--accent); background: var(--accent-soft); }
+.picker-chip .caret { font-size: 0.65rem; color: var(--muted); }
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  min-width: 220px;
+  background: var(--card-elev);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: var(--shadow-lg);
+  padding: 6px;
+  z-index: 100;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+.dropdown-menu.team-dropdown { min-width: 260px; }
+.menu-item {
+  display: block;
+  width: 100%;
+  background: transparent;
+  border: none;
+  text-align: left;
+  padding: 8px 12px;
+  font-size: 0.92rem;
+  font-family: inherit;
+  color: var(--fg);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.1s ease;
+}
+.menu-item:hover { background: var(--accent-soft); }
+.menu-item.checked { color: var(--accent); font-weight: 600; }
+.menu-item .check { float: right; }
+#team-search {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.92rem;
+  font-family: inherit;
+  background: var(--bg);
+  color: var(--fg);
+  margin-bottom: 6px;
+}
+#team-search:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
+.team-list {
+  max-height: 50vh;
+  overflow-y: auto;
+}
+.team-item .team-flag { display: inline-block; margin-right: 6px; }
+
+.schedule-hero { padding: 40px 0 20px; }
+.schedule-hero h1 {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  letter-spacing: -0.025em;
+  margin: 0 0 8px;
+  font-weight: 800;
+}
+.lede-small {
+  font-size: 1rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+.coming-region, .pinned-region { margin: 24px 0; }
+.coming-label, .pinned-header {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  font-weight: 800;
+  margin: 0 0 12px;
+}
+.pinned-header { font-size: 1.05rem; text-transform: none; letter-spacing: -0.01em; }
+.pinned-section {
+  background: var(--accent-soft);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 20px 16px;
+  margin-bottom: 32px;
+}
+
+.coming-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 10px;
+  padding: 18px 20px;
+}
+.coming-headline {
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
+}
+.coming-sub {
+  color: var(--muted);
+  font-size: 0.93rem;
+  margin: 4px 0;
+}
+
+.full-schedule { margin: 32px 0; }
+.full-header {
+  font-size: 1.1rem;
+  margin: 0 0 16px;
+  letter-spacing: -0.01em;
+  color: var(--muted);
+  font-weight: 600;
+}
+.day-section { margin-bottom: 28px; }
+.day-header {
+  position: sticky;
+  top: 72px;
+  background: var(--bg);
+  padding: 8px 0;
+  border-bottom: 2px solid var(--border);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  color: var(--fg);
+  z-index: 5;
+  margin-bottom: 12px;
+}
+
+.match {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin: 8px 0;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas:
+    "time teams broadcast"
+    "meta meta meta"
+    "actions actions actions";
+  gap: 4px 14px;
+  align-items: baseline;
+}
+.match.match-mine {
+  border-left: 3px solid var(--accent);
+  background: linear-gradient(90deg, var(--accent-soft) 0%, var(--card) 25%);
+}
+.match-time {
+  grid-area: time;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.98rem;
+  letter-spacing: -0.01em;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+}
+.match-star { color: var(--accent); margin-right: 2px; }
+.match-zone {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+.match-teams {
+  grid-area: teams;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.match-teams .vs {
+  color: var(--muted);
+  font-weight: 400;
+  font-size: 0.88rem;
+  padding: 0 4px;
+}
+.team-flag {
+  display: inline-block;
+  margin-right: 2px;
+}
+.team-placeholder {
+  color: var(--muted);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 0.92rem;
+}
+.match-meta {
+  grid-area: meta;
+  color: var(--muted);
+  font-size: 0.86rem;
+  margin-top: 2px;
+}
+.match-stage {
+  color: var(--accent);
+  font-weight: 600;
+}
+.match-actions {
+  grid-area: actions;
+  margin-top: 8px;
+}
+.ics-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 0.82rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.ics-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+.schedule-caveat {
+  margin: 48px 0 24px;
+  padding: 14px 18px;
+  background: var(--warn-bg);
+  border: 1px solid var(--warn-border);
+  border-radius: 6px;
+  font-size: 0.88rem;
+  color: var(--fg);
+}
+.schedule-caveat p { margin: 0; }
+
+@media (max-width: 700px) {
+  .pickers {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 4px;
+  }
+  .picker-chip { font-size: 0.78rem; padding: 5px 10px; }
+  .dropdown-menu { right: auto; left: 0; }
+  .match {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "time"
+      "teams"
+      "meta"
+      "broadcast"
+      "actions";
+    padding: 12px 14px;
+  }
+  .day-header { top: 56px; font-size: 0.78rem; }
+  .schedule-hero { padding: 28px 0 12px; }
+}
+
+
 /* ===== Responsive ===== */
 @media (max-width: 600px) {
   body { font-size: 16px; }

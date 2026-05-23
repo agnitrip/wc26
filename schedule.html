@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Schedule: WC26 Anywhere</title>
-  <meta name="description" content="The full 104-match 2026 World Cup schedule in your local time zone. For every fan watching from the couch, the bar, or a friend's place. Coming soon.">
+  <meta name="description" content="All 104 matches of the 2026 FIFA World Cup in your local time zone. Pick your teams to pin their matches. For every fan watching from the couch, the bar, or a friend's place.">
   <meta name="theme-color" content="#006633">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="stylesheet" href="/styles.css">
@@ -20,22 +20,55 @@
           <li><a href="/watch-parties">Watch parties</a></li>
         </ul>
       </nav>
+      <div class="pickers">
+        <div class="picker-group">
+          <button class="picker-chip" id="zone-chip" aria-haspopup="true">
+            <span id="zone-chip-label">📍 New York (ET)</span>
+            <span class="caret">▼</span>
+          </button>
+          <div class="dropdown-menu" id="zone-menu" hidden role="menu"></div>
+        </div>
+        <div class="picker-group">
+          <button class="picker-chip" id="team-chip" aria-haspopup="true">
+            <span id="team-chip-label">⭐ Pick teams</span>
+            <span class="caret">▼</span>
+          </button>
+          <div class="dropdown-menu team-dropdown" id="team-menu" hidden role="menu">
+            <input type="search" id="team-search" placeholder="Search teams..." autocomplete="off">
+            <div id="team-menu-list" class="team-list"></div>
+          </div>
+        </div>
+      </div>
     </div>
   </header>
 
   <main class="container">
-    <section class="placeholder">
-      <h1>Schedule grid</h1>
-      <p>All 104 matches with kickoff times in PT, MT, CT, ET, Mexico City, and Toronto.</p>
-      <p>Coming this week, ahead of the June 11 opener.</p>
-      <p><a href="/">Back to the streaming guide</a></p>
+    <section class="schedule-hero">
+      <h1>The schedule.</h1>
+      <p class="lede-small">All 104 matches in your time zone. Pick your teams to pin their matches.</p>
+    </section>
+
+    <section id="coming" class="coming-region" aria-label="Coming up"></section>
+    <section id="pinned" class="pinned-region" aria-label="Your teams"></section>
+    <section id="schedule-body" class="schedule-region" aria-label="Full schedule"></section>
+
+    <section class="schedule-caveat">
+      <p><strong>Heads up:</strong> Match details reflect the FIFA 2026 schedule as of May 2026. Knockout teams resolve as group stage finishes (June 24-26). Verify against fifa.com closer to kickoff for any changes.</p>
     </section>
   </main>
 
   <footer>
     <div class="container">
+      <div class="trust-badges">
+        <span class="trust-pill">✓ Free</span>
+        <span class="trust-pill">✓ No signup</span>
+        <span class="trust-pill">✓ No tracking</span>
+      </div>
       <p>WC26 Anywhere is for every fan watching from the couch, the bar, or a friend's place. Free, no signup, no tracking.</p>
     </div>
   </footer>
+
+  <script src="/schedule-data.js" defer></script>
+  <script src="/schedule.js" defer></script>
 </body>
 </html>
