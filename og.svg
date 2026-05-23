@@ -21,7 +21,7 @@
   </g>
 
   <!-- brand -->
-  <text x="80" y="200" font-family="-apple-system, system-ui, sans-serif" font-size="32" font-weight="700" fill="#ffffff" opacity="0.75" letter-spacing="-0.5">Couch World Cup</text>
+  <text x="80" y="200" font-family="-apple-system, system-ui, sans-serif" font-size="32" font-weight="700" fill="#ffffff" opacity="0.85" letter-spacing="-0.5"><tspan fill="#9bf2bd">WC26</tspan> Anywhere</text>
 
   <!-- headline -->
   <text x="80" y="320" font-family="-apple-system, system-ui, sans-serif" font-size="84" font-weight="800" fill="#ffffff" letter-spacing="-3">Watch the 2026</text>
