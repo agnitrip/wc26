@@ -4,8 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Couch World Cup: Watch the 2026 World Cup from the US</title>
-  <meta name="description" content="A practical guide to streaming the 2026 FIFA World Cup from the US. Bundle comparison, schedule grid, and country-specific watch-party directory.">
+  <meta name="description" content="Pick your 2026 FIFA World Cup streaming bundle in 30 seconds. Free quiz, no signup. Plus the full comparison across FOX One, Peacock, Sling, Fubo, YouTube TV, Hulu, Tubi, and OTA antenna.">
   <meta name="theme-color" content="#006633">
+
+  <meta property="og:title" content="Couch World Cup: Watch the 2026 World Cup from the US">
+  <meta property="og:description" content="Pick your streaming bundle in 30 seconds. Free quiz, no signup, no tracking.">
+  <meta property="og:image" content="/og.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://wc26-jade.vercel.app/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="/og.png">
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
@@ -24,27 +34,93 @@
 
   <main class="container">
     <section class="hero">
+      <div class="hero-meta">
+        <span class="host-chip">USA · CAN · MEX</span>
+        <span class="countdown" id="countdown">June 11 to July 19, 2026</span>
+      </div>
       <h1>Watch the 2026 World Cup from the US.</h1>
-      <p class="lede">104 matches across the US, Canada, and Mexico, from June 11 to July 19. This page tells you which streaming bundle to get. The schedule grid and watch-party directory live on the linked pages.</p>
+      <p class="lede">Pick your streaming bundle in 30 seconds. Or <a href="#comparison">scroll to the full comparison</a>.</p>
     </section>
 
-    <section class="cards" aria-label="Quick links">
-      <a href="#compare" class="card">
-        <h3>Which bundle?</h3>
-        <p>The 8-option comparison below, with a use-case picker.</p>
-      </a>
-      <a href="/schedule" class="card">
-        <h3>The schedule</h3>
-        <p>All 104 matches in your local time zone.</p>
-      </a>
-      <a href="/watch-parties" class="card">
-        <h3>Watch with people</h3>
-        <p>Country-specific bars and watch parties by city.</p>
-      </a>
+    <section class="quiz-section" aria-label="Streaming picker">
+      <div class="quiz" id="quiz">
+        <div class="quiz-progress" id="quiz-progress" aria-hidden="true">
+          <span class="dot active" data-step="1"></span>
+          <span class="dot" data-step="2"></span>
+          <span class="dot" data-step="3"></span>
+          <span class="dot" data-step="4" id="dot-4" hidden></span>
+        </div>
+
+        <div class="question active" data-step="1" data-key="lang">
+          <div class="q-icon" aria-hidden="true">🗣️</div>
+          <h2 class="q-title">What language do you want the commentary in?</h2>
+          <div class="q-answers">
+            <button class="answer" data-value="english">English</button>
+            <button class="answer" data-value="spanish">Spanish (Telemundo)</button>
+            <button class="answer" data-value="either">Either is fine</button>
+          </div>
+        </div>
+
+        <div class="question" data-step="2" data-key="coverage">
+          <div class="q-icon" aria-hidden="true">📺</div>
+          <h2 class="q-title">How many matches do you plan to watch?</h2>
+          <div class="q-answers">
+            <button class="answer" data-value="opener">Just the opener and a few big ones</button>
+            <button class="answer" data-value="marquee">USA games and the knockouts</button>
+            <button class="answer" data-value="all">All 104, I'm in deep</button>
+          </div>
+        </div>
+
+        <div class="question" data-step="3" data-key="budget">
+          <div class="q-icon" aria-hidden="true">💵</div>
+          <h2 class="q-title">What's your budget?</h2>
+          <div class="q-answers">
+            <button class="answer" data-value="free">$0, free only</button>
+            <button class="answer" data-value="cheap">Cheap, under $50 a month</button>
+            <button class="answer" data-value="premium">Doesn't matter, best experience</button>
+          </div>
+        </div>
+
+        <div class="question" data-step="4" data-key="multiview">
+          <div class="q-icon" aria-hidden="true">📺📺</div>
+          <h2 class="q-title">Watch multiple matches at the same time?</h2>
+          <p class="q-note">On the final group-stage days, up to 4 matches kick off at once. Most services only show one stream at a time.</p>
+          <div class="q-answers">
+            <button class="answer" data-value="yes">Yes, on one screen if possible</button>
+            <button class="answer" data-value="no">No, one at a time is fine</button>
+          </div>
+        </div>
+
+        <div class="quiz-footer">
+          <button class="back-btn" id="back-btn" hidden>← Back</button>
+          <a href="#comparison" class="skip-link">Skip to full comparison ↓</a>
+        </div>
+      </div>
+
+      <div class="result" id="result" hidden>
+        <div class="result-card">
+          <div class="result-label">For you</div>
+          <div class="result-service" id="result-name"></div>
+          <span class="result-price" id="result-price"></span>
+          <p class="result-why" id="result-why"></p>
+          <div class="result-alts" id="result-alts"></div>
+          <div class="result-actions">
+            <button class="retake" id="retake-btn">↻ Retake quiz</button>
+            <a href="#comparison" class="see-all">See full comparison ↓</a>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section id="tldr">
-      <h2>The TL;DR</h2>
+    <div class="section-divider" aria-hidden="true"></div>
+
+    <section class="reference-intro">
+      <h2>Full comparison</h2>
+      <p>The complete breakdown across all 8 viewing options. Use this if the quiz felt too narrow, or if you want to see what got ruled out.</p>
+    </section>
+
+    <section id="tldr" class="reference">
+      <h3>The TL;DR</h3>
       <ul>
         <li><strong>English-only, cheapest:</strong> OTA antenna (FOX is free over the air in most US markets) plus Tubi for the opener.</li>
         <li><strong>Spanish-preferred:</strong> Telemundo OTA (free) or Peacock Premium for Telemundo streaming.</li>
@@ -54,8 +130,8 @@
       </ul>
     </section>
 
-    <section id="compare">
-      <h2>The comparison</h2>
+    <section id="comparison" class="reference">
+      <h3>The comparison</h3>
       <div class="table-wrap">
         <table>
           <thead>
@@ -156,8 +232,8 @@
       </div>
     </section>
 
-    <section id="picker">
-      <h2>Pick by use case</h2>
+    <section id="picker" class="reference">
+      <h3>Pick by use case</h3>
 
       <div class="use-case">
         <p class="q">You want to watch the USA opener (June 12) and not much else.</p>
@@ -190,8 +266,8 @@
       </div>
     </section>
 
-    <section id="caveats">
-      <h2>Important caveats</h2>
+    <section id="caveats" class="reference">
+      <h3>Important caveats</h3>
       <div class="callout">
         <ul>
           <li><strong>Pricing changes monthly.</strong> All numbers above are approximate as of May 23, 2026. Verify on each provider's site before subscribing.</li>
@@ -205,9 +281,16 @@
 
   <footer>
     <div class="container">
+      <div class="trust-badges">
+        <span class="trust-pill">✓ Free</span>
+        <span class="trust-pill">✓ No signup</span>
+        <span class="trust-pill">✓ No tracking</span>
+      </div>
       <p>Couch World Cup is a free utility site. No accounts, no ads, no affiliate links. All prices and feature notes are approximate and change often. Verify before subscribing.</p>
       <p>Have a watch party to add? <a href="/watch-parties">Suggest one here</a> once that page is live.</p>
     </div>
   </footer>
+
+  <script src="/script.js" defer></script>
 </body>
 </html>
