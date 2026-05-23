@@ -36,6 +36,7 @@
   var state = {
     zoneId: 'ET', // default
     teams: [], // array of team codes
+    filter: 'mine', // 'mine' (default when teams picked) or 'all'
   };
 
   function loadState() {
@@ -50,6 +51,8 @@
       }
       var t = localStorage.getItem('wc26_teams');
       if (t) state.teams = JSON.parse(t);
+      var f = localStorage.getItem('wc26_filter');
+      if (f === 'all' || f === 'mine') state.filter = f;
     } catch (e) { /* ignore */ }
   }
 
@@ -57,6 +60,7 @@
     try {
       localStorage.setItem('wc26_zone', state.zoneId);
       localStorage.setItem('wc26_teams', JSON.stringify(state.teams));
+      localStorage.setItem('wc26_filter', state.filter);
     } catch (e) { /* ignore */ }
   }
 
@@ -195,12 +199,16 @@
   }
 
   // ----- Renderers -----
-  function renderMatch(match, TEAMS) {
+  function renderMatch(match, TEAMS, opts) {
+    opts = opts || {};
+    var showDate = !!opts.showDate;
     var ft = formatTime(match.kickoffISO);
     var mine = isMyTeam(match);
     var classes = 'match' + (mine ? ' match-mine' : '');
     var star = mine ? '<span class="match-star" title="Your team">⭐</span>' : '';
+    var dateHtml = showDate ? '<div class="match-date">' + formatDayHeader(match.kickoffISO) + '</div>' : '';
     return '<div class="' + classes + '" data-num="' + match.num + '">' +
+      dateHtml +
       '<div class="match-time">' + star + ft.time + ' <span class="match-zone">' + ft.zone + '</span></div>' +
       '<div class="match-teams">' + teamLabel(match.teamA, TEAMS) + ' <span class="vs">vs</span> ' + teamLabel(match.teamB, TEAMS) + '</div>' +
       '<div class="match-meta">' +
@@ -255,38 +263,63 @@
         tomorrowMatches.map(function (m) { return renderMatch(m, TEAMS); }).join('') + '</div>';
     }
 
-    // "Your teams" pinned section
+    // "Your teams" pinned section + filter toggle
     var pinnedHtml = '';
-    if (state.teams.length) {
+    var hasTeams = state.teams.length > 0;
+    if (hasTeams) {
       var mine = MATCHES.filter(isMyTeam).sort(function (a, b) {
         return new Date(a.kickoffISO) - new Date(b.kickoffISO);
       });
       if (mine.length) {
         pinnedHtml = '<div class="pinned-section">' +
-          '<h2 class="pinned-header">⭐ Your teams (' + mine.length + ')</h2>' +
-          mine.map(function (m) { return renderMatch(m, TEAMS); }).join('') +
+          '<h2 class="pinned-header">⭐ Your matches (' + mine.length + ')</h2>' +
+          mine.map(function (m) { return renderMatch(m, TEAMS, { showDate: true }); }).join('') +
           '</div>';
       }
+
+      // Filter toggle (only meaningful when teams are picked)
+      pinnedHtml += '<div class="filter-toggle">' +
+        '<span class="filter-label">Show:</span> ' +
+        '<button class="toggle-btn ' + (state.filter === 'mine' ? 'active' : '') + '" data-filter="mine">Just your teams</button>' +
+        '<button class="toggle-btn ' + (state.filter === 'all' ? 'active' : '') + '" data-filter="all">All matches</button>' +
+        '</div>';
     }
 
-    // Full schedule grouped by day
-    var scheduleHtml = '<div class="full-schedule"><h2 class="full-header">All 104 matches</h2>';
-    sortedDays.forEach(function (key) {
-      var matches = byDay[key];
-      var header = formatDayHeader(matches[0].kickoffISO);
-      var note = '';
-      if (key === '2026-06-11') note = ' · Opening day';
-      if (key === '2026-07-19') note = ' · The Final 🏆';
-      scheduleHtml += '<div class="day-section">' +
-        '<div class="day-header">' + header + note + '</div>' +
-        matches.map(function (m) { return renderMatch(m, TEAMS); }).join('') +
-        '</div>';
-    });
-    scheduleHtml += '</div>';
+    // Full schedule grouped by day — hidden when filter = mine + teams picked
+    var scheduleHtml = '';
+    var showFullSchedule = !hasTeams || state.filter === 'all';
+    if (showFullSchedule) {
+      scheduleHtml = '<div class="full-schedule"><h2 class="full-header">All 104 matches</h2>';
+      sortedDays.forEach(function (key) {
+        var matches = byDay[key];
+        var header = formatDayHeader(matches[0].kickoffISO);
+        var note = '';
+        if (key === '2026-06-11') note = ' · Opening day';
+        if (key === '2026-07-19') note = ' · The Final 🏆';
+        scheduleHtml += '<div class="day-section">' +
+          '<div class="day-header">' + header + note + '</div>' +
+          matches.map(function (m) { return renderMatch(m, TEAMS); }).join('') +
+          '</div>';
+      });
+      scheduleHtml += '</div>';
+    }
 
-    document.getElementById('coming').innerHTML = comingHtml;
+    // "Coming up" section is hidden when filter = mine + teams picked
+    // (pinned section already shows all your matches with dates)
+    var finalComingHtml = (hasTeams && state.filter === 'mine') ? '' : comingHtml;
+
+    document.getElementById('coming').innerHTML = finalComingHtml;
     document.getElementById('pinned').innerHTML = pinnedHtml;
     document.getElementById('schedule-body').innerHTML = scheduleHtml;
+
+    // Wire up filter toggle buttons
+    document.querySelectorAll('.toggle-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        state.filter = btn.getAttribute('data-filter');
+        saveState();
+        renderSchedule();
+      });
+    });
 
     // Wire up calendar buttons
     document.querySelectorAll('.ics-btn').forEach(function (btn) {
