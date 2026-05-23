@@ -8,7 +8,7 @@
 
 The 2026 World Cup runs **June 11 to July 19, 2026** with 104 matches across the US, Canada, and Mexico. You have more streaming options than any prior World Cup, and the choice depends on three things: which language you want, whether you care about watching two matches at the same time, and how much you want to spend.
 
-## The TL;DR
+## Quick picks
 
 - **English-only, cheapest:** OTA antenna (FOX is free over the air for most US markets) plus Tubi for the opener.
 - **Spanish-preferred:** Telemundo OTA (free) or Peacock Premium for Telemundo streaming.
