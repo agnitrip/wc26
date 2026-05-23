@@ -8,7 +8,7 @@
 
 The 2026 World Cup runs **June 11 to July 19, 2026** with 104 matches across the US, Canada, and Mexico. You have more streaming options than any prior World Cup, and the choice depends on three things: which language you want, whether you care about watching two matches at the same time, and how much you want to spend.
 
-## Quick picks
+## Cheat sheet
 
 - **English-only, cheapest:** OTA antenna (FOX is free over the air for most US markets) plus Tubi for the opener.
 - **Spanish-preferred:** Telemundo OTA (free) or Peacock Premium for Telemundo streaming.
@@ -29,7 +29,7 @@ The 2026 World Cup runs **June 11 to July 19, 2026** with 104 matches across the
 | **YouTube TV** | Yes | Yes | Yes (Telemundo channel) | Yes (4-stream multi-view on TV app) | Yes for select matches | ~$83 | Strong picture quality, multi-view if you watch on TV (not browser) |
 | **Fubo** | Yes | Yes | Yes (Telemundo channel) | **Yes (customizable 4-game multi-view)** | Yes for select matches | ~$80 to $100 depending on tier | Hardcore fan who wants to watch multiple group-stage matches simultaneously |
 
-## Pick by use case
+## Find your fit
 
 **You want to watch the USA opener (June 12) and not much else.**
 OTA antenna for free, or Tubi if you're on a laptop. Don't subscribe to anything monthly.
@@ -49,7 +49,7 @@ This is the gap. US-based streaming bundles do not surface Bengali, Hindi, Arabi
 **You're trying to follow USA + your country of origin at the same time.**
 A combination tends to work better than picking one service. Common pairing: OTA antenna for FOX matches + Peacock Premium for Telemundo's Spanish-language schedule + Fubo or YouTube TV for the simultaneous-match days. Total cost ~$20-100 depending on whether you take Fubo only for July.
 
-## Important caveats
+## Heads up
 
 - **Pricing changes monthly.** All numbers above are approximate as of 2026-05-23. Verify on each provider's site before subscribing.
 - **FOX One is new and the pricing has not been published.** This is the wildcard — if FOX One ends up cheap enough, it could undercut Sling for English-only fans.

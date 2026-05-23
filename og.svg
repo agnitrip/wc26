@@ -28,7 +28,7 @@
   <text x="80" y="408" font-family="-apple-system, system-ui, sans-serif" font-size="84" font-weight="800" fill="#ffffff" letter-spacing="-3">World Cup from the US.</text>
 
   <!-- subline -->
-  <text x="80" y="486" font-family="-apple-system, system-ui, sans-serif" font-size="28" font-weight="500" fill="#ffffff" opacity="0.78">Pick your streaming bundle in 30 seconds.</text>
+  <text x="80" y="486" font-family="-apple-system, system-ui, sans-serif" font-size="28" font-weight="500" fill="#ffffff" opacity="0.78">From the couch, the bar, or a friend's place.</text>
 
   <!-- bottom URL pill -->
   <g transform="translate(80, 540)">
