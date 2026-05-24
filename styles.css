@@ -162,13 +162,28 @@ main { padding-bottom: 24px; }
 /* ===== Quiz section ===== */
 .quiz-section { margin: 40px 0 56px; }
 
-.quiz {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 36px 32px 28px;
-  box-shadow: var(--shadow-md);
+.quiz-section {
   position: relative;
+}
+.quiz {
+  background:
+    url('/pitch-bg.svg') center 60%/60% auto no-repeat,
+    linear-gradient(180deg, var(--accent-soft) 0%, var(--card) 45%);
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--accent);
+  border-radius: 16px;
+  padding: 40px 36px 32px;
+  box-shadow: 0 12px 44px rgba(0, 102, 51, 0.10), 0 2px 8px rgba(0, 0, 0, 0.04);
+  position: relative;
+  isolation: isolate;
+}
+@media (prefers-color-scheme: dark) {
+  .quiz {
+    background:
+      url('/pitch-bg.svg') center 60%/60% auto no-repeat,
+      linear-gradient(180deg, var(--accent-soft) 0%, var(--card) 50%);
+    box-shadow: 0 12px 44px rgba(0, 0, 0, 0.4);
+  }
 }
 
 .quiz-progress {
@@ -212,12 +227,12 @@ main { padding-bottom: 24px; }
   line-height: 1;
 }
 .q-title {
-  font-size: clamp(1.25rem, 2.2vw, 1.55rem);
-  font-weight: 700;
-  letter-spacing: -0.015em;
-  margin: 0 0 8px;
+  font-size: clamp(1.6rem, 3.4vw, 2.25rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  margin: 0 0 10px;
   text-align: center;
-  line-height: 1.25;
+  line-height: 1.18;
 }
 .q-note {
   font-size: 0.92rem;
@@ -230,9 +245,10 @@ main { padding-bottom: 24px; }
 .q-answers {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  max-width: 480px;
-  margin: 24px auto 0;
+  gap: 12px;
+  max-width: 520px;
+  margin: 28px auto 0;
+  counter-reset: answer;
 }
 
 /* Inline team picker inside the quiz */
@@ -298,27 +314,57 @@ main { padding-bottom: 24px; }
   -webkit-appearance: none;
   background: var(--card);
   color: var(--fg);
-  border: 1.5px solid var(--border);
-  border-radius: 10px;
-  padding: 14px 18px;
-  font-size: 1rem;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 18px 16px 56px;
+  font-size: 1.02rem;
   font-weight: 500;
   font-family: inherit;
   cursor: pointer;
   text-align: left;
+  position: relative;
+  counter-increment: answer;
   transition: border-color 0.15s ease, background 0.15s ease, transform 0.08s ease, box-shadow 0.15s ease;
+}
+.answer::before {
+  content: counter(answer);
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--muted);
+  background: var(--bg);
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid var(--border);
+  font-variant-numeric: tabular-nums;
+  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
 }
 .answer:hover {
   border-color: var(--accent);
   background: var(--accent-soft);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-sm);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 102, 51, 0.10);
+}
+.answer:hover::before {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--card);
 }
 .answer:active { transform: translateY(0) scale(0.98); }
 .answer:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
+/* Continue button (team picker) overrides number prefix */
+.continue-btn::before { display: none !important; }
+.continue-btn { padding-left: 18px !important; }
 
 .quiz-footer {
   display: flex;
