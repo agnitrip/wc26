@@ -798,6 +798,146 @@ footer a:hover { color: var(--accent); }
 }
 .schedule-caveat p { margin: 0; }
 
+/* ===== Watch parties page ===== */
+.personalization-notice {
+  background: var(--accent-soft);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin: 12px 0 20px;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.personalization-notice a { color: var(--accent); }
+.show-all-btn {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  font-family: inherit;
+  font-size: 0.85rem;
+  padding: 4px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-left: auto;
+}
+.show-all-btn:hover { background: var(--accent); color: #fff; }
+
+.results-summary-row {
+  margin: 8px 0 16px;
+}
+.results-summary {
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.venues-region { margin-bottom: 32px; }
+.city-section { margin: 32px 0; }
+.city-header {
+  font-size: 1.25rem;
+  margin: 0 0 14px;
+  letter-spacing: -0.015em;
+  font-weight: 700;
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 8px;
+}
+.city-count {
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.venues-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 14px;
+}
+.venue {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px 18px;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+.venue:hover { border-color: var(--accent); transform: translateY(-1px); }
+.venue-head { margin-bottom: 8px; }
+.venue-flags {
+  font-size: 1.4rem;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.venue-flag { margin-right: 4px; }
+.venue-name {
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+  margin-bottom: 2px;
+}
+.venue-countries {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  font-weight: 700;
+}
+.venue-addr {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.venue-desc {
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--fg);
+}
+.venue-source {
+  margin-top: 8px;
+  font-size: 0.82rem;
+}
+.venue-source a {
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 1px dotted currentColor;
+}
+.venue-source a:hover { color: var(--accent); }
+
+.city-threads {
+  margin-top: 14px;
+  padding: 10px 14px;
+  background: var(--card);
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.city-threads-label {
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: var(--fg);
+}
+.city-thread {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px dotted currentColor;
+  margin-right: 8px;
+}
+.city-thread:hover { color: var(--accent-hover); }
+
+.empty-state {
+  padding: 40px 24px;
+  text-align: center;
+  color: var(--muted);
+  border: 1px dashed var(--border);
+  border-radius: 10px;
+}
+.empty-state p { margin: 6px 0; }
+
 @media (max-width: 700px) {
   .pickers {
     width: 100%;

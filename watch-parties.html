@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Watch parties: WC26 Anywhere</title>
-  <meta name="description" content="Country-specific 2026 World Cup watch parties and bars in NYC, LA, SF, Dallas, Miami, Houston, and Atlanta. For every fan watching from the couch, the bar, or a friend's place. Coming soon.">
+  <meta name="description" content="Country-specific 2026 World Cup watch parties and bars across NYC, LA, SF, Dallas, Miami, Houston, and Atlanta. For every fan watching from the couch, the bar, or a friend's place.">
   <meta name="theme-color" content="#006633">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="stylesheet" href="/styles.css">
@@ -20,22 +20,56 @@
           <li><a href="/watch-parties" class="active">Watch parties</a></li>
         </ul>
       </nav>
+      <div class="pickers">
+        <div class="picker-group">
+          <button class="picker-chip" id="city-chip" aria-haspopup="true">
+            <span id="city-chip-label">📍 All cities</span>
+            <span class="caret">▼</span>
+          </button>
+          <div class="dropdown-menu" id="city-menu" hidden role="menu"></div>
+        </div>
+        <div class="picker-group">
+          <button class="picker-chip" id="country-chip" aria-haspopup="true">
+            <span id="country-chip-label">All countries</span>
+            <span class="caret">▼</span>
+          </button>
+          <div class="dropdown-menu" id="country-menu" hidden role="menu"></div>
+        </div>
+      </div>
     </div>
   </header>
 
   <main class="container">
-    <section class="placeholder">
-      <h1>Where your people watch</h1>
-      <p>Country-specific watch parties and bars across NYC, LA, SF, Dallas, Miami, Houston, and Atlanta.</p>
-      <p>Coming next week, with seed entries pulled from r/AskNYC and similar threads.</p>
-      <p><a href="/">Back to the streaming guide</a></p>
+    <section class="schedule-hero">
+      <h1>Where your people watch.</h1>
+      <p class="lede-small">Country-specific bars and watch parties across the 7 biggest US fan cities. Pick a city, a country, or both.</p>
+    </section>
+
+    <div id="personalization-notice"></div>
+
+    <div class="results-summary-row">
+      <div id="results-summary" class="results-summary"></div>
+    </div>
+
+    <section id="venues-body" class="venues-region" aria-label="Watch venues"></section>
+
+    <section class="schedule-caveat">
+      <p><strong>Heads up:</strong> This is a starter list of well-known soccer-friendly venues per city. Hours and screening plans change. Call ahead before a big match, especially for country-specific bars during a kickoff for that country. If your favorite spot is missing, the Reddit thread links per city are the best place to find current recommendations from local fans.</p>
     </section>
   </main>
 
   <footer>
     <div class="container">
+      <div class="trust-badges">
+        <span class="trust-pill">✓ Free</span>
+        <span class="trust-pill">✓ No signup</span>
+        <span class="trust-pill">✓ No tracking</span>
+      </div>
       <p>WC26 Anywhere is for every fan watching from the couch, the bar, or a friend's place. Free, no signup, no tracking.</p>
     </div>
   </footer>
+
+  <script src="/watch-parties-data.js" defer></script>
+  <script src="/watch-parties.js" defer></script>
 </body>
 </html>
