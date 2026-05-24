@@ -226,15 +226,6 @@
       cityMenu.hidden = open;
     });
 
-    var countryChip = document.getElementById('country-chip');
-    var countryMenu = document.getElementById('country-menu');
-    countryChip.addEventListener('click', function (e) {
-      e.stopPropagation();
-      var open = !countryMenu.hidden;
-      closeMenus();
-      countryMenu.hidden = open;
-    });
-
     document.addEventListener('click', function (e) {
       if (!e.target.closest('.picker-group')) closeMenus();
     });
