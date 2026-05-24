@@ -7,6 +7,7 @@
   var state = {
     cityFilter: 'all',
     countryFilter: 'all',
+    nearStadiumOnly: false, // proximity filter
     crossPagePersonalized: false, // tracks whether country filter came from schedule teams
   };
 
@@ -37,6 +38,8 @@
         state.countryFilter = co;
         state.crossPagePersonalized = false; // user explicit override
       }
+      var ns = localStorage.getItem('wc26_wp_near_stadium');
+      if (ns === 'true') state.nearStadiumOnly = true;
     } catch (e) { /* ignore */ }
   }
 
@@ -44,6 +47,7 @@
     try {
       localStorage.setItem('wc26_wp_city', state.cityFilter);
       localStorage.setItem('wc26_wp_country', state.countryFilter);
+      localStorage.setItem('wc26_wp_near_stadium', state.nearStadiumOnly ? 'true' : 'false');
     } catch (e) { /* ignore */ }
   }
 
@@ -57,11 +61,12 @@
   function matches(venue) {
     if (state.cityFilter !== 'all' && venue.city !== state.cityFilter) return false;
     if (state.countryFilter !== 'all' && venue.countries.indexOf(state.countryFilter) === -1) return false;
+    if (state.nearStadiumOnly && !venue.nearStadium) return false;
     return true;
   }
 
   // ----- Renderers -----
-  function venueCard(v, COUNTRIES) {
+  function venueCard(v, COUNTRIES, STADIUMS) {
     var flagsHtml = v.countries.map(function (code) {
       var c = COUNTRIES[code];
       return c ? '<span class="venue-flag" title="' + c.name + '">' + c.flag + '</span>' : '';
@@ -74,13 +79,19 @@
     if (v.sourceUrl) {
       sourceHtml = '<div class="venue-source"><a href="' + v.sourceUrl + '" target="_blank" rel="noopener">' + (v.sourceLabel || 'Source') + ' ↗</a></div>';
     }
-    return '<div class="venue">' +
+    var stadiumChip = '';
+    if (v.nearStadium && STADIUMS && STADIUMS[v.nearStadium]) {
+      var s = STADIUMS[v.nearStadium];
+      stadiumChip = '<div class="venue-stadium">🏟 Near ' + s.name + '</div>';
+    }
+    return '<div class="venue' + (v.nearStadium ? ' venue-near-stadium' : '') + '">' +
       '<div class="venue-head">' +
         '<div class="venue-flags">' + flagsHtml + '</div>' +
         '<div class="venue-name">' + v.name + '</div>' +
         '<div class="venue-countries">' + countryNames + '</div>' +
       '</div>' +
       '<div class="venue-addr">' + v.address + (v.neighborhood ? ' · ' + v.neighborhood : '') + '</div>' +
+      stadiumChip +
       '<div class="venue-desc">' + v.description + '</div>' +
       sourceHtml +
       '</div>';
@@ -198,7 +209,7 @@
       html += '<section class="city-section">' +
         '<h2 class="city-header">' + city.name + ' <span class="city-count">(' + byCity[city.id].length + ')</span></h2>' +
         '<div class="venues-grid">' +
-          byCity[city.id].map(function (v) { return venueCard(v, data.WP_COUNTRIES); }).join('') +
+          byCity[city.id].map(function (v) { return venueCard(v, data.WP_COUNTRIES, data.STADIUMS); }).join('') +
         '</div>' +
         cityThreadsHtml(city.id) +
         '</section>';
@@ -207,9 +218,27 @@
     document.getElementById('venues-body').innerHTML = html;
   }
 
+  function renderProximityToggle() {
+    var el = document.getElementById('proximity-toggle');
+    if (!el) return;
+    el.innerHTML = '<div class="filter-toggle">' +
+      '<span class="filter-label">Show:</span> ' +
+      '<button class="toggle-btn ' + (!state.nearStadiumOnly ? 'active' : '') + '" data-near="false">All venues</button>' +
+      '<button class="toggle-btn ' + (state.nearStadiumOnly ? 'active' : '') + '" data-near="true">🏟 Near a host stadium</button>' +
+      '</div>';
+    el.querySelectorAll('.toggle-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        state.nearStadiumOnly = btn.getAttribute('data-near') === 'true';
+        saveLocalState();
+        renderAll();
+      });
+    });
+  }
+
   function renderAll() {
     renderPersonalizationNotice();
     renderFilters();
+    renderProximityToggle();
     renderVenues();
   }
 

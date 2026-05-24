@@ -165,18 +165,14 @@
     var stage = stageChip(match);
     return teams + ' · ' + stage + ' · WC 2026';
   }
-  function downloadIcs(match) {
-    var TEAMS = window.WC26_DATA.TEAMS;
+  function buildIcsEvent(match, TEAMS) {
     var start = new Date(match.kickoffISO);
-    var end = new Date(start.getTime() + 2.5 * 60 * 60 * 1000); // 2.5hr block
+    var end = new Date(start.getTime() + 2.5 * 60 * 60 * 1000);
     var title = matchTitle(match, TEAMS);
     var loc = match.venue + ', ' + match.city;
     var desc = 'Broadcast: ' + match.broadcast.join(', ') + '\\nVia WC26 Anywhere (wc26-jade.vercel.app)';
     var uid = 'wc26-match-' + match.num + '@wc26-jade.vercel.app';
-    var lines = [
-      'BEGIN:VCALENDAR',
-      'VERSION:2.0',
-      'PRODID:-//WC26 Anywhere//EN',
+    return [
       'BEGIN:VEVENT',
       'UID:' + uid,
       'DTSTAMP:' + icsDate(new Date()),
@@ -186,16 +182,86 @@
       'LOCATION:' + loc,
       'DESCRIPTION:' + desc,
       'END:VEVENT',
+    ].join('\r\n');
+  }
+
+  function downloadIcsForMatches(matches, filename) {
+    var TEAMS = window.WC26_DATA.TEAMS;
+    var events = matches.map(function (m) { return buildIcsEvent(m, TEAMS); }).join('\r\n');
+    var lines = [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//WC26 Anywhere//EN',
+      events,
       'END:VCALENDAR',
     ];
     var blob = new Blob([lines.join('\r\n')], { type: 'text/calendar' });
     var url = URL.createObjectURL(blob);
     var a = document.createElement('a');
     a.href = url;
-    a.download = 'wc26-match-' + match.num + '.ics';
+    a.download = filename;
     document.body.appendChild(a);
     a.click();
     setTimeout(function () { URL.revokeObjectURL(url); a.remove(); }, 100);
+  }
+
+  function downloadIcs(match) {
+    downloadIcsForMatches([match], 'wc26-match-' + match.num + '.ics');
+  }
+
+  // ----- Confirmation modal -----
+  function openConfirmModal(opts) {
+    var overlay = document.getElementById('modal-overlay');
+    if (!overlay) return;
+    document.getElementById('modal-title').textContent = opts.title;
+    document.getElementById('modal-body').textContent = opts.body;
+    document.getElementById('modal-confirm').textContent = opts.confirmLabel || 'Confirm';
+    document.getElementById('modal-confirm').onclick = function () {
+      closeModal();
+      opts.onConfirm();
+    };
+    overlay.hidden = false;
+    document.body.style.overflow = 'hidden';
+    setTimeout(function () { document.getElementById('modal-cancel').focus(); }, 50);
+  }
+
+  function closeModal() {
+    var overlay = document.getElementById('modal-overlay');
+    if (!overlay) return;
+    overlay.hidden = true;
+    document.body.style.overflow = '';
+  }
+
+  function bulkAddMyMatches() {
+    var mine = window.WC26_DATA.MATCHES.filter(isMyTeam);
+    openConfirmModal({
+      title: 'Add your team matches to calendar?',
+      body: mine.length + ' match' + (mine.length === 1 ? '' : 'es') + ' will be added as separate events. Your calendar app will open with the file ready to import.',
+      confirmLabel: 'Add ' + mine.length + ' matches',
+      onConfirm: function () { downloadIcsForMatches(mine, 'wc26-my-matches.ics'); },
+    });
+  }
+
+  function bulkAddAll() {
+    var all = window.WC26_DATA.MATCHES;
+    openConfirmModal({
+      title: 'Add all 104 matches to calendar?',
+      body: 'All 104 matches will be added as separate events across 39 days. This is a lot. Only do this if you want every single match in your calendar.',
+      confirmLabel: 'Yes, add all 104',
+      onConfirm: function () { downloadIcsForMatches(all, 'wc26-all-104.ics'); },
+    });
+  }
+
+  function bulkAddKnockouts() {
+    var ko = window.WC26_DATA.MATCHES.filter(function (m) {
+      return ['R32', 'R16', 'QF', 'SF', '3rd', 'F'].indexOf(m.stage) !== -1;
+    });
+    openConfirmModal({
+      title: 'Add all 32 knockout matches?',
+      body: 'The Round of 32, Round of 16, Quarterfinals, Semifinals, 3rd-place, and Final will be added as separate events. Teams resolve as the group stage finishes.',
+      confirmLabel: 'Add ' + ko.length + ' matches',
+      onConfirm: function () { downloadIcsForMatches(ko, 'wc26-knockouts.ics'); },
+    });
   }
 
   // ----- Renderers -----
@@ -272,7 +338,10 @@
       });
       if (mine.length) {
         pinnedHtml = '<div class="pinned-section">' +
-          '<h2 class="pinned-header">⭐ Your matches (' + mine.length + ')</h2>' +
+          '<div class="pinned-header-row">' +
+            '<h2 class="pinned-header">⭐ Your matches (' + mine.length + ')</h2>' +
+            '<button class="bulk-ics-btn" id="bulk-my-btn">📅 Add all to calendar</button>' +
+          '</div>' +
           mine.map(function (m) { return renderMatch(m, TEAMS, { showDate: true }); }).join('') +
           '</div>';
       }
@@ -289,7 +358,14 @@
     var scheduleHtml = '';
     var showFullSchedule = !hasTeams || state.filter === 'all';
     if (showFullSchedule) {
-      scheduleHtml = '<div class="full-schedule"><h2 class="full-header">All 104 matches</h2>';
+      scheduleHtml = '<div class="full-schedule">' +
+        '<div class="full-header-row">' +
+          '<h2 class="full-header">All 104 matches</h2>' +
+          '<div class="bulk-actions">' +
+            '<button class="bulk-ics-btn" id="bulk-all-btn">📅 Add all 104</button>' +
+            '<button class="bulk-ics-btn" id="bulk-ko-btn">📅 Add knockouts only</button>' +
+          '</div>' +
+        '</div>';
       sortedDays.forEach(function (key) {
         var matches = byDay[key];
         var header = formatDayHeader(matches[0].kickoffISO);
@@ -329,6 +405,14 @@
         if (m) downloadIcs(m);
       });
     });
+
+    // Wire bulk buttons (only those that rendered)
+    var bulkMy = document.getElementById('bulk-my-btn');
+    if (bulkMy) bulkMy.addEventListener('click', bulkAddMyMatches);
+    var bulkAll = document.getElementById('bulk-all-btn');
+    if (bulkAll) bulkAll.addEventListener('click', bulkAddAll);
+    var bulkKo = document.getElementById('bulk-ko-btn');
+    if (bulkKo) bulkKo.addEventListener('click', bulkAddKnockouts);
   }
 
   // ----- Picker UIs -----
@@ -427,6 +511,16 @@
 
     document.addEventListener('click', function (e) {
       if (!e.target.closest('.picker-group')) closeMenus();
+    });
+
+    // Modal close handlers
+    var modalCancel = document.getElementById('modal-cancel');
+    if (modalCancel) modalCancel.addEventListener('click', closeModal);
+    var modalBackdrop = document.getElementById('modal-backdrop');
+    if (modalBackdrop) modalBackdrop.addEventListener('click', closeModal);
+    document.addEventListener('keydown', function (e) {
+      var overlay = document.getElementById('modal-overlay');
+      if (overlay && !overlay.hidden && e.key === 'Escape') closeModal();
     });
 
     renderZoneChip();

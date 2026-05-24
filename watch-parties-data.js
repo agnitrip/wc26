@@ -29,6 +29,22 @@ const CITIES = [
   { id: 'ATL', name: 'Atlanta' },
 ];
 
+// Host stadiums in the US. Used to tag venues near a stadium for
+// traveling supporters / fans planning to be in the stadium area on match day.
+const STADIUMS = {
+  MET: { name: 'MetLife Stadium', city: 'East Rutherford, NJ' },
+  GIL: { name: 'Gillette Stadium', city: 'Foxborough, MA' },
+  LIN: { name: 'Lincoln Financial Field', city: 'Philadelphia, PA' },
+  MBZ: { name: 'Mercedes-Benz Stadium', city: 'Atlanta, GA' },
+  HRD: { name: 'Hard Rock Stadium', city: 'Miami Gardens, FL' },
+  NRG: { name: 'NRG Stadium', city: 'Houston, TX' },
+  ATT: { name: 'AT&T Stadium', city: 'Arlington, TX' },
+  ARH: { name: 'Arrowhead Stadium', city: 'Kansas City, MO' },
+  LEV: { name: "Levi's Stadium", city: 'Santa Clara, CA' },
+  SOFI: { name: 'SoFi Stadium', city: 'Inglewood, CA' },
+  LUM: { name: 'Lumen Field', city: 'Seattle, WA' },
+};
+
 // Countries used on this page. GEN = general soccer pub (no specific country).
 const WP_COUNTRIES = {
   GEN: { name: 'General soccer', flag: '⚽' },
@@ -88,6 +104,19 @@ const VENUES = [
     neighborhood: 'Chelsea', city: 'NYC', countries: ['GEN', 'ENG'],
     description: 'Long-standing Chelsea sports bar with multiple screens. Goes deep for big tournaments and Premier League weekends.',
   },
+  // Near MetLife Stadium (East Rutherford, NJ)
+  {
+    id: 'redeye-grill-secaucus', name: 'Red Robin / Redd\'s Tavern', address: 'Plaza at Harmon Meadow',
+    neighborhood: 'Secaucus, NJ', city: 'NYC', countries: ['GEN', 'USA'],
+    description: 'Sports bar in the Harmon Meadow complex. ~10 min drive to MetLife. Pre-match crowd on stadium days.',
+    nearStadium: 'MET',
+  },
+  {
+    id: 'mulligans-hoboken', name: "Mulligan's Bar", address: '159 First St',
+    neighborhood: 'Hoboken, NJ', city: 'NYC', countries: ['GEN', 'IRL'],
+    description: 'Hoboken sports bar with PATH-train access to NJ Transit for MetLife. Strong soccer crowd.',
+    nearStadium: 'MET',
+  },
   {
     id: 'football-factory-nyc', name: 'The Football Factory at Legends', address: '6 W 33rd St',
     neighborhood: 'Midtown', city: 'NYC', countries: ['GEN', 'ENG'],
@@ -115,6 +144,19 @@ const VENUES = [
     neighborhood: 'Fairfax', city: 'LA', countries: ['GEN', 'ENG'],
     description: 'Soccer-first pub that shows every meaningful match in the season. Premier League crowd, but turns up for WC.',
   },
+  // Near SoFi Stadium (Inglewood)
+  {
+    id: 'three-weavers-inglewood', name: 'Three Weavers Brewing', address: '1031 W Manchester Blvd',
+    neighborhood: 'Inglewood', city: 'LA', countries: ['GEN', 'USA'],
+    description: 'Inglewood taproom walking distance from SoFi Stadium. Big-screen setup, neighborhood crowd on match days.',
+    nearStadium: 'SOFI',
+  },
+  {
+    id: 'lockhart-inglewood', name: 'Lockhart Smokehouse', address: '11460 La Cienega Blvd',
+    neighborhood: 'Inglewood', city: 'LA', countries: ['GEN'],
+    description: 'Sports-bar-and-BBQ ~5 min from SoFi. Pre-match destination for stadium-bound fans.',
+    nearStadium: 'SOFI',
+  },
   {
     id: 'cock-bull-la', name: 'Ye Olde Kings Head', address: '116 Santa Monica Blvd',
     neighborhood: 'Santa Monica', city: 'LA', countries: ['ENG', 'GEN'],
@@ -138,6 +180,19 @@ const VENUES = [
     neighborhood: 'Lower Haight', city: 'SF', countries: ['ENG', 'GEN'],
     description: 'The SF soccer pub. Opens at 4am for European kickoffs and is full by the first whistle.',
   },
+  // Near Levi's Stadium (Santa Clara) — 45 mi south of SF, separate world for Bay Area fans
+  {
+    id: 'splash-san-jose', name: 'Splash San Jose', address: '65 Post St',
+    neighborhood: 'Downtown San Jose', city: 'SF', countries: ['GEN'],
+    description: 'Downtown San Jose sports bar ~10 min from Levi\'s. South Bay watch-party hub on stadium match days.',
+    nearStadium: 'LEV',
+  },
+  {
+    id: 'pedros-santa-clara', name: "Pedro's Restaurant & Cantina", address: '3935 Freedom Cir',
+    neighborhood: 'Santa Clara', city: 'SF', countries: ['MEX'],
+    description: 'Mexican restaurant 5 minutes from Levi\'s. Spanish commentary on Mexico match days, big crowd.',
+    nearStadium: 'LEV',
+  },
   {
     id: 'kezar-pub-sf', name: 'Kezar Pub', address: '770 Stanyan St',
     neighborhood: 'Cole Valley', city: 'SF', countries: ['IRL', 'GEN'],
@@ -159,6 +214,19 @@ const VENUES = [
     id: 'trinity-hall-dal', name: 'Trinity Hall Irish Pub', address: '5321 E Mockingbird Ln',
     neighborhood: 'Mockingbird Station', city: 'DAL', countries: ['IRL', 'GEN'],
     description: 'Irish pub at Mockingbird Station. Opens early for European matches, strong soccer crowd for WC.',
+  },
+  // Near AT&T Stadium (Arlington)
+  {
+    id: 'texas-live-arlington', name: 'Texas Live!', address: '1650 E Randol Mill Rd',
+    neighborhood: 'Arlington', city: 'DAL', countries: ['GEN', 'USA'],
+    description: 'Massive entertainment complex literally adjacent to AT&T Stadium. PBR Texas, Live! Arena, and multiple bars. WC match-day destination.',
+    nearStadium: 'ATT',
+  },
+  {
+    id: 'humperdinks-arlington', name: "Humperdink's Bar & Grill", address: '700 Six Flags Dr',
+    neighborhood: 'Arlington', city: 'DAL', countries: ['GEN'],
+    description: 'Sports bar ~5 min from AT&T Stadium. Brewpub with big-screen setup, pre-match standard for stadium-bound fans.',
+    nearStadium: 'ATT',
   },
   {
     id: 'londoner-dal', name: 'The Londoner', address: '5535 Greenville Ave',
@@ -185,6 +253,19 @@ const VENUES = [
     sourceUrl: 'https://www.miamiherald.com/news/local/community/miami-dade/coral-gables/article288245420.html',
     sourceLabel: 'Miami Herald 2026',
   },
+  // Near Hard Rock Stadium (Miami Gardens)
+  {
+    id: 'shulas-aventura', name: "Shula's Bar & Grill", address: '20801 Biscayne Blvd',
+    neighborhood: 'Aventura', city: 'MIA', countries: ['GEN', 'USA'],
+    description: 'Aventura sports bar ~10 min from Hard Rock Stadium. Pre-match destination for stadium-bound fans.',
+    nearStadium: 'HRD',
+  },
+  {
+    id: 'tap42-aventura', name: 'Tap 42', address: '19565 Biscayne Blvd',
+    neighborhood: 'Aventura Mall', city: 'MIA', countries: ['GEN'],
+    description: 'Craft beer + sports bar at Aventura Mall, easy access to Hard Rock Stadium. Showing every match.',
+    nearStadium: 'HRD',
+  },
   {
     id: 'manolos-mia', name: "Manolo's", address: '17350 Collins Ave',
     neighborhood: 'Sunny Isles Beach', city: 'MIA', countries: ['ARG'],
@@ -206,7 +287,8 @@ const VENUES = [
   {
     id: 'pitch-25-hou', name: 'Pitch 25', address: '2120 Walker St',
     neighborhood: 'East Downtown', city: 'HOU', countries: ['GEN'],
-    description: 'Purpose-built soccer bar from former USMNT player Brian Ching. Multi-screen, every match, every kickoff.',
+    description: 'Purpose-built soccer bar from former USMNT player Brian Ching. Multi-screen, every match, every kickoff. Walking distance to NRG via shuttle.',
+    nearStadium: 'NRG',
   },
   {
     id: 'rudyards-hou', name: 'Rudyard\'s British Pub', address: '2010 Waugh Dr',
@@ -246,7 +328,8 @@ const VENUES = [
     id: 'sports-and-social-atl', name: 'Sports & Social', address: '20 Centennial Olympic Park Dr',
     neighborhood: 'Downtown', city: 'ATL', countries: ['GEN', 'USA'],
     description: 'Mercedes-Benz Stadium-adjacent sports bar. Walk-up venue for any Atlanta-hosted WC match.',
+    nearStadium: 'MBZ',
   },
 ];
 
-window.WC26_WP = { CITIES, WP_COUNTRIES, CITY_THREADS, VENUES };
+window.WC26_WP = { CITIES, WP_COUNTRIES, CITY_THREADS, VENUES, STADIUMS };

@@ -68,6 +68,18 @@
     </div>
   </footer>
 
+  <div id="modal-overlay" hidden role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-backdrop" id="modal-backdrop"></div>
+    <div class="modal-card">
+      <h3 class="modal-title" id="modal-title"></h3>
+      <p class="modal-body" id="modal-body"></p>
+      <div class="modal-actions">
+        <button class="modal-cancel" id="modal-cancel">Cancel</button>
+        <button class="modal-confirm" id="modal-confirm">Confirm</button>
+      </div>
+    </div>
+  </div>
+
   <script src="/schedule-data.js" defer></script>
   <script src="/schedule.js" defer></script>
 </body>
