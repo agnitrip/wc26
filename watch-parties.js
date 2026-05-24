@@ -33,20 +33,17 @@
     try {
       var c = localStorage.getItem('wc26_wp_city');
       if (c) state.cityFilter = c;
-      var co = localStorage.getItem('wc26_wp_country');
-      if (co) {
-        state.countryFilter = co;
-        state.crossPagePersonalized = false; // user explicit override
-      }
       var ns = localStorage.getItem('wc26_wp_near_stadium');
       if (ns === 'true') state.nearStadiumOnly = true;
+      // Note: country filter is NOT persisted across visits anymore.
+      // It exists transparently to support cross-page personalization from
+      // /schedule's wc26_teams localStorage (handled by loadCrossPage).
     } catch (e) { /* ignore */ }
   }
 
   function saveLocalState() {
     try {
       localStorage.setItem('wc26_wp_city', state.cityFilter);
-      localStorage.setItem('wc26_wp_country', state.countryFilter);
       localStorage.setItem('wc26_wp_near_stadium', state.nearStadiumOnly ? 'true' : 'false');
     } catch (e) { /* ignore */ }
   }
@@ -125,40 +122,9 @@
       });
     });
 
-    var countryMenu = document.getElementById('country-menu');
-    var countryEntries = Object.keys(data.WP_COUNTRIES).map(function (code) {
-      return { code: code, name: data.WP_COUNTRIES[code].name, flag: data.WP_COUNTRIES[code].flag };
-    }).sort(function (a, b) {
-      // Keep GEN at top, then alphabetical
-      if (a.code === 'GEN') return -1;
-      if (b.code === 'GEN') return 1;
-      return a.name.localeCompare(b.name);
-    });
-    countryMenu.innerHTML = '<button class="menu-item" data-country="all">All countries ' + (state.countryFilter === 'all' ? '✓' : '') + '</button>' +
-      countryEntries.map(function (t) {
-        var checked = state.countryFilter === t.code ? ' ✓' : '';
-        return '<button class="menu-item" data-country="' + t.code + '"><span class="team-flag">' + t.flag + '</span> ' + t.name + checked + '</button>';
-      }).join('');
-    countryMenu.querySelectorAll('.menu-item').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        state.countryFilter = btn.getAttribute('data-country');
-        state.crossPagePersonalized = false;
-        saveLocalState();
-        renderAll();
-        closeMenus();
-      });
-    });
-
-    // Chip labels
+    // City chip label
     var cityLabel = state.cityFilter === 'all' ? 'All cities' : (data.CITIES.find(function (c) { return c.id === state.cityFilter; }) || {}).name;
     document.getElementById('city-chip-label').textContent = '📍 ' + cityLabel;
-    var countryLabel;
-    if (state.countryFilter === 'all') countryLabel = 'All countries';
-    else {
-      var co = data.WP_COUNTRIES[state.countryFilter];
-      countryLabel = co ? co.flag + ' ' + co.name : 'All countries';
-    }
-    document.getElementById('country-chip-label').textContent = countryLabel;
   }
 
   function renderPersonalizationNotice() {
