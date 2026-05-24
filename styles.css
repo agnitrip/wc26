@@ -624,10 +624,46 @@ td strong { color: var(--accent); }
 .comparison-table tbody td { padding: 14px 10px; vertical-align: middle; }
 
 .th-service { width: 13%; }
-.th-all104 { width: 17%; }
+.th-all104 { width: 16%; }
 .th-icon { width: 8%; text-align: center !important; }
-.th-price { width: 13%; }
+.th-price { width: 14%; }
 .th-bestfor { width: 25%; }
+
+/* Category group rows */
+.comparison-table tr.row-category {
+  background: transparent !important;
+}
+.comparison-table tr.row-category:hover {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.comparison-table tr.row-category td {
+  background: transparent;
+  padding: 24px 4px 6px !important;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  border-bottom: 2px solid var(--accent-soft);
+}
+.comparison-table tr.row-category + tr td { padding-top: 16px; }
+
+/* Service badge */
+.cell-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin-top: 6px;
+  text-transform: uppercase;
+  line-height: 1.2;
+  white-space: nowrap;
+}
 
 .cell-service { font-weight: 700; line-height: 1.25; }
 .cell-service strong {
@@ -742,6 +778,26 @@ td strong { color: var(--accent); }
     margin: 0;
     text-align: left;
   }
+  /* Category rows on mobile = small section header above the cards */
+  .comparison-table tr.row-category {
+    display: block;
+    padding: 0 !important;
+    margin: 24px 0 4px;
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+  .comparison-table tr.row-category td {
+    display: block;
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    font-size: 0.72rem;
+    color: var(--accent);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
   /* Service name = card header */
   .cell-service {
     border-bottom: 1px solid var(--border);
@@ -751,6 +807,11 @@ td strong { color: var(--accent); }
   .cell-service strong {
     font-size: 1.15rem;
     color: var(--fg);
+  }
+  .cell-badge {
+    display: inline-block;
+    margin-top: 6px;
+    margin-left: 0;
   }
   /* Price = below service name, prominent */
   .cell-price {
@@ -812,11 +873,13 @@ td strong { color: var(--accent); }
     flex-shrink: 0;
   }
   .cell-status .status-caption {
+    display: inline;
     margin: 0;
     text-align: left;
-    flex-shrink: 0;
+    flex-shrink: 1;
     font-size: 0.78rem;
-    max-width: 50%;
+    max-width: none;
+    font-style: italic;
   }
   /* Best for = card footer */
   .cell-bestfor {
