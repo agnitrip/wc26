@@ -169,8 +169,19 @@
       (byCity[v.city] = byCity[v.city] || []).push(v);
     });
 
+    // Audience-priority order: largest diaspora populations + host-stadium visibility first.
+    // Keeps data file canonical while controlling presentation here.
+    var CITY_PRIORITY = ['NYC', 'LA', 'SF', 'DAL', 'MIA', 'ATL', 'BOS', 'PHL', 'HOU', 'KC', 'SEA'];
+    var orderedCities = CITY_PRIORITY
+      .map(function (id) { return data.CITIES.find(function (c) { return c.id === id; }); })
+      .filter(Boolean);
+    // Append any city in the data that isn't in the priority list (defensive)
+    data.CITIES.forEach(function (c) {
+      if (CITY_PRIORITY.indexOf(c.id) === -1) orderedCities.push(c);
+    });
+
     var html = '';
-    data.CITIES.forEach(function (city) {
+    orderedCities.forEach(function (city) {
       if (!byCity[city.id]) return;
       html += '<section class="city-section">' +
         '<h2 class="city-header">' + city.name + ' <span class="city-count">(' + byCity[city.id].length + ')</span></h2>' +

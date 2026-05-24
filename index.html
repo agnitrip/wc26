@@ -23,7 +23,7 @@
 <body>
   <header>
     <div class="container">
-      <a href="/" class="brand">WC26 Pregame</a>
+      <a href="/" class="brand"><svg class="brand-glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="12,7 16,10 14.5,15 9.5,15 8,10"/><line x1="12" y1="7" x2="12" y2="2.5"/><line x1="16" y1="10" x2="20.5" y2="8.4"/><line x1="14.5" y1="15" x2="16.8" y2="19.7"/><line x1="9.5" y1="15" x2="7.2" y2="19.7"/><line x1="8" y1="10" x2="3.5" y2="8.4"/></svg><span class="brand-text">WC<span class="brand-year">26</span> Pregame</span></a>
       <nav aria-label="Primary">
         <ul>
           <li><a href="/" class="active">Home</a></li>
@@ -36,14 +36,22 @@
   </header>
 
   <main class="container">
-    <section class="home-hero">
-      <div class="hero-meta">
-        <span class="host-chip">USA · CAN · MEX</span>
-        <span class="countdown" id="hero-meta-line">June 11 to July 19, 2026</span>
+    <section class="tournament-hero">
+      <div class="tournament-hero-img" aria-hidden="true"></div>
+      <div class="tournament-hero-overlay" aria-hidden="true"></div>
+      <div class="tournament-hero-content">
+        <div class="home-host-strip">
+          <span class="host-country"><span class="host-flag">🇺🇸</span> United States</span>
+          <span class="host-country"><span class="host-flag">🇨🇦</span> Canada</span>
+          <span class="host-country"><span class="host-flag">🇲🇽</span> Mexico</span>
+        </div>
+        <div class="home-stats-line" id="hero-meta-line">June 11 to July 19, 2026 · 48 teams · 104 matches · 11 US host cities</div>
+        <h1 class="home-h1">Sort out your World Cup before kickoff.</h1>
+        <p class="home-lede">Pick a streaming bundle, find a watch party, save the schedule. Free, no signup.</p>
       </div>
-      <h1 class="home-h1">Sort out your World Cup before kickoff.</h1>
-      <p class="home-lede">Pick a streaming bundle, find a watch party, save the schedule. Free, no signup.</p>
+    </section>
 
+    <section class="kickoff-section">
       <div class="countdown-card" id="countdown-card">
         <div class="countdown-label" id="countdown-label">Tournament starts in</div>
         <div class="countdown-clock" id="countdown-clock">
@@ -51,7 +59,17 @@
           <div class="clock-cell"><span class="clock-num" id="clock-hours">00</span><span class="clock-unit">hrs</span></div>
           <div class="clock-cell"><span class="clock-num" id="clock-mins">00</span><span class="clock-unit">min</span></div>
         </div>
-        <div class="countdown-context" id="countdown-context">Opening match: Mexico vs South Korea · Estadio Azteca</div>
+        <div class="countdown-divider" aria-hidden="true"></div>
+        <div class="countdown-match">
+          <div class="countdown-match-label">Opening match · Day 1</div>
+          <div class="countdown-matchup">
+            <span class="countdown-team"><span class="countdown-flag">🇲🇽</span> Mexico</span>
+            <span class="countdown-vs">v</span>
+            <span class="countdown-team"><span class="countdown-flag">🇰🇷</span> South Korea</span>
+          </div>
+          <div class="countdown-venue" id="countdown-context">Thu Jun 11 · 11:00 AM ET · Estadio Azteca, Mexico City</div>
+          <button class="countdown-cta" id="opening-ics-btn"><span class="btn-emoji" aria-hidden="true">📅</span>Add opening match to calendar</button>
+        </div>
       </div>
     </section>
 
@@ -96,10 +114,10 @@
           </svg>
           <h2 class="home-card-title">Where your people watch</h2>
         </div>
-        <p class="home-card-desc">53 country-specific bars across all 11 US host cities. Filter by city, country, or proximity to a host stadium.</p>
+        <p class="home-card-desc">53 venues across all 11 US host cities. Filter by city, country, or proximity to a host stadium.</p>
         <div class="home-card-preview preview-flags-block">
-          <div class="preview-flags" aria-label="Sample of countries represented">🇲🇽 🇧🇷 🇦🇷 🇮🇪 🇮🇹 🇰🇷 🇳🇬 🇵🇹 🇲🇦 🇯🇲</div>
-          <span class="preview-flags-note">21 countries · 11 host cities</span>
+          <div class="preview-flags" aria-label="Sample of countries represented">🇮🇪 🇲🇽 🇦🇷 🇪🇸 🇩🇪 🇺🇸 🏴󠁧󠁢󠁥󠁮󠁧󠁿 🇦🇺 🇭🇹</div>
+          <span class="preview-flags-note">9 countries · 11 host cities</span>
         </div>
         <span class="home-card-cta">Find a watch party →</span>
       </a>
@@ -110,6 +128,7 @@
 
   <footer>
     <div class="container">
+      <p class="footer-feedback">Found a bug? Missing a venue? Have an idea to make Pregame better for fans? <a href="mailto:tripathi.agni@gmail.com">Tell us.</a></p>
       <div class="trust-badges">
         <span class="trust-pill">✓ Free</span>
         <span class="trust-pill">✓ No signup</span>
@@ -147,8 +166,8 @@
         daysEl.textContent = d;
         hrsEl.textContent = pad2(h);
         minsEl.textContent = pad2(m);
-        ctxEl.textContent = 'Opening match: Mexico vs South Korea · Thu Jun 11 · Estadio Azteca, Mexico City';
-        if (heroMeta) heroMeta.textContent = 'June 11 to July 19, 2026 · ' + d + ' days to kickoff';
+        // ctxEl is the venue line inside the new opening-match card; leave its static content alone pre-kickoff
+        // hero-meta-line is now the static stats strip; don't overwrite pre-kickoff
         return;
       }
 
@@ -239,6 +258,42 @@
       return teamRef.placeholder || 'TBD';
     }
 
+    function downloadOpeningIcs() {
+      var data = window.WC26_DATA;
+      if (!data || !data.MATCHES) return;
+      var m = data.MATCHES.find(function (x) { return x.num === 1; }) || data.MATCHES[0];
+      if (!m) return;
+      var start = new Date(m.kickoffISO);
+      var end = new Date(start.getTime() + 2.5 * 3600 * 1000);
+      function fmt(d) {
+        return d.getUTCFullYear() + pad2(d.getUTCMonth() + 1) + pad2(d.getUTCDate()) + 'T' +
+          pad2(d.getUTCHours()) + pad2(d.getUTCMinutes()) + '00Z';
+      }
+      var ics = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//WC26 Pregame//EN',
+        'BEGIN:VEVENT',
+        'UID:wc26-opening@wc26-jade.vercel.app',
+        'DTSTAMP:' + fmt(new Date()),
+        'DTSTART:' + fmt(start),
+        'DTEND:' + fmt(end),
+        'SUMMARY:Mexico vs South Korea · Opening Match · WC 2026',
+        'LOCATION:' + m.venue + ', ' + m.city,
+        'DESCRIPTION:Tournament opening match. Via WC26 Pregame (wc26-jade.vercel.app)',
+        'END:VEVENT',
+        'END:VCALENDAR',
+      ].join('\r\n');
+      var blob = new Blob([ics], { type: 'text/calendar' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = 'wc26-opening-match.ics';
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(function () { URL.revokeObjectURL(url); a.remove(); }, 100);
+    }
+
     function renderSchedulePreview() {
       var el = document.getElementById('home-schedule-preview');
       if (!el || !window.WC26_DATA) return;
@@ -266,6 +321,8 @@
     document.addEventListener('DOMContentLoaded', function () {
       updateCountdown();
       renderSchedulePreview();
+      var openingBtn = document.getElementById('opening-ics-btn');
+      if (openingBtn) openingBtn.addEventListener('click', downloadOpeningIcs);
       setInterval(updateCountdown, 60 * 1000); // refresh every minute
     });
   })();

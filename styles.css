@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter+Tight:wght@400;500;600;700;800;900&display=swap');
+
 :root {
   --bg: #f4f8f4;
   --fg: #1a1a1a;
@@ -7,6 +9,10 @@
   --accent: #006633;
   --accent-hover: #00502a;
   --accent-soft: #e8f3ec;
+  --warm: #f5c842;
+  --warm-hover: #e6b220;
+  --warm-soft: #fdf4d1;
+  --warm-deep: #6b4f00;
   --card: #fff;
   --card-elev: #fff;
   --warn-bg: #fff8e1;
@@ -14,6 +20,8 @@
   --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
   --shadow-md: 0 4px 18px rgba(0,102,51,0.08);
   --shadow-lg: 0 8px 32px rgba(0,102,51,0.12);
+  --font-display: 'Bebas Neue', 'Inter Tight', system-ui, sans-serif;
+  --font-body: 'Inter Tight', -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI Variable", "Segoe UI", system-ui, sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -26,6 +34,10 @@
     --accent: #38c172;
     --accent-hover: #5cd590;
     --accent-soft: #15321f;
+    --warm: #ffd84a;
+    --warm-hover: #ffc31a;
+    --warm-soft: #3a2f15;
+    --warm-deep: #ffd84a;
     --card: #1a1c19;
     --card-elev: #20221d;
     --warn-bg: #2a2310;
@@ -40,13 +52,64 @@
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI Variable", "Segoe UI", system-ui, sans-serif;
+  font-family: var(--font-body);
   background: var(--bg);
   color: var(--fg);
   line-height: 1.55;
   font-size: 17px;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+/* ===== Display typography (broadcast-style headlines) ===== */
+.brand,
+.home-h1,
+.hero h1,
+.schedule-hero h1,
+.q-title,
+.clock-num,
+.result-service,
+.coming-headline,
+.placeholder h1,
+.watch-parties-hero-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+}
+.brand {
+  font-size: 1.55rem;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+}
+.home-h1 {
+  font-size: clamp(3rem, 8.5vw, 5.6rem) !important;
+  line-height: 0.95 !important;
+  letter-spacing: 0 !important;
+  font-weight: 400 !important;
+}
+.hero h1 {
+  font-size: clamp(3rem, 8.5vw, 5.6rem) !important;
+  line-height: 0.95 !important;
+  letter-spacing: 0 !important;
+  font-weight: 400 !important;
+}
+.schedule-hero h1 {
+  font-size: clamp(2.6rem, 6vw, 3.8rem) !important;
+  line-height: 0.95 !important;
+  letter-spacing: 0.01em !important;
+}
+.q-title {
+  font-size: clamp(2rem, 4.4vw, 2.9rem) !important;
+  letter-spacing: 0.005em !important;
+  line-height: 1.05 !important;
+}
+.clock-num {
+  font-size: clamp(3.4rem, 11vw, 5.4rem) !important;
+  letter-spacing: 0.01em !important;
+  line-height: 0.95 !important;
+}
+.result-service {
+  font-size: clamp(2.4rem, 5vw, 3rem) !important;
+  letter-spacing: 0.01em !important;
 }
 
 .container { max-width: 920px; margin: 0 auto; padding: 0 20px; }
@@ -64,15 +127,15 @@ header {
 }
 header .container { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px; }
 .brand {
-  font-weight: 900;
-  font-size: 1.3rem;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.65rem;
   color: var(--accent);
   text-decoration: none;
-  letter-spacing: -0.025em;
+  letter-spacing: 0.04em;
 }
-/* Legacy split-styling rule, retained for safety; "WC26 Pregame" is rendered as one wordmark */
 .brand .brand-mark {
-  font-weight: 800;
+  font-weight: 400;
   color: var(--accent);
 }
 nav ul {
@@ -1199,6 +1262,27 @@ footer p { margin: 0 0 8px; max-width: 720px; }
 footer a { color: var(--muted); text-decoration: underline; }
 footer a:hover { color: var(--accent); }
 
+.footer-feedback {
+  font-size: 1rem !important;
+  color: var(--fg) !important;
+  margin: 0 0 22px !important;
+  padding: 16px 20px !important;
+  background: var(--accent-soft);
+  border-left: 3px solid var(--accent);
+  border-radius: 8px;
+  max-width: 720px;
+  line-height: 1.5;
+}
+.footer-feedback a {
+  color: var(--accent) !important;
+  text-decoration: underline !important;
+  font-weight: 700;
+  text-underline-offset: 2px;
+}
+.footer-feedback a:hover {
+  color: var(--accent-hover) !important;
+}
+
 .trust-badges {
   display: flex;
   gap: 8px;
@@ -1817,4 +1901,331 @@ footer a:hover { color: var(--accent); }
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* ===== Yellow accent: knockouts, marquee, finals ===== */
+.match-stage { color: var(--accent); font-weight: 600; }
+.match-stage.is-knockout {
+  color: var(--warm-deep);
+  background: var(--warm-soft);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.match-stage.is-final {
+  background: var(--warm);
+  color: #1a1a1a;
+}
+.match.match-knockout {
+  border-left: 3px solid var(--warm);
+}
+.match.match-mine.match-knockout {
+  border-left: 3px solid var(--accent);
+  box-shadow: inset 3px 0 0 var(--warm);
+}
+#bulk-ko-btn {
+  border-color: var(--warm-hover);
+  color: var(--warm-deep);
+}
+#bulk-ko-btn:hover {
+  background: var(--warm);
+  color: #1a1a1a;
+  border-color: var(--warm-hover);
+}
+@media (prefers-color-scheme: dark) {
+  .match-stage.is-final { color: #1a1a1a; }
+  #bulk-ko-btn { color: var(--warm); }
+  #bulk-ko-btn:hover { color: #1a1a1a; }
+}
+
+/* ===== Watch parties duotone hero ===== */
+.watch-parties-hero {
+  position: relative;
+  height: clamp(220px, 32vw, 340px);
+  overflow: hidden;
+  border-radius: 16px;
+  margin: 20px 0 28px;
+  box-shadow: var(--shadow-md);
+}
+.watch-parties-hero-img {
+  position: absolute;
+  inset: 0;
+  background-image: url('/hero-watch-party.jpg');
+  background-size: cover;
+  background-position: center;
+  filter: grayscale(1) contrast(1.15) brightness(0.92);
+}
+.watch-parties-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(125deg, rgba(0, 102, 51, 0.92) 0%, rgba(0, 102, 51, 0.62) 45%, rgba(245, 200, 66, 0.55) 100%);
+  mix-blend-mode: multiply;
+}
+.watch-parties-hero-content {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 28px 32px 26px;
+  color: #fff;
+}
+.watch-parties-hero-title {
+  font-size: clamp(2.6rem, 7vw, 4.4rem);
+  line-height: 0.95;
+  margin: 0;
+  letter-spacing: 0.005em;
+  color: #fff;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.35);
+}
+.watch-parties-hero-lede {
+  font-size: clamp(1rem, 1.4vw, 1.1rem);
+  margin: 10px 0 0;
+  opacity: 0.96;
+  max-width: 540px;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+  font-weight: 500;
+}
+@media (max-width: 600px) {
+  .watch-parties-hero-content { padding: 22px 20px 18px; }
+}
+
+/* ===== Home tournament hero (duotone photo + structured content) ===== */
+.tournament-hero {
+  position: relative;
+  margin: 20px 0 32px;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  min-height: clamp(380px, 52vw, 540px);
+  isolation: isolate;
+}
+.tournament-hero-img {
+  position: absolute;
+  inset: 0;
+  background-image: url('/hero-home.jpg');
+  background-size: cover;
+  background-position: center;
+  filter: grayscale(1) contrast(1.18) brightness(0.88);
+  z-index: 0;
+}
+.tournament-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(160deg, rgba(0, 51, 25, 0.94) 0%, rgba(0, 102, 51, 0.75) 50%, rgba(245, 200, 66, 0.45) 100%);
+  mix-blend-mode: multiply;
+  z-index: 1;
+}
+.tournament-hero-content {
+  position: relative;
+  z-index: 2;
+  padding: clamp(32px, 5vw, 56px) clamp(24px, 5vw, 56px) clamp(120px, 18vw, 200px);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: inherit;
+}
+.home-host-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 10px;
+  margin-bottom: 16px;
+}
+.host-country {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #fff;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+.host-flag { font-size: 1.05rem; line-height: 1; }
+.home-stats-line {
+  font-size: clamp(0.78rem, 1vw, 0.88rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.78);
+  margin: 0 0 18px;
+}
+.tournament-hero .home-h1 {
+  color: #fff !important;
+  margin: 0 0 16px !important;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.35);
+}
+.tournament-hero .home-lede {
+  color: #fff;
+  opacity: 0.96;
+  margin: 0;
+  font-weight: 500;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+  max-width: 620px;
+}
+
+/* Kill the legacy pitch-SVG smudge (the new photo hero replaces it) */
+.tournament-hero::before { content: none; }
+
+/* ===== Kickoff section (countdown + opening match) ===== */
+.kickoff-section { margin: 0 0 40px; }
+
+.countdown-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.16);
+  margin: 22px auto;
+  max-width: 320px;
+}
+.countdown-match {
+  text-align: center;
+  padding-top: 4px;
+}
+.countdown-match-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  opacity: 0.7;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.countdown-matchup {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3.4vw, 2.2rem);
+  letter-spacing: 0.02em;
+  line-height: 1.05;
+  margin-bottom: 8px;
+}
+.countdown-team {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.countdown-flag {
+  font-family: var(--font-body);
+  font-size: 1.5rem;
+  line-height: 1;
+}
+.countdown-vs {
+  opacity: 0.5;
+  padding: 0 10px;
+  font-size: 0.72em;
+  font-weight: 400;
+}
+.countdown-venue {
+  font-size: 0.92rem;
+  opacity: 0.88;
+  margin-bottom: 18px;
+  line-height: 1.4;
+}
+.countdown-cta {
+  background: rgba(255, 255, 255, 0.96);
+  color: var(--accent);
+  border: none;
+  border-radius: 10px;
+  padding: 11px 20px;
+  font-size: 0.93rem;
+  font-weight: 700;
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.08s ease, box-shadow 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.countdown-cta:hover {
+  background: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+.countdown-cta:active { transform: translateY(0) scale(0.98); }
+
+@media (max-width: 600px) {
+  .tournament-hero { min-height: 420px; border-radius: 14px; }
+  .home-host-strip { gap: 6px 8px; }
+  .host-country { font-size: 0.78rem; padding: 4px 10px; }
+  .home-stats-line { font-size: 0.74rem; letter-spacing: 0.06em; }
+  .countdown-matchup { font-size: 1.5rem; }
+  .countdown-flag { font-size: 1.25rem; }
+  .countdown-venue { font-size: 0.86rem; }
+}
+
+/* ===== Button emoji spacing (iOS eats the space after wide emoji glyphs) ===== */
+.btn-emoji {
+  display: inline-block;
+  margin-right: 6px;
+  font-family: var(--font-body);
+}
+
+/* ===== status-partial disambiguation =====
+   Orange ✓ was ambiguous against green ✓. Render '~' instead of ✓ for partial chips
+   so the visual category (yes / partial / no) is glanceable without reading the caption.
+   Strengthen caption styling so the "why partial" reads at a glance. */
+.status-partial {
+  color: transparent;
+  position: relative;
+}
+.status-partial::after {
+  content: '~';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1;
+}
+.status-caption {
+  font-weight: 700;
+  color: var(--warm-deep);
+  letter-spacing: 0.01em;
+}
+@media (prefers-color-scheme: dark) {
+  .status-caption { color: var(--warm); }
+}
+
+/* Alt-card hint line — describes language + key tradeoff so alts read with intent */
+.alt-hint {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-top: 6px;
+  line-height: 1.35;
+}
+
+/* ===== Brand wordmark with mark + yellow "26" ===== */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+}
+.brand-glyph {
+  width: 26px;
+  height: 26px;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+.brand-text {
+  /* inherits font-display from existing .brand rule above */
+  display: inline-block;
+  line-height: 1;
+}
+.brand-year {
+  color: #c8950e; /* dark gold, reads as yellow but has contrast on white */
+  letter-spacing: 0.04em;
+}
+@media (prefers-color-scheme: dark) {
+  .brand-year { color: #f5c842; }
+}
+@media (max-width: 600px) {
+  .brand-glyph { width: 22px; height: 22px; }
 }

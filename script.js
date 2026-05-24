@@ -100,14 +100,30 @@
   }
 
   // ----- Recommendation -----
-  function recommend(a) {
-    var teams = a.teams || [];
-    var hasSpanishLean = picksHaveSpanishLean(teams);
+  // Service language matrix. Used by guardLang to filter out language-mismatched
+  // services (e.g., never recommend Telemundo to an English-picking user).
+  var SPANISH_ONLY_SERVICES = ['otaSpanish', 'peacock']; // Telemundo OTA + Peacock (Telemundo streaming) are Spanish-only
+  var ENGLISH_ONLY_SERVICES = ['ota'];                   // OTA antenna here means FOX (English over-the-air)
 
-    // If user said "either" but picked a Spanish-leaning team, promote Spanish path
-    var effLang = a.lang;
-    if (a.lang === 'either' && hasSpanishLean) effLang = 'spanish';
+  function guardLang(result, lang) {
+    if (lang === 'english') {
+      if (SPANISH_ONLY_SERVICES.indexOf(result.primary) !== -1) {
+        // Should never happen with correct logic above, but defends against future regressions
+        result = { primary: 'ota', alts: ['sling'] };
+      }
+      var filtered = result.alts.filter(function (id) { return SPANISH_ONLY_SERVICES.indexOf(id) === -1; });
+      result = { primary: result.primary, alts: filtered.length ? filtered : ['sling'] };
+    } else if (lang === 'spanish') {
+      if (ENGLISH_ONLY_SERVICES.indexOf(result.primary) !== -1) {
+        result = { primary: 'otaSpanish', alts: ['peacock'] };
+      }
+      var filteredS = result.alts.filter(function (id) { return ENGLISH_ONLY_SERVICES.indexOf(id) === -1; });
+      result = { primary: result.primary, alts: filteredS.length ? filteredS : ['peacock'] };
+    }
+    return result;
+  }
 
+  function pickService(a, effLang) {
     // Spanish-preferred
     if (effLang === 'spanish') {
       if (a.budget === 'free') return { primary: 'otaSpanish', alts: ['peacock'] };
@@ -117,6 +133,8 @@
 
     // Free budget
     if (a.budget === 'free') {
+      // English users get a bilingual antenna primary + a streaming-upgrade alt, not Telemundo OTA
+      if (effLang === 'english') return { primary: 'ota', alts: ['sling'] };
       return { primary: 'ota', alts: ['otaSpanish'] };
     }
 
@@ -144,6 +162,17 @@
     return { primary: 'sling', alts: ['ota', 'fubo'] };
   }
 
+  function recommend(a) {
+    var teams = a.teams || [];
+    var hasSpanishLean = picksHaveSpanishLean(teams);
+
+    // If user said "either" but picked a Spanish-leaning team, promote Spanish path
+    var effLang = a.lang;
+    if (a.lang === 'either' && hasSpanishLean) effLang = 'spanish';
+
+    return guardLang(pickService(a, effLang), effLang);
+  }
+
   // ----- Team-aware reasoning -----
   function teamsLabel(teams, TEAMS) {
     if (!teams || !teams.length) return '';
@@ -167,6 +196,7 @@
       return ' Telemundo airs ' + label + (teams.length > 1 ? ' matches' : "'s matches") + ' in Spanish, free with an antenna.';
     }
     if (serviceId === 'ota') {
+      if (spanish && lang === 'english') return ' FOX broadcasts most ' + label + ' matches in English, free with an antenna. A few matches air only on Telemundo (Spanish-only); to get those in English you would need cable or a streaming bundle like Sling Blue.';
       if (spanish) return ' You will catch ' + label + ' on FOX where matches air there. For Telemundo (Spanish) matches, also tune in via the antenna.';
       return ' FOX broadcasts most ' + label + ' matches free over the air.';
     }
@@ -440,12 +470,26 @@
   }
 
   // ----- Result -----
+  // One-line hint per service so alts read with intent, not just name + price.
+  // Resolves the "is 'OTA antenna' Spanish or English?" confusion next to the OTA Telemundo row.
+  var ALT_HINT = {
+    ota: 'English via FOX OTA · free with antenna',
+    otaSpanish: 'Spanish via Telemundo OTA · free with antenna',
+    sling: 'English + Spanish, cheapest streaming bundle',
+    fubo: 'English + Spanish · 4-game multi-view',
+    fuboPremium: 'English + Spanish · 4K + multi-view',
+    youtubeTV: 'English + Spanish · 4K on TV app · multi-view',
+    peacock: 'Spanish (Telemundo) streaming, on demand',
+  };
+
   function renderAltCard(serviceId) {
     var s = SERVICES[serviceId];
     if (!s) return '';
+    var hint = ALT_HINT[serviceId] || '';
     return '<div class="alt-card">' +
       '<div class="alt-name">' + s.name + '</div>' +
       '<div class="alt-price">' + s.price + '</div>' +
+      (hint ? '<div class="alt-hint">' + hint + '</div>' : '') +
       '</div>';
   }
 

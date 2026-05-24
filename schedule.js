@@ -265,20 +265,24 @@
   }
 
   // ----- Renderers -----
+  var KO_STAGES = ['R32', 'R16', 'QF', 'SF', '3rd', 'F'];
   function renderMatch(match, TEAMS) {
     var ft = formatTime(match.kickoffISO);
     var mine = isMyTeam(match);
-    var classes = 'match' + (mine ? ' match-mine' : '');
+    var isKO = KO_STAGES.indexOf(match.stage) !== -1;
+    var isFinal = match.stage === 'F';
+    var classes = 'match' + (mine ? ' match-mine' : '') + (isKO ? ' match-knockout' : '');
     var star = mine ? '<span class="match-star" title="Your team">⭐</span>' : '';
+    var stageClasses = 'match-stage' + (isKO ? ' is-knockout' : '') + (isFinal ? ' is-final' : '');
     return '<div class="' + classes + '" data-num="' + match.num + '">' +
       '<div class="match-time">' + star + ft.time + ' <span class="match-zone">' + ft.zone + '</span></div>' +
       '<div class="match-teams">' + teamLabel(match.teamA, TEAMS) + ' <span class="vs">vs</span> ' + teamLabel(match.teamB, TEAMS) + '</div>' +
       '<div class="match-meta">' +
-        '<span class="match-stage">' + stageChip(match) + '</span>' +
+        '<span class="' + stageClasses + '">' + stageChip(match) + '</span>' +
         ' · <span class="match-venue">' + match.venue + ', ' + match.city + '</span>' +
         ' · <span class="match-broadcast">' + broadcastLabel(match.broadcast) + '</span>' +
       '</div>' +
-      '<div class="match-actions"><button class="ics-btn" data-num="' + match.num + '">📅 Add to calendar</button></div>' +
+      '<div class="match-actions"><button class="ics-btn" data-num="' + match.num + '"><span class="btn-emoji" aria-hidden="true">📅</span>Add to calendar</button></div>' +
       '</div>';
   }
 
@@ -317,7 +321,7 @@
           '<div class="coming-headline">Tournament starts in ' + days + ' day' + (days === 1 ? '' : 's') + '</div>' +
           '<div class="coming-sub">Opening match: ' + formatDayHeader(next.kickoffISO) + ' · ' + ft.time + ' ' + ft.zone + '</div>' +
           '<div class="coming-sub">' + teamLabel(next.teamA, TEAMS) + ' vs ' + teamLabel(next.teamB, TEAMS) + ' at ' + next.venue + '</div>' +
-          '<div class="match-actions"><button class="ics-btn" data-num="' + next.num + '">📅 Add to calendar</button></div>' +
+          '<div class="match-actions"><button class="ics-btn" data-num="' + next.num + '"><span class="btn-emoji" aria-hidden="true">📅</span>Add to calendar</button></div>' +
         '</div></div>';
     }
     if (tomorrowMatches.length && !todayMatches.length) {
@@ -349,7 +353,7 @@
         pinnedHtml = '<div class="pinned-section">' +
           '<div class="pinned-header-row">' +
             '<h2 class="pinned-header">⭐ Your matches (' + mine.length + ')</h2>' +
-            '<button class="bulk-ics-btn" id="bulk-my-btn">📅 Add all to calendar</button>' +
+            '<button class="bulk-ics-btn" id="bulk-my-btn"><span class="btn-emoji" aria-hidden="true">📅</span>Add all to calendar</button>' +
           '</div>' +
           pinnedMatchesHtml +
           '</div>';
@@ -371,8 +375,8 @@
         '<div class="full-header-row">' +
           '<h2 class="full-header">All 104 matches</h2>' +
           '<div class="bulk-actions">' +
-            '<button class="bulk-ics-btn" id="bulk-all-btn">📅 Add all 104</button>' +
-            '<button class="bulk-ics-btn" id="bulk-ko-btn">📅 Add knockouts only</button>' +
+            '<button class="bulk-ics-btn" id="bulk-all-btn"><span class="btn-emoji" aria-hidden="true">📅</span>Add all 104</button>' +
+            '<button class="bulk-ics-btn" id="bulk-ko-btn"><span class="btn-emoji" aria-hidden="true">📅</span>Add knockouts only</button>' +
           '</div>' +
         '</div>';
       sortedDays.forEach(function (key) {
