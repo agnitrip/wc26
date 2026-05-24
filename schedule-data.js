@@ -1,4 +1,4 @@
-// Pregame — schedule data
+// WC26 Pregame — schedule data
 // 48 teams, 104 matches (72 group stage + 32 knockout).
 //
 // IMPORTANT: Team-to-group assignments and per-match details (kickoff times,

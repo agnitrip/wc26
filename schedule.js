@@ -1,4 +1,4 @@
-// Pregame — schedule page logic
+// WC26 Pregame — schedule page logic
 // Vanilla JS, no dependencies. Reads from window.WC26_DATA (schedule-data.js).
 
 (function () {
@@ -170,7 +170,7 @@
     var end = new Date(start.getTime() + 2.5 * 60 * 60 * 1000);
     var title = matchTitle(match, TEAMS);
     var loc = match.venue + ', ' + match.city;
-    var desc = 'Broadcast: ' + match.broadcast.join(', ') + '\\nVia Pregame (wc26-jade.vercel.app)';
+    var desc = 'Broadcast: ' + match.broadcast.join(', ') + '\\nVia WC26 Pregame (wc26-jade.vercel.app)';
     var uid = 'wc26-match-' + match.num + '@wc26-jade.vercel.app';
     return [
       'BEGIN:VEVENT',
@@ -191,7 +191,7 @@
     var lines = [
       'BEGIN:VCALENDAR',
       'VERSION:2.0',
-      'PRODID:-//Pregame//EN',
+      'PRODID:-//WC26 Pregame//EN',
       events,
       'END:VCALENDAR',
     ];

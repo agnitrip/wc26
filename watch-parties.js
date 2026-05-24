@@ -1,4 +1,4 @@
-// Pregame — watch parties page logic
+// WC26 Pregame — watch parties page logic
 // Vanilla JS, no dependencies. Reads from window.WC26_WP (watch-parties-data.js).
 
 (function () {

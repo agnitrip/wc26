@@ -70,7 +70,7 @@ header .container { display: flex; flex-wrap: wrap; align-items: center; gap: 12
   text-decoration: none;
   letter-spacing: -0.025em;
 }
-/* Legacy split-styling rule, retained for safety; "Pregame" is single-word */
+/* Legacy split-styling rule, retained for safety; "WC26 Pregame" is rendered as one wordmark */
 .brand .brand-mark {
   font-weight: 800;
   color: var(--accent);

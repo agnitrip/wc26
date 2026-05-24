@@ -21,7 +21,7 @@
   </g>
 
   <!-- brand -->
-  <text x="80" y="200" font-family="-apple-system, system-ui, sans-serif" font-size="48" font-weight="900" fill="#9bf2bd" letter-spacing="-1.5">Pregame</text>
+  <text x="80" y="200" font-family="-apple-system, system-ui, sans-serif" font-size="48" font-weight="900" fill="#9bf2bd" letter-spacing="-1.5">WC26 Pregame</text>
 
   <!-- headline -->
   <text x="80" y="320" font-family="-apple-system, system-ui, sans-serif" font-size="76" font-weight="800" fill="#ffffff" letter-spacing="-3">Sort out your World Cup</text>

@@ -1,4 +1,4 @@
-// Pregame — watch parties data
+// WC26 Pregame — watch parties data
 // Starter list of country-specific and soccer-friendly venues across the
 // 7 most-asked US cities. Sourced from general knowledge of well-known
 // soccer bars + the active Reddit threads linked per city.
