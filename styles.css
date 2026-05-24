@@ -707,6 +707,137 @@ td strong { color: var(--accent); }
   .status-unknown { background: #5a5d62; }
 }
 
+/* Mobile card layout for the comparison table */
+@media (max-width: 700px) {
+  .table-wrap {
+    overflow-x: visible;
+    margin: 16px 0;
+    padding: 0;
+  }
+  .comparison-table {
+    min-width: 0;
+    display: block;
+  }
+  .comparison-table thead { display: none; }
+  .comparison-table tbody { display: block; }
+  .comparison-table tbody tr {
+    display: block;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 16px 14px;
+    margin: 14px 0;
+    box-shadow: none;
+  }
+  .comparison-table tbody tr:nth-child(even) { background: var(--card); }
+  .comparison-table tbody tr:hover { background: var(--card); box-shadow: none; }
+  .comparison-table tbody tr.row-highlight {
+    background: var(--card);
+    border-left: 3px solid var(--accent);
+  }
+  .comparison-table tbody td {
+    display: block;
+    border: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+  }
+  /* Service name = card header */
+  .cell-service {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+  }
+  .cell-service strong {
+    font-size: 1.15rem;
+    color: var(--fg);
+  }
+  /* Price = below service name, prominent */
+  .cell-price {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+  .cell-price::before {
+    content: attr(data-label);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .cell-price .price-main { font-size: 1.05rem; display: inline; }
+  .cell-price .price-unit { display: inline; margin-left: 4px; }
+  /* All 104? cell — small label inline */
+  .cell-all104 {
+    margin: 4px 0;
+    padding: 6px 0;
+    color: var(--muted);
+    font-size: 0.88rem;
+  }
+  .cell-all104::before {
+    content: attr(data-label);
+    display: block;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+  /* Status cells = feature rows with label + chip + optional caption */
+  .cell-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 0;
+    border-top: 1px solid var(--border);
+    text-align: left;
+  }
+  .cell-status::before {
+    content: attr(data-label);
+    flex: 1;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--fg);
+  }
+  .cell-status .status-chip {
+    width: 24px;
+    height: 24px;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+  }
+  .cell-status .status-caption {
+    margin: 0;
+    text-align: left;
+    flex-shrink: 0;
+    font-size: 0.78rem;
+    max-width: 50%;
+  }
+  /* Best for = card footer */
+  .cell-bestfor {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+    font-size: 0.88rem;
+  }
+  .cell-bestfor::before {
+    content: attr(data-label);
+    display: block;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    font-weight: 700;
+    margin-bottom: 4px;
+    font-style: normal;
+  }
+}
+
 /* ===== Use-case blocks ===== */
 .use-case {
   background: var(--card);
