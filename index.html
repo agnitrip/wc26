@@ -44,14 +44,23 @@
 
     <section class="quiz-section" aria-label="Streaming picker">
       <div class="quiz" id="quiz">
-        <div class="quiz-progress" id="quiz-progress" aria-hidden="true">
-          <span class="dot active" data-step="1"></span>
-          <span class="dot" data-step="2"></span>
-          <span class="dot" data-step="3"></span>
-          <span class="dot" data-step="4" id="dot-4" hidden></span>
+        <div class="quiz-progress" id="quiz-progress" aria-hidden="true"></div>
+
+        <div class="question active" data-key="stance">
+          <div class="q-icon" aria-hidden="true">⚽</div>
+          <h2 class="q-title">How do you follow the World Cup?</h2>
+          <div class="q-answers">
+            <button class="answer" data-value="all">🌎 All teams · I'm here for the whole tournament</button>
+            <button class="answer" data-value="one">⭐ One team · I follow a specific team</button>
+            <button class="answer" data-value="few">⭐+ A few teams · I follow several</button>
+          </div>
         </div>
 
-        <div class="question active" data-step="1" data-key="lang">
+        <div class="question" data-key="teams">
+          <!-- Rendered dynamically by script.js based on stance -->
+        </div>
+
+        <div class="question" data-key="lang">
           <div class="q-icon" aria-hidden="true">🗣️</div>
           <h2 class="q-title">What language do you want the commentary in?</h2>
           <div class="q-answers">
@@ -61,27 +70,27 @@
           </div>
         </div>
 
-        <div class="question" data-step="2" data-key="coverage">
+        <div class="question" data-key="coverage">
           <div class="q-icon" aria-hidden="true">📺</div>
           <h2 class="q-title">How many matches do you plan to watch?</h2>
           <div class="q-answers">
-            <button class="answer" data-value="opener">Just the opener and a few big ones</button>
-            <button class="answer" data-value="marquee">USA games and the knockouts</button>
-            <button class="answer" data-value="all">All 104, I'm in deep</button>
+            <button class="answer" data-value="opener">Just the opener and a few I'm curious about</button>
+            <button class="answer" data-value="marquee">The marquee matches and knockouts</button>
+            <button class="answer" data-value="all">Every match if I can</button>
           </div>
         </div>
 
-        <div class="question" data-step="3" data-key="budget">
+        <div class="question" data-key="budget">
           <div class="q-icon" aria-hidden="true">💵</div>
           <h2 class="q-title">What's your budget?</h2>
           <div class="q-answers">
-            <button class="answer" data-value="free">$0, free only</button>
-            <button class="answer" data-value="cheap">Cheap, under $50 a month</button>
-            <button class="answer" data-value="premium">Doesn't matter, best experience</button>
+            <button class="answer" data-value="free">Free only</button>
+            <button class="answer" data-value="cheap">Keep it under $50</button>
+            <button class="answer" data-value="premium">I want the best experience</button>
           </div>
         </div>
 
-        <div class="question" data-step="4" data-key="multiview">
+        <div class="question" data-key="multiview">
           <div class="q-icon" aria-hidden="true">📺📺</div>
           <h2 class="q-title">Watch multiple matches at the same time?</h2>
           <p class="q-note">On the final group-stage days, up to 4 matches kick off at once. Most services only show one stream at a time.</p>
@@ -103,7 +112,28 @@
           <div class="result-service" id="result-name"></div>
           <span class="result-price" id="result-price"></span>
           <p class="result-why" id="result-why"></p>
+
+          <div class="result-section">
+            <div class="result-section-label">Total cost</div>
+            <p class="result-section-body" id="result-total-cost"></p>
+          </div>
+
+          <div class="result-section" id="result-cancel-section">
+            <div class="result-section-label">How to cancel after July 19</div>
+            <p class="result-section-body" id="result-cancel-path"></p>
+            <button class="cancel-reminder-btn" id="result-cancel-btn">
+              📅 Add cancel reminder to calendar
+            </button>
+            <p class="result-section-meta">Reminder fires June 20, 29 days before the Final. Cancel paths verified May 2026.</p>
+          </div>
+
+          <div class="result-section" id="result-tradeoff-section">
+            <div class="result-section-label">What you give up</div>
+            <p class="result-section-body" id="result-tradeoff"></p>
+          </div>
+
           <div class="result-alts" id="result-alts"></div>
+
           <div class="result-actions">
             <button class="retake" id="retake-btn">↻ Retake quiz</button>
             <a href="#comparison" class="see-all">See full comparison ↓</a>
@@ -291,6 +321,7 @@
     </div>
   </footer>
 
+  <script src="/schedule-data.js" defer></script>
   <script src="/script.js" defer></script>
 </body>
 </html>
