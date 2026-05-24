@@ -4,16 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WC26 Anywhere: Watch the 2026 World Cup from the US</title>
-  <meta name="description" content="For every fan watching the 2026 FIFA World Cup from the couch, the bar, or a friend's place. Free 30-second quiz picks your streaming bundle. Full comparison across FOX One, Peacock, Sling, Fubo, YouTube TV, Hulu, Tubi, and OTA antenna.">
+  <meta name="description" content="WC26 Anywhere is the free guide to watching the 2026 FIFA World Cup from anywhere in the US. Streaming bundle picker, schedule across all time zones, and country-specific watch-party directory across 11 US host cities.">
   <meta name="theme-color" content="#006633">
 
   <meta property="og:title" content="WC26 Anywhere: Watch the 2026 World Cup from the US">
   <meta property="og:description" content="Every fan watching from the couch, the bar, or a friend's place. We've got your World Cup.">
-  <meta property="og:image" content="/og.png">
+  <meta property="og:image" content="https://wc26-jade.vercel.app/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://wc26-jade.vercel.app/">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="/og.png">
+  <meta name="twitter:image" content="https://wc26-jade.vercel.app/og.png">
 
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="stylesheet" href="/styles.css">
@@ -24,7 +26,8 @@
       <a href="/" class="brand"><span class="brand-mark">WC26</span> Anywhere</a>
       <nav aria-label="Primary">
         <ul>
-          <li><a href="/" class="active">Streaming</a></li>
+          <li><a href="/" class="active">Home</a></li>
+          <li><a href="/streaming">Streaming</a></li>
           <li><a href="/schedule">Schedule</a></li>
           <li><a href="/watch-parties">Watch parties</a></li>
         </ul>
@@ -33,291 +36,47 @@
   </header>
 
   <main class="container">
-    <section class="hero">
+    <section class="home-hero">
       <div class="hero-meta">
         <span class="host-chip">USA · CAN · MEX</span>
-        <span class="countdown" id="countdown">June 11 to July 19, 2026</span>
+        <span class="countdown" id="hero-meta-line">June 11 to July 19, 2026</span>
       </div>
-      <h1>Watch the 2026 World Cup from the US.</h1>
-      <p class="lede">Every fan watching from the couch, the bar, or a friend's place. We've got your World Cup.</p>
-    </section>
+      <h1 class="home-h1">Watch the 2026 World Cup from the US.</h1>
+      <p class="home-lede">Every fan watching from the couch, the bar, or a friend's place. We've got your World Cup.</p>
 
-    <section class="quiz-section" aria-label="Streaming picker">
-      <div class="quiz" id="quiz">
-        <div class="quiz-progress" id="quiz-progress" aria-hidden="true"></div>
-
-        <div class="question active" data-key="stance">
-          <div class="q-icon" aria-hidden="true">⚽</div>
-          <h2 class="q-title">How do you follow the World Cup?</h2>
-          <div class="q-answers">
-            <button class="answer" data-value="all">All teams · I'm here for the whole tournament</button>
-            <button class="answer" data-value="one">One team · I follow a specific team</button>
-            <button class="answer" data-value="few">A few teams · I follow several</button>
-          </div>
+      <div class="countdown-card" id="countdown-card">
+        <div class="countdown-label" id="countdown-label">Tournament starts in</div>
+        <div class="countdown-clock" id="countdown-clock">
+          <div class="clock-cell"><span class="clock-num" id="clock-days">19</span><span class="clock-unit">days</span></div>
+          <div class="clock-cell"><span class="clock-num" id="clock-hours">00</span><span class="clock-unit">hrs</span></div>
+          <div class="clock-cell"><span class="clock-num" id="clock-mins">00</span><span class="clock-unit">min</span></div>
         </div>
-
-        <div class="question" data-key="teams">
-          <!-- Rendered dynamically by script.js based on stance -->
-        </div>
-
-        <div class="question" data-key="lang">
-          <div class="q-icon" aria-hidden="true">🗣️</div>
-          <h2 class="q-title">What language do you want the commentary in?</h2>
-          <div class="q-answers">
-            <button class="answer" data-value="english">English</button>
-            <button class="answer" data-value="spanish">Spanish (Telemundo)</button>
-            <button class="answer" data-value="either">Either is fine</button>
-          </div>
-        </div>
-
-        <div class="question" data-key="coverage">
-          <div class="q-icon" aria-hidden="true">📺</div>
-          <h2 class="q-title">How many matches do you plan to watch?</h2>
-          <div class="q-answers">
-            <button class="answer" data-value="opener">Just the opener and a few I'm curious about</button>
-            <button class="answer" data-value="marquee">The marquee matches and knockouts</button>
-            <button class="answer" data-value="all">Every match if I can</button>
-          </div>
-        </div>
-
-        <div class="question" data-key="budget">
-          <div class="q-icon" aria-hidden="true">💵</div>
-          <h2 class="q-title">What's your budget?</h2>
-          <div class="q-answers">
-            <button class="answer" data-value="free">Free only</button>
-            <button class="answer" data-value="cheap">Keep it under $50</button>
-            <button class="answer" data-value="premium">I want the best experience</button>
-          </div>
-        </div>
-
-        <div class="question" data-key="multiview">
-          <div class="q-icon" aria-hidden="true">📺📺</div>
-          <h2 class="q-title">Watch multiple matches at the same time?</h2>
-          <p class="q-note">On the final group-stage days, up to 4 matches kick off at once. Most services only show one stream at a time.</p>
-          <div class="q-answers">
-            <button class="answer" data-value="yes">Yes, on one screen if possible</button>
-            <button class="answer" data-value="no">No, one at a time is fine</button>
-          </div>
-        </div>
-
-        <div class="quiz-footer">
-          <button class="back-btn" id="back-btn" hidden>← Back</button>
-          <a href="#comparison" class="skip-link">Skip to full comparison ↓</a>
-        </div>
-      </div>
-
-      <div class="result" id="result" hidden>
-        <div class="result-card">
-          <div class="result-label">For you</div>
-          <div class="result-service" id="result-name"></div>
-          <span class="result-price" id="result-price"></span>
-          <p class="result-why" id="result-why"></p>
-
-          <div class="result-section">
-            <div class="result-section-label">Total cost</div>
-            <p class="result-section-body" id="result-total-cost"></p>
-          </div>
-
-          <div class="result-section" id="result-cancel-section">
-            <div class="result-section-label">How to cancel after July 19</div>
-            <p class="result-section-body" id="result-cancel-path"></p>
-            <button class="cancel-reminder-btn" id="result-cancel-btn">
-              📅 Add cancel reminder to calendar
-            </button>
-            <p class="result-section-meta">Reminder fires June 20, 29 days before the Final. Cancel paths verified May 2026.</p>
-          </div>
-
-          <div class="result-section" id="result-tradeoff-section">
-            <div class="result-section-label">What you give up</div>
-            <p class="result-section-body" id="result-tradeoff"></p>
-          </div>
-
-          <div class="result-alts" id="result-alts"></div>
-
-          <div class="result-actions">
-            <button class="retake" id="retake-btn">↻ Retake quiz</button>
-            <a href="#comparison" class="see-all">See full comparison ↓</a>
-          </div>
-        </div>
+        <div class="countdown-context" id="countdown-context">Opening match: Mexico vs South Korea · Estadio Azteca</div>
       </div>
     </section>
 
-    <div class="section-divider" aria-hidden="true"></div>
-
-    <section class="reference-intro">
-      <h2>Full comparison</h2>
-      <p>The complete breakdown across all 8 viewing options. Use this if the quiz felt too narrow, or if you want to see what got ruled out.</p>
+    <section class="home-cards" aria-label="What you can do here">
+      <a href="/streaming" class="home-card">
+        <div class="home-card-icon" aria-hidden="true">📺</div>
+        <h2 class="home-card-title">Pick your stream</h2>
+        <p class="home-card-desc">30-second quiz that recommends the right streaming bundle for your team, language, budget, and viewing style.</p>
+        <span class="home-card-cta">Take the quiz →</span>
+      </a>
+      <a href="/schedule" class="home-card">
+        <div class="home-card-icon" aria-hidden="true">📅</div>
+        <h2 class="home-card-title">The schedule</h2>
+        <p class="home-card-desc">All 104 matches in your local time zone. Pick your teams to pin their matches. Add any match (or all 104) to your calendar.</p>
+        <span class="home-card-cta">See the schedule →</span>
+      </a>
+      <a href="/watch-parties" class="home-card">
+        <div class="home-card-icon" aria-hidden="true">📍</div>
+        <h2 class="home-card-title">Where your people watch</h2>
+        <p class="home-card-desc">53 country-specific bars and watch parties across all 11 US host cities. Filter by city, country, or proximity to a host stadium.</p>
+        <span class="home-card-cta">Find a watch party →</span>
+      </a>
     </section>
 
-    <section id="tldr" class="reference">
-      <h3>Cheat sheet</h3>
-      <ul>
-        <li><strong>English-only, cheapest:</strong> OTA antenna (FOX is free over the air in most US markets) plus Tubi for the opener.</li>
-        <li><strong>Spanish-preferred:</strong> Telemundo OTA (free) or Peacock Premium for Telemundo streaming.</li>
-        <li><strong>All 104 matches, any language, no antenna:</strong> Sling Blue, Hulu + Live TV, YouTube TV, or Fubo. Fubo wins if you care about watching two matches at once.</li>
-        <li><strong>Cheapest streaming-only bundle:</strong> Sling Blue.</li>
-        <li><strong>Most generous on simultaneous-match viewing:</strong> Fubo (customizable 4-game multi-view).</li>
-      </ul>
-    </section>
-
-    <section id="comparison" class="reference">
-      <h3>The comparison</h3>
-      <div class="table-wrap">
-        <table class="comparison-table">
-          <thead>
-            <tr>
-              <th class="th-service">Service</th>
-              <th class="th-all104">All 104?</th>
-              <th class="th-icon">English</th>
-              <th class="th-icon">Spanish</th>
-              <th class="th-icon">Multi-view</th>
-              <th class="th-icon">4K</th>
-              <th class="th-price">Approx monthly</th>
-              <th class="th-bestfor">Best for</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="row-category"><td colspan="8">Free options</td></tr>
-            <tr>
-              <td class="cell-service"><strong>OTA antenna</strong><span class="cell-sub">FOX + Telemundo</span></td>
-              <td class="cell-all104" data-label="All 104?">Where FOX + Telemundo air over the air</td>
-              <td class="cell-status" data-label="English"><span class="status-chip status-partial" title="Yes (FOX; FS1 needs cable)">✓</span><span class="status-caption">FS1 needs cable</span></td>
-              <td class="cell-status" data-label="Spanish"><span class="status-chip status-yes" title="Yes (Telemundo)">✓</span></td>
-              <td class="cell-status" data-label="Multi-view"><span class="status-chip status-no">✗</span></td>
-              <td class="cell-status" data-label="4K"><span class="status-chip status-partial" title="Limited 4K">✓</span><span class="status-caption">Limited</span></td>
-              <td class="cell-price" data-label="Approx monthly"><strong class="price-main">Free</strong><span class="price-unit">+ ~$30 antenna</span></td>
-              <td class="cell-bestfor" data-label="Best for">Casual fan at a fixed location with no streaming subscription wanted</td>
-            </tr>
-            <tr>
-              <td class="cell-service"><strong>Tubi</strong></td>
-              <td class="cell-all104" data-label="All 104?">Opener + 2 matches only</td>
-              <td class="cell-status" data-label="English"><span class="status-chip status-yes">✓</span></td>
-              <td class="cell-status" data-label="Spanish"><span class="status-chip status-no">✗</span></td>
-              <td class="cell-status" data-label="Multi-view"><span class="status-chip status-no">✗</span></td>
-              <td class="cell-status" data-label="4K"><span class="status-chip status-no">✗</span></td>
-              <td class="cell-price" data-label="Approx monthly"><strong class="price-main">Free</strong><span class="price-unit">ad-supported</span></td>
-              <td class="cell-bestfor" data-label="Best for">Free taste of the opener. Not a full-tournament option.</td>
-            </tr>
-
-            <tr class="row-category"><td colspan="8">Streaming bundles · all 104 matches</td></tr>
-            <tr>
-              <td class="cell-service"><strong>FOX One</strong></td>
-              <td class="cell-all104" data-label="All 104?">All 104 confirmed</td>
-              <td class="cell-status" data-label="English"><span class="status-chip status-yes">✓</span></td>
-              <td class="cell-status" data-label="Spanish"><span class="status-chip status-no">✗</span></td>
-              <td class="cell-status" data-label="Multi-view"><span class="status-chip status-unknown" title="Unconfirmed">?</span></td>
-              <td class="cell-status" data-label="4K"><span class="status-chip status-partial" title="Likely yes">✓</span><span class="status-caption">Likely</span></td>
-              <td class="cell-price" data-label="Approx monthly"><strong class="price-main">TBD</strong><span class="price-unit">new service</span></td>
-              <td class="cell-bestfor" data-label="Best for">English-only fan who wants FOX-direct streaming</td>
-            </tr>
-            <tr>
-              <td class="cell-service">
-                <strong>Sling Blue</strong>
-                <span class="cell-badge">Cheapest all-104</span>
-              </td>
-              <td class="cell-all104" data-label="All 104?">All 104 (FOX + FS1 + Telemundo)</td>
-              <td class="cell-status" data-label="English"><span class="status-chip status-yes">✓</span></td>
-              <td class="cell-status" data-label="Spanish"><span class="status-chip status-yes" title="Telemundo channel">✓</span></td>
-              <td class="cell-status" data-label="Multi-view"><span class="status-chip status-partial" title="Limited">✓</span><span class="status-caption">Limited</span></td>
-              <td class="cell-status" data-label="4K"><span class="status-chip status-no">✗</span></td>
-              <td class="cell-price" data-label="Approx monthly"><strong class="price-main">$45</strong><span class="price-unit">/mo</span></td>
-              <td class="cell-bestfor" data-label="Best for">Cheapest "all matches" cable-replacement bundle</td>
-            </tr>
-            <tr>
-              <td class="cell-service"><strong>Hulu + Live TV</strong></td>
-              <td class="cell-all104" data-label="All 104?">All 104</td>
-              <td class="cell-status" data-label="English"><span class="status-chip status-yes">✓</span></td>
-              <td class="cell-status" data-label="Spanish"><span class="status-chip status-yes" title="Telemundo channel">✓</span></td>
-              <td class="cell-status" data-label="Multi-view"><span class="status-chip status-no" title="Single stream at a time">✗</span></td>
-              <td class="cell-status" data-label="4K"><span class="status-chip status-partial" title="Limited">✓</span><span class="status-caption">Limited</span></td>
-              <td class="cell-price" data-label="Approx monthly"><strong class="price-main">$83</strong><span class="price-unit">/mo</span></td>
-              <td class="cell-bestfor" data-label="Best for">Already a Hulu subscriber and want all matches without thinking about it</td>
-            </tr>
-            <tr>
-              <td class="cell-service"><strong>YouTube TV</strong></td>
-              <td class="cell-all104" data-label="All 104?">All 104</td>
-              <td class="cell-status" data-label="English"><span class="status-chip status-yes">✓</span></td>
-              <td class="cell-status" data-label="Spanish"><span class="status-chip status-yes" title="Telemundo channel">✓</span></td>
-              <td class="cell-status" data-label="Multi-view"><span class="status-chip status-yes" title="4-stream multi-view on TV app">✓</span><span class="status-caption">TV app only</span></td>
-              <td class="cell-status" data-label="4K"><span class="status-chip status-partial" title="Yes for select matches">✓</span><span class="status-caption">Select matches</span></td>
-              <td class="cell-price" data-label="Approx monthly"><strong class="price-main">$83</strong><span class="price-unit">/mo</span></td>
-              <td class="cell-bestfor" data-label="Best for">Strong picture quality, multi-view if you watch on TV (not browser)</td>
-            </tr>
-            <tr>
-              <td class="cell-service">
-                <strong>Fubo</strong>
-                <span class="cell-badge">Best for multi-view</span>
-              </td>
-              <td class="cell-all104" data-label="All 104?">All 104</td>
-              <td class="cell-status" data-label="English"><span class="status-chip status-yes">✓</span></td>
-              <td class="cell-status" data-label="Spanish"><span class="status-chip status-yes" title="Telemundo channel">✓</span></td>
-              <td class="cell-status" data-label="Multi-view"><span class="status-chip status-yes" title="Customizable 4-game multi-view">✓</span><span class="status-caption">Best in class</span></td>
-              <td class="cell-status" data-label="4K"><span class="status-chip status-partial" title="Yes for select matches">✓</span><span class="status-caption">Select matches</span></td>
-              <td class="cell-price" data-label="Approx monthly"><strong class="price-main">$80-100</strong><span class="price-unit">/mo by tier</span></td>
-              <td class="cell-bestfor" data-label="Best for">Hardcore fan who wants to watch multiple group-stage matches simultaneously</td>
-            </tr>
-
-            <tr class="row-category"><td colspan="8">Spanish coverage</td></tr>
-            <tr>
-              <td class="cell-service"><strong>Peacock Premium</strong></td>
-              <td class="cell-all104" data-label="All 104?">Spanish only (Telemundo's 92 matches)</td>
-              <td class="cell-status" data-label="English"><span class="status-chip status-no">✗</span></td>
-              <td class="cell-status" data-label="Spanish"><span class="status-chip status-yes" title="Yes (Telemundo)">✓</span></td>
-              <td class="cell-status" data-label="Multi-view"><span class="status-chip status-no">✗</span></td>
-              <td class="cell-status" data-label="4K"><span class="status-chip status-partial" title="Yes for select matches">✓</span><span class="status-caption">Select matches</span></td>
-              <td class="cell-price" data-label="Approx monthly"><strong class="price-main">$8</strong><span class="price-unit">/mo · $14 Premium Plus</span></td>
-              <td class="cell-bestfor" data-label="Best for">Hispanic or Spanish-language fan; cheapest Spanish streaming</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <section id="picker" class="reference">
-      <h3>Find your fit</h3>
-
-      <div class="use-case">
-        <p class="q">You want to watch the USA opener (June 12) and not much else.</p>
-        <p class="a">OTA antenna for free, or Tubi if you are on a laptop. Don't subscribe to anything monthly.</p>
-      </div>
-
-      <div class="use-case">
-        <p class="q">You're a casual fan and want to catch the matches that look good.</p>
-        <p class="a">Sling Blue is the cheapest "all matches in English" path. Cancel after July 19.</p>
-      </div>
-
-      <div class="use-case">
-        <p class="q">You're a Spanish-language preferred fan or want the Telemundo commentary.</p>
-        <p class="a">Peacock Premium ($8 ad-supported) is the cheapest. Free OTA Telemundo works too if you have an antenna.</p>
-      </div>
-
-      <div class="use-case">
-        <p class="q">You're a serious fan who wants to watch two group-stage matches at the same time.</p>
-        <p class="a">This matters most during group-stage final days, when up to four matches kick off simultaneously. Fubo is the only consumer-grade bundle with customizable multi-view across up to 4 games on a single screen. YouTube TV also has multi-view on its TV app (not browser). Fubo costs more. If you only need it for the tournament, subscribe in June and cancel in July.</p>
-      </div>
-
-      <div class="use-case">
-        <p class="q">You want commentary in a language other than English or Spanish.</p>
-        <p class="a">This is the gap. US-based streaming bundles do not surface Bengali, Hindi, Arabic, Portuguese, or other non-Spanish commentary feeds. BBC iPlayer and country-of-origin broadcasters like Star Sports India are geo-blocked from the US. VPN workarounds exist but are out of scope here.</p>
-      </div>
-
-      <div class="use-case">
-        <p class="q">You're trying to follow USA and your country of origin at the same time.</p>
-        <p class="a">A combination tends to work better than picking one service. Common pairing: OTA antenna for FOX matches, plus Peacock Premium for Telemundo's Spanish-language schedule, plus Fubo or YouTube TV for the simultaneous-match days. Total cost ~$20 to $100 depending on whether you take Fubo only for July.</p>
-      </div>
-    </section>
-
-    <section id="caveats" class="reference">
-      <h3>Heads up</h3>
-      <div class="callout">
-        <ul>
-          <li><strong>Pricing changes monthly.</strong> All numbers above are approximate as of May 23, 2026. Verify on each provider's site before subscribing.</li>
-          <li><strong>FOX One is new and the pricing has not been published.</strong> This is the wildcard. If FOX One ends up cheap enough, it could undercut Sling for English-only fans.</li>
-          <li><strong>Multi-view feature support varies by device.</strong> YouTube TV multi-view is TV-app only. Fubo multi-view works on TV and web. Verify on your specific TV, Roku, Apple TV, or Fire TV before subscribing.</li>
-          <li><strong>The FIFA Official App is not a streaming app.</strong> It is for ticketing, schedule, and team news. Currently rated 1.8 stars on iOS and 3.2 stars on Google Play. Do not rely on it for live match streams.</li>
-        </ul>
-      </div>
-    </section>
+    <section class="today-strip" id="today-strip" hidden></section>
   </main>
 
   <footer>
@@ -328,11 +87,134 @@
         <span class="trust-pill">✓ No tracking</span>
       </div>
       <p>WC26 Anywhere is for every fan watching from the couch, the bar, or a friend's place. Free, no signup, no tracking. All prices and feature notes are approximate, so verify before subscribing.</p>
-      <p>Have a watch party to add? <a href="/watch-parties">Suggest one here</a> once that page is live.</p>
     </div>
   </footer>
 
   <script src="/schedule-data.js" defer></script>
-  <script src="/script.js" defer></script>
+  <script>
+  (function () {
+    'use strict';
+    var KICKOFF = new Date('2026-06-11T16:00:00Z'); // approx noon ET opening match
+    var FINAL = new Date('2026-07-19T19:00:00Z'); // approx 3pm ET Final
+
+    function pad2(n) { return n < 10 ? '0' + n : '' + n; }
+
+    function updateCountdown() {
+      var now = new Date();
+      var labelEl = document.getElementById('countdown-label');
+      var ctxEl = document.getElementById('countdown-context');
+      var daysEl = document.getElementById('clock-days');
+      var hrsEl  = document.getElementById('clock-hours');
+      var minsEl = document.getElementById('clock-mins');
+      var heroMeta = document.getElementById('hero-meta-line');
+
+      if (now < KICKOFF) {
+        // Pre-tournament
+        var diff = KICKOFF - now;
+        var d = Math.floor(diff / 86400000);
+        var h = Math.floor((diff % 86400000) / 3600000);
+        var m = Math.floor((diff % 3600000) / 60000);
+        labelEl.textContent = 'Tournament starts in';
+        daysEl.textContent = d;
+        hrsEl.textContent = pad2(h);
+        minsEl.textContent = pad2(m);
+        ctxEl.textContent = 'Opening match: Mexico vs South Korea · Thu Jun 11 · Estadio Azteca, Mexico City';
+        if (heroMeta) heroMeta.textContent = 'June 11 to July 19, 2026 · ' + d + ' days to kickoff';
+        return;
+      }
+
+      if (now > FINAL.getTime() + 3 * 3600000) {
+        // After tournament window
+        labelEl.textContent = 'Thanks for the run';
+        document.getElementById('countdown-clock').innerHTML =
+          '<div class="clock-cell" style="font-size: 1.5rem;">🏆 The 2026 World Cup is complete.</div>';
+        ctxEl.textContent = 'See you in 2030. Hosts: Spain, Portugal, Morocco.';
+        if (heroMeta) heroMeta.textContent = 'The 2026 World Cup is complete';
+        return;
+      }
+
+      // In-tournament: find next match
+      var data = window.WC26_DATA;
+      if (!data || !data.MATCHES) {
+        labelEl.textContent = 'Tournament underway';
+        ctxEl.textContent = 'Ends July 19';
+        return;
+      }
+      var next = data.MATCHES
+        .map(function (m) { return { m: m, t: new Date(m.kickoffISO) }; })
+        .filter(function (x) { return x.t > now; })
+        .sort(function (a, b) { return a.t - b.t; })[0];
+
+      if (!next) {
+        labelEl.textContent = 'Tournament underway';
+        ctxEl.textContent = 'Ends July 19';
+        return;
+      }
+
+      // Check if a match is currently live (started within 2.5 hours)
+      var live = data.MATCHES.find(function (mm) {
+        var t = new Date(mm.kickoffISO);
+        return t < now && (now - t) < 2.5 * 3600000;
+      });
+
+      if (live) {
+        labelEl.textContent = '🔴 Live now';
+        var liveTeams = teamLabel(live.teamA, data.TEAMS) + ' vs ' + teamLabel(live.teamB, data.TEAMS);
+        var liveMin = Math.floor((now - new Date(live.kickoffISO)) / 60000);
+        document.getElementById('countdown-clock').innerHTML =
+          '<div class="clock-cell" style="font-size: 1.6rem;">' + liveTeams + '</div>';
+        ctxEl.textContent = liveMin + "' in · " + live.venue + ', ' + live.city;
+      } else {
+        var diff = next.t - now;
+        var h = Math.floor(diff / 3600000);
+        var m = Math.floor((diff % 3600000) / 60000);
+        labelEl.textContent = 'Next match in';
+        document.getElementById('countdown-clock').innerHTML =
+          '<div class="clock-cell"><span class="clock-num">' + h + '</span><span class="clock-unit">hrs</span></div>' +
+          '<div class="clock-cell"><span class="clock-num">' + pad2(m) + '</span><span class="clock-unit">min</span></div>';
+        var nextTeams = teamLabel(next.m.teamA, data.TEAMS) + ' vs ' + teamLabel(next.m.teamB, data.TEAMS);
+        ctxEl.textContent = nextTeams + ' · ' + next.m.venue + ', ' + next.m.city;
+      }
+
+      if (heroMeta) heroMeta.textContent = 'Tournament underway · ends July 19';
+
+      // Today's matches strip
+      var todayKey = now.toISOString().slice(0, 10);
+      var todays = data.MATCHES.filter(function (mm) {
+        return mm.date === todayKey;
+      });
+      var strip = document.getElementById('today-strip');
+      if (todays.length) {
+        var stripHtml = '<h3 class="strip-title">Today\'s matches</h3><div class="strip-list">';
+        todays.forEach(function (mm) {
+          var t = new Date(mm.kickoffISO);
+          var hh = t.getHours();
+          var mm2 = t.getMinutes();
+          var ampm = hh >= 12 ? 'PM' : 'AM';
+          var displayH = (hh % 12) || 12;
+          stripHtml += '<div class="strip-item">' +
+            '<span class="strip-time">' + displayH + ':' + pad2(mm2) + ' ' + ampm + '</span> · ' +
+            '<span class="strip-teams">' + teamLabel(mm.teamA, data.TEAMS) + ' vs ' + teamLabel(mm.teamB, data.TEAMS) + '</span>' +
+            '</div>';
+        });
+        stripHtml += '</div>';
+        strip.innerHTML = stripHtml;
+        strip.hidden = false;
+      }
+    }
+
+    function teamLabel(teamRef, TEAMS) {
+      if (teamRef.code && TEAMS[teamRef.code]) {
+        return TEAMS[teamRef.code].flag + ' ' + TEAMS[teamRef.code].name;
+      }
+      return teamRef.placeholder || 'TBD';
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      updateCountdown();
+      setInterval(updateCountdown, 60 * 1000); // refresh every minute
+    });
+  })();
+  </script>
 </body>
 </html>

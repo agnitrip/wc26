@@ -95,7 +95,177 @@ nav a.active { color: var(--accent); border-bottom-color: var(--accent); }
 
 main { padding-bottom: 24px; }
 
-/* ===== Hero ===== */
+/* ===== Home page ===== */
+.home-hero {
+  padding: 56px 0 32px;
+  position: relative;
+  isolation: isolate;
+}
+.home-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0 -20px;
+  background-image: url('/pitch-bg.svg');
+  background-position: center 60%;
+  background-repeat: no-repeat;
+  background-size: clamp(400px, 90%, 760px) auto;
+  z-index: -1;
+  pointer-events: none;
+}
+.home-h1 {
+  font-size: clamp(2.4rem, 6vw, 4.4rem);
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+  font-weight: 800;
+  margin: 14px 0 16px;
+}
+.home-lede {
+  font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+  color: var(--muted);
+  margin: 0 0 36px;
+  max-width: 640px;
+  line-height: 1.5;
+}
+
+.countdown-card {
+  background: linear-gradient(135deg, var(--accent) 0%, #003319 100%);
+  color: #fff;
+  border-radius: 16px;
+  padding: 28px 28px 24px;
+  box-shadow: 0 16px 48px rgba(0, 102, 51, 0.18);
+  text-align: center;
+  max-width: 620px;
+  margin: 0 auto;
+}
+.countdown-label {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  opacity: 0.78;
+  margin-bottom: 14px;
+}
+.countdown-clock {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+.clock-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.clock-num {
+  font-size: clamp(2.6rem, 8vw, 3.8rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+}
+.clock-unit {
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  opacity: 0.7;
+  font-weight: 700;
+}
+.countdown-context {
+  font-size: 0.95rem;
+  opacity: 0.86;
+  line-height: 1.4;
+  margin-top: 4px;
+}
+
+.home-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+  margin: 56px 0 32px;
+}
+.home-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 28px 24px 24px;
+  text-decoration: none;
+  color: var(--fg);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  position: relative;
+}
+.home-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(0, 102, 51, 0.10);
+}
+.home-card-icon { font-size: 2rem; line-height: 1; }
+.home-card-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 4px 0 0;
+  color: var(--fg);
+}
+.home-card-desc {
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.5;
+  margin: 0;
+  flex: 1;
+}
+.home-card-cta {
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 0.92rem;
+  margin-top: 12px;
+}
+
+.today-strip {
+  margin: 40px 0 24px;
+  padding: 20px 24px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.strip-title {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  font-weight: 800;
+  margin: 0 0 12px;
+}
+.strip-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.strip-item {
+  font-size: 0.96rem;
+  line-height: 1.5;
+}
+.strip-time {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--accent);
+  margin-right: 4px;
+}
+.strip-teams { color: var(--fg); }
+
+@media (max-width: 600px) {
+  .home-hero { padding: 36px 0 24px; }
+  .home-h1 { font-size: 1.95rem; }
+  .countdown-card { padding: 22px 18px 18px; }
+  .countdown-clock { gap: 20px; }
+  .home-cards { margin: 40px 0 24px; }
+}
+
+/* ===== Hero (legacy, used by streaming page) ===== */
 .hero {
   padding: 56px 0 24px;
   position: relative;
