@@ -1141,6 +1141,9 @@ footer a:hover { color: var(--accent); }
   justify-content: center;
   padding: 20px;
 }
+#modal-overlay[hidden] {
+  display: none;
+}
 .modal-backdrop {
   position: absolute;
   inset: 0;
