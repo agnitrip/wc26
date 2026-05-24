@@ -33,6 +33,6 @@
   <!-- bottom URL pill -->
   <g transform="translate(80, 540)">
     <rect x="0" y="0" width="340" height="44" rx="8" fill="#ffffff"/>
-    <text x="170" y="29" font-family="-apple-system, system-ui, sans-serif" font-size="18" font-weight="700" text-anchor="middle" fill="#006633">wc26-jade.vercel.app</text>
+    <text x="170" y="29" font-family="-apple-system, system-ui, sans-serif" font-size="18" font-weight="700" text-anchor="middle" fill="#006633">wc26pregame.com</text>
   </g>
 </svg>

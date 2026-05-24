@@ -261,8 +261,8 @@
     var start = new Date('2026-06-20T17:00:00Z'); // 10am Pacific / 1pm Eastern
     var end = new Date(start.getTime() + 30 * 60 * 1000);
     var title = 'Cancel ' + svc.name + ' subscription';
-    var desc = 'The WC Final is in 29 days. Cancel now to avoid the next auto-renewal charge.\\n\\nHow to cancel: ' + (svc.cancelPath || 'Open the service app and find Account or Subscription settings.') + '\\n\\nMost services keep your access through the end of the current billing period, so canceling now still preserves access through the knockouts and the Final.\\n\\nVia WC26 Pregame (wc26-jade.vercel.app)';
-    var uid = 'wc26-cancel-' + serviceId + '@wc26-jade.vercel.app';
+    var desc = 'The WC Final is in 29 days. Cancel now to avoid the next auto-renewal charge.\\n\\nHow to cancel: ' + (svc.cancelPath || 'Open the service app and find Account or Subscription settings.') + '\\n\\nMost services keep your access through the end of the current billing period, so canceling now still preserves access through the knockouts and the Final.\\n\\nVia WC26 Pregame (wc26pregame.com)';
+    var uid = 'wc26-cancel-' + serviceId + '@wc26pregame.com';
     var lines = [
       'BEGIN:VCALENDAR',
       'VERSION:2.0',

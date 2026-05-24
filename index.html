@@ -9,16 +9,21 @@
 
   <meta property="og:title" content="WC26 Pregame: sort out your 2026 World Cup">
   <meta property="og:description" content="Streaming picker, schedule in your time zone, country-specific watch parties. Free, no signup.">
-  <meta property="og:image" content="https://wc26-jade.vercel.app/og.png">
+  <meta property="og:image" content="https://wc26pregame.com/og.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://wc26-jade.vercel.app/">
+  <meta property="og:url" content="https://wc26pregame.com/">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://wc26-jade.vercel.app/og.png">
+  <meta name="twitter:image" content="https://wc26pregame.com/og.png">
 
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="stylesheet" href="/styles.css">
+
+  <!-- Vercel Web Analytics (pageviews only, no custom events). Enable in Vercel dashboard -->
+  <script defer src="/_vercel/insights/script.js"></script>
+  <!-- Vercel Speed Insights (Core Web Vitals). Enable in Vercel dashboard -->
+  <script defer src="/_vercel/speed-insights/script.js"></script>
 </head>
 <body>
   <header>
@@ -132,7 +137,7 @@
       <div class="trust-badges">
         <span class="trust-pill">✓ Free</span>
         <span class="trust-pill">✓ No signup</span>
-        <span class="trust-pill">✓ No tracking</span>
+        <span class="trust-pill">✓ No personal tracking</span>
       </div>
       <p>WC26 Pregame is by a fan, for fans. Free, no signup, no tracking. Streaming prices change monthly, so verify before subscribing.</p>
     </div>
@@ -274,13 +279,13 @@
         'VERSION:2.0',
         'PRODID:-//WC26 Pregame//EN',
         'BEGIN:VEVENT',
-        'UID:wc26-opening@wc26-jade.vercel.app',
+        'UID:wc26-opening@wc26pregame.com',
         'DTSTAMP:' + fmt(new Date()),
         'DTSTART:' + fmt(start),
         'DTEND:' + fmt(end),
         'SUMMARY:Mexico vs South Korea · Opening Match · WC 2026',
         'LOCATION:' + m.venue + ', ' + m.city,
-        'DESCRIPTION:Tournament opening match. Via WC26 Pregame (wc26-jade.vercel.app)',
+        'DESCRIPTION:Tournament opening match. Via WC26 Pregame (wc26pregame.com)',
         'END:VEVENT',
         'END:VCALENDAR',
       ].join('\r\n');

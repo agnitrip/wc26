@@ -170,8 +170,8 @@
     var end = new Date(start.getTime() + 2.5 * 60 * 60 * 1000);
     var title = matchTitle(match, TEAMS);
     var loc = match.venue + ', ' + match.city;
-    var desc = 'Broadcast: ' + match.broadcast.join(', ') + '\\nVia WC26 Pregame (wc26-jade.vercel.app)';
-    var uid = 'wc26-match-' + match.num + '@wc26-jade.vercel.app';
+    var desc = 'Broadcast: ' + match.broadcast.join(', ') + '\\nVia WC26 Pregame (wc26pregame.com)';
+    var uid = 'wc26-match-' + match.num + '@wc26pregame.com';
     return [
       'BEGIN:VEVENT',
       'UID:' + uid,
