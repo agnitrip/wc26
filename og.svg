@@ -21,14 +21,14 @@
   </g>
 
   <!-- brand -->
-  <text x="80" y="200" font-family="-apple-system, system-ui, sans-serif" font-size="32" font-weight="700" fill="#ffffff" opacity="0.85" letter-spacing="-0.5"><tspan fill="#9bf2bd">WC26</tspan> Anywhere</text>
+  <text x="80" y="200" font-family="-apple-system, system-ui, sans-serif" font-size="48" font-weight="900" fill="#9bf2bd" letter-spacing="-1.5">Pregame</text>
 
   <!-- headline -->
-  <text x="80" y="320" font-family="-apple-system, system-ui, sans-serif" font-size="84" font-weight="800" fill="#ffffff" letter-spacing="-3">Watch the 2026</text>
-  <text x="80" y="408" font-family="-apple-system, system-ui, sans-serif" font-size="84" font-weight="800" fill="#ffffff" letter-spacing="-3">World Cup from the US.</text>
+  <text x="80" y="320" font-family="-apple-system, system-ui, sans-serif" font-size="76" font-weight="800" fill="#ffffff" letter-spacing="-3">Sort out your World Cup</text>
+  <text x="80" y="402" font-family="-apple-system, system-ui, sans-serif" font-size="76" font-weight="800" fill="#ffffff" letter-spacing="-3">before kickoff.</text>
 
   <!-- subline -->
-  <text x="80" y="486" font-family="-apple-system, system-ui, sans-serif" font-size="28" font-weight="500" fill="#ffffff" opacity="0.78">From the couch, the bar, or a friend's place.</text>
+  <text x="80" y="478" font-family="-apple-system, system-ui, sans-serif" font-size="26" font-weight="500" fill="#ffffff" opacity="0.82">Pick a streaming bundle, find a watch party, save the schedule.</text>
 
   <!-- bottom URL pill -->
   <g transform="translate(80, 540)">

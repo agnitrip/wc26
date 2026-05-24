@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WC26 Anywhere: Watch the 2026 World Cup from the US</title>
-  <meta name="description" content="WC26 Anywhere is the free guide to watching the 2026 FIFA World Cup from anywhere in the US. Streaming bundle picker, schedule across all time zones, and country-specific watch-party directory across 11 US host cities.">
+  <title>Pregame: sort out your 2026 World Cup</title>
+  <meta name="description" content="Sort out your 2026 World Cup before kickoff. Streaming picker, schedule in your time zone, country-specific watch parties. Free, no signup.">
   <meta name="theme-color" content="#006633">
 
-  <meta property="og:title" content="WC26 Anywhere: Watch the 2026 World Cup from the US">
-  <meta property="og:description" content="Every fan watching from the couch, the bar, or a friend's place. We've got your World Cup.">
+  <meta property="og:title" content="Pregame: sort out your 2026 World Cup">
+  <meta property="og:description" content="Streaming picker, schedule in your time zone, country-specific watch parties. Free, no signup.">
   <meta property="og:image" content="https://wc26-jade.vercel.app/og.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -23,7 +23,7 @@
 <body>
   <header>
     <div class="container">
-      <a href="/" class="brand"><span class="brand-mark">WC26</span> Anywhere</a>
+      <a href="/" class="brand">Pregame</a>
       <nav aria-label="Primary">
         <ul>
           <li><a href="/" class="active">Home</a></li>
@@ -41,8 +41,8 @@
         <span class="host-chip">USA · CAN · MEX</span>
         <span class="countdown" id="hero-meta-line">June 11 to July 19, 2026</span>
       </div>
-      <h1 class="home-h1">Watch the 2026 World Cup from the US.</h1>
-      <p class="home-lede">Every fan watching from the couch, the bar, or a friend's place. We've got your World Cup.</p>
+      <h1 class="home-h1">Sort out your World Cup before kickoff.</h1>
+      <p class="home-lede">Pick a streaming bundle, find a watch party, save the schedule. Free, no signup.</p>
 
       <div class="countdown-card" id="countdown-card">
         <div class="countdown-label" id="countdown-label">Tournament starts in</div>
@@ -57,21 +57,50 @@
 
     <section class="home-cards" aria-label="What you can do here">
       <a href="/streaming" class="home-card">
-        <div class="home-card-icon" aria-hidden="true">📺</div>
-        <h2 class="home-card-title">Pick your stream</h2>
+        <div class="home-card-head">
+          <svg class="home-card-glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect width="20" height="15" x="2" y="7" rx="2"/>
+            <polyline points="17 2 12 7 7 2"/>
+          </svg>
+          <h2 class="home-card-title">Pick your stream</h2>
+        </div>
         <p class="home-card-desc">30-second quiz that recommends the right streaming bundle for your team, language, budget, and viewing style.</p>
+        <div class="home-card-preview preview-services">
+          <span class="preview-chip">FOX</span>
+          <span class="preview-chip">Telemundo</span>
+          <span class="preview-chip">Peacock</span>
+          <span class="preview-chip">Fubo</span>
+          <span class="preview-more">+4 more</span>
+        </div>
         <span class="home-card-cta">Take the quiz →</span>
       </a>
       <a href="/schedule" class="home-card">
-        <div class="home-card-icon" aria-hidden="true">📅</div>
-        <h2 class="home-card-title">The schedule</h2>
-        <p class="home-card-desc">All 104 matches in your local time zone. Pick your teams to pin their matches. Add any match (or all 104) to your calendar.</p>
+        <div class="home-card-head">
+          <svg class="home-card-glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M8 2v4"/>
+            <path d="M16 2v4"/>
+            <rect width="18" height="18" x="3" y="4" rx="2"/>
+            <path d="M3 10h18"/>
+          </svg>
+          <h2 class="home-card-title">The schedule</h2>
+        </div>
+        <p class="home-card-desc">All 104 matches in your local time zone. Pin your teams. Add any match (or all 104) to your calendar.</p>
+        <div class="home-card-preview preview-matches" id="home-schedule-preview"></div>
         <span class="home-card-cta">See the schedule →</span>
       </a>
       <a href="/watch-parties" class="home-card">
-        <div class="home-card-icon" aria-hidden="true">📍</div>
-        <h2 class="home-card-title">Where your people watch</h2>
-        <p class="home-card-desc">53 country-specific bars and watch parties across all 11 US host cities. Filter by city, country, or proximity to a host stadium.</p>
+        <div class="home-card-head">
+          <svg class="home-card-glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+          <h2 class="home-card-title">Where your people watch</h2>
+        </div>
+        <p class="home-card-desc">53 country-specific bars across all 11 US host cities. Filter by city, country, or proximity to a host stadium.</p>
+        <div class="home-card-preview preview-flags-block">
+          <div class="preview-flags" aria-label="Sample of countries represented">🇲🇽 🇧🇷 🇦🇷 🇮🇪 🇮🇹 🇰🇷 🇳🇬 🇵🇹 🇲🇦 🇯🇲</div>
+          <span class="preview-flags-note">21 countries · 11 host cities</span>
+        </div>
         <span class="home-card-cta">Find a watch party →</span>
       </a>
     </section>
@@ -86,7 +115,7 @@
         <span class="trust-pill">✓ No signup</span>
         <span class="trust-pill">✓ No tracking</span>
       </div>
-      <p>WC26 Anywhere is for every fan watching from the couch, the bar, or a friend's place. Free, no signup, no tracking. All prices and feature notes are approximate, so verify before subscribing.</p>
+      <p>Pregame is by a fan, for fans. Free, no signup, no tracking. Streaming prices change monthly, so verify before subscribing.</p>
     </div>
   </footer>
 
@@ -94,7 +123,7 @@
   <script>
   (function () {
     'use strict';
-    var KICKOFF = new Date('2026-06-11T16:00:00Z'); // approx noon ET opening match
+    var KICKOFF = new Date('2026-06-11T18:00:00Z'); // noon Mexico City (UTC-6), opening match
     var FINAL = new Date('2026-07-19T19:00:00Z'); // approx 3pm ET Final
 
     function pad2(n) { return n < 10 ? '0' + n : '' + n; }
@@ -210,8 +239,33 @@
       return teamRef.placeholder || 'TBD';
     }
 
+    function renderSchedulePreview() {
+      var el = document.getElementById('home-schedule-preview');
+      if (!el || !window.WC26_DATA) return;
+      var data = window.WC26_DATA;
+      var now = new Date();
+      var upcoming = data.MATCHES
+        .map(function (mm) { return { m: mm, t: new Date(mm.kickoffISO) }; })
+        .filter(function (x) { return x.t > now; })
+        .sort(function (a, b) { return a.t - b.t; })
+        .slice(0, 3);
+      var weekdays = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+      var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      var html = upcoming.map(function (x) {
+        var t = x.t;
+        var date = weekdays[t.getDay()] + ' ' + months[t.getMonth()] + ' ' + t.getDate();
+        var teams = teamLabel(x.m.teamA, data.TEAMS) + ' v ' + teamLabel(x.m.teamB, data.TEAMS);
+        return '<div class="preview-match">' +
+               '<span class="preview-match-date">' + date + '</span>' +
+               '<span class="preview-match-teams">' + teams + '</span>' +
+               '</div>';
+      }).join('');
+      el.innerHTML = html;
+    }
+
     document.addEventListener('DOMContentLoaded', function () {
       updateCountdown();
+      renderSchedulePreview();
       setInterval(updateCountdown, 60 * 1000); // refresh every minute
     });
   })();

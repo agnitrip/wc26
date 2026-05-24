@@ -1,4 +1,4 @@
-// WC26 Anywhere — schedule page logic
+// Pregame — schedule page logic
 // Vanilla JS, no dependencies. Reads from window.WC26_DATA (schedule-data.js).
 
 (function () {
@@ -170,7 +170,7 @@
     var end = new Date(start.getTime() + 2.5 * 60 * 60 * 1000);
     var title = matchTitle(match, TEAMS);
     var loc = match.venue + ', ' + match.city;
-    var desc = 'Broadcast: ' + match.broadcast.join(', ') + '\\nVia WC26 Anywhere (wc26-jade.vercel.app)';
+    var desc = 'Broadcast: ' + match.broadcast.join(', ') + '\\nVia Pregame (wc26-jade.vercel.app)';
     var uid = 'wc26-match-' + match.num + '@wc26-jade.vercel.app';
     return [
       'BEGIN:VEVENT',
@@ -191,7 +191,7 @@
     var lines = [
       'BEGIN:VCALENDAR',
       'VERSION:2.0',
-      'PRODID:-//WC26 Anywhere//EN',
+      'PRODID:-//Pregame//EN',
       events,
       'END:VCALENDAR',
     ];
@@ -265,16 +265,12 @@
   }
 
   // ----- Renderers -----
-  function renderMatch(match, TEAMS, opts) {
-    opts = opts || {};
-    var showDate = !!opts.showDate;
+  function renderMatch(match, TEAMS) {
     var ft = formatTime(match.kickoffISO);
     var mine = isMyTeam(match);
     var classes = 'match' + (mine ? ' match-mine' : '');
     var star = mine ? '<span class="match-star" title="Your team">⭐</span>' : '';
-    var dateHtml = showDate ? '<div class="match-date">' + formatDayHeader(match.kickoffISO) + '</div>' : '';
     return '<div class="' + classes + '" data-num="' + match.num + '">' +
-      dateHtml +
       '<div class="match-time">' + star + ft.time + ' <span class="match-zone">' + ft.zone + '</span></div>' +
       '<div class="match-teams">' + teamLabel(match.teamA, TEAMS) + ' <span class="vs">vs</span> ' + teamLabel(match.teamB, TEAMS) + '</div>' +
       '<div class="match-meta">' +
@@ -337,12 +333,25 @@
         return new Date(a.kickoffISO) - new Date(b.kickoffISO);
       });
       if (mine.length) {
+        var mineByDay = {};
+        mine.forEach(function (m) {
+          var key = isoDateOnly(m.kickoffISO);
+          (mineByDay[key] = mineByDay[key] || []).push(m);
+        });
+        var mineDays = Object.keys(mineByDay).sort();
+        var pinnedMatchesHtml = mineDays.map(function (key) {
+          var dayMatches = mineByDay[key];
+          var header = formatDayHeader(dayMatches[0].kickoffISO);
+          return '<div class="pinned-day-header">' + header + '</div>' +
+            dayMatches.map(function (m) { return renderMatch(m, TEAMS); }).join('');
+        }).join('');
+
         pinnedHtml = '<div class="pinned-section">' +
           '<div class="pinned-header-row">' +
             '<h2 class="pinned-header">⭐ Your matches (' + mine.length + ')</h2>' +
             '<button class="bulk-ics-btn" id="bulk-my-btn">📅 Add all to calendar</button>' +
           '</div>' +
-          mine.map(function (m) { return renderMatch(m, TEAMS, { showDate: true }); }).join('') +
+          pinnedMatchesHtml +
           '</div>';
       }
 

@@ -1,4 +1,4 @@
-// WC26 Anywhere — streaming quiz + countdown
+// Pregame — streaming quiz + countdown
 // Vanilla JS, no dependencies. Reads TEAMS from window.WC26_DATA (schedule-data.js).
 
 (function () {
@@ -8,10 +8,10 @@
   function updateCountdown() {
     var el = document.getElementById('countdown');
     if (!el) return;
-    var kickoff = new Date('2026-06-11T17:00:00Z');
+    var kickoff = new Date('2026-06-11T18:00:00Z');
     var now = new Date();
     var msPerDay = 1000 * 60 * 60 * 24;
-    var days = Math.ceil((kickoff - now) / msPerDay);
+    var days = Math.floor((kickoff - now) / msPerDay);
     if (days > 1) {
       el.textContent = 'June 11 to July 19, 2026 · ' + days + ' days to kickoff';
     } else if (days === 1) {
@@ -231,12 +231,12 @@
     var start = new Date('2026-06-20T17:00:00Z'); // 10am Pacific / 1pm Eastern
     var end = new Date(start.getTime() + 30 * 60 * 1000);
     var title = 'Cancel ' + svc.name + ' subscription';
-    var desc = 'The WC Final is in 29 days. Cancel now to avoid the next auto-renewal charge.\\n\\nHow to cancel: ' + (svc.cancelPath || 'Open the service app and find Account or Subscription settings.') + '\\n\\nMost services keep your access through the end of the current billing period, so canceling now still preserves access through the knockouts and the Final.\\n\\nVia WC26 Anywhere (wc26-jade.vercel.app)';
+    var desc = 'The WC Final is in 29 days. Cancel now to avoid the next auto-renewal charge.\\n\\nHow to cancel: ' + (svc.cancelPath || 'Open the service app and find Account or Subscription settings.') + '\\n\\nMost services keep your access through the end of the current billing period, so canceling now still preserves access through the knockouts and the Final.\\n\\nVia Pregame (wc26-jade.vercel.app)';
     var uid = 'wc26-cancel-' + serviceId + '@wc26-jade.vercel.app';
     var lines = [
       'BEGIN:VCALENDAR',
       'VERSION:2.0',
-      'PRODID:-//WC26 Anywhere//EN',
+      'PRODID:-//Pregame//EN',
       'BEGIN:VEVENT',
       'UID:' + uid,
       'DTSTAMP:' + icsDate(new Date()),

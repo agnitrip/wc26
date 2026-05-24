@@ -1,4 +1,4 @@
-// WC26 Anywhere — schedule data
+// Pregame — schedule data
 // 48 teams, 104 matches (72 group stage + 32 knockout).
 //
 // IMPORTANT: Team-to-group assignments and per-match details (kickoff times,
@@ -70,7 +70,7 @@ const TEAMS = {
 
 // Group assignments. 12 groups × 4 teams.
 const GROUPS = {
-  A: ['MEX', 'KOR', 'CMR', 'POR'],
+  A: ['MEX', 'KOR', 'CMR', 'SWE'],
   B: ['CAN', 'ECU', 'TUN', 'CRO'],
   C: ['USA', 'JAM', 'KSA', 'IRN'],
   D: ['ARG', 'PAR', 'IRQ', 'NOR'],
