@@ -20,13 +20,17 @@
 //   sourceLabel   - optional source attribution text
 
 const CITIES = [
+  { id: 'BOS', name: 'Boston / New England' },
   { id: 'NYC', name: 'New York / NJ' },
-  { id: 'LA',  name: 'Los Angeles' },
-  { id: 'SF',  name: 'San Francisco / Bay Area' },
-  { id: 'DAL', name: 'Dallas / Fort Worth' },
-  { id: 'MIA', name: 'Miami / South Florida' },
-  { id: 'HOU', name: 'Houston' },
+  { id: 'PHL', name: 'Philadelphia' },
   { id: 'ATL', name: 'Atlanta' },
+  { id: 'MIA', name: 'Miami / South Florida' },
+  { id: 'DAL', name: 'Dallas / Fort Worth' },
+  { id: 'HOU', name: 'Houston' },
+  { id: 'KC',  name: 'Kansas City' },
+  { id: 'SF',  name: 'San Francisco / Bay Area' },
+  { id: 'LA',  name: 'Los Angeles' },
+  { id: 'SEA', name: 'Seattle' },
 ];
 
 // Host stadiums in the US. Used to tag venues near a stadium for
@@ -94,6 +98,20 @@ const CITY_THREADS = {
   ],
   ATL: [
     { url: 'https://reddit.com/r/atlanta/search/?q=world+cup+bar&restrict_sr=1', label: 'r/atlanta: WC bar searches' },
+  ],
+  BOS: [
+    { url: 'https://reddit.com/r/boston/search/?q=world+cup+bar&restrict_sr=1', label: 'r/boston: WC bar searches' },
+    { url: 'https://reddit.com/r/Patriots/search/?q=gillette+world+cup&restrict_sr=1', label: 'r/Patriots: Gillette WC threads' },
+  ],
+  PHL: [
+    { url: 'https://reddit.com/r/philadelphia/search/?q=world+cup+bar&restrict_sr=1', label: 'r/philadelphia: WC bar searches' },
+  ],
+  KC: [
+    { url: 'https://reddit.com/r/kansascity/search/?q=world+cup+bar&restrict_sr=1', label: 'r/kansascity: WC bar searches' },
+  ],
+  SEA: [
+    { url: 'https://reddit.com/r/Seattle/search/?q=world+cup+bar&restrict_sr=1', label: 'r/Seattle: WC bar searches' },
+    { url: 'https://reddit.com/r/Sounders/search/?q=world+cup+bar&restrict_sr=1', label: 'r/Sounders: WC bar threads' },
   ],
 };
 
@@ -329,6 +347,89 @@ const VENUES = [
     neighborhood: 'Downtown', city: 'ATL', countries: ['GEN', 'USA'],
     description: 'Mercedes-Benz Stadium-adjacent sports bar. Walk-up venue for any Atlanta-hosted WC match.',
     nearStadium: 'MBZ',
+  },
+
+  // ===== BOSTON / NEW ENGLAND =====
+  {
+    id: 'phoenix-landing-bos', name: 'Phoenix Landing', address: '512 Massachusetts Ave',
+    neighborhood: 'Central Square, Cambridge', city: 'BOS', countries: ['IRL', 'GEN'],
+    description: 'Long-running Cambridge soccer pub. Opens at 7am for European kickoffs. Hardcore Premier League and international crowd.',
+  },
+  {
+    id: 'the-burren-bos', name: 'The Burren', address: '247 Elm St',
+    neighborhood: 'Davis Square, Somerville', city: 'BOS', countries: ['IRL', 'GEN'],
+    description: 'Irish pub with a serious soccer following. Multiple screens and an early-opening kitchen for morning matches.',
+  },
+  {
+    id: 'lir-bos', name: 'Lir Irish Pub', address: '903 Boylston St',
+    neighborhood: 'Back Bay, Boston', city: 'BOS', countries: ['IRL', 'GEN'],
+    description: 'Boylston Street Irish pub. Reliable for big-tournament watch parties.',
+  },
+  {
+    id: 'patriot-place-bos', name: 'Bar Louie at Patriot Place', address: '208 Patriot Pl',
+    neighborhood: 'Foxborough', city: 'BOS', countries: ['GEN', 'USA'],
+    description: 'Sports bar in the Patriot Place complex adjacent to Gillette Stadium. Pre-match destination on WC match days.',
+    nearStadium: 'GIL',
+  },
+
+  // ===== PHILADELPHIA =====
+  {
+    id: 'misconduct-phl', name: 'Misconduct Tavern', address: '1511 Locust St',
+    neighborhood: 'Rittenhouse', city: 'PHL', countries: ['GEN', 'USA'],
+    description: 'Center City sports tavern with strong soccer following. Multiple screens, opens early for European matches.',
+  },
+  {
+    id: 'mcgillins-phl', name: "McGillin's Olde Ale House", address: '1310 Drury St',
+    neighborhood: 'Center City', city: 'PHL', countries: ['IRL', 'GEN'],
+    description: "Philadelphia's oldest tavern (since 1860). Strong soccer crowd, especially for Premier League and international matches.",
+  },
+  {
+    id: 'fado-phl', name: 'Fadó Irish Pub', address: '1500 Locust St',
+    neighborhood: 'Center City', city: 'PHL', countries: ['IRL', 'GEN'],
+    description: 'Irish pub with reliable WC coverage. Opens early for European kickoffs.',
+  },
+  {
+    id: 'xfinity-live-phl', name: 'Xfinity Live!', address: '1100 Pattison Ave',
+    neighborhood: 'South Philadelphia', city: 'PHL', countries: ['GEN', 'USA'],
+    description: 'Sports/entertainment complex literally adjacent to Lincoln Financial Field. Multiple bars, big screens, match-day destination.',
+    nearStadium: 'LIN',
+  },
+
+  // ===== KANSAS CITY =====
+  {
+    id: 'kc-bier-co-kc', name: 'KC Bier Co', address: '310 W 79th St',
+    neighborhood: 'Waldo', city: 'KC', countries: ['GER', 'GEN'],
+    description: 'German biergarten in Waldo. Reliable for Germany matches with a Spanish-mit-German crowd. Showing every WC match.',
+  },
+  {
+    id: 'the-brick-kc', name: 'The Brick', address: '1727 McGee St',
+    neighborhood: 'Crossroads', city: 'KC', countries: ['GEN', 'USA'],
+    description: 'Crossroads Arts District bar with sports-bar setup. Pulls a local soccer crowd for the WC.',
+  },
+  {
+    id: 'power-light-kc', name: 'Power & Light District (multiple bars)', address: '1330 Walnut St',
+    neighborhood: 'Downtown', city: 'KC', countries: ['GEN', 'USA'],
+    description: 'KC\'s downtown entertainment district with PBR Big Sky, Tengo Sed Cantina, Mosaic, and more. Pick your spot; all show big matches.',
+  },
+
+  // ===== SEATTLE =====
+  {
+    id: 'fx-mcrorys-sea', name: "FX McRory's", address: '419 Occidental Ave S',
+    neighborhood: 'Pioneer Square', city: 'SEA', countries: ['GEN', 'USA'],
+    description: 'Pioneer Square sports institution, walking distance to Lumen Field. Sounders crowd carries over for the WC.',
+    nearStadium: 'LUM',
+  },
+  {
+    id: 'fado-sea', name: 'Fadó Irish Pub', address: '801 1st Ave',
+    neighborhood: 'Pioneer Square', city: 'SEA', countries: ['IRL', 'GEN'],
+    description: 'Irish pub in Pioneer Square, near Lumen Field. Opens early for European matches and goes deep for the WC.',
+    nearStadium: 'LUM',
+  },
+  {
+    id: 'the-110-sea', name: 'The 110', address: '110 S Washington St',
+    neighborhood: 'Pioneer Square', city: 'SEA', countries: ['GEN'],
+    description: 'Sounders supporters bar. The Seattle soccer crowd shows up for any meaningful match.',
+    nearStadium: 'LUM',
   },
 ];
 
