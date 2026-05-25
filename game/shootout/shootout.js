@@ -9,7 +9,8 @@
   var KICK_TIMER_MS = 5200;
   var BREAKAWAY_DURATION_MS = 14000;
   var BREAKAWAY_READ_DELAY_MS = 1000;
-  var REVEAL_MS = 400;
+  var REVEAL_MS = 400;       // flash animation duration
+  var REVEAL_HOLD_MS = 2000; // total time the answer overlay stays visible before advancing
   var BANNER_MS = 800;
   var SWIPE_THRESHOLD_PX = 70;
 
@@ -183,7 +184,7 @@
     setTimeout(function () {
       if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
       done();
-    }, REVEAL_MS + 350); // hold the explanation briefly past the flash
+    }, REVEAL_HOLD_MS);
   }
 
   // ===== Banner (HT, SUDDEN DEATH) =====
