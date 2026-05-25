@@ -306,8 +306,7 @@
     var store = Storage.load();
 
     var playBtn = el('button', { class: 'sh-play-btn', type: 'button' }, [
-      el('span', { class: 'sh-play-btn-main', text: sessionStreak > 0 ? 'Keep the streak going' : 'Play' }),
-      el('span', { class: 'sh-play-btn-sub', text: '10 cards. One try per match.' }),
+      el('span', { class: 'sh-play-btn-main', text: sessionStreak > 0 ? 'Keep the streak going' : 'Play Shootout' }),
     ]);
     playBtn.addEventListener('click', function () { startMatch(); });
 
