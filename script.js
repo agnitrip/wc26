@@ -141,22 +141,33 @@
     // Lighter coverage = don't pay much
     if (a.coverage === 'opener') {
       if (a.budget === 'cheap') return { primary: 'ota', alts: ['sling'] };
+      // premium + opener: sling either way; 4K=yes surfaces youtubeTV as the upgrade
+      if (a.fourK === 'yes') return { primary: 'sling', alts: ['youtubeTV'] };
       return { primary: 'sling', alts: ['ota', 'youtubeTV'] };
     }
 
     if (a.coverage === 'marquee') {
       if (a.budget === 'cheap') return { primary: 'sling', alts: ['ota'] };
-      return { primary: 'youtubeTV', alts: ['sling', 'fubo'] };
+      // premium + marquee: only flip to youtubeTV if 4K matters; otherwise sling covers the same channels cheaper
+      if (a.fourK === 'yes') return { primary: 'youtubeTV', alts: ['fubo', 'sling'] };
+      return { primary: 'sling', alts: ['youtubeTV', 'fubo'] };
     }
 
     // All 104
     if (a.coverage === 'all') {
       if (a.multiview === 'yes') {
-        if (a.budget === 'premium') return { primary: 'fuboPremium', alts: ['youtubeTV'] };
+        if (a.budget === 'premium') {
+          if (a.fourK === 'yes') return { primary: 'fuboPremium', alts: ['youtubeTV'] };
+          return { primary: 'fubo', alts: ['sling', 'youtubeTV'] };
+        }
         return { primary: 'fubo', alts: ['youtubeTV', 'sling'] };
       }
+      // multiview=no
       if (a.budget === 'cheap') return { primary: 'sling', alts: ['fubo', 'youtubeTV'] };
-      if (a.budget === 'premium') return { primary: 'youtubeTV', alts: ['fubo', 'sling'] };
+      if (a.budget === 'premium') {
+        if (a.fourK === 'yes') return { primary: 'youtubeTV', alts: ['fubo', 'sling'] };
+        return { primary: 'sling', alts: ['youtubeTV', 'fubo'] };
+      }
     }
 
     return { primary: 'sling', alts: ['ota', 'fubo'] };
@@ -300,15 +311,18 @@
     coverage: null,
     budget: null,
     multiview: null,
+    fourK: null,
   };
-  var step = 1; // 1..6
+  var step = 1; // 1..7
 
   function getPath() {
-    // Returns the active step IDs based on stance + coverage choices.
+    // Returns the active step IDs based on stance + coverage + budget choices.
     var path = ['stance'];
     if (state.stance === 'one' || state.stance === 'few') path.push('teams');
     path.push('lang', 'coverage', 'budget');
     if (state.coverage === 'all') path.push('multiview');
+    // 4K only matters at premium budget. It flips youtubeTV vs sling, and fuboPremium vs fubo.
+    if (state.budget === 'premium') path.push('fourK');
     return path;
   }
 
@@ -553,6 +567,7 @@
     state.coverage = null;
     state.budget = null;
     state.multiview = null;
+    state.fourK = null;
     step = 1;
     document.getElementById('result').hidden = true;
     document.getElementById('quiz').hidden = false;
