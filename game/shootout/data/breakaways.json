@@ -1,0 +1,98 @@
+[
+  {
+    "id": "b-001",
+    "category_label": "NOT a Brazilian World Cup winner",
+    "in_set": ["Pele", "Ronaldo", "Cafu"],
+    "imposter": "Zico",
+    "explanation": "Zico played three World Cups for Brazil but never won the title.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-002",
+    "category_label": "NOT a 2022 World Cup semifinalist",
+    "in_set": ["Argentina", "France", "Croatia"],
+    "imposter": "Brazil",
+    "explanation": "Brazil exited in the quarterfinals against Croatia. Morocco was the fourth semifinalist.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-003",
+    "category_label": "NOT a World Cup-winning manager",
+    "in_set": ["Carlos Alberto Parreira", "Vicente del Bosque", "Didier Deschamps"],
+    "imposter": "Pep Guardiola",
+    "explanation": "Guardiola has dominated club football but has never managed at a World Cup.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-004",
+    "category_label": "NOT a country to host a men's World Cup",
+    "in_set": ["Brazil", "United States", "South Africa"],
+    "imposter": "Portugal",
+    "explanation": "Portugal will host in 2030 alongside Spain and Morocco, but has never hosted before.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-005",
+    "category_label": "NOT a player to win a World Cup Golden Boot",
+    "in_set": ["Harry Kane", "James Rodriguez", "Miroslav Klose"],
+    "imposter": "Cristiano Ronaldo",
+    "explanation": "Ronaldo has never won a World Cup Golden Boot. Kane 2018, James 2014, Klose 2006.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-006",
+    "category_label": "NOT a 2026 World Cup host venue",
+    "in_set": ["SoFi Stadium", "MetLife Stadium", "AT&T Stadium"],
+    "imposter": "Soldier Field",
+    "explanation": "Chicago is not a 2026 host city. Soldier Field hosted in 1994 but is not on the 2026 list.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-007",
+    "category_label": "NOT an African nation to reach a World Cup quarterfinal",
+    "in_set": ["Cameroon", "Senegal", "Ghana"],
+    "imposter": "Nigeria",
+    "explanation": "Cameroon 1990, Senegal 2002, Ghana 2010, Morocco 2022. Nigeria's best is round of 16.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "b-008",
+    "category_label": "NOT a player to score in a men's World Cup final",
+    "in_set": ["Kylian Mbappe", "Mario Gotze", "Andres Iniesta"],
+    "imposter": "Neymar",
+    "explanation": "Neymar has not played in a World Cup final. Mbappe 2018+2022, Gotze 2014, Iniesta 2010.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-009",
+    "category_label": "NOT a country to win a men's World Cup on home soil",
+    "in_set": ["Uruguay", "England", "France"],
+    "imposter": "Spain",
+    "explanation": "Spain won in 2010 in South Africa. Hosts to win at home: Uruguay 30, Italy 34, England 66, West Germany 74, Argentina 78, France 98.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "b-010",
+    "category_label": "NOT a World Cup Golden Ball winner",
+    "in_set": ["Lionel Messi", "Diego Maradona", "Zinedine Zidane"],
+    "imposter": "Cristiano Ronaldo",
+    "explanation": "The Golden Ball goes to the best player of the tournament. Ronaldo has not won it.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-011",
+    "category_label": "NOT a CONMEBOL national team",
+    "in_set": ["Argentina", "Uruguay", "Colombia"],
+    "imposter": "Mexico",
+    "explanation": "Mexico is in CONCACAF, not CONMEBOL.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-012",
+    "category_label": "NOT a 2026 World Cup mascot",
+    "in_set": ["Maple", "Zayu", "Clutch"],
+    "imposter": "La'eeb",
+    "explanation": "La'eeb was the Qatar 2022 mascot. The 2026 mascots are Maple (moose, Canada), Zayu (jaguar, Mexico), and Clutch (bald eagle, USA).",
+    "difficulty": "medium"
+  }
+]

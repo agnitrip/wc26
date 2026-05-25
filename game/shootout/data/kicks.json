@@ -1,0 +1,86 @@
+[
+  {
+    "id": "k-001",
+    "statement": "Argentina beat France in regulation in the 2022 World Cup final.",
+    "truth": false,
+    "explanation": "Argentina won 4-2 on penalties after a 3-3 draw across regulation and extra time.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "k-002",
+    "statement": "Germany has won the men's World Cup 4 times.",
+    "truth": true,
+    "explanation": "1954, 1974, 1990, and 2014.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "k-003",
+    "statement": "Pele is the only player to win 3 men's World Cup titles.",
+    "truth": true,
+    "explanation": "Pele won in 1958, 1962, and 1970.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "k-004",
+    "statement": "Brazil and Italy are tied for the most men's World Cup titles.",
+    "truth": false,
+    "explanation": "Brazil leads with 5; Italy and Germany have 4 each.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "k-005",
+    "statement": "The 2026 World Cup is the first hosted by three countries.",
+    "truth": true,
+    "explanation": "United States, Canada, and Mexico share hosting duties.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "k-006",
+    "statement": "The 2026 World Cup will be played by 32 teams.",
+    "truth": false,
+    "explanation": "FIFA expanded the field to 48 teams for 2026.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "k-007",
+    "statement": "Diego Maradona scored the Hand of God goal against England at the 1986 World Cup.",
+    "truth": true,
+    "explanation": "Quarterfinal, Mexico City, June 22, 1986.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "k-008",
+    "statement": "Iceland is the smallest country by population ever to qualify for a men's World Cup.",
+    "truth": true,
+    "explanation": "Iceland qualified for the 2018 World Cup with a population of about 335,000.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "k-009",
+    "statement": "Spain has won the men's World Cup twice.",
+    "truth": false,
+    "explanation": "Spain has one title, won in South Africa in 2010.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "k-010",
+    "statement": "France won back-to-back men's World Cups in 1998 and 2002.",
+    "truth": false,
+    "explanation": "France won 1998; Brazil won 2002. France lost in the 2002 group stage.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "k-011",
+    "statement": "Estadio Azteca will host its third men's World Cup opening match in 2026.",
+    "truth": true,
+    "explanation": "Azteca opened the 1970 and 1986 World Cups, and now opens 2026.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "k-012",
+    "statement": "Lionel Messi has won 7 Ballon d'Or awards.",
+    "truth": false,
+    "explanation": "Messi has won 8 Ballon d'Or awards as of 2023.",
+    "difficulty": "medium"
+  }
+]

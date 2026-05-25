@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Pregame Shootout: 60-second WC26 warmup</title>
+  <meta name="description" content="A 60-second penalty shootout for World Cup fans. One shootout a day, plus unlimited practice. Free, no signup.">
+  <meta name="theme-color" content="#006633">
+
+  <meta property="og:title" content="Pregame Shootout: 60-second WC26 warmup">
+  <meta property="og:description" content="A 60-second penalty shootout for World Cup fans. One a day, plus unlimited practice.">
+  <meta property="og:image" content="https://wc26pregame.com/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://wc26pregame.com/game/shootout">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://wc26pregame.com/og.png">
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/game/shootout/shootout.css">
+
+  <!-- Vercel Web Analytics + Speed Insights (pageviews only, no custom events) -->
+  <script type="module">
+    import { inject } from "https://cdn.jsdelivr.net/npm/@vercel/analytics@1/+esm";
+    import { injectSpeedInsights } from "https://cdn.jsdelivr.net/npm/@vercel/speed-insights@1/+esm";
+    inject();
+    injectSpeedInsights();
+  </script>
+</head>
+<body class="shootout-body">
+  <header>
+    <div class="container">
+      <a href="/" class="brand"><svg class="brand-glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="12,7 16,10 14.5,15 9.5,15 8,10"/><line x1="12" y1="7" x2="12" y2="2.5"/><line x1="16" y1="10" x2="20.5" y2="8.4"/><line x1="14.5" y1="15" x2="16.8" y2="19.7"/><line x1="9.5" y1="15" x2="7.2" y2="19.7"/><line x1="8" y1="10" x2="3.5" y2="8.4"/></svg><span class="brand-text">WC<span class="brand-year">26</span> Pregame</span></a>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/streaming">Streaming</a></li>
+          <li><a href="/schedule">Schedule</a></li>
+          <li><a href="/watch-parties">Watch parties</a></li>
+          <li><a href="/game/shootout" class="active">Shootout</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container shootout-main">
+    <div id="game-root" class="game-root" aria-live="polite"></div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p class="footer-feedback">Found a bug? Card factually wrong? Have an idea to make Pregame better for fans? <button type="button" class="footer-feedback-trigger" data-feedback-open>Tell us.</button></p>
+      <div class="trust-badges">
+        <span class="trust-pill">✓ Free</span>
+        <span class="trust-pill">✓ No signup</span>
+        <span class="trust-pill">✓ No personal tracking</span>
+      </div>
+      <p>WC26 Pregame is by a fan, for fans. Free, no signup, no tracking. Streaming prices change monthly, so verify before subscribing.</p>
+    </div>
+  </footer>
+
+  <div id="feedback-modal" hidden role="dialog" aria-modal="true" aria-labelledby="feedback-modal-title">
+    <div class="feedback-modal-backdrop" data-feedback-close></div>
+    <div class="feedback-modal-card" role="document">
+      <button type="button" class="feedback-modal-close" data-feedback-close aria-label="Close">×</button>
+      <h3 class="feedback-modal-title" id="feedback-modal-title">Would love to hear from you.</h3>
+      <p class="feedback-modal-body">Send feedback, bug reports, or venue suggestions to:</p>
+      <div class="feedback-modal-email" tabindex="0">tripathi.agni@gmail.com</div>
+      <div class="feedback-modal-actions">
+        <button type="button" class="feedback-modal-copy" id="feedback-copy-btn">Copy email</button>
+        <a href="mailto:tripathi.agni@gmail.com" class="feedback-modal-open">Open in email app</a>
+      </div>
+      <p class="feedback-modal-footnote">Every message gets read.</p>
+    </div>
+  </div>
+
+  <script src="/feedback.js" defer></script>
+  <script src="/game/shootout/shootout.js" defer></script>
+</body>
+</html>
