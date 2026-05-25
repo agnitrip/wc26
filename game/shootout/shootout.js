@@ -311,6 +311,15 @@
     ]);
     playBtn.addEventListener('click', function () { startMatch(); });
 
+    var firstTouchBtn = el('button', { class: 'ft-chooser-secondary', type: 'button' }, [
+      el('span', { text: 'New to soccer? Start with First Touch →' }),
+    ]);
+    firstTouchBtn.addEventListener('click', function () {
+      if (window.PregameFirstTouch && typeof window.PregameFirstTouch.start === 'function') {
+        window.PregameFirstTouch.start();
+      }
+    });
+
     // Streak panel: shows current run prominently if active, otherwise lifetime best if any.
     var streakPanel = null;
     if (sessionStreak > 0) {
@@ -350,7 +359,7 @@
       ]),
       el('p', { class: 'sh-start-outcome', text: 'Most goals wins.' }),
       streakPanel,
-      el('div', { class: 'sh-play-wrap' }, [playBtn]),
+      el('div', { class: 'sh-play-wrap' }, [playBtn, firstTouchBtn]),
     ]);
     root.appendChild(screen);
   }
@@ -863,6 +872,12 @@
       if (window.console) console.error('[shootout] pool load failed', err);
     });
   }
+
+  // Public surface for cross-engine handoff (First Touch chooser CTA + back-to-start).
+  window.PregameShootout = {
+    renderStart: function () { if (root) renderStart(); },
+    startMatch: function () { if (pools.kicks && pools.breakaways) startMatch(); },
+  };
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);

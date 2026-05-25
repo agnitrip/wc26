@@ -1,0 +1,130 @@
+/* ===== First Touch =====
+   Newbie on-ramp. Lives alongside Shootout in #game-root.
+   Pairs with /game/shootout/shootout.css (reuses .sh- primitives + vars). */
+
+/* ===== Chooser CTA (sits below the yellow PLAY button on the start screen) ===== */
+.ft-chooser-secondary {
+  appearance: none;
+  font-family: inherit;
+  cursor: pointer;
+  background: transparent;
+  color: var(--sh-warn);
+  border: 2px solid var(--sh-warn);
+  padding: 12px 18px;
+  border-radius: 14px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  min-height: 44px;
+  width: 100%;
+  text-align: center;
+  margin-top: 4px;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+.ft-chooser-secondary:hover { background: rgba(245, 200, 66, 0.12); }
+.ft-chooser-secondary:active { transform: translateY(1px); }
+@media (min-width: 640px) {
+  .ft-chooser-secondary { width: 50%; align-self: center; }
+}
+
+/* ===== In-match card screen (small spacing tweaks, reuses sh-claim-card) ===== */
+.ft-counter { top: 18px; }
+.ft-screen-card { padding-top: 56px; }
+
+/* ===== Result screen ===== */
+.ft-screen-result {
+  padding-top: 36px;
+  padding-bottom: 24px;
+  gap: 10px;
+}
+.ft-sticker {
+  display: inline-block;
+  background: rgba(245, 200, 66, 0.22);
+  border: 1px solid rgba(245, 200, 66, 0.6);
+  color: var(--sh-warn);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  margin-bottom: 2px;
+}
+.ft-result-hero {
+  font-size: clamp(56px, 18vw, 80px);
+  line-height: 1;
+  margin: 0 auto -2px;
+}
+.ft-verdict { color: var(--sh-warn); margin: 0; }
+.ft-verdict-close { color: #fff; opacity: 0.92; margin: 0; }
+.ft-blurb {
+  font-size: 1rem;
+  line-height: 1.45;
+  max-width: 30ch;
+  margin: 0 auto;
+  opacity: 0.92;
+}
+.ft-score {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 6vw, 2rem);
+  letter-spacing: 0.04em;
+  margin: 4px 0 6px;
+  opacity: 0.95;
+}
+
+/* Recap (loss path only) */
+.ft-recap {
+  list-style: none;
+  padding: 14px 16px;
+  margin: 4px 0 8px;
+  background: rgba(0, 0, 0, 0.32);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 360px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.ft-recap-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  line-height: 1.5;
+}
+.ft-recap-item:last-child { border-bottom: 0; padding-bottom: 0; }
+.ft-recap-statement {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #fff;
+}
+.ft-recap-explain {
+  font-size: 0.86rem;
+  opacity: 0.82;
+  color: #fff;
+}
+
+/* Action stack */
+.ft-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 320px;
+  margin-top: 8px;
+}
+.ft-cta-primary {
+  /* Reuses .sh-rematch base; nothing extra needed. */
+}
+.ft-cta-secondary {
+  /* Reuses .sh-share base; nothing extra needed. */
+}
+
+.ft-footnote {
+  margin-top: 12px;
+  font-size: 0.78rem;
+  opacity: 0.7;
+  max-width: 36ch;
+  line-height: 1.4;
+}

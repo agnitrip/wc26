@@ -1,0 +1,352 @@
+[
+  {
+    "id": "ft-001",
+    "statement": "Soccer is played with 10 players on each side.",
+    "truth": false,
+    "explanation": "Each team has 11 players on the field, including the goalkeeper.",
+    "difficulty": "basics"
+  },
+  {
+    "id": "ft-002",
+    "statement": "A soccer match is 90 minutes long, played in two halves.",
+    "truth": true,
+    "explanation": "Two halves of 45 minutes with a 15-minute halftime break.",
+    "difficulty": "basics"
+  },
+  {
+    "id": "ft-003",
+    "statement": "The World Cup happens every 2 years.",
+    "truth": false,
+    "explanation": "The World Cup runs on a 4-year cycle.",
+    "difficulty": "basics"
+  },
+  {
+    "id": "ft-004",
+    "statement": "The 2026 World Cup is hosted only by the United States.",
+    "truth": false,
+    "explanation": "2026 is the first World Cup with three host countries: the US, Canada, and Mexico.",
+    "difficulty": "basics"
+  },
+  {
+    "id": "ft-005",
+    "statement": "Soccer is called football in most of the world.",
+    "truth": true,
+    "explanation": "The name soccer is mainly used in the US, Canada, and Australia.",
+    "difficulty": "basics"
+  },
+  {
+    "id": "ft-006",
+    "statement": "A hat-trick means scoring 3 goals in one match.",
+    "truth": true,
+    "explanation": "When a single player scores three times in one game, it's called a hat-trick.",
+    "difficulty": "basics"
+  },
+  {
+    "id": "ft-007",
+    "statement": "The pitch is what soccer fans call the playing field.",
+    "truth": true,
+    "explanation": "Pitch is the standard word for the soccer field in most of the world.",
+    "difficulty": "basics"
+  },
+  {
+    "id": "ft-008",
+    "statement": "Each goal scored counts as one point.",
+    "truth": true,
+    "explanation": "There is no extra value for distance or difficulty; every goal is worth 1.",
+    "difficulty": "basics"
+  },
+  {
+    "id": "ft-009",
+    "statement": "A yellow card means the player has to leave the game.",
+    "truth": false,
+    "explanation": "Yellow is a warning. A red card, or two yellows in the same match, sends a player off.",
+    "difficulty": "basics"
+  },
+  {
+    "id": "ft-010",
+    "statement": "If an outfield player scores with their hands, the goal counts.",
+    "truth": false,
+    "explanation": "Only the goalkeeper can use their hands, and only inside their own penalty area.",
+    "difficulty": "basics"
+  },
+  {
+    "id": "ft-011",
+    "statement": "A penalty kick is taken from 12 yards out.",
+    "truth": true,
+    "explanation": "The penalty spot is marked 12 yards from the goal line.",
+    "difficulty": "basics"
+  },
+  {
+    "id": "ft-012",
+    "statement": "The team captain wears an armband to show their role.",
+    "truth": true,
+    "explanation": "The captain's armband is worn on the upper arm and identifies the team leader on the field.",
+    "difficulty": "basics"
+  },
+  {
+    "id": "ft-013",
+    "statement": "The goalkeeper can use their hands anywhere on the field.",
+    "truth": false,
+    "explanation": "Goalkeepers can only use their hands inside their own penalty area.",
+    "difficulty": "basics"
+  },
+  {
+    "id": "ft-014",
+    "statement": "A throw-in is taken using only one hand.",
+    "truth": false,
+    "explanation": "A throw-in must use both hands, with both feet on the ground behind the line.",
+    "difficulty": "basics"
+  },
+  {
+    "id": "ft-015",
+    "statement": "If an attacker kicks the ball out behind the defending team's goal, the defending team gets a corner kick.",
+    "truth": false,
+    "explanation": "That gives the defending team a goal kick. A corner kick goes to the attacking team when a defender puts the ball out behind their own goal.",
+    "difficulty": "basics"
+  },
+  {
+    "id": "ft-016",
+    "statement": "Brazil has won the World Cup more times than any other country.",
+    "truth": true,
+    "explanation": "Brazil has 5 World Cup titles, more than any other nation.",
+    "difficulty": "basics"
+  },
+  {
+    "id": "ft-017",
+    "statement": "Argentina are the reigning World Cup champions.",
+    "truth": true,
+    "explanation": "Argentina won the 2022 final in Qatar, beating France on penalties.",
+    "difficulty": "basics"
+  },
+  {
+    "id": "ft-018",
+    "statement": "Every foul in a soccer match leads to a yellow card.",
+    "truth": false,
+    "explanation": "Most fouls are just free kicks. Yellow and red cards are reserved for more serious offences or repeat fouls.",
+    "difficulty": "basics"
+  },
+  {
+    "id": "ft-019",
+    "statement": "There are 48 teams in the 2026 World Cup.",
+    "truth": true,
+    "explanation": "The 2026 tournament expanded from 32 to 48 teams, the most in World Cup history.",
+    "difficulty": "basics"
+  },
+  {
+    "id": "ft-020",
+    "statement": "The World Cup tournament lasts about a year.",
+    "truth": false,
+    "explanation": "The tournament runs for roughly a month, from group stage to final.",
+    "difficulty": "basics"
+  },
+  {
+    "id": "ft-021",
+    "statement": "Mexico is hosting the World Cup for the third time in 2026.",
+    "truth": true,
+    "explanation": "Mexico hosted in 1970 and 1986, making 2026 its third turn as host.",
+    "difficulty": "basics"
+  },
+  {
+    "id": "ft-022",
+    "statement": "The 2026 World Cup final will be played in Los Angeles.",
+    "truth": false,
+    "explanation": "The final is at MetLife Stadium in the New York / New Jersey area.",
+    "difficulty": "basics"
+  },
+  {
+    "id": "ft-023",
+    "statement": "The Golden Boot is awarded to the World Cup's top goal scorer.",
+    "truth": true,
+    "explanation": "Whoever scores the most goals across the tournament wins the Golden Boot.",
+    "difficulty": "basics"
+  },
+  {
+    "id": "ft-024",
+    "statement": "All group-stage matches must end with a winner.",
+    "truth": false,
+    "explanation": "Group-stage games can end in a draw. Only knockout games must produce a winner, going to extra time and penalties if needed.",
+    "difficulty": "basics"
+  },
+  {
+    "id": "ft-025",
+    "statement": "Soccer is the most popular sport in the world by audience.",
+    "truth": true,
+    "explanation": "Billions of people follow soccer globally, more than any other sport.",
+    "difficulty": "basics"
+  },
+  {
+    "id": "ft-026",
+    "statement": "The 2026 World Cup tournament begins in June.",
+    "truth": true,
+    "explanation": "The tournament opens on June 11, 2026 at Estadio Azteca in Mexico City.",
+    "difficulty": "basics"
+  },
+  {
+    "id": "ft-027",
+    "statement": "The 2026 World Cup will end in August.",
+    "truth": false,
+    "explanation": "The final is on July 19, 2026 at MetLife Stadium.",
+    "difficulty": "basics"
+  },
+  {
+    "id": "ft-028",
+    "statement": "Atlanta is one of the host cities for the 2026 World Cup.",
+    "truth": true,
+    "explanation": "Mercedes-Benz Stadium in Atlanta hosts matches in 2026.",
+    "difficulty": "basics"
+  },
+  {
+    "id": "ft-029",
+    "statement": "Chicago is one of the host cities for the 2026 World Cup.",
+    "truth": false,
+    "explanation": "Chicago is not on the 2026 host list. The closest Midwest host is Kansas City.",
+    "difficulty": "basics"
+  },
+  {
+    "id": "ft-030",
+    "statement": "All host cities for the 2026 World Cup are in the United States.",
+    "truth": false,
+    "explanation": "The 16 host cities are split across the US, Canada (Toronto and Vancouver), and Mexico (Mexico City, Guadalajara, Monterrey).",
+    "difficulty": "basics"
+  },
+  {
+    "id": "ft-031",
+    "statement": "There will be more than 100 matches in the 2026 World Cup.",
+    "truth": true,
+    "explanation": "104 matches in total, up from 64 in 2022.",
+    "difficulty": "basics"
+  },
+  {
+    "id": "ft-032",
+    "statement": "A team can make up to 5 substitutions during a World Cup match.",
+    "truth": true,
+    "explanation": "The 5-substitution rule was made permanent ahead of the 2022 World Cup.",
+    "difficulty": "basics"
+  },
+  {
+    "id": "ft-033",
+    "statement": "A clean sheet means the goalkeeper let in only one goal.",
+    "truth": false,
+    "explanation": "A clean sheet means zero goals allowed. It's soccer's term for a shutout.",
+    "difficulty": "basics"
+  },
+  {
+    "id": "ft-034",
+    "statement": "VAR stands for Video Assistant Referee.",
+    "truth": true,
+    "explanation": "VAR reviews key decisions like goals, penalties, and red cards.",
+    "difficulty": "basics"
+  },
+  {
+    "id": "ft-035",
+    "statement": "\"Nil\" means zero in soccer commentary.",
+    "truth": true,
+    "explanation": "A 1-0 win is often called \"one-nil.\"",
+    "difficulty": "basics"
+  },
+  {
+    "id": "ft-036",
+    "statement": "A draw counts as a loss in the group stage.",
+    "truth": false,
+    "explanation": "A draw is worth 1 point. A win is 3 points, a loss is 0.",
+    "difficulty": "basics"
+  },
+  {
+    "id": "ft-037",
+    "statement": "Extra time in a knockout match is 30 minutes total.",
+    "truth": true,
+    "explanation": "Two extra-time halves of 15 minutes each.",
+    "difficulty": "basics"
+  },
+  {
+    "id": "ft-038",
+    "statement": "If a knockout match is tied after extra time, it goes to a penalty shootout.",
+    "truth": true,
+    "explanation": "Each team takes 5 penalty kicks; if still tied, sudden-death penalties follow.",
+    "difficulty": "basics"
+  },
+  {
+    "id": "ft-039",
+    "statement": "A striker is mainly a defensive position.",
+    "truth": false,
+    "explanation": "Strikers are forwards. Their main job is to score goals.",
+    "difficulty": "basics"
+  },
+  {
+    "id": "ft-040",
+    "statement": "Stoppage time is extra time added at the end of each half.",
+    "truth": true,
+    "explanation": "The referee adds time to make up for stoppages like injuries and substitutions.",
+    "difficulty": "basics"
+  },
+  {
+    "id": "ft-041",
+    "statement": "The country that wins the World Cup keeps the actual trophy forever.",
+    "truth": false,
+    "explanation": "The champion holds the real trophy until the next tournament and keeps a replica.",
+    "difficulty": "basics"
+  },
+  {
+    "id": "ft-042",
+    "statement": "The 2026 World Cup opening match is in the United States.",
+    "truth": false,
+    "explanation": "The opener is at Estadio Azteca in Mexico City on June 11, 2026.",
+    "difficulty": "basics"
+  },
+  {
+    "id": "ft-043",
+    "statement": "Las Vegas is a 2026 World Cup host city.",
+    "truth": false,
+    "explanation": "Las Vegas is not a 2026 host. The Western US hosts are Los Angeles, San Francisco Bay Area, and Seattle.",
+    "difficulty": "basics"
+  },
+  {
+    "id": "ft-044",
+    "statement": "The 2026 World Cup final will be played at MetLife Stadium.",
+    "truth": true,
+    "explanation": "MetLife in East Rutherford, New Jersey hosts the final on July 19, 2026.",
+    "difficulty": "basics"
+  },
+  {
+    "id": "ft-045",
+    "statement": "A midfielder plays between the defense and the attack.",
+    "truth": true,
+    "explanation": "Midfielders link defenders and forwards, often controlling the pace of play.",
+    "difficulty": "basics"
+  },
+  {
+    "id": "ft-046",
+    "statement": "A team has more than one goalkeeper on the field at the same time.",
+    "truth": false,
+    "explanation": "Only one goalkeeper plays at once. Backup keepers sit on the bench.",
+    "difficulty": "basics"
+  },
+  {
+    "id": "ft-047",
+    "statement": "Boston is one of the 2026 World Cup host cities.",
+    "truth": true,
+    "explanation": "Gillette Stadium in Foxborough hosts matches for the Boston area.",
+    "difficulty": "basics"
+  },
+  {
+    "id": "ft-048",
+    "statement": "Denver is one of the 2026 World Cup host cities.",
+    "truth": false,
+    "explanation": "Denver is not a 2026 host. The 11 US host cities don't include any in the Mountain West.",
+    "difficulty": "basics"
+  },
+  {
+    "id": "ft-049",
+    "statement": "The 2022 World Cup was held in Brazil.",
+    "truth": false,
+    "explanation": "The 2022 World Cup was in Qatar, the first Middle Eastern host country.",
+    "difficulty": "basics"
+  },
+  {
+    "id": "ft-050",
+    "statement": "A 0-0 match is often called a \"nil-nil draw.\"",
+    "truth": true,
+    "explanation": "Nil-nil is the standard way to read a scoreless draw aloud.",
+    "difficulty": "basics"
+  }
+]
