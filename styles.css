@@ -2433,3 +2433,31 @@ footer a:hover { color: var(--accent); }
     padding: 32px 24px;
   }
 }
+
+.not-found-links {
+  list-style: none;
+  padding: 0;
+  margin: 24px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 1.05rem;
+}
+.not-found-links a {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+.not-found-links a:hover { color: var(--accent-hover); text-decoration: underline; }
+
+.lede-cross-link {
+  margin-top: 12px;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+.lede-cross-link a {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+.lede-cross-link a:hover { color: var(--accent-hover); text-decoration: underline; }

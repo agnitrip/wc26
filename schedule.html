@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WC26 Pregame: 2026 World Cup schedule</title>
-  <meta name="description" content="All 104 matches of the 2026 FIFA World Cup in your time zone. Pin your teams. Add any match (or all of them) to your calendar. Free, no signup.">
+  <title>2026 World Cup schedule, your time zone · WC26 Pregame</title>
+  <meta name="description" content="2026 World Cup schedule in your time zone. All 104 matches, pin your teams, add any match (or all of them) to your calendar. Free, no signup.">
   <meta name="theme-color" content="#006633">
+  <link rel="canonical" href="https://wc26pregame.com/schedule">
 
-  <meta property="og:title" content="WC26 Pregame: 2026 World Cup schedule">
+  <meta property="og:title" content="2026 World Cup schedule, your time zone · WC26 Pregame">
   <meta property="og:description" content="All 104 matches in your time zone. Pin your teams. Add any match (or all of them) to your calendar.">
   <meta property="og:image" content="https://wc26pregame.com/og.png">
   <meta property="og:image:width" content="1200">
@@ -19,6 +20,44 @@
 
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="stylesheet" href="/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://wc26pregame.com/#website",
+        "name": "WC26 Pregame",
+        "url": "https://wc26pregame.com/",
+        "description": "Sort out your 2026 World Cup before kickoff. Streaming picker, schedule in your time zone, country-specific watch parties.",
+        "inLanguage": "en-US"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://wc26pregame.com/#organization",
+        "name": "WC26 Pregame",
+        "url": "https://wc26pregame.com/",
+        "founder": {
+          "@type": "Person",
+          "name": "Agni Tripathi",
+          "url": "https://agnitripathi.com"
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://wc26pregame.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Schedule", "item": "https://wc26pregame.com/schedule" }
+    ]
+  }
+  </script>
 
   <!-- Vercel Web Analytics + Speed Insights (pageviews only, no custom events) -->
   <script type="module">
@@ -67,6 +106,7 @@
     <section class="schedule-hero">
       <h1>All 104 matches, in your time zone.</h1>
       <p class="lede-small">Pin your teams. Add any match (or all of them) to your calendar.</p>
+      <p class="lede-cross-link">Watching with a crowd? <a href="/watch-parties">Find a bar to watch</a>.</p>
     </section>
 
     <section id="coming" class="coming-region" aria-label="Coming up"></section>
@@ -120,5 +160,78 @@
   <script src="/schedule-data.js" defer></script>
   <script src="/schedule.js" defer></script>
   <script src="/feedback.js" defer></script>
+  <script defer>
+    // Inject SportsEvent JSON-LD for all 104 matches once schedule-data.js loads.
+    document.addEventListener('DOMContentLoaded', function () {
+      var data = window.WC26_DATA;
+      if (!data || !data.MATCHES || !data.TEAMS) return;
+      var countryMap = {
+        'USA': 'US', 'MEX': 'MX', 'CAN': 'CA',
+      };
+      function teamName(ref) {
+        if (ref && ref.code && data.TEAMS[ref.code]) return data.TEAMS[ref.code].name;
+        return (ref && ref.placeholder) || 'TBD';
+      }
+      function venueCountry(cityField) {
+        var parts = (cityField || '').split(',');
+        var code = (parts[parts.length - 1] || '').trim();
+        return countryMap[code] || 'US';
+      }
+      function venueLocality(cityField) {
+        var parts = (cityField || '').split(',');
+        return (parts[0] || '').trim();
+      }
+      function endIso(startIsoStr) {
+        var d = new Date(startIsoStr);
+        var end = new Date(d.getTime() + 2 * 3600 * 1000);
+        var offsetMatch = startIsoStr.match(/([+\-]\d{2}:\d{2})$/);
+        var offset = offsetMatch ? offsetMatch[1] : 'Z';
+        var pad = function (n) { return n < 10 ? '0' + n : '' + n; };
+        var offsetMin = 0;
+        if (offset !== 'Z') {
+          var sign = offset[0] === '-' ? -1 : 1;
+          var hh = parseInt(offset.slice(1, 3), 10);
+          var mm = parseInt(offset.slice(4, 6), 10);
+          offsetMin = sign * (hh * 60 + mm);
+        }
+        var localMs = end.getTime() + offsetMin * 60000;
+        var local = new Date(localMs);
+        return local.getUTCFullYear() + '-' + pad(local.getUTCMonth() + 1) + '-' + pad(local.getUTCDate()) + 'T' +
+               pad(local.getUTCHours()) + ':' + pad(local.getUTCMinutes()) + ':00' + offset;
+      }
+      var events = data.MATCHES.map(function (m) {
+        var a = teamName(m.teamA);
+        var b = teamName(m.teamB);
+        return {
+          '@type': 'SportsEvent',
+          'name': a + ' vs ' + b,
+          'startDate': m.kickoffISO,
+          'endDate': endIso(m.kickoffISO),
+          'eventStatus': 'https://schema.org/EventScheduled',
+          'eventAttendanceMode': 'https://schema.org/OfflineEventAttendanceMode',
+          'sport': 'Soccer',
+          'location': {
+            '@type': 'Place',
+            'name': m.venue,
+            'address': {
+              '@type': 'PostalAddress',
+              'addressLocality': venueLocality(m.city),
+              'addressCountry': venueCountry(m.city)
+            }
+          },
+          'homeTeam': { '@type': 'SportsTeam', 'name': a },
+          'awayTeam': { '@type': 'SportsTeam', 'name': b },
+          'organizer': { '@type': 'Organization', 'name': 'FIFA', 'url': 'https://www.fifa.com' }
+        };
+      });
+      var script = document.createElement('script');
+      script.type = 'application/ld+json';
+      script.textContent = JSON.stringify({
+        '@context': 'https://schema.org',
+        '@graph': events
+      });
+      document.head.appendChild(script);
+    });
+  </script>
 </body>
 </html>

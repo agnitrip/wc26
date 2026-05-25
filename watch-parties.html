@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WC26 Pregame: 2026 World Cup watch parties</title>
-  <meta name="description" content="53 watch venues across 11 US host cities for the 2026 World Cup. Pick a city, a country, or both. Free, no signup.">
+  <title>World Cup watch parties in US host cities · WC26 Pregame</title>
+  <meta name="description" content="World Cup watch parties at 53 country-specific venues across all 11 US host cities. Pick a city, a country, or both. Free, no signup.">
   <meta name="theme-color" content="#006633">
+  <link rel="canonical" href="https://wc26pregame.com/watch-parties">
 
-  <meta property="og:title" content="WC26 Pregame: 2026 World Cup watch parties">
-  <meta property="og:description" content="53 watch venues across 11 US host cities. Pick a city, a country, or both.">
+  <meta property="og:title" content="World Cup watch parties in US host cities · WC26 Pregame">
+  <meta property="og:description" content="53 country-specific venues across all 11 US host cities. Pick a city, a country, or both.">
   <meta property="og:image" content="https://wc26pregame.com/og.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -19,6 +20,44 @@
 
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="stylesheet" href="/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://wc26pregame.com/#website",
+        "name": "WC26 Pregame",
+        "url": "https://wc26pregame.com/",
+        "description": "Sort out your 2026 World Cup before kickoff. Streaming picker, schedule in your time zone, country-specific watch parties.",
+        "inLanguage": "en-US"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://wc26pregame.com/#organization",
+        "name": "WC26 Pregame",
+        "url": "https://wc26pregame.com/",
+        "founder": {
+          "@type": "Person",
+          "name": "Agni Tripathi",
+          "url": "https://agnitripathi.com"
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://wc26pregame.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Watch parties", "item": "https://wc26pregame.com/watch-parties" }
+    ]
+  }
+  </script>
 
   <!-- Vercel Web Analytics + Speed Insights (pageviews only, no custom events) -->
   <script type="module">
@@ -108,5 +147,39 @@
   <script src="/watch-parties-data.js" defer></script>
   <script src="/watch-parties.js" defer></script>
   <script src="/feedback.js" defer></script>
+  <script defer>
+    // Inject Restaurant JSON-LD for all venues once watch-parties-data.js loads.
+    document.addEventListener('DOMContentLoaded', function () {
+      var wp = window.WC26_WP;
+      if (!wp || !wp.VENUES || !wp.CITIES) return;
+      var cityById = {};
+      wp.CITIES.forEach(function (c) { cityById[c.id] = c.name; });
+      function venueCountry(cityId) {
+        return (cityId === 'TOR' || cityId === 'VAN') ? 'CA' : 'US';
+      }
+      var items = wp.VENUES.map(function (v) {
+        var locality = v.neighborhood || cityById[v.city] || '';
+        return {
+          '@type': 'Restaurant',
+          'name': v.name,
+          'description': v.description,
+          'address': {
+            '@type': 'PostalAddress',
+            'streetAddress': v.address || '',
+            'addressLocality': locality,
+            'addressCountry': venueCountry(v.city)
+          },
+          'servesCuisine': 'Sports bar'
+        };
+      });
+      var script = document.createElement('script');
+      script.type = 'application/ld+json';
+      script.textContent = JSON.stringify({
+        '@context': 'https://schema.org',
+        '@graph': items
+      });
+      document.head.appendChild(script);
+    });
+  </script>
 </body>
 </html>
