@@ -2076,6 +2076,27 @@ footer a:hover { color: var(--accent); }
 /* Kill the legacy pitch-SVG smudge (the new photo hero replaces it) */
 .tournament-hero::before { content: none; }
 
+.hero-promo-chip {
+  display: inline-block;
+  margin-top: 18px;
+  padding: 8px 14px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  border-radius: 999px;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.hero-promo-chip:hover {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.55);
+}
+
 /* ===== Kickoff section (countdown + opening match) ===== */
 .kickoff-section { margin: 0 0 40px; }
 
