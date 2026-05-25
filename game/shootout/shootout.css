@@ -652,16 +652,25 @@
   gap: 14px;
   overflow-y: auto;
 }
+.sh-result-hero {
+  font-size: clamp(56px, 18vw, 80px);
+  line-height: 1;
+  text-align: center;
+  margin: 0 auto -4px;
+  filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.35));
+  user-select: none;
+  -webkit-user-select: none;
+}
 .sh-result-verdict {
   font-family: var(--font-display);
-  font-size: clamp(3rem, 11vw, 4.4rem);
-  letter-spacing: 0.04em;
+  font-size: clamp(2.4rem, 8.5vw, 3.4rem);
+  letter-spacing: 0.02em;
   font-weight: 400;
   line-height: 0.95;
   margin: 0;
 }
 .sh-result-verdict.is-win { color: var(--sh-warn); }
-.sh-result-verdict.is-loss { color: #fff; opacity: 0.85; }
+.sh-result-verdict.is-loss { color: #fff; opacity: 0.88; }
 .sh-result-score {
   font-family: var(--font-display);
   font-size: clamp(2.2rem, 8vw, 3rem);

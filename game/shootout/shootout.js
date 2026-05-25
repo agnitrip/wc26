@@ -539,9 +539,14 @@
     var won = match.result === 'W';
     var store = Storage.load();
 
+    var resultHero = el('div', {
+      class: 'sh-result-hero ' + (won ? 'is-win' : 'is-loss'),
+      'aria-hidden': 'true',
+      text: won ? '🏆' : '💔',
+    });
     var verdict = el('h1', {
       class: 'sh-result-verdict ' + (won ? 'is-win' : 'is-loss'),
-      text: won ? 'WIN' : 'LOSS',
+      text: won ? 'You won.' : 'You lost.',
     });
     var scoreLine = el('div', { class: 'sh-result-score', text: youScore + ' - ' + themScore });
     var grid = buildShareGridDom();
@@ -578,7 +583,7 @@
     var bestLine = store.longestStreak > 0 ? el('p', { class: 'sh-daily-notice', text: 'Best streak this device: ' + store.longestStreak }) : null;
 
     var screen = el('div', { class: 'screen screen-result' }, [
-      streakLine, verdict, scoreLine, grid, actions, crossLinks, bestLine,
+      streakLine, resultHero, verdict, scoreLine, grid, actions, crossLinks, bestLine,
     ]);
     root.appendChild(screen);
     rematchBtn.focus();
