@@ -568,7 +568,7 @@
   color: #fff;
 }
 
-/* ===== Reveal flash (GOAL / SAVED) ===== */
+/* ===== Reveal flash (green when player got it right, red when wrong) ===== */
 .sh-reveal {
   position: absolute;
   inset: 0;
@@ -577,11 +577,13 @@
   align-items: center;
   justify-content: center;
   z-index: 5;
-  pointer-events: none;
+  pointer-events: auto;
+  cursor: pointer;
   animation: sh-flash 400ms ease-out forwards;
+  color: #fff;
 }
-.sh-reveal-goal { background: rgba(245, 200, 66, 0.95); color: #1a1a1a; }
-.sh-reveal-saved { background: rgba(212, 51, 44, 0.94); color: #fff; }
+.sh-reveal-correct { background: rgba(10, 138, 79, 0.95); }
+.sh-reveal-wrong   { background: rgba(212, 51, 44, 0.94); }
 .sh-reveal-word {
   font-family: var(--font-display);
   font-size: clamp(3.5rem, 16vw, 6rem);
@@ -598,6 +600,18 @@
   line-height: 1.4;
   max-width: 360px;
   opacity: 0.92;
+}
+.sh-reveal-skip-hint {
+  position: absolute;
+  bottom: 18px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 700;
+  opacity: 0.7;
 }
 @keyframes sh-flash {
   0%   { opacity: 0; transform: scale(0.94); }

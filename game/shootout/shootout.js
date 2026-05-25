@@ -10,7 +10,7 @@
   var BREAKAWAY_DURATION_MS = 14000;
   var BREAKAWAY_READ_DELAY_MS = 1000;
   var REVEAL_MS = 400;       // flash animation duration
-  var REVEAL_HOLD_MS = 2000; // total time the answer overlay stays visible before advancing
+  var REVEAL_HOLD_MS = 3000; // total time the answer overlay stays visible (user can tap to skip earlier)
   var BANNER_MS = 800;
   var SWIPE_THRESHOLD_PX = 70;
 
@@ -173,18 +173,29 @@
   }
 
   // ===== Reveal flash =====
-  function showReveal(kind, explanation, done) {
+  // kind = 'goal' | 'saved' (what happened on the pitch — drives the headline word).
+  // correct = whether the player got the answer right (drives the colour: green correct, red wrong).
+  function showReveal(kind, correct, explanation, done) {
     var word = kind === 'goal' ? 'GOAL!' : 'SAVED!';
-    var cls = kind === 'goal' ? 'sh-reveal sh-reveal-goal' : 'sh-reveal sh-reveal-saved';
+    var cls = 'sh-reveal ' + (correct ? 'sh-reveal-correct' : 'sh-reveal-wrong');
     var overlay = el('div', { class: cls }, [
       el('span', { class: 'sh-reveal-word', text: word }),
       explanation ? el('div', { class: 'sh-reveal-explain', text: explanation }) : null,
+      el('span', { class: 'sh-reveal-skip-hint', text: 'tap to continue' }),
     ]);
     root.appendChild(overlay);
-    setTimeout(function () {
+
+    var resolved = false;
+    function finish() {
+      if (resolved) return;
+      resolved = true;
       if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
       done();
-    }, REVEAL_HOLD_MS);
+    }
+    // Tap anywhere on the overlay to skip.
+    overlay.addEventListener('click', finish);
+    overlay.addEventListener('pointerdown', function (e) { e.preventDefault(); finish(); }, { passive: false });
+    setTimeout(finish, REVEAL_HOLD_MS);
   }
 
   // ===== Banner (HT, SUDDEN DEATH) =====
@@ -321,7 +332,8 @@
     } else {
       match.you.push(record);
     }
-    showReveal(goal ? 'goal' : 'saved', kick.explanation, function () {
+    // On your kick, "correct" means the player scored (got the true/false right).
+    showReveal(goal ? 'goal' : 'saved', goal, kick.explanation, function () {
       if (match.phase === 'sd-your') {
         match.phase = 'sd-their';
         renderTheirKick();
@@ -445,7 +457,8 @@
     } else {
       match.them.push(record);
     }
-    showReveal(kind === 'goal' ? 'goal' : 'saved', bk.explanation, function () {
+    // On their kick, "correct" means the player saved (tapped the odd one out).
+    showReveal(kind === 'goal' ? 'goal' : 'saved', kind === 'saved', bk.explanation, function () {
       if (match.phase === 'sd-their') {
         evaluateSdRound();
       } else {
