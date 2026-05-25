@@ -1,98 +1,1202 @@
 [
   {
     "id": "b-001",
-    "category_label": "NOT a Brazilian World Cup winner",
-    "in_set": ["Pele", "Ronaldo", "Cafu"],
-    "imposter": "Zico",
-    "explanation": "Zico played three World Cups for Brazil but never won the title.",
+    "category_label": "NOT a country that has won the World Cup",
+    "in_set": [
+      "Brazil",
+      "Germany",
+      "Argentina"
+    ],
+    "imposter": "Netherlands",
+    "explanation": "The Netherlands have lost 3 finals (1974, 1978, 2010) without winning.",
     "difficulty": "easy"
   },
   {
     "id": "b-002",
-    "category_label": "NOT a 2022 World Cup semifinalist",
-    "in_set": ["Argentina", "France", "Croatia"],
-    "imposter": "Brazil",
-    "explanation": "Brazil exited in the quarterfinals against Croatia. Morocco was the fourth semifinalist.",
+    "category_label": "NOT a player who won the 2014 World Cup",
+    "in_set": [
+      "Manuel Neuer",
+      "Toni Kroos",
+      "Thomas Müller"
+    ],
+    "imposter": "Lionel Messi",
+    "explanation": "Messi lost the 2014 final to Germany.",
     "difficulty": "easy"
   },
   {
     "id": "b-003",
-    "category_label": "NOT a World Cup-winning manager",
-    "in_set": ["Carlos Alberto Parreira", "Vicente del Bosque", "Didier Deschamps"],
-    "imposter": "Pep Guardiola",
-    "explanation": "Guardiola has dominated club football but has never managed at a World Cup.",
-    "difficulty": "medium"
+    "category_label": "NOT a player who won the 2022 World Cup",
+    "in_set": [
+      "Lionel Messi",
+      "Ángel Di María",
+      "Emiliano Martínez"
+    ],
+    "imposter": "Kylian Mbappé",
+    "explanation": "Mbappé scored a hat-trick in the final but France lost on penalties.",
+    "difficulty": "easy"
   },
   {
     "id": "b-004",
-    "category_label": "NOT a country to host a men's World Cup",
-    "in_set": ["Brazil", "United States", "South Africa"],
+    "category_label": "NOT a country that has hosted the World Cup",
+    "in_set": [
+      "Brazil",
+      "Germany",
+      "France"
+    ],
     "imposter": "Portugal",
-    "explanation": "Portugal will host in 2030 alongside Spain and Morocco, but has never hosted before.",
-    "difficulty": "medium"
+    "explanation": "Portugal has reached WC semi-finals but never hosted the tournament.",
+    "difficulty": "easy"
   },
   {
     "id": "b-005",
-    "category_label": "NOT a player to win a World Cup Golden Boot",
-    "in_set": ["Harry Kane", "James Rodriguez", "Miroslav Klose"],
-    "imposter": "Cristiano Ronaldo",
-    "explanation": "Ronaldo has never won a World Cup Golden Boot. Kane 2018, James 2014, Klose 2006.",
-    "difficulty": "medium"
+    "category_label": "NOT a goalkeeper",
+    "in_set": [
+      "Manuel Neuer",
+      "Iker Casillas",
+      "Hugo Lloris"
+    ],
+    "imposter": "Sergio Ramos",
+    "explanation": "Ramos is a centre-back.",
+    "difficulty": "easy"
   },
   {
     "id": "b-006",
-    "category_label": "NOT a 2026 World Cup host venue",
-    "in_set": ["SoFi Stadium", "MetLife Stadium", "AT&T Stadium"],
-    "imposter": "Soldier Field",
-    "explanation": "Chicago is not a 2026 host city. Soldier Field hosted in 1994 but is not on the 2026 list.",
-    "difficulty": "medium"
+    "category_label": "NOT a player from Brazil's 2002 World Cup winning squad",
+    "in_set": [
+      "Ronaldo",
+      "Ronaldinho",
+      "Rivaldo"
+    ],
+    "imposter": "Neymar",
+    "explanation": "Neymar was 10 years old in 2002 and not in the squad.",
+    "difficulty": "easy"
   },
   {
     "id": "b-007",
-    "category_label": "NOT an African nation to reach a World Cup quarterfinal",
-    "in_set": ["Cameroon", "Senegal", "Ghana"],
-    "imposter": "Nigeria",
-    "explanation": "Cameroon 1990, Senegal 2002, Ghana 2010, Morocco 2022. Nigeria's best is round of 16.",
-    "difficulty": "hard"
+    "category_label": "NOT a country that has reached a World Cup final since 2000",
+    "in_set": [
+      "France",
+      "Argentina",
+      "Croatia"
+    ],
+    "imposter": "Norway",
+    "explanation": "Norway has not qualified for a World Cup since 1998.",
+    "difficulty": "easy"
   },
   {
     "id": "b-008",
-    "category_label": "NOT a player to score in a men's World Cup final",
-    "in_set": ["Kylian Mbappe", "Mario Gotze", "Andres Iniesta"],
-    "imposter": "Neymar",
-    "explanation": "Neymar has not played in a World Cup final. Mbappe 2018+2022, Gotze 2014, Iniesta 2010.",
-    "difficulty": "medium"
+    "category_label": "NOT a player who has played at a World Cup",
+    "in_set": [
+      "Cristiano Ronaldo",
+      "Lionel Messi",
+      "Kylian Mbappé"
+    ],
+    "imposter": "Erling Haaland",
+    "explanation": "Haaland's Norway has not qualified for a World Cup during his career.",
+    "difficulty": "easy"
   },
   {
     "id": "b-009",
-    "category_label": "NOT a country to win a men's World Cup on home soil",
-    "in_set": ["Uruguay", "England", "France"],
-    "imposter": "Spain",
-    "explanation": "Spain won in 2010 in South Africa. Hosts to win at home: Uruguay 30, Italy 34, England 66, West Germany 74, Argentina 78, France 98.",
-    "difficulty": "hard"
+    "category_label": "NOT a manager who has won the World Cup",
+    "in_set": [
+      "Didier Deschamps",
+      "Joachim Löw",
+      "Vicente del Bosque"
+    ],
+    "imposter": "Pep Guardiola",
+    "explanation": "Guardiola has won everything in club football but has never managed at a World Cup.",
+    "difficulty": "easy"
   },
   {
     "id": "b-010",
-    "category_label": "NOT a World Cup Golden Ball winner",
-    "in_set": ["Lionel Messi", "Diego Maradona", "Zinedine Zidane"],
-    "imposter": "Cristiano Ronaldo",
-    "explanation": "The Golden Ball goes to the best player of the tournament. Ronaldo has not won it.",
-    "difficulty": "medium"
+    "category_label": "NOT a venue that has hosted a World Cup final",
+    "in_set": [
+      "Maracanã",
+      "Stade de France",
+      "Soccer City"
+    ],
+    "imposter": "Camp Nou",
+    "explanation": "Camp Nou hosted a 1982 semi-final but never a final; Spain's 1982 final was at the Bernabéu.",
+    "difficulty": "easy"
   },
   {
     "id": "b-011",
-    "category_label": "NOT a CONMEBOL national team",
-    "in_set": ["Argentina", "Uruguay", "Colombia"],
-    "imposter": "Mexico",
-    "explanation": "Mexico is in CONCACAF, not CONMEBOL.",
+    "category_label": "NOT a player who has lifted the World Cup as captain",
+    "in_set": [
+      "Lionel Messi",
+      "Hugo Lloris",
+      "Iker Casillas"
+    ],
+    "imposter": "Cristiano Ronaldo",
+    "explanation": "Ronaldo has captained Portugal at multiple World Cups but has never won.",
     "difficulty": "easy"
   },
   {
     "id": "b-012",
-    "category_label": "NOT a 2026 World Cup mascot",
-    "in_set": ["Maple", "Zayu", "Clutch"],
-    "imposter": "La'eeb",
-    "explanation": "La'eeb was the Qatar 2022 mascot. The 2026 mascots are Maple (moose, Canada), Zayu (jaguar, Mexico), and Clutch (bald eagle, USA).",
+    "category_label": "NOT a French player who won the 2018 World Cup",
+    "in_set": [
+      "Antoine Griezmann",
+      "N'Golo Kanté",
+      "Paul Pogba"
+    ],
+    "imposter": "Karim Benzema",
+    "explanation": "Benzema was exiled from the French squad at the time and did not play.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-013",
+    "category_label": "NOT a player who scored in a World Cup final",
+    "in_set": [
+      "Mario Götze",
+      "Zinedine Zidane",
+      "Andres Iniesta"
+    ],
+    "imposter": "Wayne Rooney",
+    "explanation": "England did not reach a World Cup final during Rooney's career.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-014",
+    "category_label": "NOT a 2022 World Cup semi-finalist",
+    "in_set": [
+      "Argentina",
+      "France",
+      "Croatia"
+    ],
+    "imposter": "Spain",
+    "explanation": "Spain were knocked out by Morocco in the round of 16; Morocco was the fourth semi-finalist.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-015",
+    "category_label": "NOT a player who won the World Cup Golden Boot since 2000",
+    "in_set": [
+      "Thomas Müller",
+      "James Rodríguez",
+      "Harry Kane"
+    ],
+    "imposter": "Robert Lewandowski",
+    "explanation": "Lewandowski has scored at World Cups but never finished as the tournament top scorer.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-016",
+    "category_label": "NOT a country that has reached a World Cup semi-final this century",
+    "in_set": [
+      "Turkey",
+      "South Korea",
+      "Morocco"
+    ],
+    "imposter": "Mexico",
+    "explanation": "Mexico has reached the round of 16 in 7 straight WCs but has never gone further.",
     "difficulty": "medium"
+  },
+  {
+    "id": "b-017",
+    "category_label": "NOT a country that has finished as World Cup runner-up since 2000",
+    "in_set": [
+      "Croatia",
+      "Netherlands",
+      "Argentina"
+    ],
+    "imposter": "Italy",
+    "explanation": "Italy won 2006 and was last runner-up in 1994.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-018",
+    "category_label": "NOT a German player who scored in the 2014 World Cup knockout stages",
+    "in_set": [
+      "André Schürrle",
+      "Mario Götze",
+      "Mats Hummels"
+    ],
+    "imposter": "Bastian Schweinsteiger",
+    "explanation": "Schweinsteiger played every knockout match but did not score in the tournament.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-019",
+    "category_label": "NOT a player who has appeared in 4 or more World Cups",
+    "in_set": [
+      "Cristiano Ronaldo",
+      "Lionel Messi",
+      "Manuel Neuer"
+    ],
+    "imposter": "Vinícius Júnior",
+    "explanation": "Vinícius has appeared at one World Cup so far (2022).",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-020",
+    "category_label": "NOT a city that has hosted a World Cup final since 2000",
+    "in_set": [
+      "Berlin",
+      "Moscow",
+      "Yokohama"
+    ],
+    "imposter": "Tokyo",
+    "explanation": "The 2002 final was at International Stadium Yokohama; Tokyo did not host any 2002 matches.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-021",
+    "category_label": "NOT a manager who has reached a World Cup final since 2000",
+    "in_set": [
+      "Joachim Löw",
+      "Lionel Scaloni",
+      "Vicente del Bosque"
+    ],
+    "imposter": "José Mourinho",
+    "explanation": "Mourinho has never managed a national team at a World Cup.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-022",
+    "category_label": "NOT a city that hosted a 2018 World Cup match",
+    "in_set": [
+      "Moscow",
+      "Saint Petersburg",
+      "Kazan"
+    ],
+    "imposter": "Vladivostok",
+    "explanation": "The 11 host cities were all in European Russia; Vladivostok was not selected.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-023",
+    "category_label": "NOT a player who has won the World Cup Golden Glove since 2002",
+    "in_set": [
+      "Manuel Neuer",
+      "Thibaut Courtois",
+      "Emiliano Martínez"
+    ],
+    "imposter": "Hugo Lloris",
+    "explanation": "Lloris won the 2018 World Cup but Thibaut Courtois won the Golden Glove that tournament.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-024",
+    "category_label": "NOT a player in Germany's starting XI for the 2014 World Cup final",
+    "in_set": [
+      "Manuel Neuer",
+      "Mats Hummels",
+      "Thomas Müller"
+    ],
+    "imposter": "Mario Götze",
+    "explanation": "Götze came off the bench in the second half and scored the winning goal in extra time.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "b-025",
+    "category_label": "NOT a Spanish player who started the 2010 World Cup final",
+    "in_set": [
+      "Andres Iniesta",
+      "Xavi",
+      "Carles Puyol"
+    ],
+    "imposter": "Fernando Torres",
+    "explanation": "Torres came on as a second-half substitute.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "b-026",
+    "category_label": "NOT a player who won the World Cup with Argentina in 2022",
+    "in_set": [
+      "Lionel Messi",
+      "Ángel Di María",
+      "Julián Álvarez"
+    ],
+    "imposter": "Sergio Aguero",
+    "explanation": "Aguero played in 3 WCs for Argentina but retired in 2021, before the 2022 title win.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-027",
+    "category_label": "NOT a country that has won a World Cup since 2000",
+    "in_set": [
+      "Spain",
+      "France",
+      "Germany"
+    ],
+    "imposter": "Croatia",
+    "explanation": "Croatia reached the 2018 final and the 2022 semi-final but has never won.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-028",
+    "category_label": "NOT a country in the South American (CONMEBOL) qualifying region",
+    "in_set": [
+      "Brazil",
+      "Uruguay",
+      "Colombia"
+    ],
+    "imposter": "Mexico",
+    "explanation": "Mexico qualifies through CONCACAF (North and Central America).",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-029",
+    "category_label": "NOT a player who has played for Real Madrid AND won a World Cup",
+    "in_set": [
+      "Sergio Ramos",
+      "Toni Kroos",
+      "Raphaël Varane"
+    ],
+    "imposter": "Luka Modrić",
+    "explanation": "Modrić has won 6 Champions Leagues with Real Madrid but lost the 2018 WC final with Croatia.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-030",
+    "category_label": "NOT a country that has hosted the World Cup in the 21st century",
+    "in_set": [
+      "Germany",
+      "South Africa",
+      "Qatar"
+    ],
+    "imposter": "United States",
+    "explanation": "The US co-hosts in 2026; its previous solo hosting was 1994.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-031",
+    "category_label": "NOT a French player who has scored a goal at a World Cup",
+    "in_set": [
+      "Zinedine Zidane",
+      "Antoine Griezmann",
+      "Kylian Mbappé"
+    ],
+    "imposter": "Patrice Evra",
+    "explanation": "Evra played at the 2006, 2010, and 2014 WCs for France but never scored.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-032",
+    "category_label": "NOT a defender",
+    "in_set": [
+      "Sergio Ramos",
+      "Thiago Silva",
+      "Virgil van Dijk"
+    ],
+    "imposter": "Andres Iniesta",
+    "explanation": "Iniesta is a central midfielder.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-033",
+    "category_label": "NOT an English player who played at the 2022 World Cup",
+    "in_set": [
+      "Harry Kane",
+      "Jude Bellingham",
+      "Bukayo Saka"
+    ],
+    "imposter": "Wayne Rooney",
+    "explanation": "Rooney retired from international football in 2017.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-034",
+    "category_label": "NOT a country that has lost a World Cup final since 1990",
+    "in_set": [
+      "Croatia",
+      "Netherlands",
+      "Germany"
+    ],
+    "imposter": "England",
+    "explanation": "England's only WC final remains 1966 (won as hosts); they haven't been in a final since.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-035",
+    "category_label": "NOT a player who has scored a hat-trick at a World Cup",
+    "in_set": [
+      "Cristiano Ronaldo",
+      "Harry Kane",
+      "Thomas Müller"
+    ],
+    "imposter": "Lionel Messi",
+    "explanation": "Despite his record WC appearances, Messi has never scored 3 goals in a single WC match.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-036",
+    "category_label": "NOT a player who won the World Cup with Germany in 2014",
+    "in_set": [
+      "Mesut Özil",
+      "Mats Hummels",
+      "Lukas Podolski"
+    ],
+    "imposter": "Marco Reus",
+    "explanation": "Reus suffered an ankle injury in a pre-tournament friendly and missed the entire 2014 WC.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-037",
+    "category_label": "NOT a country that competes in UEFA (European) qualifying",
+    "in_set": [
+      "Spain",
+      "Italy",
+      "England"
+    ],
+    "imposter": "Brazil",
+    "explanation": "Brazil qualifies through CONMEBOL (South America).",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-038",
+    "category_label": "NOT a player who scored at the 2022 World Cup",
+    "in_set": [
+      "Kylian Mbappé",
+      "Lionel Messi",
+      "Julián Álvarez"
+    ],
+    "imposter": "Romelu Lukaku",
+    "explanation": "Lukaku missed several big chances for Belgium and did not score at the tournament.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-039",
+    "category_label": "NOT a Brazilian player who has won a World Cup since 1990",
+    "in_set": [
+      "Cafu",
+      "Ronaldo",
+      "Roberto Carlos"
+    ],
+    "imposter": "Casemiro",
+    "explanation": "Casemiro has captained Brazil at recent WCs but Brazil's last title was 2002.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-040",
+    "category_label": "NOT a player who scored in the 2022 World Cup final",
+    "in_set": [
+      "Lionel Messi",
+      "Ángel Di María",
+      "Kylian Mbappé"
+    ],
+    "imposter": "Olivier Giroud",
+    "explanation": "Giroud started the final for France but was substituted off in the 41st minute without scoring.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-041",
+    "category_label": "NOT a country that has reached a World Cup quarter-final this century",
+    "in_set": [
+      "Senegal",
+      "Ghana",
+      "Morocco"
+    ],
+    "imposter": "Cameroon",
+    "explanation": "Cameroon's only WC quarter-final remains 1990; they have not reached the knockout stage since.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-042",
+    "category_label": "NOT a player who won the World Cup with Brazil in 1994",
+    "in_set": [
+      "Romário",
+      "Bebeto",
+      "Cafu"
+    ],
+    "imposter": "Zico",
+    "explanation": "Zico had retired from international football by 1994.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-043",
+    "category_label": "NOT a goalkeeper who has won the World Cup",
+    "in_set": [
+      "Iker Casillas",
+      "Manuel Neuer",
+      "Emiliano Martínez"
+    ],
+    "imposter": "Oliver Kahn",
+    "explanation": "Kahn was Player of the Tournament in 2002 but Germany lost the final to Brazil.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-044",
+    "category_label": "NOT a player who has won the World Cup Golden Glove since 2010",
+    "in_set": [
+      "Iker Casillas",
+      "Manuel Neuer",
+      "Emiliano Martínez"
+    ],
+    "imposter": "Tim Howard",
+    "explanation": "Howard set the WC single-match saves record in 2014 but Neuer won the Golden Glove that tournament.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-045",
+    "category_label": "NOT a country that has lost to South Korea at a World Cup",
+    "in_set": [
+      "Germany",
+      "Italy",
+      "Portugal"
+    ],
+    "imposter": "Argentina",
+    "explanation": "Argentina beat South Korea 4-1 in the 2010 group stage; the teams haven't met in a knockout.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-046",
+    "category_label": "NOT a player who has scored in a World Cup semi-final",
+    "in_set": [
+      "Toni Kroos",
+      "Thomas Müller",
+      "Lionel Messi"
+    ],
+    "imposter": "Eden Hazard",
+    "explanation": "Belgium lost the 2018 SF 1-0 to France; Hazard played but did not score, his only WC semi-final appearance.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-047",
+    "category_label": "NOT a manager who has won the World Cup since 1990",
+    "in_set": [
+      "Joachim Löw",
+      "Marcello Lippi",
+      "Aimé Jacquet"
+    ],
+    "imposter": "Marcelo Bielsa",
+    "explanation": "Bielsa managed Argentina at the 2002 WC and Chile at 2010 but never lifted the trophy.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-048",
+    "category_label": "NOT a country that has won the World Cup multiple times",
+    "in_set": [
+      "Brazil",
+      "Italy",
+      "Germany"
+    ],
+    "imposter": "Spain",
+    "explanation": "Spain's only World Cup title is 2010.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-049",
+    "category_label": "NOT a player who scored for Argentina at the 2022 World Cup",
+    "in_set": [
+      "Julián Álvarez",
+      "Ángel Di María",
+      "Enzo Fernández"
+    ],
+    "imposter": "Lautaro Martínez",
+    "explanation": "Lautaro played every match but Julián Álvarez took the starting striker spot and Lautaro did not score in the tournament.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "b-050",
+    "category_label": "NOT a player who played in the 2014 World Cup final for Argentina",
+    "in_set": [
+      "Lionel Messi",
+      "Sergio Romero",
+      "Javier Mascherano"
+    ],
+    "imposter": "Ángel Di María",
+    "explanation": "Di María injured his thigh in the QF against Belgium and missed the SF and the final.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "b-051",
+    "category_label": "NOT a country in CONCACAF (North and Central American) qualifying",
+    "in_set": [
+      "United States",
+      "Mexico",
+      "Costa Rica"
+    ],
+    "imposter": "Ecuador",
+    "explanation": "Ecuador qualifies through CONMEBOL (South America).",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-052",
+    "category_label": "NOT a country that has finished as World Cup runners-up",
+    "in_set": [
+      "Netherlands",
+      "Croatia",
+      "France"
+    ],
+    "imposter": "Belgium",
+    "explanation": "Belgium's best WC finish is third place at 2018.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-053",
+    "category_label": "NOT a manager who has led a national team to a World Cup final",
+    "in_set": [
+      "Vicente del Bosque",
+      "Lionel Scaloni",
+      "Joachim Löw"
+    ],
+    "imposter": "Sir Alex Ferguson",
+    "explanation": "Ferguson took Scotland to the 1986 WC as caretaker after Jock Stein's death; eliminated in the group stage, he never reached a final.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-054",
+    "category_label": "NOT a player who has won the UEFA Champions League AND a World Cup",
+    "in_set": [
+      "Sergio Ramos",
+      "Toni Kroos",
+      "Andres Iniesta"
+    ],
+    "imposter": "Mohamed Salah",
+    "explanation": "Salah won the 2019 Champions League with Liverpool but Egypt has not won a World Cup.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-055",
+    "category_label": "NOT a country that has beaten Germany at a World Cup since 2014",
+    "in_set": [
+      "Mexico",
+      "South Korea",
+      "Japan"
+    ],
+    "imposter": "Saudi Arabia",
+    "explanation": "Saudi Arabia beat Argentina at the 2022 WC but has not faced Germany at a recent tournament.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-056",
+    "category_label": "NOT a player from Spain's 2010 World Cup winning squad",
+    "in_set": [
+      "Andres Iniesta",
+      "David Villa",
+      "Carles Puyol"
+    ],
+    "imposter": "Raúl",
+    "explanation": "Raúl was famously left out of Spain's golden generation and was not in the 2010 squad.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-057",
+    "category_label": "NOT a country that has hosted a World Cup since 1990",
+    "in_set": [
+      "Italy",
+      "France",
+      "South Korea"
+    ],
+    "imposter": "China",
+    "explanation": "China has bid for the World Cup multiple times but has never hosted.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-058",
+    "category_label": "NOT a country in the Asian (AFC) qualifying region",
+    "in_set": [
+      "Japan",
+      "Iran",
+      "Saudi Arabia"
+    ],
+    "imposter": "Egypt",
+    "explanation": "Egypt qualifies through CAF (Africa).",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-059",
+    "category_label": "NOT a player who scored at the 2018 World Cup",
+    "in_set": [
+      "Lionel Messi",
+      "Cristiano Ronaldo",
+      "Harry Kane"
+    ],
+    "imposter": "Mesut Özil",
+    "explanation": "Özil played as Germany were eliminated in the group stage and did not score at the tournament.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-060",
+    "category_label": "NOT a goalkeeper who started a World Cup final this century",
+    "in_set": [
+      "Iker Casillas",
+      "Manuel Neuer",
+      "Hugo Lloris"
+    ],
+    "imposter": "Petr Čech",
+    "explanation": "Čech was a top European keeper but the Czech Republic never reached a World Cup final.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-061",
+    "category_label": "NOT a Manchester City player who has played at a World Cup",
+    "in_set": [
+      "Kevin De Bruyne",
+      "Phil Foden",
+      "Gabriel Jesus"
+    ],
+    "imposter": "Riyad Mahrez",
+    "explanation": "Algeria did not qualify for a World Cup during Mahrez's career at Manchester City.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-062",
+    "category_label": "NOT a player who scored at the 2010 World Cup",
+    "in_set": [
+      "Diego Forlán",
+      "Wesley Sneijder",
+      "Andres Iniesta"
+    ],
+    "imposter": "Fernando Torres",
+    "explanation": "Torres was carrying an injury and did not score at the tournament Spain won.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-063",
+    "category_label": "NOT a player from Italy's 1994 World Cup squad",
+    "in_set": [
+      "Roberto Baggio",
+      "Paolo Maldini",
+      "Franco Baresi"
+    ],
+    "imposter": "Andrea Pirlo",
+    "explanation": "Pirlo was 15 in 1994 and made his Italy debut in 2002; his first WC was 2002.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-064",
+    "category_label": "NOT a country that has finished in the top 4 at a World Cup since 2014",
+    "in_set": [
+      "Belgium",
+      "Croatia",
+      "Morocco"
+    ],
+    "imposter": "Uruguay",
+    "explanation": "Uruguay reached the R16 in 2014, the QF in 2018, and exited the group in 2022; never top 4 in this window.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-065",
+    "category_label": "NOT a player who scored against Brazil at the 2014 World Cup",
+    "in_set": [
+      "Thomas Müller",
+      "Miroslav Klose",
+      "Toni Kroos"
+    ],
+    "imposter": "Gonzalo Higuaín",
+    "explanation": "Higuaín scored at 2014 (against Belgium in the QF) but Argentina and Brazil did not meet at the tournament.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-066",
+    "category_label": "NOT a player who has won the Best Young Player award at a World Cup",
+    "in_set": [
+      "Lukas Podolski",
+      "Paul Pogba",
+      "Enzo Fernández"
+    ],
+    "imposter": "Pedri",
+    "explanation": "Pedri played at 2022 but Enzo Fernández won the Best Young Player.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-067",
+    "category_label": "NOT a player who scored in a World Cup final since 2000",
+    "in_set": [
+      "Mario Götze",
+      "Andres Iniesta",
+      "Paul Pogba"
+    ],
+    "imposter": "David Villa",
+    "explanation": "Villa was Spain's top scorer at the 2010 tournament with 5 goals but did not score in the final itself.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-068",
+    "category_label": "NOT a player who has appeared in 2 or more World Cup finals",
+    "in_set": [
+      "Lionel Messi",
+      "Kylian Mbappé",
+      "Ronaldo"
+    ],
+    "imposter": "Harry Kane",
+    "explanation": "England did not reach a World Cup final during Kane's career.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-069",
+    "category_label": "NOT a country that has lost to Croatia at a World Cup",
+    "in_set": [
+      "England",
+      "Brazil",
+      "Germany"
+    ],
+    "imposter": "France",
+    "explanation": "France beat Croatia in the 2018 final and the teams have not met in a knockout since.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-070",
+    "category_label": "NOT a player who has scored at a World Cup for Germany",
+    "in_set": [
+      "Miroslav Klose",
+      "Thomas Müller",
+      "Mario Götze"
+    ],
+    "imposter": "Joshua Kimmich",
+    "explanation": "Kimmich played at the 2018 and 2022 WCs but Germany were eliminated in the group both times without him scoring.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-071",
+    "category_label": "NOT a country that has lost a World Cup match on penalties since 2000",
+    "in_set": [
+      "Netherlands",
+      "Brazil",
+      "Spain"
+    ],
+    "imposter": "Belgium",
+    "explanation": "Belgium has not been to a WC penalty shootout this century; their knockout exits in 2014 and 2018 came in regulation.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-072",
+    "category_label": "NOT a player who has scored at multiple World Cups",
+    "in_set": [
+      "Cristiano Ronaldo",
+      "Lionel Messi",
+      "Miroslav Klose"
+    ],
+    "imposter": "Mario Götze",
+    "explanation": "Götze's only World Cup appearance was 2014, where he scored the final's winning goal.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-073",
+    "category_label": "NOT a country that has reached a World Cup semi-final since 2010",
+    "in_set": [
+      "Uruguay",
+      "Belgium",
+      "Morocco"
+    ],
+    "imposter": "Senegal",
+    "explanation": "Senegal reached the QF in 2002 but their more recent WC exits (2018 R16, 2022 R16) have been before the semi.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-074",
+    "category_label": "NOT a player from Brazil's starting XI in the 2014 World Cup semi-final loss to Germany",
+    "in_set": [
+      "Júlio César",
+      "David Luiz",
+      "Bernard"
+    ],
+    "imposter": "Thiago Silva",
+    "explanation": "Thiago Silva was suspended for the SF after picking up his second yellow in the QF against Colombia.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "b-075",
+    "category_label": "NOT a player who has scored more World Cup goals than Pelé",
+    "in_set": [
+      "Miroslav Klose",
+      "Ronaldo",
+      "Thomas Müller"
+    ],
+    "imposter": "Diego Maradona",
+    "explanation": "Maradona scored 8 WC goals across 4 tournaments; Pelé scored 12.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "b-076",
+    "category_label": "NOT a country that has played in a World Cup final",
+    "in_set": [
+      "Spain",
+      "Netherlands",
+      "Croatia"
+    ],
+    "imposter": "Portugal",
+    "explanation": "Portugal's best WC finish is third place in 1966; never reached a final.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-077",
+    "category_label": "NOT a player who scored at the 2014 World Cup",
+    "in_set": [
+      "James Rodríguez",
+      "Lionel Messi",
+      "Thomas Müller"
+    ],
+    "imposter": "Eden Hazard",
+    "explanation": "Hazard played every match as Belgium reached the QF but did not score.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-078",
+    "category_label": "NOT a player who won the World Cup with France in 1998 or 2018",
+    "in_set": [
+      "Zinedine Zidane",
+      "Kylian Mbappé",
+      "Antoine Griezmann"
+    ],
+    "imposter": "Michel Platini",
+    "explanation": "Platini retired from international football in 1987, before France's 1990 WC failure.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-079",
+    "category_label": "NOT a country that has scored in a World Cup final since 2000",
+    "in_set": [
+      "Brazil",
+      "France",
+      "Croatia"
+    ],
+    "imposter": "Netherlands",
+    "explanation": "The Netherlands lost the 2010 final 1-0 to Spain in extra time without scoring.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-080",
+    "category_label": "NOT a player who has appeared at every World Cup since 2010",
+    "in_set": [
+      "Lionel Messi",
+      "Cristiano Ronaldo",
+      "Manuel Neuer"
+    ],
+    "imposter": "Neymar",
+    "explanation": "Neymar's first World Cup was 2014; he was not in the 2010 squad.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-081",
+    "category_label": "NOT a player who has scored 5 or more goals at a single World Cup",
+    "in_set": [
+      "Kylian Mbappé",
+      "Harry Kane",
+      "James Rodríguez"
+    ],
+    "imposter": "Andres Iniesta",
+    "explanation": "Iniesta's biggest single-WC haul was 2 goals at 2010, including the final winner.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-082",
+    "category_label": "NOT a player who has won the World Cup with Italy",
+    "in_set": [
+      "Andrea Pirlo",
+      "Fabio Cannavaro",
+      "Gianluigi Buffon"
+    ],
+    "imposter": "Roberto Baggio",
+    "explanation": "Baggio reached the 1994 final but Italy lost on penalties to Brazil; he never won.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-083",
+    "category_label": "NOT a city in Qatar that hosted 2022 World Cup matches",
+    "in_set": [
+      "Doha",
+      "Lusail",
+      "Al Rayyan"
+    ],
+    "imposter": "Abu Dhabi",
+    "explanation": "Abu Dhabi is in the UAE; all 2022 venues were in Qatar.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-084",
+    "category_label": "NOT a FIFA World Player of the Year winner who has played at a World Cup",
+    "in_set": [
+      "Cristiano Ronaldo",
+      "Lionel Messi",
+      "Zinedine Zidane"
+    ],
+    "imposter": "George Weah",
+    "explanation": "Weah won the award in 1995 but Liberia never qualified for a World Cup.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-085",
+    "category_label": "NOT a country that has won both the Copa América and a World Cup",
+    "in_set": [
+      "Argentina",
+      "Brazil",
+      "Uruguay"
+    ],
+    "imposter": "Chile",
+    "explanation": "Chile won Copa América in 2015 and 2016 but has never won a World Cup.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-086",
+    "category_label": "NOT a country whose first World Cup appearance was in this century",
+    "in_set": [
+      "Senegal",
+      "Iceland",
+      "Panama"
+    ],
+    "imposter": "Italy",
+    "explanation": "Italy's first World Cup was 1934.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-087",
+    "category_label": "NOT a country that has hosted a World Cup more than once",
+    "in_set": [
+      "Brazil",
+      "France",
+      "Italy"
+    ],
+    "imposter": "Russia",
+    "explanation": "Russia hosted only the 2018 World Cup.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-088",
+    "category_label": "NOT a country that has co-hosted a World Cup",
+    "in_set": [
+      "Japan",
+      "South Korea",
+      "Canada"
+    ],
+    "imposter": "South Africa",
+    "explanation": "South Africa hosted alone in 2010; Japan-Korea co-hosted 2002 and Canada co-hosts 2026.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-089",
+    "category_label": "NOT a forward",
+    "in_set": [
+      "Kylian Mbappé",
+      "Robert Lewandowski",
+      "Harry Kane"
+    ],
+    "imposter": "Jude Bellingham",
+    "explanation": "Bellingham plays as an attacking midfielder.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-090",
+    "category_label": "NOT a player who has scored in a World Cup final",
+    "in_set": [
+      "Mario Götze",
+      "Andres Iniesta",
+      "Lionel Messi"
+    ],
+    "imposter": "David Beckham",
+    "explanation": "England did not reach a World Cup final during Beckham's career.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "b-091",
+    "category_label": "NOT a player who has scored 6 or more World Cup goals in his career",
+    "in_set": [
+      "Miroslav Klose",
+      "Thomas Müller",
+      "Kylian Mbappé"
+    ],
+    "imposter": "Sergio Ramos",
+    "explanation": "Ramos has scored just 1 WC goal (a penalty against Russia in the 2018 round of 16) across 4 tournaments.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-092",
+    "category_label": "NOT a country that has reached a World Cup semi-final since 2014",
+    "in_set": [
+      "Belgium",
+      "England",
+      "Morocco"
+    ],
+    "imposter": "Russia",
+    "explanation": "Russia's best WC finish since 2014 is the quarter-final at the 2018 tournament they hosted.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-093",
+    "category_label": "NOT a country that competed at the 2022 World Cup",
+    "in_set": [
+      "Brazil",
+      "Germany",
+      "England"
+    ],
+    "imposter": "Colombia",
+    "explanation": "Colombia finished 6th in CONMEBOL qualifying and missed the tournament.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-094",
+    "category_label": "NOT a player who has scored from a direct free kick at a World Cup since 2000",
+    "in_set": [
+      "Cristiano Ronaldo",
+      "Toni Kroos",
+      "David Luiz"
+    ],
+    "imposter": "Harry Kane",
+    "explanation": "Kane's WC goals are penalties, tap-ins, and headers; he has not scored a direct free kick at a tournament.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-095",
+    "category_label": "NOT a country that has finished 4th at a World Cup this century",
+    "in_set": [
+      "South Korea",
+      "England",
+      "Morocco"
+    ],
+    "imposter": "Senegal",
+    "explanation": "Senegal's best WC finishes are the 2002 quarter-final and the 2018 and 2022 round of 16; never 4th.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-096",
+    "category_label": "NOT a country that won its opening match at the 2022 World Cup",
+    "in_set": [
+      "France",
+      "England",
+      "Spain"
+    ],
+    "imposter": "Germany",
+    "explanation": "Germany lost their opener 1-2 to Japan.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-097",
+    "category_label": "NOT a player who has scored against Argentina at a World Cup since 2010",
+    "in_set": [
+      "Kylian Mbappé",
+      "Thomas Müller",
+      "Saleh Al-Shehri"
+    ],
+    "imposter": "Sadio Mané",
+    "explanation": "Senegal and Argentina have not met at a World Cup during Mané's international career.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-098",
+    "category_label": "NOT a country that has produced a World Cup Golden Boot winner since 2000",
+    "in_set": [
+      "Germany",
+      "Colombia",
+      "England"
+    ],
+    "imposter": "Argentina",
+    "explanation": "Mbappé won the 2022 Golden Boot with 8 goals; Messi's 7 finished second.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-099",
+    "category_label": "NOT a person who has appeared at a World Cup as both a player and a manager",
+    "in_set": [
+      "Diego Maradona",
+      "Franz Beckenbauer",
+      "Mario Zagallo"
+    ],
+    "imposter": "Carlos Alberto Parreira",
+    "explanation": "Parreira was a fitness coach for Brazil in 1970 and managed at 6 World Cups, but he never played at one.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "b-100",
+    "category_label": "NOT a player who has won the World Cup Golden Boot since 1990",
+    "in_set": [
+      "Salvatore Schillaci",
+      "Davor Šuker",
+      "Harry Kane"
+    ],
+    "imposter": "Romário",
+    "explanation": "Romário won the Golden Ball at 1994 but Stoichkov and Salenko tied for the Golden Boot with 6 goals; Romário scored 5.",
+    "difficulty": "hard"
   }
 ]
