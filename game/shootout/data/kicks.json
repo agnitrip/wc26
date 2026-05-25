@@ -448,13 +448,6 @@
     "difficulty": "easy"
   },
   {
-    "id": "k-065",
-    "statement": "Spain lifted the World Cup trophy in 2010.",
-    "truth": true,
-    "explanation": "It is Spain's only World Cup title.",
-    "difficulty": "easy"
-  },
-  {
     "id": "k-066",
     "statement": "The 1994 World Cup final was the first to be decided on penalties.",
     "truth": true,
@@ -578,13 +571,6 @@
     "statement": "Mexico has won the World Cup.",
     "truth": false,
     "explanation": "Mexico's best finish is the quarter-final, achieved in 1970 and 1986.",
-    "difficulty": "easy"
-  },
-  {
-    "id": "k-084",
-    "statement": "Spain won the 2010 World Cup final 1-0.",
-    "truth": true,
-    "explanation": "Iniesta scored the only goal in extra time against the Netherlands.",
     "difficulty": "easy"
   },
   {
