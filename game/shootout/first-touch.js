@@ -283,8 +283,11 @@
       shootoutBtn.addEventListener('click', handoffToShootout);
       var replayBtn = el('button', { class: 'sh-share ft-cta-secondary', type: 'button', text: 'Play First Touch again' });
       replayBtn.addEventListener('click', function () { beginMatch(); });
+      var shareBtn = el('button', { class: 'sh-share ft-cta-secondary', type: 'button', text: nativeShareSupported() ? 'Share' : 'Copy result' });
+      shareBtn.addEventListener('click', function () { shareResult(shareBtn, score, total); });
       actions.appendChild(shootoutBtn);
       actions.appendChild(replayBtn);
+      actions.appendChild(shareBtn);
     } else {
       var tryAgainBtn = el('button', { class: 'sh-rematch ft-cta-primary', type: 'button', text: 'Try again' });
       tryAgainBtn.addEventListener('click', function () { beginMatch(); });
@@ -320,6 +323,66 @@
     } else {
       clearRoot();
     }
+  }
+
+  // ===== Share (pass screen only) =====
+  function buildShareText(score, total) {
+    var emojiRow = match.results.map(function (r) { return r === 1 ? '✅' : '❌'; }).join('');
+    var lines = ['Pregame · First Touch', emojiRow];
+    if (score === total) {
+      lines.push(score + ' of ' + total + '. Maybe I am a soccer pro after all.');
+    } else {
+      lines.push(score + ' of ' + total + '. Not a soccer pro, but I graduated from First Touch.');
+    }
+    lines.push('');
+    lines.push('Your turn → wc26pregame.com/game/shootout?source=ft-share');
+    return lines.join('\n');
+  }
+
+  function nativeShareSupported() {
+    return typeof navigator !== 'undefined' && typeof navigator.share === 'function'
+      && (navigator.maxTouchPoints > 0 || /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent || ''));
+  }
+
+  function shareResult(btn, score, total) {
+    var text = buildShareText(score, total);
+    var shareData = { title: 'Pregame First Touch', text: text };
+    if (nativeShareSupported()) {
+      navigator.share(shareData).catch(function (err) {
+        if (!err || err.name !== 'AbortError') copyShareToClipboard(text, btn);
+      });
+      return;
+    }
+    copyShareToClipboard(text, btn);
+  }
+
+  function copyShareToClipboard(text, btn) {
+    function done() {
+      var orig = btn.textContent;
+      btn.textContent = 'Copied ✓';
+      btn.classList.add('is-copied');
+      setTimeout(function () {
+        btn.textContent = orig;
+        btn.classList.remove('is-copied');
+      }, 1600);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, function () { fallbackCopy(text, done); });
+    } else {
+      fallbackCopy(text, done);
+    }
+  }
+
+  function fallbackCopy(text, done) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); } catch (_e) {}
+    document.body.removeChild(ta);
+    done();
   }
 
   // ===== Swipe + Timer primitives =====
