@@ -59,21 +59,21 @@
     "id": "ft-009",
     "statement": "A yellow card means the player has to leave the game.",
     "truth": false,
-    "explanation": "Yellow is a warning. A red card, or two yellows in the same match, sends a player off.",
+    "explanation": "Yellow is a warning. A red card, or two yellows in the same match, forces the player off the field for the rest of the game.",
     "difficulty": "basics"
   },
   {
     "id": "ft-010",
-    "statement": "If an outfield player scores with their hands, the goal counts.",
+    "statement": "Any player can use their hands to move the ball during play.",
     "truth": false,
     "explanation": "Only the goalkeeper can use their hands, and only inside their own penalty area.",
     "difficulty": "basics"
   },
   {
     "id": "ft-011",
-    "statement": "A penalty kick is taken from 12 yards out.",
+    "statement": "A penalty kick is a one-on-one against the goalkeeper, taken from a marked spot.",
     "truth": true,
-    "explanation": "The penalty spot is marked 12 yards from the goal line.",
+    "explanation": "From 12 yards (11 meters) out. Just the kicker vs the keeper.",
     "difficulty": "basics"
   },
   {
@@ -92,16 +92,9 @@
   },
   {
     "id": "ft-014",
-    "statement": "A throw-in is taken using only one hand.",
-    "truth": false,
-    "explanation": "A throw-in must use both hands, with both feet on the ground behind the line.",
-    "difficulty": "basics"
-  },
-  {
-    "id": "ft-015",
-    "statement": "If an attacker kicks the ball out behind the defending team's goal, the defending team gets a corner kick.",
-    "truth": false,
-    "explanation": "That gives the defending team a goal kick. A corner kick goes to the attacking team when a defender puts the ball out behind their own goal.",
+    "statement": "When the ball goes out on the side of the field, the player throwing it back in must use both hands.",
+    "truth": true,
+    "explanation": "This is called a throw-in. Both hands, and both feet on the ground behind the line.",
     "difficulty": "basics"
   },
   {
@@ -113,7 +106,7 @@
   },
   {
     "id": "ft-017",
-    "statement": "Argentina are the reigning World Cup champions.",
+    "statement": "Argentina won the most recent World Cup.",
     "truth": true,
     "explanation": "Argentina won the 2022 final in Qatar, beating France on penalties.",
     "difficulty": "basics"
@@ -162,9 +155,9 @@
   },
   {
     "id": "ft-024",
-    "statement": "All group-stage matches must end with a winner.",
-    "truth": false,
-    "explanation": "Group-stage games can end in a draw. Only knockout games must produce a winner, going to extra time and penalties if needed.",
+    "statement": "Some World Cup games are allowed to end in a tie.",
+    "truth": true,
+    "explanation": "Early-round games can end in a draw. Later, single-elimination games must produce a winner, with extra time and penalty kicks if needed.",
     "difficulty": "basics"
   },
   {
@@ -239,28 +232,28 @@
   },
   {
     "id": "ft-035",
-    "statement": "\"Nil\" means zero in soccer commentary.",
+    "statement": "\"Nil\" means zero in soccer.",
     "truth": true,
     "explanation": "A 1-0 win is often called \"one-nil.\"",
     "difficulty": "basics"
   },
   {
     "id": "ft-036",
-    "statement": "A draw counts as a loss in the group stage.",
+    "statement": "A tie game is worth nothing to either team in the World Cup standings.",
     "truth": false,
-    "explanation": "A draw is worth 1 point. A win is 3 points, a loss is 0.",
+    "explanation": "A tie (a \"draw\") gives each team 1 point. A win is 3 points, a loss is 0.",
     "difficulty": "basics"
   },
   {
     "id": "ft-037",
-    "statement": "Extra time in a knockout match is 30 minutes total.",
+    "statement": "If a must-have-a-winner game is tied after 90 minutes, the teams play an extra 30 minutes.",
     "truth": true,
-    "explanation": "Two extra-time halves of 15 minutes each.",
+    "explanation": "This is called \"extra time\": two 15-minute halves added on.",
     "difficulty": "basics"
   },
   {
     "id": "ft-038",
-    "statement": "If a knockout match is tied after extra time, it goes to a penalty shootout.",
+    "statement": "If a must-have-a-winner game is still tied after extra time, the two teams take turns shooting penalty kicks.",
     "truth": true,
     "explanation": "Each team takes 5 penalty kicks; if still tied, sudden-death penalties follow.",
     "difficulty": "basics"
