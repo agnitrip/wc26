@@ -2229,3 +2229,186 @@ footer a:hover { color: var(--accent); }
 @media (max-width: 600px) {
   .brand-glyph { width: 22px; height: 22px; }
 }
+
+/* ===== Feedback modal ===== */
+.footer-feedback-trigger {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: var(--accent) !important;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.footer-feedback-trigger:hover { color: var(--accent-hover) !important; }
+.footer-feedback-trigger:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+#feedback-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+#feedback-modal[hidden] { display: none; }
+
+.feedback-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 14, 12, 0.6);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+.feedback-modal-card {
+  position: relative;
+  background: var(--card-elev);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow-lg);
+  padding: 28px 28px 22px;
+  width: 100%;
+  max-width: 420px;
+  animation: modal-in 0.18s ease-out;
+}
+
+.feedback-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--muted);
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.feedback-modal-close:hover { color: var(--fg); background: var(--bg); }
+.feedback-modal-close:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.feedback-modal-title {
+  font-size: 1.25rem;
+  letter-spacing: -0.015em;
+  margin: 0 0 10px;
+  font-weight: 700;
+  color: var(--fg);
+  padding-right: 28px;
+}
+
+.feedback-modal-body {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--muted);
+  margin: 0 0 14px;
+}
+
+.feedback-modal-email {
+  display: block;
+  background: var(--accent-soft);
+  color: var(--accent);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  font-family: 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace;
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0.01em;
+  user-select: all;
+  -webkit-user-select: all;
+  word-break: break-all;
+  margin-bottom: 18px;
+}
+.feedback-modal-email:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.feedback-modal-actions {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.feedback-modal-copy,
+.feedback-modal-open {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  font-size: 0.92rem;
+  font-weight: 700;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  border: 1.5px solid var(--accent);
+  transition: background 0.15s ease, color 0.15s ease, transform 0.08s ease;
+}
+
+.feedback-modal-copy {
+  background: var(--accent);
+  color: #fff;
+}
+.feedback-modal-copy:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  transform: translateY(-1px);
+}
+.feedback-modal-copy:active { transform: translateY(0) scale(0.98); }
+
+.feedback-modal-open {
+  background: var(--card);
+  color: var(--accent);
+}
+.feedback-modal-open:hover {
+  background: var(--accent-soft);
+  transform: translateY(-1px);
+}
+.feedback-modal-open:active { transform: translateY(0) scale(0.98); }
+
+.feedback-modal-copy:focus-visible,
+.feedback-modal-open:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.feedback-modal-footnote {
+  font-size: 0.82rem;
+  color: var(--subtle);
+  margin: 0;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  #feedback-modal { padding: 0; }
+  .feedback-modal-card {
+    max-width: none;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 32px 24px;
+  }
+}

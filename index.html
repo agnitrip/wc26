@@ -136,7 +136,7 @@
 
   <footer>
     <div class="container">
-      <p class="footer-feedback">Found a bug? Missing a venue? Have an idea to make Pregame better for fans? <a href="mailto:tripathi.agni@gmail.com">Tell us.</a></p>
+      <p class="footer-feedback">Found a bug? Missing a venue? Have an idea to make Pregame better for fans? <button type="button" class="footer-feedback-trigger" data-feedback-open>Tell us.</button></p>
       <div class="trust-badges">
         <span class="trust-pill">✓ Free</span>
         <span class="trust-pill">✓ No signup</span>
@@ -146,7 +146,23 @@
     </div>
   </footer>
 
+  <div id="feedback-modal" hidden role="dialog" aria-modal="true" aria-labelledby="feedback-modal-title">
+    <div class="feedback-modal-backdrop" data-feedback-close></div>
+    <div class="feedback-modal-card" role="document">
+      <button type="button" class="feedback-modal-close" data-feedback-close aria-label="Close">×</button>
+      <h3 class="feedback-modal-title" id="feedback-modal-title">Would love to hear from you.</h3>
+      <p class="feedback-modal-body">Send feedback, bug reports, or venue suggestions to:</p>
+      <div class="feedback-modal-email" tabindex="0">tripathi.agni@gmail.com</div>
+      <div class="feedback-modal-actions">
+        <button type="button" class="feedback-modal-copy" id="feedback-copy-btn">Copy email</button>
+        <a href="mailto:tripathi.agni@gmail.com" class="feedback-modal-open">Open in email app</a>
+      </div>
+      <p class="feedback-modal-footnote">Every message gets read.</p>
+    </div>
+  </div>
+
   <script src="/schedule-data.js" defer></script>
+  <script src="/feedback.js" defer></script>
   <script>
   (function () {
     'use strict';
