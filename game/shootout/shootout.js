@@ -227,12 +227,12 @@
       class: 'sh-mode-btn' + (dailyDone ? ' is-disabled' : ''),
       type: 'button',
     }, [
-      el('span', { text: dailyDone ? 'Daily Shootout · played' : 'Daily Shootout' }),
+      el('span', { text: dailyDone ? "Today's Shootout · played" : "Today's Shootout" }),
       el('span', {
         class: 'sh-mode-btn-sub',
         text: dailyDone
           ? 'Today: ' + scoreString(store.daily.todayResult) + ' ' + (store.daily.todayResult.won ? 'W' : 'L') + '. Back tomorrow.'
-          : 'Same cards for everyone today. One play per day. Daily #' + pad3(dailyNumber()),
+          : 'Same cards for everyone playing today. Daily #' + pad3(dailyNumber()) + '.',
       }),
     ]);
     if (!dailyDone) {
@@ -241,23 +241,36 @@
       dailyBtn.addEventListener('click', function () { showReplayResult(store.daily.todayResult); });
     }
 
+    var hasPracticePb = store.practice.totalPlays > 0 && (store.practice.personalBest.you > 0 || store.practice.personalBest.them > 0);
+    var practiceSub = hasPracticePb
+      ? 'Random cards. Unlimited plays. Best: ' + store.practice.personalBest.you + '-' + store.practice.personalBest.them + '.'
+      : 'Random cards. Unlimited plays. Warm up here.';
     var practiceBtn = el('button', { class: 'sh-mode-btn', type: 'button' }, [
-      el('span', { text: 'Practice Shootout' }),
-      el('span', { class: 'sh-mode-btn-sub', text: 'Random cards. Unlimited plays. PB: ' +
-        store.practice.personalBest.you + '-' + store.practice.personalBest.them }),
+      el('span', { text: 'Practice' }),
+      el('span', { class: 'sh-mode-btn-sub', text: practiceSub }),
     ]);
     practiceBtn.addEventListener('click', function () { startMatch('practice'); });
 
-    var stats = el('div', { class: 'sh-start-stats' }, [
-      el('span', { html: 'Streak <span>' + store.daily.currentStreak + '</span>' }),
-      el('span', { html: 'Best streak <span>' + store.daily.longestStreak + '</span>' }),
+    var hasPlayed = !!store.daily.lastPlayedDate || store.practice.totalPlays > 0;
+    var stats = hasPlayed ? el('div', { class: 'sh-start-stats' }, [
+      el('span', { html: 'Daily streak <span>' + store.daily.currentStreak + '</span>' }),
+      el('span', { html: 'Best <span>' + store.daily.longestStreak + '</span>' }),
       el('span', { html: 'Practice wins <span>' + store.practice.totalWins + '/' + store.practice.totalPlays + '</span>' }),
-    ]);
+    ]) : null;
 
     var screen = el('div', { class: 'screen screen-start' }, [
       el('div', { class: 'sh-start-eyebrow', text: 'Pregame · Shootout' }),
       el('h1', { class: 'sh-start-title', text: '5 kicks.\n5 saves.' }),
-      el('p', { class: 'sh-start-sub', text: 'Swipe true or false to take your kick. Spot the imposter to save theirs.' }),
+      el('div', { class: 'sh-start-rules' }, [
+        el('p', { class: 'sh-rule-line' }, [
+          el('strong', { text: 'Take your kick' }),
+          document.createTextNode(' — swipe true or false.'),
+        ]),
+        el('p', { class: 'sh-rule-line' }, [
+          el('strong', { text: 'Save theirs' }),
+          document.createTextNode(' — tap the odd one out in time.'),
+        ]),
+      ]),
       el('div', { class: 'sh-mode-btns' }, [dailyBtn, practiceBtn]),
       stats,
     ]);
@@ -378,7 +391,7 @@
     var goalpost = goalpostSvg();
     var track = el('div', { class: 'sh-bk-track' }, [goalpost, goalLine, bkRow]);
 
-    var category = el('div', { class: 'sh-bk-category', text: 'Their kick · Spot the imposter' });
+    var category = el('div', { class: 'sh-bk-category', text: 'Their kick · Spot the odd one out' });
     var catLine = el('h2', { class: 'sh-bk-cat-line' }, [
       el('span', { class: 'sh-bk-defend', text: 'DEFEND' }),
       document.createTextNode(bk.category_label),

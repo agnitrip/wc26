@@ -141,9 +141,10 @@
 /* ===== Start screen ===== */
 .screen-start {
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   text-align: center;
-  gap: 20px;
+  gap: 18px;
+  padding-top: 36px;
 }
 .sh-start-eyebrow {
   font-size: 0.78rem;
@@ -167,6 +168,23 @@
   max-width: 28ch;
   line-height: 1.4;
   margin: 0 0 4px;
+}
+.sh-start-rules {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 2px 0 2px;
+}
+.sh-rule-line {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  opacity: 0.92;
+}
+.sh-rule-line strong {
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: var(--sh-warn);
 }
 .sh-mode-btns {
   display: flex;
