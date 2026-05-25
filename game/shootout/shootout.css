@@ -509,17 +509,17 @@
   z-index: 2;
 }
 .sh-bk-row.is-running {
-  animation: sh-bk-fall 14000ms linear forwards;
+  animation: sh-bk-fall 15000ms linear forwards;
 }
 .sh-bk-row.is-paused {
   animation-play-state: paused !important;
 }
 @keyframes sh-bk-fall {
-  /* Drop in (~3.25s), pause centered above the goal-line (4s), drop out (~6.75s).
+  /* Drop in (~3.3s), pause centered above the goal-line (5s), drop out (~6.75s).
      Pause percentages tuned so the fall speed before and after the pause is equal. */
   0%   { transform: translate(-50%, -110%); }
-  23%  { transform: translate(-50%, 40px); }
-  52%  { transform: translate(-50%, 40px); }
+  22%  { transform: translate(-50%, 40px); }
+  55%  { transform: translate(-50%, 40px); }
   100% { transform: translate(-50%, calc(100% + 380px)); }
 }
 .sh-bk-tile {
@@ -586,10 +586,13 @@
 .sh-reveal-wrong   { background: rgba(212, 51, 44, 0.94); }
 .sh-reveal-word {
   font-family: var(--font-display);
-  font-size: clamp(3.5rem, 16vw, 6rem);
-  letter-spacing: 0.04em;
+  font-size: clamp(2.6rem, 13vw, 4.6rem);
+  letter-spacing: 0.02em;
   font-weight: 400;
   line-height: 0.95;
+  text-align: center;
+  padding: 0 16px;
+  max-width: 100%;
 }
 .sh-reveal-explain {
   margin-top: 14px;

@@ -7,10 +7,10 @@
   var BREAKAWAYS_URL = '/game/shootout/data/breakaways.json';
   var KICKS_PER_HALF = 5;
   var KICK_TIMER_MS = 5200;
-  var BREAKAWAY_DURATION_MS = 14000;
+  var BREAKAWAY_DURATION_MS = 15000;
   var BREAKAWAY_READ_DELAY_MS = 1000;
   var REVEAL_MS = 400;       // flash animation duration
-  var REVEAL_HOLD_MS = 3000; // total time the answer overlay stays visible (user can tap to skip earlier)
+  var REVEAL_HOLD_MS = 5000; // total time the answer overlay stays visible (user can tap to skip earlier)
   var BANNER_MS = 800;
   var SWIPE_THRESHOLD_PX = 70;
 
@@ -173,10 +173,9 @@
   }
 
   // ===== Reveal flash =====
-  // kind = 'goal' | 'saved' (what happened on the pitch — drives the headline word).
+  // word = headline copy (e.g. "You scored", "They scored").
   // correct = whether the player got the answer right (drives the colour: green correct, red wrong).
-  function showReveal(kind, correct, explanation, done) {
-    var word = kind === 'goal' ? 'GOAL!' : 'SAVED!';
+  function showReveal(word, correct, explanation, done) {
     var cls = 'sh-reveal ' + (correct ? 'sh-reveal-correct' : 'sh-reveal-wrong');
     var overlay = el('div', { class: cls }, [
       el('span', { class: 'sh-reveal-word', text: word }),
@@ -332,8 +331,8 @@
     } else {
       match.you.push(record);
     }
-    // On your kick, "correct" means the player scored (got the true/false right).
-    showReveal(goal ? 'goal' : 'saved', goal, kick.explanation, function () {
+    // On your kick: scored = correct, missed = wrong.
+    showReveal(goal ? 'You scored' : 'You missed', goal, kick.explanation, function () {
       if (match.phase === 'sd-your') {
         match.phase = 'sd-their';
         renderTheirKick();
@@ -457,8 +456,8 @@
     } else {
       match.them.push(record);
     }
-    // On their kick, "correct" means the player saved (tapped the odd one out).
-    showReveal(kind === 'goal' ? 'goal' : 'saved', kind === 'saved', bk.explanation, function () {
+    // On their kick: saved = correct, they-scored = wrong.
+    showReveal(kind === 'saved' ? 'You saved it' : 'They scored', kind === 'saved', bk.explanation, function () {
       if (match.phase === 'sd-their') {
         evaluateSdRound();
       } else {
