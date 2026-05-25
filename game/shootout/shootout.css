@@ -376,15 +376,26 @@
   flex: 1;
   width: 100%;
   overflow: hidden;
-  margin-bottom: 14px;
-  min-height: 220px;
+  margin-bottom: 8px;
+  min-height: 380px;
+}
+.sh-bk-goalpost {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: min(96%, 360px);
+  height: 110px;
+  z-index: 1;
+  pointer-events: none;
+  filter: drop-shadow(0 -2px 8px rgba(0, 0, 0, 0.25));
 }
 .sh-bk-goal-line {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 20%;
-  width: 3px;
+  left: 4%;
+  right: 4%;
+  bottom: 110px;
+  height: 3px;
   background: rgba(255, 255, 255, 0.7);
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.45);
   z-index: 1;
@@ -392,8 +403,8 @@
 .sh-bk-goal-line::before {
   content: "GOAL LINE";
   position: absolute;
-  top: 8px;
-  left: 8px;
+  top: -18px;
+  right: 8px;
   font-size: 0.62rem;
   letter-spacing: 0.18em;
   font-weight: 800;
@@ -402,24 +413,25 @@
 }
 .sh-bk-row {
   position: absolute;
-  top: 50%;
-  left: 0;
-  transform: translateX(110vw) translateY(-50%);
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -110%);
   display: flex;
+  flex-direction: column;
   gap: 10px;
-  white-space: nowrap;
+  width: min(92%, 320px);
   z-index: 2;
 }
 .sh-bk-row.is-running {
-  animation: sh-bk-slide 3000ms linear forwards;
+  animation: sh-bk-fall 5000ms linear forwards;
 }
 .sh-bk-row.is-paused {
   animation-play-state: paused !important;
 }
-@keyframes sh-bk-slide {
-  /* End travel is generous (-200vw) so even a rightmost-slot imposter clears the 20% goal-line within 3s on any viewport. */
-  from { transform: translateX(110vw) translateY(-50%); }
-  to   { transform: translateX(-200vw) translateY(-50%); }
+@keyframes sh-bk-fall {
+  /* Travels from above the track to fully past the goalpost so any-slot imposter clears the goal-line within the 5s window. */
+  from { transform: translate(-50%, -110%); }
+  to   { transform: translate(-50%, calc(100% + 380px)); }
 }
 .sh-bk-tile {
   appearance: none;
@@ -428,17 +440,18 @@
   font-family: inherit;
   background: var(--sh-card);
   color: var(--sh-card-fg);
-  min-width: 120px;
-  min-height: 80px;
+  width: 100%;
+  min-height: 64px;
   padding: 14px 18px;
   border-radius: 12px;
-  font-size: 1.02rem;
+  font-size: 1.05rem;
   font-weight: 700;
   box-shadow: 0 6px 14px rgba(0,0,0,0.25);
   transition: transform 0.1s ease, background 0.15s ease;
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
 }
 .sh-bk-tile:active { transform: scale(0.97); }
 .sh-bk-tile.tile-correct {
@@ -643,8 +656,9 @@
 /* ===== Mobile sizing ===== */
 @media (max-width: 540px) {
   .shootout-main { padding-left: 14px; padding-right: 14px; }
-  .game-root { min-height: 580px; border-radius: 14px; }
-  .sh-bk-tile { min-width: 100px; min-height: 80px; font-size: 0.95rem; padding: 12px 14px; }
+  .game-root { min-height: 620px; border-radius: 14px; }
+  .sh-bk-tile { min-height: 60px; font-size: 1rem; padding: 12px 14px; }
+  .sh-bk-track { min-height: 360px; }
 }
 @media (max-height: 700px) {
   .game-root { min-height: 520px; }

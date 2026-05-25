@@ -8,7 +8,7 @@
   var BREAKAWAYS_URL = '/game/shootout/data/breakaways.json';
   var KICKS_PER_HALF = 5;
   var KICK_TIMER_MS = 5000;
-  var BREAKAWAY_DURATION_MS = 3000;
+  var BREAKAWAY_DURATION_MS = 5000;
   var REVEAL_MS = 400;
   var BANNER_MS = 800;
   var SWIPE_THRESHOLD_PX = 70;
@@ -371,7 +371,8 @@
     });
     var bkRow = el('div', { class: 'sh-bk-row' }, rowTiles);
     var goalLine = el('div', { class: 'sh-bk-goal-line' });
-    var track = el('div', { class: 'sh-bk-track' }, [goalLine, bkRow]);
+    var goalpost = goalpostSvg();
+    var track = el('div', { class: 'sh-bk-track' }, [goalpost, goalLine, bkRow]);
 
     var category = el('div', { class: 'sh-bk-category', text: 'Their kick · Spot the imposter' });
     var catLine = el('h2', { class: 'sh-bk-cat-line' }, [
@@ -416,10 +417,10 @@
     var imposter = bkRow.querySelector('[data-imposter="true"]');
     function tick() {
       if (resolved) return;
-      var trackRect = track.getBoundingClientRect();
+      var goalLineY = goalLine.getBoundingClientRect().top;
       var imposterRect = imposter.getBoundingClientRect();
-      var goalLineX = trackRect.left + trackRect.width * 0.20;
-      if (imposterRect.right <= goalLineX) {
+      // Falling top-to-bottom: leading edge is the tile's bottom. Crossing fires when it touches the goal-line.
+      if (imposterRect.bottom >= goalLineY) {
         finish('goal', null);
         return;
       }
@@ -428,6 +429,26 @@
     rafId = requestAnimationFrame(tick);
     // Safety: if rAF crossing detection misses (e.g., tab throttled), guarantee resolution.
     setTimeout(function () { if (!resolved) finish('goal', null); }, BREAKAWAY_DURATION_MS + 200);
+  }
+
+  function goalpostSvg() {
+    var ns = 'http://www.w3.org/2000/svg';
+    var svg = document.createElementNS(ns, 'svg');
+    svg.setAttribute('class', 'sh-bk-goalpost');
+    svg.setAttribute('viewBox', '0 0 280 110');
+    svg.setAttribute('preserveAspectRatio', 'none');
+    svg.setAttribute('aria-hidden', 'true');
+    svg.innerHTML =
+      '<defs>' +
+        '<pattern id="goalnet" width="14" height="14" patternUnits="userSpaceOnUse">' +
+          '<path d="M0 0 L14 14 M14 0 L0 14" stroke="rgba(255,255,255,0.42)" stroke-width="1" fill="none"/>' +
+        '</pattern>' +
+      '</defs>' +
+      '<rect x="8" y="8" width="264" height="102" fill="url(#goalnet)"/>' +
+      '<rect x="0" y="0" width="280" height="8" fill="#fff" rx="2"/>' +
+      '<rect x="0" y="0" width="8" height="110" fill="#fff" rx="2"/>' +
+      '<rect x="272" y="0" width="8" height="110" fill="#fff" rx="2"/>';
+    return svg;
   }
 
   function resolveTheirKick(bk, kind) {
