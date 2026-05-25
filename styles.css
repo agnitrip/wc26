@@ -160,10 +160,12 @@ nav a {
 nav a:hover { color: var(--accent); background: var(--accent-soft); }
 nav a.active { color: var(--accent); background: var(--accent-soft); }
 
-/* Shootout = engagement-loop CTA in nav (visually distinct yellow pill) */
+/* Shootout = engagement-loop CTA in nav (visually distinct yellow pill).
+   Text is hardcoded dark; --warm-deep flips to yellow in dark mode and
+   would render invisible on this yellow background. */
 .nav-shootout {
-  color: var(--warm-deep) !important;
-  background: var(--warm) !important;
+  color: #3d2c00 !important;
+  background: #f5c842 !important;
   font-weight: 700 !important;
   padding: 7px 14px !important;
   border-radius: 999px !important;
@@ -174,18 +176,27 @@ nav a.active { color: var(--accent); background: var(--accent-soft); }
   transition: background 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease !important;
 }
 .nav-shootout:hover {
-  background: var(--warm-hover) !important;
-  color: var(--warm-deep) !important;
+  background: #e6b220 !important;
+  color: #3d2c00 !important;
   transform: translateY(-1px);
   box-shadow: 0 3px 8px rgba(245, 200, 66, 0.4);
 }
 .nav-shootout.active {
-  background: var(--warm) !important;
-  color: var(--warm-deep) !important;
+  background: #f5c842 !important;
+  color: #3d2c00 !important;
 }
 .nav-shootout-emoji {
   font-size: 0.95rem;
   line-height: 1;
+}
+@media (max-width: 600px) {
+  nav ul { gap: 4px; }
+  nav a { padding: 6px 10px; font-size: 0.9rem; }
+  .nav-shootout {
+    padding: 6px 12px !important;
+    font-size: 0.88rem;
+  }
+  .nav-shootout-emoji { font-size: 0.9rem; }
 }
 
 main { padding-bottom: 24px; }
@@ -2146,16 +2157,18 @@ footer a:hover { color: var(--accent); }
   line-height: 1;
 }
 
-/* Secondary: warm-yellow Shootout pill (ties to the "26" wordmark color) */
+/* Secondary: warm-yellow Shootout pill (ties to the "26" wordmark color).
+   Hardcoded dark text — --warm-deep flips to yellow in dark mode and
+   would render invisible on yellow. */
 .hero-cta-secondary {
-  background: var(--warm);
-  color: var(--warm-deep);
+  background: #f5c842;
+  color: #3d2c00;
   border: none;
   box-shadow: 0 4px 18px rgba(245, 200, 66, 0.35);
 }
 .hero-cta-secondary:hover {
-  background: var(--warm-hover);
-  color: var(--warm-deep);
+  background: #e6b220;
+  color: #3d2c00;
   box-shadow: 0 8px 24px rgba(245, 200, 66, 0.5);
 }
 
