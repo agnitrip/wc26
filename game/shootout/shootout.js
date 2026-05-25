@@ -7,8 +7,8 @@
   var KICKS_URL = '/game/shootout/data/kicks.json';
   var BREAKAWAYS_URL = '/game/shootout/data/breakaways.json';
   var KICKS_PER_HALF = 5;
-  var KICK_TIMER_MS = 5000;
-  var BREAKAWAY_DURATION_MS = 10000;
+  var KICK_TIMER_MS = 6500;
+  var BREAKAWAY_DURATION_MS = 12000;
   var BREAKAWAY_READ_DELAY_MS = 1000;
   var REVEAL_MS = 400;
   var BANNER_MS = 800;
@@ -279,47 +279,9 @@
   }
 
   function startHeroSvg() {
-    var ns = 'http://www.w3.org/2000/svg';
-    var svg = document.createElementNS(ns, 'svg');
-    svg.setAttribute('class', 'sh-start-hero');
-    svg.setAttribute('viewBox', '0 0 120 84');
-    svg.setAttribute('fill', 'none');
-    svg.setAttribute('stroke', 'currentColor');
-    svg.setAttribute('stroke-width', '2');
-    svg.setAttribute('stroke-linecap', 'round');
-    svg.setAttribute('stroke-linejoin', 'round');
-    svg.setAttribute('aria-hidden', 'true');
-    svg.innerHTML =
-      // ball on left, brand-glyph pattern
-      '<g opacity="0.95">' +
-        '<circle cx="22" cy="56" r="14"/>' +
-        '<polygon points="22,46 30,51 28,61 16,61 14,51"/>' +
-        '<line x1="22" y1="46" x2="22" y2="40"/>' +
-        '<line x1="30" y1="51" x2="36" y2="48"/>' +
-        '<line x1="28" y1="61" x2="32" y2="69"/>' +
-        '<line x1="16" y1="61" x2="12" y2="69"/>' +
-        '<line x1="14" y1="51" x2="8" y2="48"/>' +
-      '</g>' +
-      // dashed flight arc toward goal
-      '<path d="M36 50 Q66 14 92 32" stroke-dasharray="2.5 4" opacity="0.55"/>' +
-      // goal frame on right
-      '<g stroke-width="2.6" opacity="0.85">' +
-        '<line x1="78" y1="30" x2="116" y2="30"/>' +
-        '<line x1="78" y1="30" x2="78" y2="68"/>' +
-        '<line x1="116" y1="30" x2="116" y2="68"/>' +
-      '</g>' +
-      // net stitching, faint
-      '<g opacity="0.32" stroke-width="0.9">' +
-        '<line x1="82" y1="32" x2="82" y2="66"/>' +
-        '<line x1="89" y1="32" x2="89" y2="66"/>' +
-        '<line x1="97" y1="32" x2="97" y2="66"/>' +
-        '<line x1="105" y1="32" x2="105" y2="66"/>' +
-        '<line x1="112" y1="32" x2="112" y2="66"/>' +
-        '<line x1="80" y1="40" x2="114" y2="40"/>' +
-        '<line x1="80" y1="50" x2="114" y2="50"/>' +
-        '<line x1="80" y1="60" x2="114" y2="60"/>' +
-      '</g>';
-    return svg;
+    // System soccer-ball emoji at hero size. Renders as the platform's own crafted glyph
+    // (3D-shaded ball on iOS/macOS, equivalent on Android/Windows). No SVG to break.
+    return el('div', { class: 'sh-start-hero', 'aria-hidden': 'true', text: '⚽' });
   }
   function scoreString(result) {
     return sum(result.you || []) + sum(result.sd || []) + '-' +

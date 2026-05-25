@@ -148,12 +148,13 @@
   padding-bottom: 24px;
 }
 .sh-start-hero {
-  width: clamp(140px, 46%, 200px);
-  height: auto;
-  color: rgba(255, 255, 255, 0.92);
-  display: block;
-  margin: 0 auto -2px;
-  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.28));
+  font-size: clamp(72px, 22vw, 96px);
+  line-height: 1;
+  text-align: center;
+  margin: 0 auto -6px;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.4));
+  user-select: none;
+  -webkit-user-select: none;
 }
 .sh-mode-btns {
   margin-top: auto;
@@ -453,15 +454,18 @@
   z-index: 2;
 }
 .sh-bk-row.is-running {
-  animation: sh-bk-fall 10000ms linear forwards;
+  animation: sh-bk-fall 12000ms linear forwards;
 }
 .sh-bk-row.is-paused {
   animation-play-state: paused !important;
 }
 @keyframes sh-bk-fall {
-  /* Travels from above the track to fully past the goalpost so any-slot imposter clears the goal-line within the window. */
-  from { transform: translate(-50%, -110%); }
-  to   { transform: translate(-50%, calc(100% + 380px)); }
+  /* Drop in (~3.25s), pause centered above the goal-line (2s), drop out (~6.75s).
+     Pause percentages are tuned so the fall speed before and after the pause is equal. */
+  0%   { transform: translate(-50%, -110%); }
+  27%  { transform: translate(-50%, 40px); }
+  44%  { transform: translate(-50%, 40px); }
+  100% { transform: translate(-50%, calc(100% + 380px)); }
 }
 .sh-bk-tile {
   appearance: none;
