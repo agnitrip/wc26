@@ -205,8 +205,6 @@
   function renderStart() {
     match = null;
     clearRoot();
-    // Shorter arena on the start screen — gameplay needs more room than the title/CTA stack.
-    if (root) root.classList.add('on-start');
     var store = Storage.load();
 
     var playBtn = el('button', { class: 'sh-play-btn', type: 'button' }, [
@@ -257,7 +255,6 @@
 
   // ===== Match flow =====
   function startMatch() {
-    if (root) root.classList.remove('on-start');
     match = createMatch();
     match.phase = 'your';
     renderYourKick();

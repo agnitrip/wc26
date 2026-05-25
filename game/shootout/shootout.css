@@ -43,7 +43,7 @@
   -webkit-user-select: none;
   touch-action: none;
 }
-.game-root.on-start { min-height: 480px; }
+/* Start screen uses the same arena size as gameplay so Play doesn't trigger a resize jolt. */
 .game-root::before {
   /* center circle + halfway line */
   content: "";
@@ -171,11 +171,11 @@
 /* ===== Start screen ===== */
 .screen-start {
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-evenly;
   text-align: center;
-  gap: 16px;
-  padding-top: 22px;
-  padding-bottom: 24px;
+  gap: 0;
+  padding-top: 18px;
+  padding-bottom: 18px;
 }
 .sh-start-hero {
   font-size: clamp(72px, 22vw, 96px);
@@ -232,7 +232,6 @@
 .sh-play-wrap {
   width: 100%;
   max-width: 320px;
-  margin-top: 8px;
   display: flex;
   flex-direction: column;
   gap: 10px;
