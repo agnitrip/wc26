@@ -172,7 +172,7 @@
 
     // Audience-priority order: largest diaspora populations + host-stadium visibility first.
     // Keeps data file canonical while controlling presentation here.
-    var CITY_PRIORITY = ['NYC', 'LA', 'SF', 'DAL', 'MIA', 'ATL', 'BOS', 'PHL', 'HOU', 'KC', 'SEA'];
+    var CITY_PRIORITY = ['NYC', 'LA', 'TOR', 'SF', 'DAL', 'MIA', 'ATL', 'BOS', 'PHL', 'HOU', 'KC', 'VAN', 'SEA'];
     var orderedCities = CITY_PRIORITY
       .map(function (id) { return data.CITIES.find(function (c) { return c.id === id; }); })
       .filter(Boolean);

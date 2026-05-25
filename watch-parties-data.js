@@ -1,7 +1,7 @@
 // WC26 Pregame — watch parties data
 // Starter list of country-specific and soccer-friendly venues across the
-// 7 most-asked US cities. Sourced from general knowledge of well-known
-// soccer bars + the active Reddit threads linked per city.
+// 13 WC26 host cities in the US and Canada. Sourced from general knowledge
+// of well-known soccer bars + the active Reddit threads linked per city.
 //
 // IMPORTANT: This is a v0 starter list. Hours, screening plans, and even
 // "is this place still open" should be verified by phone before travel.
@@ -31,10 +31,13 @@ const CITIES = [
   { id: 'SF',  name: 'San Francisco / Bay Area' },
   { id: 'LA',  name: 'Los Angeles' },
   { id: 'SEA', name: 'Seattle' },
+  { id: 'TOR', name: 'Toronto' },
+  { id: 'VAN', name: 'Vancouver' },
 ];
 
-// Host stadiums in the US. Used to tag venues near a stadium for
-// traveling supporters / fans planning to be in the stadium area on match day.
+// Host stadiums across the US and Canada. Used to tag venues near a stadium
+// for traveling supporters / fans planning to be in the stadium area on
+// match day.
 const STADIUMS = {
   MET: { name: 'MetLife Stadium', city: 'East Rutherford, NJ' },
   GIL: { name: 'Gillette Stadium', city: 'Foxborough, MA' },
@@ -47,6 +50,8 @@ const STADIUMS = {
   LEV: { name: "Levi's Stadium", city: 'Santa Clara, CA' },
   SOFI: { name: 'SoFi Stadium', city: 'Inglewood, CA' },
   LUM: { name: 'Lumen Field', city: 'Seattle, WA' },
+  BMO: { name: 'BMO Field', city: 'Toronto, ON' },
+  BCP: { name: 'BC Place', city: 'Vancouver, BC' },
 };
 
 // Countries used on this page. GEN = general soccer pub (no specific country).
@@ -112,6 +117,14 @@ const CITY_THREADS = {
   SEA: [
     { url: 'https://reddit.com/r/Seattle/search/?q=world+cup+bar&restrict_sr=1', label: 'r/Seattle: WC bar searches' },
     { url: 'https://reddit.com/r/Sounders/search/?q=world+cup+bar&restrict_sr=1', label: 'r/Sounders: WC bar threads' },
+  ],
+  TOR: [
+    { url: 'https://reddit.com/r/toronto/search/?q=world+cup+bar&restrict_sr=1', label: 'r/toronto: WC bar searches' },
+    { url: 'https://reddit.com/r/torontoFC/search/?q=world+cup&restrict_sr=1', label: 'r/torontoFC: WC threads' },
+  ],
+  VAN: [
+    { url: 'https://reddit.com/r/vancouver/search/?q=world+cup+bar&restrict_sr=1', label: 'r/vancouver: WC bar searches' },
+    { url: 'https://reddit.com/r/whitecapsfc/search/?q=world+cup&restrict_sr=1', label: 'r/whitecapsfc: WC threads' },
   ],
 };
 
@@ -430,6 +443,73 @@ const VENUES = [
     neighborhood: 'Pioneer Square', city: 'SEA', countries: ['GEN'],
     description: 'Sounders supporters bar. The Seattle soccer crowd shows up for any meaningful match.',
     nearStadium: 'LUM',
+  },
+
+  // ===== TORONTO =====
+  // BMO Field is in Exhibition Place. Liberty Village + Maple Leaf Square are
+  // short walks; Little Italy and Little Portugal are roughly a 10 min drive.
+  {
+    id: 'cafe-diplomatico-tor', name: 'Café Diplomatico', address: '594 College St',
+    neighborhood: 'Little Italy', city: 'TOR', countries: ['ITA', 'GEN'],
+    description: "Toronto's Italian soccer institution for over 50 years. Heated patio video board plus indoor screens, packed College Street crowd on Italy match days.",
+    nearStadium: 'BMO',
+  },
+  {
+    id: 'amigos-da-dundas-tor', name: 'Amigos da Dundas Sports Bar', address: '1570 Dundas St W',
+    neighborhood: 'Little Portugal', city: 'TOR', countries: ['POR', 'BRA', 'GEN'],
+    description: 'Portuguese-run sports bar in the heart of Little Portugal. Multiple screens, pastéis de nata on the menu, supporter clubs that sing through Portugal and Brazil matches.',
+    nearStadium: 'BMO',
+  },
+  {
+    id: 'dock-ellis-tor', name: 'The Dock Ellis', address: '1280 Dundas St W',
+    neighborhood: 'Dundas West', city: 'TOR', countries: ['GEN', 'ENG'],
+    description: 'No-fuss neighbourhood sports bar with large screens, foosball, pool, and gastropub food. Reliable for showing every match with sound and a mixed crowd.',
+    nearStadium: 'BMO',
+  },
+  {
+    id: 'real-sports-tor', name: 'Real Sports Bar & Grill', address: '15 York St',
+    neighborhood: 'Maple Leaf Square', city: 'TOR', countries: ['GEN', 'USA', 'ENG'],
+    description: 'Cavernous downtown sports bar with a 39-foot main screen and nearly 200 HD TVs. Walking distance from BMO Field, every match on somewhere with sound on the big one for marquee fixtures.',
+    nearStadium: 'BMO',
+  },
+  {
+    id: 'local-liberty-village-tor', name: 'LOCAL Public Eatery Liberty Village', address: '171 E Liberty St',
+    neighborhood: 'Liberty Village', city: 'TOR', countries: ['GEN'],
+    description: 'Liberty Village gastropub with 20 taps, shuffleboard, big patio with CN Tower views, and screens throughout. Roughly a 10 minute walk to BMO Field.',
+    nearStadium: 'BMO',
+  },
+
+  // ===== VANCOUVER =====
+  // BC Place is downtown at Pacific Blvd. Most of these are within a 5-15 min
+  // walk; Caffè Soccavo is on Commercial Drive (Little Italy), 10 min drive.
+  {
+    id: 'soccavo-van', name: 'Caffè Soccavo', address: '1321 Commercial Dr',
+    neighborhood: 'Commercial Drive', city: 'VAN', countries: ['ITA'],
+    description: 'Italian sports cafe from the Via Tevere team. Opens at 8am so early Italy kickoffs are covered with espresso, prosecco, and pizza by the slice. Small room, packed on match days.',
+  },
+  {
+    id: 'red-card-van', name: 'Red Card Sports Bar + Eatery', address: '560 Smithe St',
+    neighborhood: 'Downtown', city: 'VAN', countries: ['GEN', 'ENG', 'ITA'],
+    description: 'European-style soccer bar with 16 TVs, two projectors, and wood-fired pizza. Reliable Premier League and WC crowd, about an 8 minute walk from BC Place.',
+    nearStadium: 'BCP',
+  },
+  {
+    id: 'shark-club-van', name: 'Shark Club Sports Bar & Grill', address: '180 W Georgia St',
+    neighborhood: 'Downtown', city: 'VAN', countries: ['GEN'],
+    description: 'Classic big-room sports bar inside the Sandman Signature, across the street from BC Place and Rogers Arena. Open 11am daily, sound on for marquee matches.',
+    nearStadium: 'BCP',
+  },
+  {
+    id: 'library-square-van', name: 'Library Square Public House', address: '300 W Georgia St',
+    neighborhood: 'Downtown', city: 'VAN', countries: ['GEN', 'IRL'],
+    description: 'Two blocks from BC Place with 10-plus screens, a projector, and an outdoor viewing area built out for the 2026 tournament. Home of the Vancouver Celtic FC supporters.',
+    nearStadium: 'BCP',
+  },
+  {
+    id: 'lamplighter-van', name: 'The Lamplighter Public House', address: '92 Water St',
+    neighborhood: 'Gastown', city: 'VAN', countries: ['ENG'],
+    description: "Vancouver's oldest pub and the official home of the Manchester United Supporters Club. Two projector screens, brick and chandelier setting, about a 15 minute walk from BC Place through Gastown.",
+    nearStadium: 'BCP',
   },
 ];
 
