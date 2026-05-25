@@ -418,40 +418,55 @@
   transform: translate(-50%, -110%);
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  width: min(92%, 320px);
+  gap: 8px;
+  width: min(66%, 230px);
   z-index: 2;
 }
 .sh-bk-row.is-running {
-  animation: sh-bk-fall 5000ms linear forwards;
+  animation: sh-bk-fall 10000ms linear forwards;
 }
 .sh-bk-row.is-paused {
   animation-play-state: paused !important;
 }
 @keyframes sh-bk-fall {
-  /* Travels from above the track to fully past the goalpost so any-slot imposter clears the goal-line within the 5s window. */
+  /* Travels from above the track to fully past the goalpost so any-slot imposter clears the goal-line within the window. */
   from { transform: translate(-50%, -110%); }
   to   { transform: translate(-50%, calc(100% + 380px)); }
 }
 .sh-bk-tile {
   appearance: none;
-  border: 0;
   cursor: pointer;
   font-family: inherit;
   background: var(--sh-card);
   color: var(--sh-card-fg);
   width: 100%;
-  min-height: 64px;
-  padding: 14px 18px;
-  border-radius: 12px;
-  font-size: 1.05rem;
+  min-height: 44px;
+  padding: 8px 14px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 999px;
+  font-size: 0.92rem;
   font-weight: 700;
-  box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+  letter-spacing: 0.01em;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.22), inset 0 -2px 0 rgba(0,0,0,0.06);
   transition: transform 0.1s ease, background 0.15s ease;
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 7px;
   text-align: center;
+  line-height: 1.15;
+}
+.sh-bk-tile-glyph {
+  font-size: 0.95em;
+  line-height: 1;
+  flex-shrink: 0;
+  transform: translateY(-0.5px);
+}
+.sh-bk-tile-name {
+  white-space: normal;
+  overflow-wrap: break-word;
+  line-height: 1.15;
+  text-align: left;
 }
 .sh-bk-tile:active { transform: scale(0.97); }
 .sh-bk-tile.tile-correct {
@@ -657,7 +672,6 @@
 @media (max-width: 540px) {
   .shootout-main { padding-left: 14px; padding-right: 14px; }
   .game-root { min-height: 620px; border-radius: 14px; }
-  .sh-bk-tile { min-height: 60px; font-size: 1rem; padding: 12px 14px; }
   .sh-bk-track { min-height: 360px; }
 }
 @media (max-height: 700px) {

@@ -8,7 +8,8 @@
   var BREAKAWAYS_URL = '/game/shootout/data/breakaways.json';
   var KICKS_PER_HALF = 5;
   var KICK_TIMER_MS = 5000;
-  var BREAKAWAY_DURATION_MS = 5000;
+  var BREAKAWAY_DURATION_MS = 10000;
+  var BREAKAWAY_READ_DELAY_MS = 1000;
   var REVEAL_MS = 400;
   var BANNER_MS = 800;
   var SWIPE_THRESHOLD_PX = 70;
@@ -255,7 +256,7 @@
 
     var screen = el('div', { class: 'screen screen-start' }, [
       el('div', { class: 'sh-start-eyebrow', text: 'Pregame · Shootout' }),
-      el('h1', { class: 'sh-start-title', text: '5 kicks. 5 saves.\nFinish in 90 seconds.' }),
+      el('h1', { class: 'sh-start-title', text: '5 kicks.\n5 saves.' }),
       el('p', { class: 'sh-start-sub', text: 'Swipe true or false to take your kick. Spot the imposter to save theirs.' }),
       el('div', { class: 'sh-mode-btns' }, [dailyBtn, practiceBtn]),
       stats,
@@ -367,7 +368,10 @@
         class: 'sh-bk-tile',
         type: 'button',
         'data-imposter': name === bk.imposter ? 'true' : 'false',
-      }, [el('span', { text: name })]);
+      }, [
+        el('span', { class: 'sh-bk-tile-glyph', text: '⚽' }),
+        el('span', { class: 'sh-bk-tile-name', text: name }),
+      ]);
     });
     var bkRow = el('div', { class: 'sh-bk-row' }, rowTiles);
     var goalLine = el('div', { class: 'sh-bk-goal-line' });
@@ -386,8 +390,14 @@
     var resolved = false;
     var rafId = null;
 
-    // Kick off the slide animation on the next frame for clean start.
-    requestAnimationFrame(function () { bkRow.classList.add('is-running'); });
+    // Hold the row offscreen for a beat so the player can read the category before tiles start falling.
+    setTimeout(function () {
+      if (resolved) return;
+      bkRow.classList.add('is-running');
+      rafId = requestAnimationFrame(tick);
+      // Safety: guarantee resolution even if the rAF crossing detection misses (tab throttled, etc.).
+      setTimeout(function () { if (!resolved) finish('goal', null); }, BREAKAWAY_DURATION_MS + 200);
+    }, BREAKAWAY_READ_DELAY_MS);
 
     function finish(kind, tappedTile) {
       if (resolved) return;
@@ -426,9 +436,6 @@
       }
       rafId = requestAnimationFrame(tick);
     }
-    rafId = requestAnimationFrame(tick);
-    // Safety: if rAF crossing detection misses (e.g., tab throttled), guarantee resolution.
-    setTimeout(function () { if (!resolved) finish('goal', null); }, BREAKAWAY_DURATION_MS + 200);
   }
 
   function goalpostSvg() {
@@ -469,13 +476,6 @@
 
   function advanceStep() {
     match.step++;
-    if (match.step === 3 && match.you.length === 3 && match.them.length === 3) {
-      showBanner('HT', 'Halftime', function () {
-        match.phase = 'your';
-        renderYourKick();
-      });
-      return;
-    }
     if (match.step >= KICKS_PER_HALF) {
       checkFullTime();
       return;
