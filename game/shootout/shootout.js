@@ -391,13 +391,17 @@
       resolveTheirKick(bk, kind);
     }
 
+    function onTileTap(tile, e) {
+      if (e && e.preventDefault) e.preventDefault();
+      if (resolved) return;
+      var isImposter = tile.dataset.imposter === 'true';
+      finish(isImposter ? 'saved' : 'goal', tile);
+    }
     rowTiles.forEach(function (tile) {
-      tile.addEventListener('pointerdown', function (e) {
-        e.preventDefault();
-        if (resolved) return;
-        var isImposter = tile.dataset.imposter === 'true';
-        finish(isImposter ? 'saved' : 'goal', tile);
-      }, { passive: false });
+      // pointerdown fires fast for response; click is the reliable fallback when
+      // hit-testing flakes on a moving/animating button (seen on iOS Safari).
+      tile.addEventListener('pointerdown', function (e) { onTileTap(tile, e); }, { passive: false });
+      tile.addEventListener('click', function (e) { onTileTap(tile, e); });
     });
 
     var imposter = bkRow.querySelector('[data-imposter="true"]');
