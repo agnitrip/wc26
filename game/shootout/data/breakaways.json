@@ -204,18 +204,6 @@
     "difficulty": "medium"
   },
   {
-    "id": "b-018",
-    "category_label": "NOT a German player who scored in the 2014 World Cup knockout stages",
-    "in_set": [
-      "André Schürrle",
-      "Mario Götze",
-      "Mats Hummels"
-    ],
-    "imposter": "Bastian Schweinsteiger",
-    "explanation": "Schweinsteiger played every knockout match but did not score in the tournament.",
-    "difficulty": "medium"
-  },
-  {
     "id": "b-019",
     "category_label": "NOT a player who has appeared in 4 or more World Cups",
     "in_set": [
@@ -420,18 +408,6 @@
     "difficulty": "easy"
   },
   {
-    "id": "b-036",
-    "category_label": "NOT a player who won the World Cup with Germany in 2014",
-    "in_set": [
-      "Mesut Özil",
-      "Mats Hummels",
-      "Lukas Podolski"
-    ],
-    "imposter": "Marco Reus",
-    "explanation": "Reus suffered an ankle injury in a pre-tournament friendly and missed the entire 2014 WC.",
-    "difficulty": "easy"
-  },
-  {
     "id": "b-037",
     "category_label": "NOT a country that competes in UEFA (European) qualifying",
     "in_set": [
@@ -441,18 +417,6 @@
     ],
     "imposter": "Brazil",
     "explanation": "Brazil qualifies through CONMEBOL (South America).",
-    "difficulty": "easy"
-  },
-  {
-    "id": "b-038",
-    "category_label": "NOT a player who scored at the 2022 World Cup",
-    "in_set": [
-      "Kylian Mbappé",
-      "Lionel Messi",
-      "Julián Álvarez"
-    ],
-    "imposter": "Romelu Lukaku",
-    "explanation": "Lukaku missed several big chances for Belgium and did not score at the tournament.",
     "difficulty": "easy"
   },
   {
@@ -574,18 +538,6 @@
     "imposter": "Spain",
     "explanation": "Spain's only World Cup title is 2010.",
     "difficulty": "medium"
-  },
-  {
-    "id": "b-049",
-    "category_label": "NOT a player who scored for Argentina at the 2022 World Cup",
-    "in_set": [
-      "Julián Álvarez",
-      "Ángel Di María",
-      "Enzo Fernández"
-    ],
-    "imposter": "Lautaro Martínez",
-    "explanation": "Lautaro played every match but Julián Álvarez took the starting striker spot and Lautaro did not score in the tournament.",
-    "difficulty": "hard"
   },
   {
     "id": "b-050",
@@ -1068,18 +1020,6 @@
     "difficulty": "easy"
   },
   {
-    "id": "b-090",
-    "category_label": "NOT a player who has scored in a World Cup final",
-    "in_set": [
-      "Mario Götze",
-      "Andres Iniesta",
-      "Lionel Messi"
-    ],
-    "imposter": "David Beckham",
-    "explanation": "England did not reach a World Cup final during Beckham's career.",
-    "difficulty": "easy"
-  },
-  {
     "id": "b-091",
     "category_label": "NOT a player who has scored 6 or more World Cup goals in his career",
     "in_set": [
@@ -1092,30 +1032,6 @@
     "difficulty": "medium"
   },
   {
-    "id": "b-092",
-    "category_label": "NOT a country that has reached a World Cup semi-final since 2014",
-    "in_set": [
-      "Belgium",
-      "England",
-      "Morocco"
-    ],
-    "imposter": "Russia",
-    "explanation": "Russia's best WC finish since 2014 is the quarter-final at the 2018 tournament they hosted.",
-    "difficulty": "medium"
-  },
-  {
-    "id": "b-093",
-    "category_label": "NOT a country that competed at the 2022 World Cup",
-    "in_set": [
-      "Brazil",
-      "Germany",
-      "England"
-    ],
-    "imposter": "Colombia",
-    "explanation": "Colombia finished 6th in CONMEBOL qualifying and missed the tournament.",
-    "difficulty": "medium"
-  },
-  {
     "id": "b-094",
     "category_label": "NOT a player who has scored from a direct free kick at a World Cup since 2000",
     "in_set": [
@@ -1125,30 +1041,6 @@
     ],
     "imposter": "Harry Kane",
     "explanation": "Kane's WC goals are penalties, tap-ins, and headers; he has not scored a direct free kick at a tournament.",
-    "difficulty": "medium"
-  },
-  {
-    "id": "b-095",
-    "category_label": "NOT a country that has finished 4th at a World Cup this century",
-    "in_set": [
-      "South Korea",
-      "England",
-      "Morocco"
-    ],
-    "imposter": "Senegal",
-    "explanation": "Senegal's best WC finishes are the 2002 quarter-final and the 2018 and 2022 round of 16; never 4th.",
-    "difficulty": "medium"
-  },
-  {
-    "id": "b-096",
-    "category_label": "NOT a country that won its opening match at the 2022 World Cup",
-    "in_set": [
-      "France",
-      "England",
-      "Spain"
-    ],
-    "imposter": "Germany",
-    "explanation": "Germany lost their opener 1-2 to Japan.",
     "difficulty": "medium"
   },
   {

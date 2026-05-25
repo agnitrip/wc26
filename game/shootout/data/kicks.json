@@ -21,13 +21,6 @@
     "difficulty": "easy"
   },
   {
-    "id": "k-004",
-    "statement": "Brazil won the 2014 World Cup as hosts.",
-    "truth": false,
-    "explanation": "Germany won 2014; Brazil lost 7-1 to Germany in the semi-final.",
-    "difficulty": "easy"
-  },
-  {
     "id": "k-005",
     "statement": "Brazil has won 6 World Cups.",
     "truth": false,
@@ -53,13 +46,6 @@
     "statement": "Qatar hosted the 2022 World Cup.",
     "truth": true,
     "explanation": "Qatar was the first Middle Eastern country to host the tournament.",
-    "difficulty": "easy"
-  },
-  {
-    "id": "k-009",
-    "statement": "The 2018 World Cup was held in Brazil.",
-    "truth": false,
-    "explanation": "Russia hosted 2018; Brazil hosted in 2014.",
     "difficulty": "easy"
   },
   {
@@ -98,13 +84,6 @@
     "difficulty": "easy"
   },
   {
-    "id": "k-015",
-    "statement": "South Africa won the 2010 World Cup as hosts.",
-    "truth": false,
-    "explanation": "South Africa failed to escape the group stage; Spain won the tournament.",
-    "difficulty": "easy"
-  },
-  {
     "id": "k-016",
     "statement": "David Villa scored the winning goal in the 2010 World Cup final.",
     "truth": false,
@@ -119,24 +98,10 @@
     "difficulty": "medium"
   },
   {
-    "id": "k-018",
-    "statement": "Neymar won the Golden Boot at the 2014 World Cup.",
-    "truth": false,
-    "explanation": "James Rodriguez won the Golden Boot with 6 goals for Colombia.",
-    "difficulty": "medium"
-  },
-  {
     "id": "k-019",
     "statement": "Harry Kane finished as top scorer at the 2018 World Cup.",
     "truth": true,
     "explanation": "Kane scored 6 goals to claim the Golden Boot.",
-    "difficulty": "medium"
-  },
-  {
-    "id": "k-020",
-    "statement": "Croatia won the 2018 World Cup.",
-    "truth": false,
-    "explanation": "France beat Croatia 4-2 in the final; Croatia finished second.",
     "difficulty": "medium"
   },
   {
@@ -203,20 +168,6 @@
     "difficulty": "easy"
   },
   {
-    "id": "k-030",
-    "statement": "England won the 2022 World Cup.",
-    "truth": false,
-    "explanation": "Argentina won; England were knocked out by France in the quarter-final.",
-    "difficulty": "easy"
-  },
-  {
-    "id": "k-031",
-    "statement": "The 2014 World Cup was held in Brazil.",
-    "truth": true,
-    "explanation": "Brazil hosted, with the final at the Maracanã in Rio.",
-    "difficulty": "easy"
-  },
-  {
     "id": "k-032",
     "statement": "Japan won the 2002 World Cup.",
     "truth": false,
@@ -231,13 +182,6 @@
     "difficulty": "easy"
   },
   {
-    "id": "k-034",
-    "statement": "The 2002 World Cup was held in Africa.",
-    "truth": false,
-    "explanation": "The 2002 tournament was in Asia; South Africa 2010 was the first African WC.",
-    "difficulty": "easy"
-  },
-  {
     "id": "k-035",
     "statement": "Cameroon has won the World Cup.",
     "truth": false,
@@ -245,24 +189,10 @@
     "difficulty": "easy"
   },
   {
-    "id": "k-036",
-    "statement": "Iceland beat Argentina at the 2018 World Cup.",
-    "truth": false,
-    "explanation": "The game ended 1-1 in the group stage, with Iceland saving a Messi penalty.",
-    "difficulty": "easy"
-  },
-  {
     "id": "k-037",
     "statement": "Pelé played for Brazil at the 1998 World Cup.",
     "truth": false,
     "explanation": "Pelé retired from international football in 1971.",
-    "difficulty": "easy"
-  },
-  {
-    "id": "k-038",
-    "statement": "Russia hosted the 2018 World Cup.",
-    "truth": true,
-    "explanation": "Russia hosted; France beat Croatia 4-2 in the Moscow final.",
     "difficulty": "easy"
   },
   {
@@ -301,13 +231,6 @@
     "difficulty": "medium"
   },
   {
-    "id": "k-044",
-    "statement": "Wales failed to qualify for the 2022 World Cup.",
-    "truth": false,
-    "explanation": "Wales qualified, reaching their first World Cup since 1958.",
-    "difficulty": "medium"
-  },
-  {
     "id": "k-045",
     "statement": "Kylian Mbappé won the Golden Ball at the 2018 World Cup.",
     "truth": false,
@@ -315,24 +238,10 @@
     "difficulty": "medium"
   },
   {
-    "id": "k-046",
-    "statement": "Mesut Özil scored for Germany in the 2014 World Cup final.",
-    "truth": false,
-    "explanation": "Mario Götze scored the only goal of the match.",
-    "difficulty": "medium"
-  },
-  {
     "id": "k-047",
     "statement": "The 2010 World Cup final was decided in regular time.",
     "truth": false,
     "explanation": "It went to extra time; Andres Iniesta scored in the 116th minute.",
-    "difficulty": "medium"
-  },
-  {
-    "id": "k-048",
-    "statement": "Iker Casillas captained Spain to victory at the 2010 World Cup.",
-    "truth": true,
-    "explanation": "Casillas was the goalkeeper and captain of the title-winning side.",
     "difficulty": "medium"
   },
   {
@@ -357,13 +266,6 @@
     "difficulty": "easy"
   },
   {
-    "id": "k-052",
-    "statement": "The 2022 World Cup final was held at Lusail Stadium.",
-    "truth": true,
-    "explanation": "Lusail Stadium in Qatar hosted the Argentina vs France final.",
-    "difficulty": "easy"
-  },
-  {
     "id": "k-053",
     "statement": "South Korea reached the final of the 2002 World Cup.",
     "truth": false,
@@ -382,20 +284,6 @@
     "statement": "Lionel Messi has played for Brazil at a World Cup.",
     "truth": false,
     "explanation": "Messi has only played for Argentina.",
-    "difficulty": "easy"
-  },
-  {
-    "id": "k-056",
-    "statement": "Greece won the 2010 World Cup.",
-    "truth": false,
-    "explanation": "Spain won 2010; Greece were eliminated in the group stage.",
-    "difficulty": "easy"
-  },
-  {
-    "id": "k-057",
-    "statement": "Wales hosted the 2010 World Cup.",
-    "truth": false,
-    "explanation": "South Africa hosted 2010.",
     "difficulty": "easy"
   },
   {
@@ -420,24 +308,10 @@
     "difficulty": "easy"
   },
   {
-    "id": "k-061",
-    "statement": "Cristiano Ronaldo scored a hat-trick against Spain at the 2018 World Cup.",
-    "truth": true,
-    "explanation": "Ronaldo scored 3 in a 3-3 group-stage draw, with the equaliser from a free kick.",
-    "difficulty": "easy"
-  },
-  {
     "id": "k-062",
     "statement": "Kylian Mbappé scored in both the 2018 and 2022 World Cup finals.",
     "truth": true,
     "explanation": "He scored 1 in 2018 and 3 in 2022.",
-    "difficulty": "easy"
-  },
-  {
-    "id": "k-063",
-    "statement": "Brazil won the 1990 World Cup.",
-    "truth": false,
-    "explanation": "West Germany won 1990, beating Argentina 1-0 in the final.",
     "difficulty": "easy"
   },
   {
@@ -462,20 +336,6 @@
     "difficulty": "medium"
   },
   {
-    "id": "k-068",
-    "statement": "Croatia finished 3rd at the 2022 World Cup.",
-    "truth": true,
-    "explanation": "Croatia beat Morocco 2-1 in the third-place playoff.",
-    "difficulty": "medium"
-  },
-  {
-    "id": "k-069",
-    "statement": "England finished 3rd at the 2018 World Cup.",
-    "truth": false,
-    "explanation": "England finished 4th, losing the third-place playoff to Belgium.",
-    "difficulty": "medium"
-  },
-  {
     "id": "k-070",
     "statement": "Senegal beat Spain in the opening match of the 2002 World Cup.",
     "truth": false,
@@ -487,13 +347,6 @@
     "statement": "Cafu captained Brazil to the 2002 World Cup title.",
     "truth": true,
     "explanation": "Cafu was the captain and the only player to appear in 3 consecutive WC finals (1994, 1998, 2002).",
-    "difficulty": "medium"
-  },
-  {
-    "id": "k-072",
-    "statement": "Hugo Lloris captained France at the 2022 World Cup.",
-    "truth": true,
-    "explanation": "Lloris captained France to the final, where they lost to Argentina.",
     "difficulty": "medium"
   },
   {
@@ -518,13 +371,6 @@
     "difficulty": "hard"
   },
   {
-    "id": "k-076",
-    "statement": "The Netherlands lost the 2010 World Cup final.",
-    "truth": true,
-    "explanation": "Spain beat the Netherlands 1-0 in extra time.",
-    "difficulty": "easy"
-  },
-  {
     "id": "k-077",
     "statement": "France won back-to-back World Cups in 2018 and 2022.",
     "truth": false,
@@ -532,31 +378,10 @@
     "difficulty": "easy"
   },
   {
-    "id": "k-078",
-    "statement": "Brazil won the 2018 World Cup.",
-    "truth": false,
-    "explanation": "France won 2018; Brazil were eliminated by Belgium in the quarter-final.",
-    "difficulty": "easy"
-  },
-  {
-    "id": "k-079",
-    "statement": "Argentina won the 2022 World Cup.",
-    "truth": true,
-    "explanation": "Argentina beat France on penalties in the final.",
-    "difficulty": "easy"
-  },
-  {
     "id": "k-080",
     "statement": "The 2002 World Cup was the first with 32 teams.",
     "truth": false,
     "explanation": "France 1998 was the first 32-team World Cup.",
-    "difficulty": "easy"
-  },
-  {
-    "id": "k-081",
-    "statement": "Portugal has won a World Cup.",
-    "truth": false,
-    "explanation": "Portugal's best finish is third place in 1966.",
     "difficulty": "easy"
   },
   {
@@ -581,55 +406,6 @@
     "difficulty": "easy"
   },
   {
-    "id": "k-086",
-    "statement": "Russia reached the semi-final at the 2018 World Cup.",
-    "truth": false,
-    "explanation": "Russia reached the quarter-final, losing to Croatia on penalties.",
-    "difficulty": "easy"
-  },
-  {
-    "id": "k-087",
-    "statement": "Lionel Scaloni was Argentina's manager at the 2022 World Cup.",
-    "truth": true,
-    "explanation": "Scaloni took over in 2018 and won the World Cup in his first major tournament as head coach.",
-    "difficulty": "easy"
-  },
-  {
-    "id": "k-088",
-    "statement": "Didier Deschamps was France's manager at the 2018 World Cup.",
-    "truth": true,
-    "explanation": "Deschamps led France to the 2018 title and the 2022 final.",
-    "difficulty": "easy"
-  },
-  {
-    "id": "k-089",
-    "statement": "France beat Croatia 3-2 in the 2018 World Cup final.",
-    "truth": false,
-    "explanation": "France won 4-2.",
-    "difficulty": "easy"
-  },
-  {
-    "id": "k-090",
-    "statement": "Ángel Di María scored in the 2022 World Cup final.",
-    "truth": true,
-    "explanation": "Di María scored Argentina's second goal in regulation before being substituted.",
-    "difficulty": "easy"
-  },
-  {
-    "id": "k-091",
-    "statement": "Goal-line technology was first used at the 2010 World Cup.",
-    "truth": false,
-    "explanation": "Goal-line technology debuted at the 2014 World Cup in Brazil.",
-    "difficulty": "medium"
-  },
-  {
-    "id": "k-092",
-    "statement": "VAR was first used at a World Cup in 2018.",
-    "truth": true,
-    "explanation": "The 2018 World Cup in Russia was the first to use Video Assistant Referee.",
-    "difficulty": "medium"
-  },
-  {
     "id": "k-093",
     "statement": "Tim Howard set a World Cup record with 16 saves in a single match at the 2014 tournament.",
     "truth": true,
@@ -641,20 +417,6 @@
     "statement": "James Rodríguez scored a memorable volley against Uruguay at the 2014 World Cup.",
     "truth": true,
     "explanation": "The chest-and-volley in the round of 16 won the FIFA Puskás Award.",
-    "difficulty": "medium"
-  },
-  {
-    "id": "k-095",
-    "statement": "Japan beat Belgium 3-2 at the 2018 World Cup.",
-    "truth": false,
-    "explanation": "Belgium beat Japan 3-2 in the round of 16, coming back from 2-0 down.",
-    "difficulty": "medium"
-  },
-  {
-    "id": "k-096",
-    "statement": "Costa Rica reached the semi-final at the 2014 World Cup.",
-    "truth": false,
-    "explanation": "Costa Rica reached the quarter-final, losing to the Netherlands on penalties.",
     "difficulty": "medium"
   },
   {
@@ -684,5 +446,145 @@
     "truth": true,
     "explanation": "Fontaine scored 13 for France at the 1958 World Cup; the record still stands.",
     "difficulty": "hard"
+  },
+  {
+    "id": "k-101",
+    "statement": "Brazil won the 1958 World Cup in Sweden.",
+    "truth": true,
+    "explanation": "Brazil beat hosts Sweden 5-2 in the Stockholm final, their first of 5 World Cup titles.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "k-102",
+    "statement": "Pelé was 17 years old when he won his first World Cup.",
+    "truth": true,
+    "explanation": "Pelé scored twice in the 1958 final at age 17, still the youngest player to score in a World Cup final.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "k-103",
+    "statement": "Brazil won the 1962 World Cup in Chile.",
+    "truth": true,
+    "explanation": "Brazil beat Czechoslovakia 3-1 in the Santiago final to win back-to-back titles.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "k-104",
+    "statement": "Pelé played in the 1962 World Cup final.",
+    "truth": false,
+    "explanation": "Pelé suffered a groin injury in the second group game and missed the rest of the tournament; Amarildo replaced him.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "k-105",
+    "statement": "England won the 1966 World Cup as hosts.",
+    "truth": true,
+    "explanation": "England beat West Germany 4-2 at Wembley, still the only major trophy in their men's football history.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "k-106",
+    "statement": "Geoff Hurst scored a hat-trick in the 1966 World Cup final.",
+    "truth": true,
+    "explanation": "Hurst remains the only player to score a hat-trick in a men's World Cup final.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "k-107",
+    "statement": "Brazil won the 1970 World Cup in Mexico.",
+    "truth": true,
+    "explanation": "Brazil beat Italy 4-1 in the Mexico City final, sealed by the famous Pelé-to-Carlos Alberto fourth goal.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "k-108",
+    "statement": "Pelé won 3 World Cups in his career.",
+    "truth": true,
+    "explanation": "Pelé won in 1958, 1962, and 1970, still the only player to win 3 World Cups.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "k-109",
+    "statement": "The 1970 World Cup final was Brazil vs Italy.",
+    "truth": true,
+    "explanation": "Brazil won 4-1 at the Estadio Azteca in Mexico City.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "k-110",
+    "statement": "West Germany won the 1974 World Cup as hosts.",
+    "truth": true,
+    "explanation": "West Germany beat the Netherlands 2-1 in the Munich final, ending Cruyff's Total Football side's tournament.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "k-111",
+    "statement": "Johan Cruyff won the Golden Ball at the 1974 World Cup.",
+    "truth": true,
+    "explanation": "Cruyff was named the tournament's best player even though the Netherlands lost the final.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "k-112",
+    "statement": "Argentina won the 1978 World Cup as hosts.",
+    "truth": true,
+    "explanation": "Argentina beat the Netherlands 3-1 in extra time in the Buenos Aires final.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "k-113",
+    "statement": "Mario Kempes was the top scorer at the 1978 World Cup.",
+    "truth": true,
+    "explanation": "Kempes scored 6 goals including 2 in the final to win the Golden Boot.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "k-114",
+    "statement": "Italy won the 1982 World Cup in Spain.",
+    "truth": true,
+    "explanation": "Italy beat West Germany 3-1 in the Madrid final, with Dino Zoff lifting the trophy at age 40.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "k-115",
+    "statement": "Paolo Rossi won the Golden Boot at the 1982 World Cup.",
+    "truth": true,
+    "explanation": "Rossi scored 6 goals, all in the knockout rounds, including a hat-trick against Brazil.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "k-116",
+    "statement": "Argentina won the 1986 World Cup in Mexico.",
+    "truth": true,
+    "explanation": "Argentina beat West Germany 3-2 in the Mexico City final, with Maradona as the tournament's defining player.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "k-117",
+    "statement": "Diego Maradona scored the Hand of God goal against England at the 1986 World Cup.",
+    "truth": true,
+    "explanation": "Maradona punched the ball into the net in the quarter-final; the referee allowed the goal.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "k-118",
+    "statement": "Diego Maradona's solo goal against England in 1986 was voted Goal of the Century.",
+    "truth": true,
+    "explanation": "FIFA voters chose the second of Maradona's two goals in that quarter-final as the best in World Cup history.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "k-119",
+    "statement": "West Germany won the 1990 World Cup in Italy.",
+    "truth": true,
+    "explanation": "West Germany beat Argentina 1-0 in Rome on an Andreas Brehme penalty in the 85th minute.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "k-120",
+    "statement": "Argentina lost their opening match to Cameroon at the 1990 World Cup.",
+    "truth": true,
+    "explanation": "Cameroon won 1-0 despite finishing the match with 9 men, one of the great World Cup upsets.",
+    "difficulty": "medium"
   }
 ]
