@@ -43,6 +43,7 @@
   -webkit-user-select: none;
   touch-action: none;
 }
+.game-root.on-start { min-height: 480px; }
 .game-root::before {
   /* center circle + halfway line */
   content: "";
@@ -78,12 +79,19 @@
   z-index: 1;
 }
 
-/* Persistent scoreline overlay */
-.sh-scoreline {
+/* HUD row: scoreline + quit, top of game-root during gameplay */
+.sh-hud-row {
   position: absolute;
   top: 12px;
   left: 12px;
   right: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 4;
+}
+.sh-scoreline {
+  flex: 1;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -91,9 +99,31 @@
   letter-spacing: 0.05em;
   font-size: 0.95rem;
   text-transform: uppercase;
-  z-index: 4;
   pointer-events: none;
 }
+.sh-quit-btn {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(0, 0, 0, 0.32);
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-family: inherit;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+.sh-quit-btn:hover { background: rgba(0, 0, 0, 0.5); }
+.sh-quit-btn:active { transform: scale(0.94); }
+.sh-quit-glyph { display: block; line-height: 1; }
 .sh-side {
   display: flex;
   align-items: center;
@@ -199,54 +229,80 @@
   letter-spacing: 0.02em;
   color: var(--sh-warn);
 }
-.sh-mode-btns {
+.sh-play-wrap {
+  width: 100%;
+  max-width: 320px;
+  margin-top: 8px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  width: 100%;
-  max-width: 300px;
-  margin-top: 12px;
+  gap: 10px;
 }
-.sh-mode-btn {
+.sh-play-btn {
   appearance: none;
   border: 0;
   cursor: pointer;
   font-family: inherit;
-  background: var(--sh-card);
-  color: var(--sh-card-fg);
-  padding: 16px 18px;
-  border-radius: 14px;
-  font-size: 1.05rem;
-  font-weight: 700;
+  background: var(--sh-warn);
+  color: #1a1a1a;
+  padding: 18px 22px;
+  border-radius: 16px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 4px;
-  min-height: 48px;
-  text-align: left;
-  transition: transform 0.12s ease, box-shadow 0.12s ease;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+  align-items: center;
+  gap: 3px;
+  min-height: 56px;
+  text-align: center;
+  transition: transform 0.1s ease, box-shadow 0.15s ease;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.26);
 }
-.sh-mode-btn:hover { transform: translateY(-1px); }
-.sh-mode-btn:active { transform: translateY(0); }
-.sh-mode-btn.is-disabled {
-  opacity: 0.62;
-  cursor: not-allowed;
+.sh-play-btn:hover { transform: translateY(-1px); box-shadow: 0 10px 26px rgba(0, 0, 0, 0.3); }
+.sh-play-btn:active { transform: translateY(0); }
+.sh-play-btn-main {
+  font-size: 1.18rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
-.sh-mode-btn-sub {
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: var(--muted);
-  letter-spacing: 0;
+.sh-play-btn-sub {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.6);
+  letter-spacing: 0.02em;
 }
-.sh-start-stats {
-  margin-top: 14px;
+
+/* Streak panel on start screen */
+.sh-streak-panel {
   display: flex;
-  gap: 18px;
-  font-size: 0.82rem;
-  opacity: 0.82;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.88);
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.22);
+  letter-spacing: 0.01em;
 }
-.sh-start-stats span { font-weight: 700; color: var(--sh-warn); }
+.sh-streak-panel.is-live {
+  background: rgba(245, 200, 66, 0.18);
+  border: 1px solid rgba(245, 200, 66, 0.45);
+  color: var(--sh-warn);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+.sh-streak-flame { font-size: 1.1em; line-height: 1; }
+.sh-streak-num {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+  font-weight: 400;
+}
+.sh-streak-num-small {
+  font-weight: 800;
+  color: var(--sh-warn);
+  font-size: 0.95rem;
+}
+.sh-streak-label { font-weight: 600; }
 
 /* ===== Your-kick screen ===== */
 .screen-your-kick {
@@ -454,17 +510,17 @@
   z-index: 2;
 }
 .sh-bk-row.is-running {
-  animation: sh-bk-fall 12000ms linear forwards;
+  animation: sh-bk-fall 14000ms linear forwards;
 }
 .sh-bk-row.is-paused {
   animation-play-state: paused !important;
 }
 @keyframes sh-bk-fall {
-  /* Drop in (~3.25s), pause centered above the goal-line (2s), drop out (~6.75s).
-     Pause percentages are tuned so the fall speed before and after the pause is equal. */
+  /* Drop in (~3.25s), pause centered above the goal-line (4s), drop out (~6.75s).
+     Pause percentages tuned so the fall speed before and after the pause is equal. */
   0%   { transform: translate(-50%, -110%); }
-  27%  { transform: translate(-50%, 40px); }
-  44%  { transform: translate(-50%, 40px); }
+  23%  { transform: translate(-50%, 40px); }
+  52%  { transform: translate(-50%, 40px); }
   100% { transform: translate(-50%, calc(100% + 380px)); }
 }
 .sh-bk-tile {
@@ -623,6 +679,29 @@
   letter-spacing: 0.06em;
   line-height: 1.6;
   margin: 6px 0 10px;
+}
+
+/* Streak status line on result screen */
+.sh-streak-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.01em;
+  margin: 0 0 4px;
+}
+.sh-streak-line.is-live {
+  background: rgba(245, 200, 66, 0.2);
+  border: 1px solid rgba(245, 200, 66, 0.55);
+  color: var(--sh-warn);
+}
+.sh-streak-line.is-ended {
+  background: rgba(212, 51, 44, 0.18);
+  border: 1px solid rgba(212, 51, 44, 0.5);
+  color: rgba(255, 200, 195, 1);
 }
 .sh-result-grid .grid-row { display: flex; align-items: center; gap: 10px; justify-content: space-between; }
 .sh-result-grid .grid-label { font-size: 0.78rem; opacity: 0.72; letter-spacing: 0.12em; text-transform: uppercase; font-family: var(--font-body); }

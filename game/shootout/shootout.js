@@ -2,13 +2,12 @@
   'use strict';
 
   // ===== Constants =====
-  var LAUNCH_DATE_UTC = '2026-05-25';
-  var STORAGE_KEY = 'pregame.shootout.v1';
+  var STORAGE_KEY = 'pregame.shootout.v2';
   var KICKS_URL = '/game/shootout/data/kicks.json';
   var BREAKAWAYS_URL = '/game/shootout/data/breakaways.json';
   var KICKS_PER_HALF = 5;
-  var KICK_TIMER_MS = 6500;
-  var BREAKAWAY_DURATION_MS = 12000;
+  var KICK_TIMER_MS = 5200;
+  var BREAKAWAY_DURATION_MS = 14000;
   var BREAKAWAY_READ_DELAY_MS = 1000;
   var REVEAL_MS = 400;
   var BANNER_MS = 800;
@@ -18,8 +17,10 @@
   var pools = { kicks: null, breakaways: null };
   var match = null;
   var root = null;
+  // Session streak: in-memory only, resets to 0 on page refresh.
+  var sessionStreak = 0;
 
-  // ===== Storage =====
+  // ===== Storage (cross-session lifetime stats only — session streak is in-memory) =====
   var Storage = {
     load: function () {
       try {
@@ -39,17 +40,9 @@
   };
   function defaultStore() {
     return {
-      daily: {
-        lastPlayedDate: null,
-        todayResult: null,
-        currentStreak: 0,
-        longestStreak: 0,
-      },
-      practice: {
-        personalBest: { you: 0, them: 0 },
-        totalPlays: 0,
-        totalWins: 0,
-      },
+      longestStreak: 0,
+      totalWins: 0,
+      totalLosses: 0,
     };
   }
 
@@ -73,23 +66,8 @@
     return a;
   }
 
-  // ===== Date helpers (UTC) =====
-  function todayUtcKey() {
-    var d = new Date();
-    return d.getUTCFullYear() + '-' +
-      pad2(d.getUTCMonth() + 1) + '-' +
-      pad2(d.getUTCDate());
-  }
-  function todaySeed() {
-    return parseInt(todayUtcKey().replace(/-/g, ''), 10);
-  }
-  function dailyNumber() {
-    var launchMs = Date.parse(LAUNCH_DATE_UTC + 'T00:00:00Z');
-    var nowMs = Date.parse(todayUtcKey() + 'T00:00:00Z');
-    return Math.floor((nowMs - launchMs) / 86400000) + 1;
-  }
+  // ===== Number helpers =====
   function pad2(n) { return n < 10 ? '0' + n : '' + n; }
-  function pad3(n) { return n < 10 ? '00' + n : (n < 100 ? '0' + n : '' + n); }
 
   // ===== Pool loader =====
   function loadPools() {
@@ -103,20 +81,20 @@
   }
 
   // ===== Match construction =====
-  function createMatch(mode) {
-    var seed = mode === 'daily' ? todaySeed() : Math.floor(Math.random() * 0x7fffffff);
+  function createMatch() {
+    var seed = Math.floor(Math.random() * 0x7fffffff);
     var rng = mulberry32(seed);
     var allKicks = shuffle(pools.kicks, rng);
     var allBreakaways = shuffle(pools.breakaways, rng);
     return {
-      mode: mode,
       seed: seed,
-      dailyNumber: mode === 'daily' ? dailyNumber() : null,
       kicks: allKicks.slice(0, KICKS_PER_HALF),
       breakaways: allBreakaways.slice(0, KICKS_PER_HALF),
       remainingKicks: allKicks.slice(KICKS_PER_HALF),
       remainingBreakaways: allBreakaways.slice(KICKS_PER_HALF),
       rng: rng,
+      streakBefore: sessionStreak,
+      streakAfter: sessionStreak,
       you: [],
       them: [],
       sdYou: [],
@@ -151,13 +129,20 @@
   function clearRoot() { while (root.firstChild) root.removeChild(root.firstChild); }
   function sum(arr) { return arr.reduce(function (a, b) { return a + b; }, 0); }
 
-  // ===== HUD (scoreline + counter) =====
+  // ===== HUD (scoreline + counter + quit) =====
   function renderHud() {
     var youScore = sum(match.you) + sum(match.sdYou);
     var themScore = sum(match.them) + sum(match.sdThem);
-    var hud = el('div', { class: 'sh-scoreline' }, [
-      pipBlock('YOU', match.you, match.sdYou, youScore),
-      pipBlock('GK',  match.them, match.sdThem, themScore),
+    var quitBtn = el('button', { class: 'sh-quit-btn', type: 'button', 'aria-label': 'Quit match' }, [
+      el('span', { class: 'sh-quit-glyph', text: '✕' }),
+    ]);
+    quitBtn.addEventListener('click', quitMatch);
+    var hud = el('div', { class: 'sh-hud-row' }, [
+      el('div', { class: 'sh-scoreline' }, [
+        pipBlock('YOU',  match.you, match.sdYou, youScore),
+        pipBlock('THEY', match.them, match.sdThem, themScore),
+      ]),
+      quitBtn,
     ]);
     var counter = el('div', { class: 'sh-kick-counter' });
     if (match.phase === 'sd' || match.sdRound > 0) {
@@ -220,46 +205,33 @@
   function renderStart() {
     match = null;
     clearRoot();
+    // Shorter arena on the start screen — gameplay needs more room than the title/CTA stack.
+    if (root) root.classList.add('on-start');
     var store = Storage.load();
-    var dailyDone = store.daily.lastPlayedDate === todayUtcKey() && store.daily.todayResult;
 
-    var dailyBtn = el('button', {
-      class: 'sh-mode-btn' + (dailyDone ? ' is-disabled' : ''),
-      type: 'button',
-    }, [
-      el('span', { text: dailyDone ? "Today's Shootout · played" : "Today's Shootout" }),
-      el('span', {
-        class: 'sh-mode-btn-sub',
-        text: dailyDone
-          ? 'Today: ' + scoreString(store.daily.todayResult) + ' ' + (store.daily.todayResult.won ? 'W' : 'L') + '. Back tomorrow.'
-          : 'Same cards for everyone playing today. Daily #' + pad3(dailyNumber()) + '.',
-      }),
+    var playBtn = el('button', { class: 'sh-play-btn', type: 'button' }, [
+      el('span', { class: 'sh-play-btn-main', text: sessionStreak > 0 ? 'Keep the streak going' : 'Play' }),
+      el('span', { class: 'sh-play-btn-sub', text: '10 cards. One try per match.' }),
     ]);
-    if (!dailyDone) {
-      dailyBtn.addEventListener('click', function () { startMatch('daily'); });
-    } else {
-      dailyBtn.addEventListener('click', function () { showReplayResult(store.daily.todayResult); });
+    playBtn.addEventListener('click', function () { startMatch(); });
+
+    // Streak panel: shows current run prominently if active, otherwise lifetime best if any.
+    var streakPanel = null;
+    if (sessionStreak > 0) {
+      streakPanel = el('div', { class: 'sh-streak-panel is-live' }, [
+        el('span', { class: 'sh-streak-flame', text: '🔥' }),
+        el('span', { class: 'sh-streak-num', text: String(sessionStreak) }),
+        el('span', { class: 'sh-streak-label', text: sessionStreak === 1 ? 'win in a row' : 'wins in a row' }),
+      ]);
+    } else if (store.longestStreak > 0) {
+      streakPanel = el('div', { class: 'sh-streak-panel' }, [
+        el('span', { class: 'sh-streak-label', text: 'Best streak this device: ' }),
+        el('span', { class: 'sh-streak-num-small', text: String(store.longestStreak) }),
+      ]);
     }
 
-    var hasPracticePb = store.practice.totalPlays > 0 && (store.practice.personalBest.you > 0 || store.practice.personalBest.them > 0);
-    var practiceSub = hasPracticePb
-      ? 'Random cards. Unlimited plays. Best: ' + store.practice.personalBest.you + '-' + store.practice.personalBest.them + '.'
-      : 'Random cards. Unlimited plays. Warm up here.';
-    var practiceBtn = el('button', { class: 'sh-mode-btn', type: 'button' }, [
-      el('span', { text: 'Practice' }),
-      el('span', { class: 'sh-mode-btn-sub', text: practiceSub }),
-    ]);
-    practiceBtn.addEventListener('click', function () { startMatch('practice'); });
-
-    var hasPlayed = !!store.daily.lastPlayedDate || store.practice.totalPlays > 0;
-    var stats = hasPlayed ? el('div', { class: 'sh-start-stats' }, [
-      el('span', { html: 'Daily streak <span>' + store.daily.currentStreak + '</span>' }),
-      el('span', { html: 'Best <span>' + store.daily.longestStreak + '</span>' }),
-      el('span', { html: 'Practice wins <span>' + store.practice.totalWins + '/' + store.practice.totalPlays + '</span>' }),
-    ]) : null;
-
     var screen = el('div', { class: 'screen screen-start' }, [
-      startHeroSvg(),
+      startHeroEl(),
       el('div', { class: 'sh-start-eyebrow', text: 'Pregame · Shootout' }),
       el('h1', { class: 'sh-start-title', text: '5 kicks.\n5 saves.' }),
       el('div', { class: 'sh-start-rules' }, [
@@ -272,43 +244,29 @@
           document.createTextNode(' — tap the odd one out in time.'),
         ]),
       ]),
-      el('div', { class: 'sh-mode-btns' }, [dailyBtn, practiceBtn]),
-      stats,
+      streakPanel,
+      el('div', { class: 'sh-play-wrap' }, [playBtn]),
     ]);
     root.appendChild(screen);
   }
 
-  function startHeroSvg() {
-    // System soccer-ball emoji at hero size. Renders as the platform's own crafted glyph
-    // (3D-shaded ball on iOS/macOS, equivalent on Android/Windows). No SVG to break.
+  function startHeroEl() {
+    // System soccer-ball emoji at hero size. Platform-native glyph, no custom SVG.
     return el('div', { class: 'sh-start-hero', 'aria-hidden': 'true', text: '⚽' });
-  }
-  function scoreString(result) {
-    return sum(result.you || []) + sum(result.sd || []) + '-' +
-      sum(result.them || []) + sum(result.sdThem || []);
-  }
-  function showReplayResult(todayResult) {
-    // Synthesize a finished match shape from the stored result so the result screen renders.
-    match = {
-      mode: 'daily',
-      dailyNumber: dailyNumber(),
-      you: todayResult.you || [],
-      them: todayResult.them || [],
-      sdYou: todayResult.sd || [],
-      sdThem: todayResult.sdThem || [],
-      step: KICKS_PER_HALF,
-      sdRound: (todayResult.sd || []).length,
-      phase: 'result',
-      result: todayResult.won ? 'W' : 'L',
-    };
-    renderResult({ alreadyPlayed: true });
   }
 
   // ===== Match flow =====
-  function startMatch(mode) {
-    match = createMatch(mode);
+  function startMatch() {
+    if (root) root.classList.remove('on-start');
+    match = createMatch();
     match.phase = 'your';
     renderYourKick();
+  }
+
+  function quitMatch() {
+    // Quit returns to start without ending the streak — the match simply didn't happen.
+    match = null;
+    renderStart();
   }
 
   function renderYourKick() {
@@ -553,48 +511,30 @@
   function finishMatch(result) {
     match.phase = 'result';
     match.result = result;
+    match.streakBefore = sessionStreak;
+    if (result === 'W') {
+      sessionStreak += 1;
+    } else {
+      sessionStreak = 0;
+    }
+    match.streakAfter = sessionStreak;
     persistMatch();
-    renderResult({ alreadyPlayed: false });
+    renderResult();
   }
   function persistMatch() {
     var store = Storage.load();
     var won = match.result === 'W';
-    if (match.mode === 'daily') {
-      store.daily.lastPlayedDate = todayUtcKey();
-      store.daily.todayResult = {
-        won: won,
-        you: match.you.slice(),
-        them: match.them.slice(),
-        sd: match.sdYou.slice(),
-        sdThem: match.sdThem.slice(),
-      };
-      if (won) {
-        store.daily.currentStreak += 1;
-        if (store.daily.currentStreak > store.daily.longestStreak) {
-          store.daily.longestStreak = store.daily.currentStreak;
-        }
-      } else {
-        store.daily.currentStreak = 0;
-      }
-    } else {
-      store.practice.totalPlays += 1;
-      if (won) store.practice.totalWins += 1;
-      var yourScore = sum(match.you) + sum(match.sdYou);
-      var themScore = sum(match.them) + sum(match.sdThem);
-      var pb = store.practice.personalBest;
-      // PB defined as best (your-score, then lowest opponent score).
-      if (yourScore > pb.you || (yourScore === pb.you && themScore < pb.them)) {
-        store.practice.personalBest = { you: yourScore, them: themScore };
-      }
-    }
+    if (won) store.totalWins += 1;
+    else     store.totalLosses += 1;
+    if (sessionStreak > store.longestStreak) store.longestStreak = sessionStreak;
     Storage.save(store);
   }
 
-  function renderResult(opts) {
+  function renderResult() {
     clearRoot();
     var youScore = sum(match.you) + sum(match.sdYou);
     var themScore = sum(match.them) + sum(match.sdThem);
-    var won = match.result === 'W' || (match.result === null && youScore > themScore);
+    var won = match.result === 'W';
     var store = Storage.load();
 
     var verdict = el('h1', {
@@ -602,38 +542,26 @@
       text: won ? 'WIN' : 'LOSS',
     });
     var scoreLine = el('div', { class: 'sh-result-score', text: youScore + ' - ' + themScore });
-
     var grid = buildShareGridDom();
-    var stats = match.mode === 'daily'
-      ? el('div', { class: 'sh-result-stats' }, [
-          el('span', { html: 'Streak <strong>' + store.daily.currentStreak + '</strong>' }),
-          el('span', { html: 'Best <strong>' + store.daily.longestStreak + '</strong>' }),
-        ])
-      : el('div', { class: 'sh-result-stats' }, [
-          el('span', { html: 'PB <strong>' + store.practice.personalBest.you + '-' + store.practice.personalBest.them + '</strong>' }),
-          el('span', { html: 'Wins <strong>' + store.practice.totalWins + '/' + store.practice.totalPlays + '</strong>' }),
-        ]);
 
-    var rematchBtn;
-    if (match.mode === 'daily' && opts.alreadyPlayed) {
-      rematchBtn = el('button', {
-        class: 'sh-rematch is-disabled',
-        type: 'button',
-        text: 'Daily played · back tomorrow',
-      });
-    } else if (match.mode === 'daily') {
-      rematchBtn = el('button', {
-        class: 'sh-rematch is-disabled',
-        type: 'button',
-        text: 'Come back tomorrow',
-      });
-    } else {
-      rematchBtn = el('button', { class: 'sh-rematch', type: 'button', text: 'Rematch' });
-      rematchBtn.addEventListener('click', function () { startMatch('practice'); });
+    // Streak status line: leads the result. "X wins in a row" on win, "Streak ended at X" on loss with a prior run.
+    var streakLine = null;
+    if (won) {
+      streakLine = el('div', { class: 'sh-streak-line is-live' }, [
+        el('span', { class: 'sh-streak-flame', text: '🔥' }),
+        el('span', { text: match.streakAfter + (match.streakAfter === 1 ? ' win in a row' : ' wins in a row') }),
+      ]);
+    } else if (match.streakBefore > 0) {
+      streakLine = el('div', { class: 'sh-streak-line is-ended' }, [
+        el('span', { text: 'Streak ended at ' + match.streakBefore }),
+      ]);
     }
 
-    var shareBtn = el('button', { class: 'sh-share', type: 'button', text: 'Share result' });
-    shareBtn.addEventListener('click', function () { copyShare(shareBtn); });
+    var rematchBtn = el('button', { class: 'sh-rematch', type: 'button', text: won ? 'Play next' : 'Play again' });
+    rematchBtn.addEventListener('click', startMatch);
+
+    var shareBtn = el('button', { class: 'sh-share', type: 'button', text: nativeShareSupported() ? 'Share' : 'Copy result' });
+    shareBtn.addEventListener('click', function () { shareResult(shareBtn); });
 
     var backBtn = el('button', { class: 'sh-share', type: 'button', text: '← Back to start' });
     backBtn.addEventListener('click', function () { renderStart(); });
@@ -645,12 +573,10 @@
       el('a', { href: '/watch-parties', text: 'Find a watch party near you' }),
     ]);
 
-    var notice = match.mode === 'daily'
-      ? el('p', { class: 'sh-daily-notice', text: 'Daily #' + pad3(match.dailyNumber) + ' · same cards for everyone playing today.' })
-      : null;
+    var bestLine = store.longestStreak > 0 ? el('p', { class: 'sh-daily-notice', text: 'Best streak this device: ' + store.longestStreak }) : null;
 
     var screen = el('div', { class: 'screen screen-result' }, [
-      verdict, scoreLine, grid, stats, actions, crossLinks, notice,
+      streakLine, verdict, scoreLine, grid, actions, crossLinks, bestLine,
     ]);
     root.appendChild(screen);
     rematchBtn.focus();
@@ -665,7 +591,7 @@
         el('span', { text: youRow }),
       ]),
       el('div', { class: 'grid-row' }, [
-        el('span', { class: 'grid-label', text: 'GK' }),
+        el('span', { class: 'grid-label', text: 'THEY' }),
         el('span', { text: themRow }),
       ]),
     ]);
@@ -675,30 +601,43 @@
   function buildShareText() {
     var youScore = sum(match.you) + sum(match.sdYou);
     var themScore = sum(match.them) + sum(match.sdThem);
-    var won = youScore > themScore;
+    var won = match.result === 'W';
     var youRow = match.you.map(emoji).concat(match.sdYou.map(emoji)).join('');
     var themRow = match.them.map(emoji).concat(match.sdThem.map(emoji)).join('');
-    var store = Storage.load();
-    var lines = [];
-    if (match.mode === 'daily') {
-      lines.push('Pregame Shootout - Daily #' + pad3(match.dailyNumber));
-      lines.push('Final: ' + youScore + '-' + themScore + ' ' + (won ? 'W' : 'L'));
-      lines.push('You: ' + youRow);
-      lines.push('GK:  ' + themRow);
-      lines.push('Streak: ' + store.daily.currentStreak);
-    } else {
-      lines.push('Pregame Shootout - Practice - best ' +
-        store.practice.personalBest.you + '-' + store.practice.personalBest.them + ' W');
-      lines.push('This run: ' + youScore + '-' + themScore + ' ' + (won ? 'W' : 'L'));
-      lines.push('You: ' + youRow);
-      lines.push('GK:  ' + themRow);
+    var lines = ['Pregame Shootout'];
+    if (won) {
+      lines.push('🔥 ' + match.streakAfter + (match.streakAfter === 1 ? ' win in a row' : ' wins in a row'));
+    } else if (match.streakBefore > 0) {
+      lines.push('💔 Streak ended at ' + match.streakBefore);
     }
+    lines.push('Final: ' + youScore + '-' + themScore + ' ' + (won ? 'W' : 'L'));
+    lines.push('You:  ' + youRow);
+    lines.push('They: ' + themRow);
     lines.push('wc26pregame.com');
     return lines.join('\n');
   }
 
-  function copyShare(btn) {
+  function nativeShareSupported() {
+    // Restrict to touch contexts where the OS share sheet is the right surface. On desktop
+    // most browsers ship navigator.share but the sheet is awkward; clipboard is friendlier.
+    return typeof navigator !== 'undefined' && typeof navigator.share === 'function'
+      && (navigator.maxTouchPoints > 0 || /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent || ''));
+  }
+
+  function shareResult(btn) {
     var text = buildShareText();
+    var shareData = { title: 'Pregame Shootout', text: text };
+    if (nativeShareSupported()) {
+      navigator.share(shareData).catch(function (err) {
+        // User cancelled (AbortError) is silent; any other failure falls back to clipboard.
+        if (!err || err.name !== 'AbortError') copyShareToClipboard(text, btn);
+      });
+      return;
+    }
+    copyShareToClipboard(text, btn);
+  }
+
+  function copyShareToClipboard(text, btn) {
     function done() {
       var orig = btn.textContent;
       btn.textContent = 'Copied ✓';
