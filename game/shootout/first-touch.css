@@ -2,29 +2,21 @@
    Newbie on-ramp. Lives alongside Shootout in #game-root.
    Pairs with /game/shootout/shootout.css (reuses .sh- primitives + vars). */
 
-/* ===== Chooser CTA (sits below the yellow PLAY button on the start screen) ===== */
-.ft-chooser-secondary {
-  appearance: none;
-  font-family: inherit;
-  cursor: pointer;
+/* ===== Chooser secondary CTA — outlined override of .sh-play-btn =====
+   Inherits primary's dimensions (padding, radius, min-height, gap, main/sub layout)
+   so the two buttons have matching shape; only color treatment differs. */
+.ft-play-secondary {
   background: transparent;
   color: var(--sh-warn);
   border: 2px solid var(--sh-warn);
-  padding: 12px 18px;
-  border-radius: 14px;
-  font-size: 0.92rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  min-height: 44px;
-  width: 100%;
-  text-align: center;
-  margin-top: 4px;
-  transition: background 0.15s ease, transform 0.1s ease;
+  box-shadow: none;
 }
-.ft-chooser-secondary:hover { background: rgba(245, 200, 66, 0.12); }
-.ft-chooser-secondary:active { transform: translateY(1px); }
-@media (min-width: 640px) {
-  .ft-chooser-secondary { width: 50%; align-self: center; }
+.ft-play-secondary:hover {
+  background: rgba(245, 200, 66, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+}
+.ft-play-secondary .sh-play-btn-sub {
+  color: rgba(255, 255, 255, 0.78);
 }
 
 /* ===== In-match card screen (small spacing tweaks, reuses sh-claim-card) ===== */

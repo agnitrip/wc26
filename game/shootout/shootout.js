@@ -310,8 +310,9 @@
     ]);
     playBtn.addEventListener('click', function () { startMatch(); });
 
-    var firstTouchBtn = el('button', { class: 'ft-chooser-secondary', type: 'button' }, [
-      el('span', { text: 'New to soccer? Start with First Touch →' }),
+    var firstTouchBtn = el('button', { class: 'sh-play-btn ft-play-secondary', type: 'button' }, [
+      el('span', { class: 'sh-play-btn-main', text: 'Play First Touch' }),
+      el('span', { class: 'sh-play-btn-sub', text: 'New to soccer? Start here.' }),
     ]);
     firstTouchBtn.addEventListener('click', function () {
       if (window.PregameFirstTouch && typeof window.PregameFirstTouch.start === 'function') {
