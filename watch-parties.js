@@ -91,6 +91,7 @@
       stadiumChip +
       '<div class="venue-desc">' + v.description + '</div>' +
       sourceHtml +
+      '<a class="venue-shootout" href="/game/shootout"><span aria-hidden="true">🎮</span> Heading here? Warm up with the Shootout <span aria-hidden="true">→</span></a>' +
       '</div>';
   }
 
