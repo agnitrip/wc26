@@ -2157,19 +2157,22 @@ footer a:hover { color: var(--accent); }
   line-height: 1;
 }
 
-/* Secondary: warm-yellow Shootout pill (ties to the "26" wordmark color).
-   Hardcoded dark text — --warm-deep flips to yellow in dark mode and
-   would render invisible on yellow. */
+/* Secondary: outlined-yellow Shootout pill on transparent.
+   Quieter than solid yellow so it doesn't double up with the
+   solid-yellow nav pill at the top of the screen. Same hue, less
+   visual weight — the white primary CTA stays the winner in the
+   hero, while Shootout remains visibly present. */
 .hero-cta-secondary {
-  background: #f5c842;
-  color: #3d2c00;
-  border: none;
-  box-shadow: 0 4px 18px rgba(245, 200, 66, 0.35);
+  background: transparent;
+  color: #f5c842;
+  border: 2px solid #f5c842;
+  padding: 11px 20px; /* tighter to match optical weight of the filled primary */
+  box-shadow: none;
 }
 .hero-cta-secondary:hover {
-  background: #e6b220;
+  background: #f5c842;
   color: #3d2c00;
-  box-shadow: 0 8px 24px rgba(245, 200, 66, 0.5);
+  box-shadow: 0 6px 20px rgba(245, 200, 66, 0.4);
 }
 
 @media (max-width: 600px) {
