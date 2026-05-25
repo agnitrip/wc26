@@ -1090,5 +1090,677 @@
     "imposter": "Romário",
     "explanation": "Romário won the Golden Ball at 1994 but Stoichkov and Salenko tied for the Golden Boot with 6 goals; Romário scored 5.",
     "difficulty": "hard"
+  },
+  {
+    "id": "b-101",
+    "category_label": "NOT a country that has won the FIFA Women's World Cup",
+    "in_set": [
+      "Germany",
+      "Japan",
+      "Norway"
+    ],
+    "imposter": "Sweden",
+    "explanation": "Sweden have reached multiple Women's WC semi-finals and were 2003 runners-up but have never won the title.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "b-102",
+    "category_label": "NOT a player who has won the FIFA Women's World Cup with Germany",
+    "in_set": [
+      "Birgit Prinz",
+      "Nadine Angerer",
+      "Renate Lingor"
+    ],
+    "imposter": "Alexandra Popp",
+    "explanation": "Popp has been a Germany regular since 2010 but Germany have not won a Women's WC since 2007.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "b-103",
+    "category_label": "NOT a Brazilian player who has won a Men's World Cup",
+    "in_set": [
+      "Pelé",
+      "Garrincha",
+      "Carlos Alberto"
+    ],
+    "imposter": "Sócrates",
+    "explanation": "Sócrates captained Brazil at the 1982 and 1986 WCs but they exited in the second round and quarter-final.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "b-104",
+    "category_label": "NOT a player who won the 1958 World Cup with Brazil",
+    "in_set": [
+      "Pelé",
+      "Garrincha",
+      "Didi"
+    ],
+    "imposter": "Tostão",
+    "explanation": "Tostão was 11 in 1958; he won the World Cup with Brazil in 1970.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "b-105",
+    "category_label": "NOT a country that had won 2 or more World Cups before 1970",
+    "in_set": [
+      "Italy",
+      "Uruguay",
+      "Brazil"
+    ],
+    "imposter": "Argentina",
+    "explanation": "Argentina's first World Cup title was 1978; before 1970 they were 1930 runners-up only.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "b-106",
+    "category_label": "NOT a player in the Cruyff-era Dutch Total Football squad of 1974",
+    "in_set": [
+      "Johan Cruyff",
+      "Johan Neeskens",
+      "Ruud Krol"
+    ],
+    "imposter": "Marco van Basten",
+    "explanation": "Van Basten was 9 years old in 1974; his Netherlands debut came in the 1980s.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "b-107",
+    "category_label": "NOT a manager who has won a Men's World Cup",
+    "in_set": [
+      "Carlos Bilardo",
+      "Vicente del Bosque",
+      "Marcello Lippi"
+    ],
+    "imposter": "Sven-Göran Eriksson",
+    "explanation": "Eriksson managed England at 2002 and 2006 and Ivory Coast at 2010 without lifting the trophy.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "b-108",
+    "category_label": "NOT an African country that has reached a Men's World Cup quarter-final",
+    "in_set": [
+      "Cameroon",
+      "Senegal",
+      "Ghana"
+    ],
+    "imposter": "Nigeria",
+    "explanation": "Nigeria have reached the round of 16 three times (1994, 1998, 2014) but never gone further.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "b-109",
+    "category_label": "NOT a country that has hosted a FIFA Women's World Cup",
+    "in_set": [
+      "China",
+      "Sweden",
+      "Germany"
+    ],
+    "imposter": "Brazil",
+    "explanation": "Brazil hosted men's WCs in 1950 and 2014 but has never hosted the Women's WC.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "b-110",
+    "category_label": "NOT a player who has won the FIFA Women's World Cup Golden Ball",
+    "in_set": [
+      "Carli Lloyd",
+      "Megan Rapinoe",
+      "Marta"
+    ],
+    "imposter": "Alex Morgan",
+    "explanation": "Morgan won Silver Boot at 2019 but has never won the tournament's Golden Ball.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "b-111",
+    "category_label": "NOT a player who has scored 10 or more goals across Men's World Cups",
+    "in_set": [
+      "Miroslav Klose",
+      "Ronaldo",
+      "Gerd Müller"
+    ],
+    "imposter": "Diego Maradona",
+    "explanation": "Maradona scored 8 World Cup goals across his 4 tournaments.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "b-112",
+    "category_label": "NOT a country that has lost a Men's World Cup final since 1970",
+    "in_set": [
+      "Netherlands",
+      "West Germany",
+      "Italy"
+    ],
+    "imposter": "Belgium",
+    "explanation": "Belgium's best WC finish is third place at 2018; they have never reached a final.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "b-113",
+    "category_label": "NOT a 2026 World Cup host city",
+    "in_set": [
+      "Atlanta",
+      "Boston",
+      "Philadelphia"
+    ],
+    "imposter": "Chicago",
+    "explanation": "Chicago bid in early rounds but was not among the 11 US host cities selected.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "b-114",
+    "category_label": "NOT a 2026 World Cup host city in the United States",
+    "in_set": [
+      "Kansas City",
+      "Houston",
+      "Seattle"
+    ],
+    "imposter": "Washington DC",
+    "explanation": "DC bid for 2026 but was not selected; the closest US host city is Philadelphia.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "b-115",
+    "category_label": "NOT a stadium that will host 2026 World Cup matches",
+    "in_set": [
+      "MetLife Stadium",
+      "SoFi Stadium",
+      "Lumen Field"
+    ],
+    "imposter": "Soldier Field",
+    "explanation": "Soldier Field is in Chicago, which is not a 2026 host city.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "b-116",
+    "category_label": "NOT a manager who has led a national team at 4 or more Men's World Cups",
+    "in_set": [
+      "Carlos Alberto Parreira",
+      "Helmut Schön",
+      "Bora Milutinović"
+    ],
+    "imposter": "Sir Alf Ramsey",
+    "explanation": "Ramsey managed England at just 1966 (won) and 1970 (quarter-final).",
+    "difficulty": "hard"
+  },
+  {
+    "id": "b-117",
+    "category_label": "NOT a player who has captained a country in a World Cup final",
+    "in_set": [
+      "Lionel Messi",
+      "Hugo Lloris",
+      "Cafu"
+    ],
+    "imposter": "Andres Iniesta",
+    "explanation": "Iniesta scored the 2010 final winner but Iker Casillas was Spain's captain.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "b-118",
+    "category_label": "NOT a player who has lifted a Men's World Cup trophy as captain",
+    "in_set": [
+      "Lionel Messi",
+      "Iker Casillas",
+      "Diego Maradona"
+    ],
+    "imposter": "Ronaldo Nazário",
+    "explanation": "Ronaldo won in 1994 and 2002 but Dunga and Cafu were the respective captains.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "b-119",
+    "category_label": "NOT a goalkeeper who has started a Men's World Cup final",
+    "in_set": [
+      "Hugo Lloris",
+      "Manuel Neuer",
+      "Dino Zoff"
+    ],
+    "imposter": "Lev Yashin",
+    "explanation": "Yashin played at 4 World Cups for the USSR but their best finish was fourth in 1966.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "b-120",
+    "category_label": "NOT a player who has won a Men's World Cup Golden Ball",
+    "in_set": [
+      "Lionel Messi",
+      "Diego Forlán",
+      "Diego Maradona"
+    ],
+    "imposter": "Cristiano Ronaldo",
+    "explanation": "Ronaldo has won 5 Ballons d'Or but has never won the World Cup's Golden Ball.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "b-121",
+    "category_label": "NOT a country that has won a FIFA Confederations Cup",
+    "in_set": [
+      "France",
+      "Brazil",
+      "Germany"
+    ],
+    "imposter": "Spain",
+    "explanation": "Spain reached the 2013 Confederations Cup final but lost 3-0 to Brazil.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "b-122",
+    "category_label": "NOT a country that has reached a FIFA U-20 World Cup final",
+    "in_set": [
+      "Argentina",
+      "Brazil",
+      "Ghana"
+    ],
+    "imposter": "Mexico",
+    "explanation": "Mexico's best U-20 finish is third place; they have reached and won U-17 finals but not the U-20.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "b-123",
+    "category_label": "NOT a country that has won a FIFA U-17 World Cup",
+    "in_set": [
+      "Brazil",
+      "Nigeria",
+      "Mexico"
+    ],
+    "imposter": "Argentina",
+    "explanation": "Argentina have won U-20 WCs six times but their best U-17 finish is the 1991 runner-up.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "b-124",
+    "category_label": "NOT a person who has both played and managed at a Men's World Cup",
+    "in_set": [
+      "Franz Beckenbauer",
+      "Mário Zagallo",
+      "Diego Maradona"
+    ],
+    "imposter": "José Mourinho",
+    "explanation": "Mourinho never played at a World Cup and has never managed a national team at one.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "b-125",
+    "category_label": "NOT a country making its World Cup debut in the 21st century",
+    "in_set": [
+      "Senegal",
+      "Iceland",
+      "Panama"
+    ],
+    "imposter": "South Korea",
+    "explanation": "South Korea's first World Cup was 1954; they have appeared in every tournament from 1986 to 2022.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "b-126",
+    "category_label": "NOT a player who has scored a Men's World Cup hat-trick this century",
+    "in_set": [
+      "Cristiano Ronaldo",
+      "Kylian Mbappé",
+      "Harry Kane"
+    ],
+    "imposter": "Robert Lewandowski",
+    "explanation": "Despite his prolific club career, Lewandowski has never scored 3 goals in a single World Cup match.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "b-127",
+    "category_label": "NOT a player who scored a goal at the 1986 Men's World Cup",
+    "in_set": [
+      "Diego Maradona",
+      "Gary Lineker",
+      "Careca"
+    ],
+    "imposter": "Marco van Basten",
+    "explanation": "The Netherlands did not qualify for the 1986 World Cup, so van Basten did not play.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "b-128",
+    "category_label": "NOT a player who has won a Men's World Cup Golden Boot",
+    "in_set": [
+      "Gerd Müller",
+      "Mario Kempes",
+      "James Rodríguez"
+    ],
+    "imposter": "Lionel Messi",
+    "explanation": "Messi's best per-tournament was 7 goals in 2022; Mbappé won the Golden Boot with 8.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "b-129",
+    "category_label": "NOT a player from Argentina's 1986 World Cup winning squad",
+    "in_set": [
+      "Diego Maradona",
+      "Jorge Valdano",
+      "Sergio Batista"
+    ],
+    "imposter": "Gabriel Batistuta",
+    "explanation": "Batistuta debuted for Argentina in 1991; he played at 1994, 1998, and 2002.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "b-130",
+    "category_label": "NOT a player who has won the Men's World Cup Best Young Player award",
+    "in_set": [
+      "Pelé",
+      "Michael Owen",
+      "Kylian Mbappé"
+    ],
+    "imposter": "Wayne Rooney",
+    "explanation": "Rooney's first World Cup was 2006, by which point he was no longer eligible for the U-21 BYP award.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "b-131",
+    "category_label": "NOT a player who started the 1998 World Cup final",
+    "in_set": [
+      "Zinedine Zidane",
+      "Lilian Thuram",
+      "Didier Deschamps"
+    ],
+    "imposter": "Thierry Henry",
+    "explanation": "Henry started earlier matches but Aimé Jacquet picked Stéphane Guivarc'h up front for the final.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "b-132",
+    "category_label": "NOT a player who has missed a penalty in a Men's World Cup final",
+    "in_set": [
+      "Roberto Baggio",
+      "David Trezeguet",
+      "Kingsley Coman"
+    ],
+    "imposter": "Frank Lampard",
+    "explanation": "Lampard has never played in a World Cup final; England's only final remains 1966.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "b-133",
+    "category_label": "NOT a player from Italy's 2006 World Cup winning squad",
+    "in_set": [
+      "Fabio Cannavaro",
+      "Andrea Pirlo",
+      "Marco Materazzi"
+    ],
+    "imposter": "Christian Vieri",
+    "explanation": "Vieri retired from international football in 2005, before the 2006 squad was selected.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "b-134",
+    "category_label": "NOT a country that has reached a Men's World Cup final this century",
+    "in_set": [
+      "France",
+      "Argentina",
+      "Italy"
+    ],
+    "imposter": "England",
+    "explanation": "England's only WC final remains 1966; their best this century is fourth at 2018.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-135",
+    "category_label": "NOT a player who has scored in a Men's World Cup semi-final since 2010",
+    "in_set": [
+      "Mario Götze",
+      "Julián Álvarez",
+      "Samuel Umtiti"
+    ],
+    "imposter": "Eden Hazard",
+    "explanation": "Hazard played the 2018 SF but France won 1-0 through Umtiti; Hazard did not score.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-136",
+    "category_label": "NOT a defender who has won a Men's World Cup",
+    "in_set": [
+      "Sergio Ramos",
+      "Lilian Thuram",
+      "Cafu"
+    ],
+    "imposter": "John Terry",
+    "explanation": "Terry captained England at multiple tournaments but they never reached a WC final during his career.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-137",
+    "category_label": "NOT a player from France's 2018 World Cup winning squad",
+    "in_set": [
+      "Kylian Mbappé",
+      "Paul Pogba",
+      "Hugo Lloris"
+    ],
+    "imposter": "Anthony Martial",
+    "explanation": "Martial was a France regular at club level but was left out of Didier Deschamps' 2018 squad.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-138",
+    "category_label": "NOT a country that has won the Copa América",
+    "in_set": [
+      "Argentina",
+      "Uruguay",
+      "Brazil"
+    ],
+    "imposter": "Mexico",
+    "explanation": "Mexico has been a Copa América guest since 1993 and reached two finals (1993, 2001) but never won.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-139",
+    "category_label": "NOT a player who has captained Brazil at a Men's World Cup",
+    "in_set": [
+      "Cafu",
+      "Dunga",
+      "Thiago Silva"
+    ],
+    "imposter": "Ronaldinho",
+    "explanation": "Ronaldinho played at three World Cups for Brazil but never wore the captain's armband.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-140",
+    "category_label": "NOT a player who has scored at a Men's World Cup AND a UEFA European Championship",
+    "in_set": [
+      "Cristiano Ronaldo",
+      "Antoine Griezmann",
+      "Thomas Müller"
+    ],
+    "imposter": "Lionel Messi",
+    "explanation": "Argentina compete in Copa América, not the Euros; Messi has never been eligible.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-141",
+    "category_label": "NOT a venue in Mexico that will host 2026 World Cup matches",
+    "in_set": [
+      "Estadio Azteca",
+      "Estadio Akron",
+      "Estadio BBVA"
+    ],
+    "imposter": "Estadio Olímpico Universitario",
+    "explanation": "The 1968 Olympic stadium hosted the 1986 WC opener but is not a 2026 venue.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-142",
+    "category_label": "NOT a country that has won a Men's World Cup as the host nation",
+    "in_set": [
+      "Uruguay",
+      "England",
+      "Argentina"
+    ],
+    "imposter": "Brazil",
+    "explanation": "Brazil hosted in 1950 and 2014 and lost the deciding match both times.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-143",
+    "category_label": "NOT a player who has scored 5 or more World Cup goals for Germany",
+    "in_set": [
+      "Miroslav Klose",
+      "Thomas Müller",
+      "Gerd Müller"
+    ],
+    "imposter": "Lukas Podolski",
+    "explanation": "Podolski scored 4 WC goals across 2006, 2010, and 2014.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-144",
+    "category_label": "NOT a player who has scored a Men's World Cup goal at age 35 or older",
+    "in_set": [
+      "Lionel Messi",
+      "Cristiano Ronaldo",
+      "Roger Milla"
+    ],
+    "imposter": "Diego Maradona",
+    "explanation": "Maradona's final World Cup appearance came in 1994 at age 33.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-145",
+    "category_label": "NOT a manager who won a Men's World Cup as a player",
+    "in_set": [
+      "Franz Beckenbauer",
+      "Mário Zagallo",
+      "Didier Deschamps"
+    ],
+    "imposter": "Carlos Bilardo",
+    "explanation": "Bilardo coached Argentina to the 1986 title but never played at a World Cup.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-146",
+    "category_label": "NOT a country that has won a Men's World Cup final on penalties",
+    "in_set": [
+      "Brazil",
+      "Italy",
+      "Argentina"
+    ],
+    "imposter": "Germany",
+    "explanation": "Germany's four titles all came in regulation or extra time; none in a penalty shootout.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-147",
+    "category_label": "NOT a player who has scored a Men's World Cup hat-trick",
+    "in_set": [
+      "Geoff Hurst",
+      "Gerd Müller",
+      "Cristiano Ronaldo"
+    ],
+    "imposter": "Diego Maradona",
+    "explanation": "Maradona's biggest single-match haul was 2 goals; he never scored 3 in a WC match.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-148",
+    "category_label": "NOT a player who has scored against Brazil in a Men's World Cup knockout match",
+    "in_set": [
+      "Zinedine Zidane",
+      "Thomas Müller",
+      "Kevin De Bruyne"
+    ],
+    "imposter": "Eden Hazard",
+    "explanation": "Hazard played Belgium's 2-1 QF win over Brazil in 2018 but did not score; De Bruyne and an own goal got the goals.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-149",
+    "category_label": "NOT a 2026 World Cup host city in Mexico",
+    "in_set": [
+      "Mexico City",
+      "Guadalajara",
+      "Monterrey"
+    ],
+    "imposter": "Tijuana",
+    "explanation": "Mexico's three 2026 host cities are Mexico City (Azteca), Guadalajara (Akron), and Monterrey (BBVA).",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-150",
+    "category_label": "NOT a city outside the United States that will host 2026 World Cup matches",
+    "in_set": [
+      "Toronto",
+      "Vancouver",
+      "Mexico City"
+    ],
+    "imposter": "Montréal",
+    "explanation": "Canada hosts via Toronto and Vancouver only; Montréal was not selected.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-151",
+    "category_label": "NOT a player who has scored an own goal in a Men's World Cup match",
+    "in_set": [
+      "Mario Mandžukić",
+      "Andrés Escobar",
+      "Marcelo"
+    ],
+    "imposter": "Sergio Ramos",
+    "explanation": "Ramos has scored own goals at club level but never at a World Cup across his 4 tournaments.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-152",
+    "category_label": "NOT a player who has played in 5 or more Men's World Cups",
+    "in_set": [
+      "Antonio Carbajal",
+      "Lothar Matthäus",
+      "Lionel Messi"
+    ],
+    "imposter": "Diego Maradona",
+    "explanation": "Maradona played at 4 World Cups (1982, 1986, 1990, 1994).",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-153",
+    "category_label": "NOT a player who has scored 8 or more goals at a single Men's World Cup",
+    "in_set": [
+      "Sándor Kocsis",
+      "Just Fontaine",
+      "Ronaldo"
+    ],
+    "imposter": "Lionel Messi",
+    "explanation": "Messi scored 7 at 2022, his single-tournament best; he has not reached 8 in one WC.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-154",
+    "category_label": "NOT a player who has scored a Men's World Cup goal at 3 or more different tournaments",
+    "in_set": [
+      "Cristiano Ronaldo",
+      "Lionel Messi",
+      "Miroslav Klose"
+    ],
+    "imposter": "Andres Iniesta",
+    "explanation": "Iniesta has exactly 1 WC goal — the 2010 final winner — across 4 tournaments.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-155",
+    "category_label": "NOT a country that has beaten Brazil at a Men's World Cup in the 21st century",
+    "in_set": [
+      "France",
+      "Netherlands",
+      "Germany"
+    ],
+    "imposter": "Spain",
+    "explanation": "Spain and Brazil have not met at a World Cup since 1986; Spain has not beaten Brazil at any WC this century.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "b-156",
+    "category_label": "NOT a player who has scored in extra time of a Men's World Cup knockout match",
+    "in_set": [
+      "Andres Iniesta",
+      "Mario Götze",
+      "Mario Mandžukić"
+    ],
+    "imposter": "Cristiano Ronaldo",
+    "explanation": "All 8 of Ronaldo's WC goals across 5 tournaments came in the group stage; he has never scored in a WC knockout match.",
+    "difficulty": "medium"
   }
 ]

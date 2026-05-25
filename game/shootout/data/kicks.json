@@ -586,5 +586,397 @@
     "truth": true,
     "explanation": "Cameroon won 1-0 despite finishing the match with 9 men, one of the great World Cup upsets.",
     "difficulty": "medium"
+  },
+  {
+    "id": "k-121",
+    "statement": "The 1930 World Cup featured 13 teams, including 4 from Europe.",
+    "truth": true,
+    "explanation": "Long travel times kept most European nations away from Uruguay; France, Belgium, Romania, and Yugoslavia made the trip.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "k-122",
+    "statement": "Italy won the 1934 World Cup by beating Hungary in the final.",
+    "truth": false,
+    "explanation": "Italy beat Czechoslovakia 2-1 in the Rome final.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "k-123",
+    "statement": "Italy retained the World Cup in 1938 by beating Hungary in the Paris final.",
+    "truth": true,
+    "explanation": "Italy won 4-2 to become the first nation to defend the trophy.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "k-124",
+    "statement": "The Netherlands hosted the 1938 World Cup.",
+    "truth": false,
+    "explanation": "France hosted the 1938 tournament.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "k-125",
+    "statement": "Brazil's 1950 World Cup final defeat to Uruguay at the Maracanã became known as the Maracanazo.",
+    "truth": true,
+    "explanation": "Uruguay won 2-1 in front of nearly 200,000 spectators, silencing the host crowd.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "k-126",
+    "statement": "The 1950 World Cup was decided by a final group of four teams rather than a single final match.",
+    "truth": true,
+    "explanation": "Uruguay clinched the title in the decisive group match against Brazil; there was no traditional final.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "k-127",
+    "statement": "West Germany won the 1954 World Cup after trailing Hungary 2-0 in the first 8 minutes of the final.",
+    "truth": true,
+    "explanation": "The Miracle of Bern: West Germany came back to win 3-2 against the heavy favorites.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "k-128",
+    "statement": "Hungary won the 1954 World Cup in their Mighty Magyars golden era.",
+    "truth": false,
+    "explanation": "Hungary lost the final 3-2 to West Germany despite being unbeaten for 4 years going in.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "k-129",
+    "statement": "Just Fontaine's record 13 goals at the 1958 World Cup came in only 6 matches.",
+    "truth": true,
+    "explanation": "France finished third; Fontaine averaged more than 2 goals per match across the tournament.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "k-130",
+    "statement": "Pelé scored a hat-trick in the 1962 World Cup final.",
+    "truth": false,
+    "explanation": "Pelé was injured in the second group game and missed the rest of the tournament; Amarildo replaced him.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "k-131",
+    "statement": "Garrincha was named player of the tournament at the 1962 World Cup.",
+    "truth": true,
+    "explanation": "He carried Brazil after Pelé's injury and shared the Golden Boot with five others on 4 goals.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "k-132",
+    "statement": "North Korea reached the 1966 World Cup final.",
+    "truth": false,
+    "explanation": "They reached the quarter-finals, beating Italy in the group stage before losing 5-3 to Portugal.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "k-133",
+    "statement": "Roger Milla scored 4 goals at the 1990 World Cup at age 38.",
+    "truth": true,
+    "explanation": "Milla came off the bench for Cameroon and his goals took them to the quarter-finals.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "k-134",
+    "statement": "Roger Milla coached Cameroon at the 1990 World Cup.",
+    "truth": false,
+    "explanation": "Milla was a player; Russian coach Valery Nepomnyashchy managed the squad.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "k-135",
+    "statement": "The first FIFA Women's World Cup was hosted by China in 1991.",
+    "truth": true,
+    "explanation": "The United States beat Norway 2-1 in the Guangzhou final.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "k-136",
+    "statement": "The United States women have won 5 FIFA Women's World Cups.",
+    "truth": false,
+    "explanation": "They have won 4 titles (1991, 1999, 2015, 2019).",
+    "difficulty": "hard"
+  },
+  {
+    "id": "k-137",
+    "statement": "Brazil's Marta has scored more goals at FIFA World Cup tournaments than any player, male or female.",
+    "truth": true,
+    "explanation": "Marta has 17 Women's World Cup goals; Miroslav Klose holds the men's record at 16.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "k-138",
+    "statement": "Norway won the 2003 FIFA Women's World Cup.",
+    "truth": false,
+    "explanation": "Germany won 2-1 over Sweden in extra time in the Carson, California final.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "k-139",
+    "statement": "Carlos Alberto Parreira has managed at six different World Cups, a record.",
+    "truth": true,
+    "explanation": "Kuwait 1982, UAE 1990, Brazil 1994, Saudi Arabia 1998, Brazil 2006, and South Africa 2010.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "k-140",
+    "statement": "César Luis Menotti managed Argentina to the 1986 World Cup title.",
+    "truth": false,
+    "explanation": "Carlos Bilardo coached the 1986 winners; Menotti led the 1978 squad.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "k-141",
+    "statement": "Estadio Azteca will become the first stadium to host matches at three World Cups in 2026.",
+    "truth": true,
+    "explanation": "The Mexico City venue hosted 1970 and 1986 as well; both of those tournaments saw the final there.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "k-142",
+    "statement": "SoFi Stadium in Los Angeles will host the 2026 World Cup final.",
+    "truth": false,
+    "explanation": "MetLife Stadium in New Jersey hosts the final; SoFi hosts 8 earlier matches.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "k-143",
+    "statement": "MetLife Stadium will host more 2026 World Cup matches than any other venue.",
+    "truth": true,
+    "explanation": "MetLife is scheduled for 8 matches including the final.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "k-144",
+    "statement": "Estadio Akron in Guadalajara will not host any 2026 World Cup matches.",
+    "truth": false,
+    "explanation": "It is one of the three Mexican host venues alongside Azteca and Estadio BBVA in Monterrey.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "k-145",
+    "statement": "Hungary scored 27 goals in 5 matches at the 1954 World Cup, a single-tournament team record.",
+    "truth": true,
+    "explanation": "The Mighty Magyars also put 8 past West Germany in a group-stage match.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "k-146",
+    "statement": "The original Jules Rimet trophy was recovered after being stolen in 1983.",
+    "truth": false,
+    "explanation": "Stolen from the Brazilian Football Confederation in Rio, it has never been found.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "k-147",
+    "statement": "Brazil were allowed to keep the original Jules Rimet trophy permanently after winning their third title in 1970.",
+    "truth": true,
+    "explanation": "FIFA rules at the time awarded the trophy outright to the first nation to win three World Cups.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "k-148",
+    "statement": "Hristo Stoichkov and Oleg Salenko shared the Golden Boot at the 1994 World Cup.",
+    "truth": true,
+    "explanation": "Both finished with 6 goals; Salenko's 5-goal match against Cameroon is still a single-match record.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "k-149",
+    "statement": "Spain were eliminated in the group stage at the 2014 World Cup as defending champions.",
+    "truth": true,
+    "explanation": "They lost 5-1 to the Netherlands and 2-0 to Chile in their first two matches.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "k-150",
+    "statement": "Brazil have never finished as World Cup runners-up.",
+    "truth": false,
+    "explanation": "Brazil lost the 1950 deciding match to Uruguay and the 1998 final to France.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "k-151",
+    "statement": "Hungary has finished as World Cup runner-up twice.",
+    "truth": true,
+    "explanation": "Hungary lost the 1938 final to Italy and the 1954 final to West Germany.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "k-152",
+    "statement": "Saudi Arabia has never won the AFC Asian Cup.",
+    "truth": false,
+    "explanation": "Saudi Arabia have won three Asian Cups (1984, 1988, 1996).",
+    "difficulty": "hard"
+  },
+  {
+    "id": "k-153",
+    "statement": "Ronaldo scored both goals as Brazil beat Germany 2-0 in the 2002 World Cup final.",
+    "truth": true,
+    "explanation": "Ronaldo's brace in Yokohama gave him 8 goals at the tournament and the Golden Boot.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "k-154",
+    "statement": "Zinedine Zidane was sent off in the 2006 World Cup semi-final.",
+    "truth": false,
+    "explanation": "Zidane's headbutt on Materazzi came in extra time of the final, not the semi-final.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "k-155",
+    "statement": "The 2010 World Cup in South Africa was the first held on the African continent.",
+    "truth": true,
+    "explanation": "South Africa hosted; the final was at Soccer City in Johannesburg.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "k-156",
+    "statement": "Wesley Sneijder won the Golden Boot at the 2010 World Cup.",
+    "truth": false,
+    "explanation": "Sneijder tied for top scorer on 5 goals but lost the tiebreaker; Thomas Müller won via assists.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "k-157",
+    "statement": "Italy missed both the 2018 and 2022 World Cups.",
+    "truth": true,
+    "explanation": "They lost a playoff to Sweden in 2017 and to North Macedonia in 2022.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "k-158",
+    "statement": "Greece reached the World Cup quarter-finals after winning Euro 2004.",
+    "truth": false,
+    "explanation": "Greece were eliminated in the group stage at both 2010 and 2014; their best WC finish remains the round of 16.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "k-159",
+    "statement": "Argentina won the 2021 Copa América before winning the 2022 World Cup.",
+    "truth": true,
+    "explanation": "Argentina beat Brazil 1-0 in the Maracanã final, ending a 28-year senior trophy drought.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "k-160",
+    "statement": "Ronaldinho scored the winning goal in Brazil's 2002 World Cup semi-final against Turkey.",
+    "truth": false,
+    "explanation": "Ronaldo scored the only goal of the match.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "k-161",
+    "statement": "David Beckham was sent off for England against Argentina at the 1998 World Cup.",
+    "truth": true,
+    "explanation": "Beckham was red-carded for kicking Diego Simeone in the round of 16; Argentina won on penalties.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "k-162",
+    "statement": "James Rodríguez won the Golden Boot at the 2014 World Cup with 6 goals.",
+    "truth": true,
+    "explanation": "His goals included the FIFA Puskás Award-winning volley against Uruguay.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "k-163",
+    "statement": "Manuel Neuer won the Golden Ball at the 2014 World Cup.",
+    "truth": false,
+    "explanation": "Neuer won the Golden Glove; Lionel Messi won the Golden Ball.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "k-164",
+    "statement": "Diego Maradona's Hand of God goal came in a World Cup quarter-final against England.",
+    "truth": true,
+    "explanation": "Argentina won the 1986 quarter-final 2-1; the Hand of God came 4 minutes before the Goal of the Century.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "k-165",
+    "statement": "Brazil have never been knocked out of a World Cup by a European team in the knockout rounds.",
+    "truth": false,
+    "explanation": "Brazil have lost knockout matches to France (1998, 2006), Germany (2014), Belgium (2018), and Croatia (2022).",
+    "difficulty": "medium"
+  },
+  {
+    "id": "k-166",
+    "statement": "France beat Croatia 4-2 in the 2018 World Cup final in Moscow.",
+    "truth": true,
+    "explanation": "Antoine Griezmann, Paul Pogba, and Kylian Mbappé all scored for France; Mario Mandžukić's own goal opened the scoring.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "k-167",
+    "statement": "Lionel Messi did not score in the 2014 World Cup final.",
+    "truth": true,
+    "explanation": "Messi had 4 goals earlier in the tournament but Argentina lost 1-0 to Germany without him scoring in the final.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "k-168",
+    "statement": "The 2018 World Cup was held across 12 host cities in Russia.",
+    "truth": false,
+    "explanation": "There were 11 host cities, all in European Russia.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "k-169",
+    "statement": "Andres Iniesta's winning goal in the 2010 World Cup final came in the 116th minute.",
+    "truth": true,
+    "explanation": "His extra-time strike against the Netherlands gave Spain a 1-0 win in Johannesburg.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "k-170",
+    "statement": "Sergio Aguero scored Argentina's winning penalty in the 2022 World Cup final shootout.",
+    "truth": false,
+    "explanation": "Aguero retired in 2021 and did not play; Gonzalo Montiel scored the winning penalty.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "k-171",
+    "statement": "Mario Götze came off the bench to score the only goal of the 2014 World Cup final.",
+    "truth": true,
+    "explanation": "Götze replaced Miroslav Klose in the second half and scored in the 113th minute.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "k-172",
+    "statement": "Pelé scored at 4 different World Cups.",
+    "truth": true,
+    "explanation": "He scored in 1958, 1962, 1966, and 1970, the latter three of which Brazil won.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "k-173",
+    "statement": "England's only Men's World Cup title came on home soil in 1970.",
+    "truth": false,
+    "explanation": "England won as hosts in 1966.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "k-174",
+    "statement": "Mexico has finished as World Cup runner-up once.",
+    "truth": false,
+    "explanation": "Mexico's best finish is the quarter-final, achieved in 1970 and 1986 as hosts.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "k-175",
+    "statement": "The next Men's FIFA World Cup after 2022 is in 2026.",
+    "truth": true,
+    "explanation": "The 2026 World Cup runs June 11 to July 19 across the United States, Mexico, and Canada.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "k-176",
+    "statement": "The 2030 World Cup will be held entirely in Europe.",
+    "truth": false,
+    "explanation": "The centenary edition is hosted by Spain, Portugal, and Morocco, with three matches in Uruguay, Argentina, and Paraguay.",
+    "difficulty": "easy"
   }
 ]

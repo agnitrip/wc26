@@ -20,6 +20,89 @@
   var root = null;
   // Session streak: in-memory only, resets to 0 on page refresh.
   var sessionStreak = 0;
+  // Session-scoped used-card tracking — avoids repeating any card within a session.
+  // Persists across matches in the same session, regardless of win/loss. Resets
+  // on page refresh. When a tier is fully exhausted, the relevant set wraps.
+  var sessionUsed = { kicks: new Set(), breakaways: new Set() };
+
+  // ===== Streak-aware difficulty + narrative =====
+  // Weights are easy/medium/hard percentages (sum 100). As the player's session
+  // streak grows, the deck biases toward harder cards. Cards are still drawn
+  // randomly within the chosen tier — the streak only shifts the *odds*.
+  function streakWeights(streak) {
+    if (streak >= 10) return { easy: 5,  medium: 45, hard: 50 };
+    if (streak >= 6)  return { easy: 15, medium: 50, hard: 35 };
+    if (streak >= 3)  return { easy: 35, medium: 50, hard: 15 };
+    return { easy: 70, medium: 25, hard: 5 };
+  }
+  // Chip label shown when difficulty has visibly shifted. Null below streak 3.
+  function streakChip(streak) {
+    if (streak >= 10) return 'Boss mode';
+    if (streak >= 6)  return 'Hot pile';
+    if (streak >= 3)  return 'Heating up';
+    return null;
+  }
+  // Per-match-win narrative. 2 variants per tier so back-to-back games rotate.
+  function streakNarrative(streak, rng) {
+    var rand = rng || Math.random;
+    if (streak <= 0) return null;
+    if (streak > 10) {
+      var late = [
+        '🔥🔥🔥 ' + streak + ' in a row. Unreal.',
+        '🔥🔥🔥 ' + streak + ' straight. Still going.',
+      ];
+      return late[Math.floor(rand() * late.length)];
+    }
+    var variants = {
+      1:  ['On the board.',                          'First one banked.'],
+      2:  ['Two straight. Steady.',                  'Two in a row.'],
+      3:  ['🔥 Hat trick. Cards stepping up.',       '🔥 Three. The deck just shifted.'],
+      4:  ['🔥 Four. Still going.',                  '🔥 Locked in.'],
+      5:  ['🔥 Five deep. No misses.',               "🔥 Five. You're in the zone."],
+      6:  ['🔥🔥 Six. Welcome to the hard pile.',     '🔥🔥 Cards getting tougher.'],
+      7:  ['🔥🔥 Seven straight. Few get this deep.', "🔥🔥 Don't blink."],
+      8:  ['🔥🔥 Eight. Cards are biting back.',      '🔥🔥 The deck is showing teeth.'],
+      9:  ['🔥🔥🔥 Almost there. One more.',          '🔥🔥🔥 Nine. Get to double digits.'],
+      10: ['🔥🔥🔥 Ten. Legend territory.',           '🔥🔥🔥 Boss mode.'],
+    };
+    var list = variants[streak];
+    return list[Math.floor(rand() * list.length)];
+  }
+  // Draw one card from a pool, weighted by difficulty for the current streak,
+  // avoiding cards already used this session. When a tier is empty, falls
+  // through to the next. When the whole pool is exhausted, the used set wraps.
+  function drawCardWeighted(poolName, streakAtPick, rng) {
+    var pool = pools[poolName];
+    var used = sessionUsed[poolName];
+    if (!pool || !pool.length) return null;
+    var available = pool.filter(function (c) { return !used.has(c.id); });
+    if (!available.length) {
+      // Whole pool seen this session — wrap. Keep playing infinitely.
+      used.clear();
+      available = pool;
+    }
+    var buckets = { easy: [], medium: [], hard: [] };
+    available.forEach(function (c) {
+      if (buckets[c.difficulty]) buckets[c.difficulty].push(c);
+    });
+    var w = streakWeights(streakAtPick);
+    var r = rng() * 100;
+    var tier;
+    if (r < w.hard) tier = 'hard';
+    else if (r < w.hard + w.medium) tier = 'medium';
+    else tier = 'easy';
+    // Fallback: if chosen tier is empty (small pool late in session), spiral.
+    var order = ['hard', 'medium', 'easy'];
+    if (!buckets[tier].length) {
+      for (var i = 0; i < order.length; i++) {
+        if (buckets[order[i]].length) { tier = order[i]; break; }
+      }
+    }
+    if (!buckets[tier].length) return null;
+    var pick = buckets[tier][Math.floor(rng() * buckets[tier].length)];
+    used.add(pick.id);
+    return pick;
+  }
 
   // ===== Storage (cross-session lifetime stats only — session streak is in-memory) =====
   var Storage = {
@@ -82,20 +165,23 @@
   }
 
   // ===== Match construction =====
+  // Cards are drawn on demand by currentKick/currentBreakaway, weighted by the
+  // streak frozen at match start. This guarantees a consistent difficulty
+  // through the match even if sessionStreak changes (it doesn't mid-match, but
+  // the freeze keeps the contract obvious).
   function createMatch() {
     var seed = Math.floor(Math.random() * 0x7fffffff);
     var rng = mulberry32(seed);
-    var allKicks = shuffle(pools.kicks, rng);
-    var allBreakaways = shuffle(pools.breakaways, rng);
     return {
       seed: seed,
-      kicks: allKicks.slice(0, KICKS_PER_HALF),
-      breakaways: allBreakaways.slice(0, KICKS_PER_HALF),
-      remainingKicks: allKicks.slice(KICKS_PER_HALF),
-      remainingBreakaways: allBreakaways.slice(KICKS_PER_HALF),
       rng: rng,
       streakBefore: sessionStreak,
       streakAfter: sessionStreak,
+      streakAtPick: sessionStreak,
+      // Per-match card caches keyed by step so re-renders return the same card.
+      pickedKicks: [],
+      pickedBreakaways: [],
+      // SD draws fresh each round; nothing to pre-cache.
       you: [],
       them: [],
       sdYou: [],
@@ -104,6 +190,7 @@
       sdRound: 0,
       phase: 'matchStart',
       result: null,
+      narrativeText: null,
     };
   }
 
@@ -227,11 +314,14 @@
     // Streak panel: shows current run prominently if active, otherwise lifetime best if any.
     var streakPanel = null;
     if (sessionStreak > 0) {
-      streakPanel = el('div', { class: 'sh-streak-panel is-live' }, [
+      var liveChildren = [
         el('span', { class: 'sh-streak-flame', text: '🔥' }),
         el('span', { class: 'sh-streak-num', text: String(sessionStreak) }),
         el('span', { class: 'sh-streak-label', text: sessionStreak === 1 ? 'win in a row' : 'wins in a row' }),
-      ]);
+      ];
+      var chip = streakChip(sessionStreak);
+      if (chip) liveChildren.push(el('span', { class: 'sh-streak-chip', text: chip }));
+      streakPanel = el('div', { class: 'sh-streak-panel is-live' }, liveChildren);
     } else if (store.longestStreak > 0) {
       streakPanel = el('div', { class: 'sh-streak-panel' }, [
         el('span', { class: 'sh-streak-label', text: 'Best streak this device: ' }),
@@ -243,16 +333,22 @@
       startHeroEl(),
       el('div', { class: 'sh-start-eyebrow', text: 'Pregame · Shootout' }),
       el('h1', { class: 'sh-start-title', text: '5 kicks.\n5 saves.' }),
+      el('p', { class: 'sh-start-intro', text: '10 World Cup trivia questions in 60 seconds.' }),
       el('div', { class: 'sh-start-rules' }, [
         el('p', { class: 'sh-rule-line' }, [
-          el('strong', { text: 'Take your kick' }),
-          document.createTextNode(' — swipe true or false.'),
+          el('strong', { text: 'Your 5 kicks:' }),
+          document.createTextNode(' TRUE or FALSE on a soccer claim. Correct = goal.'),
         ]),
         el('p', { class: 'sh-rule-line' }, [
-          el('strong', { text: 'Save theirs' }),
-          document.createTextNode(' — tap the odd one out in time.'),
+          el('strong', { text: 'Their 5 kicks:' }),
+          document.createTextNode(' tap the correct answer. Correct = save.'),
+        ]),
+        el('p', { class: 'sh-rule-line' }, [
+          el('strong', { text: 'Streak bonus:' }),
+          document.createTextNode(' the longer your win streak, the tougher the cards.'),
         ]),
       ]),
+      el('p', { class: 'sh-start-outcome', text: 'Most goals wins.' }),
       streakPanel,
       el('div', { class: 'sh-play-wrap' }, [playBtn]),
     ]);
@@ -504,21 +600,27 @@
   }
 
   function currentKick() {
+    // SD draws a fresh weighted card each round; nothing to cache (each SD round
+    // is a single attempt and resolveYourKick reads the card via closure).
     if (match.phase === 'sd-your') {
-      // Draw from remaining queue, refilling if exhausted (small pools).
-      if (!match.remainingKicks.length) match.remainingKicks = shuffle(pools.kicks, match.rng);
-      var k = match.remainingKicks.shift();
-      // Cache the active sd kick so resolveYourKick can read same object via closure (already passed).
-      return k;
+      return drawCardWeighted('kicks', match.streakAtPick, match.rng);
     }
-    return match.kicks[match.step] || null;
+    // Regular round: cache so re-renders return the same card.
+    if (!match.pickedKicks[match.step]) {
+      var card = drawCardWeighted('kicks', match.streakAtPick, match.rng);
+      if (card) match.pickedKicks[match.step] = card;
+    }
+    return match.pickedKicks[match.step] || null;
   }
   function currentBreakaway() {
     if (match.phase === 'sd-their') {
-      if (!match.remainingBreakaways.length) match.remainingBreakaways = shuffle(pools.breakaways, match.rng);
-      return match.remainingBreakaways.shift();
+      return drawCardWeighted('breakaways', match.streakAtPick, match.rng);
     }
-    return match.breakaways[match.step] || null;
+    if (!match.pickedBreakaways[match.step]) {
+      var card = drawCardWeighted('breakaways', match.streakAtPick, match.rng);
+      if (card) match.pickedBreakaways[match.step] = card;
+    }
+    return match.pickedBreakaways[match.step] || null;
   }
 
   // ===== Result + persistence =====
@@ -532,6 +634,8 @@
       sessionStreak = 0;
     }
     match.streakAfter = sessionStreak;
+    // Pick the narrative once at match end so re-renders show the same line.
+    match.narrativeText = result === 'W' ? streakNarrative(sessionStreak, match.rng) : null;
     persistMatch();
     renderResult();
   }
@@ -563,13 +667,22 @@
     var scoreLine = el('div', { class: 'sh-result-score', text: youScore + ' - ' + themScore });
     var grid = buildShareGridDom();
 
-    // Streak status line: leads the result. "X wins in a row" on win, "Streak ended at X" on loss with a prior run.
+    // Streak status: on a win, lead with the per-streak narrative (e.g. "🔥 Three.
+    // The deck just shifted.") and follow with the bare stat. Adds the tier chip
+    // when difficulty has visibly shifted (streak >= 3). On loss with a prior
+    // run, keep the existing "Streak ended at X" surface.
     var streakLine = null;
     if (won) {
-      streakLine = el('div', { class: 'sh-streak-line is-live' }, [
-        el('span', { class: 'sh-streak-flame', text: '🔥' }),
-        el('span', { text: match.streakAfter + (match.streakAfter === 1 ? ' win in a row' : ' wins in a row') }),
-      ]);
+      var statText = match.streakAfter + (match.streakAfter === 1 ? ' win in a row' : ' wins in a row');
+      var chip = streakChip(match.streakAfter);
+      var statChildren = [el('span', { class: 'sh-streak-stat-text', text: statText })];
+      if (chip) statChildren.push(el('span', { class: 'sh-streak-chip', text: chip }));
+      var children = [];
+      if (match.narrativeText) {
+        children.push(el('div', { class: 'sh-streak-narrative', text: match.narrativeText }));
+      }
+      children.push(el('div', { class: 'sh-streak-stat' }, statChildren));
+      streakLine = el('div', { class: 'sh-streak-line is-live' }, children);
     } else if (match.streakBefore > 0) {
       streakLine = el('div', { class: 'sh-streak-line is-ended' }, [
         el('span', { text: 'Streak ended at ' + match.streakBefore }),
@@ -629,10 +742,17 @@
     } else if (match.streakBefore > 0) {
       lines.push('💔 Streak ended at ' + match.streakBefore);
     }
+    lines.push(''); // blank line between header block and score
     lines.push('Final: ' + youScore + '-' + themScore + ' ' + (won ? 'W' : 'L'));
-    lines.push('You:  ' + youRow);
+    lines.push(''); // blank line before the play-by-play emoji rows
+    // "Me" reads correctly from the recipient's perspective; "They" stays neutral third-person.
+    // Spacing after the label is tuned so the emoji columns align (Me:[3sp] vs They:[1sp] = both 6 chars).
+    lines.push('Me:   ' + youRow);
     lines.push('They: ' + themRow);
-    lines.push('wc26pregame.com');
+    lines.push(''); // blank line before the call-to-action
+    // Deep-link to the shootout so recipients land on the game, not the home page.
+    // ?source=share lets you see in analytics how many sessions came from a shared card.
+    lines.push('Your turn → wc26pregame.com/game/shootout?source=share');
     return lines.join('\n');
   }
 

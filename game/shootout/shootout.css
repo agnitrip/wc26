@@ -719,14 +719,56 @@
   margin: 0 0 4px;
 }
 .sh-streak-line.is-live {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
   background: rgba(245, 200, 66, 0.2);
   border: 1px solid rgba(245, 200, 66, 0.55);
   color: var(--sh-warn);
+  padding: 12px 18px;
+  border-radius: 14px;
 }
 .sh-streak-line.is-ended {
   background: rgba(212, 51, 44, 0.18);
   border: 1px solid rgba(212, 51, 44, 0.5);
   color: rgba(255, 200, 195, 1);
+}
+/* Per-streak narrative (e.g. "🔥 Three. The deck just shifted.") */
+.sh-streak-narrative {
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: -0.005em;
+  line-height: 1.25;
+  text-align: center;
+}
+/* Bare stat under the narrative (e.g. "3 wins in a row · Heating up") */
+.sh-streak-stat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  opacity: 0.88;
+  letter-spacing: 0.02em;
+}
+.sh-streak-stat-text { white-space: nowrap; }
+/* Tier chip ("Heating up" / "Hot pile" / "Boss mode") — appears on streak >=3.
+   Reused on the start-screen streak panel and the result-screen streak line. */
+.sh-streak-chip {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+  white-space: nowrap;
+}
+.sh-streak-panel.is-live .sh-streak-chip {
+  margin-left: 8px;
 }
 .sh-result-grid .grid-row { display: flex; align-items: center; gap: 10px; justify-content: space-between; }
 .sh-result-grid .grid-label { font-size: 0.78rem; opacity: 0.72; letter-spacing: 0.12em; text-transform: uppercase; font-family: var(--font-body); }
