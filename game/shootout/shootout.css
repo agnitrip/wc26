@@ -43,6 +43,25 @@
   -webkit-user-select: none;
   touch-action: none;
 }
+/* Chooser + result screens are taller than the gameplay arena (especially on
+   mobile when the streak panel + 2 CTAs + 3 rule lines stack). For those modes
+   we let the arena grow with content and re-enable scroll; the in-game absolute
+   positioning that the tile-fall animation depends on stays untouched. */
+.game-root.is-chooser,
+.game-root.is-result {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  touch-action: auto;
+  user-select: text;
+  -webkit-user-select: text;
+}
+.game-root.is-chooser .screen,
+.game-root.is-result .screen {
+  position: relative;
+  inset: auto;
+  min-height: 100%;
+  height: auto;
+}
 /* Start screen uses the same arena size as gameplay so Play doesn't trigger a resize jolt. */
 .game-root::before {
   /* center circle + halfway line */

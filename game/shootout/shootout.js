@@ -215,6 +215,14 @@
     return node;
   }
   function clearRoot() { while (root.firstChild) root.removeChild(root.firstChild); }
+  // Mode toggle so non-game screens (chooser, result) can grow/scroll past the
+  // gameplay-fixed 620px arena. In-game screens leave mode null so the absolute
+  // positioning that the tile-fall animation needs stays intact.
+  function setRootMode(mode) {
+    if (!root) return;
+    root.classList.remove('is-chooser', 'is-result');
+    if (mode) root.classList.add(mode);
+  }
   function sum(arr) { return arr.reduce(function (a, b) { return a + b; }, 0); }
 
   // ===== HUD (scoreline + counter + quit) =====
@@ -303,6 +311,7 @@
   function renderStart() {
     match = null;
     clearRoot();
+    setRootMode('is-chooser');
     var store = Storage.load();
 
     var playBtn = el('button', { class: 'sh-play-btn', type: 'button' }, [
@@ -310,7 +319,9 @@
     ]);
     playBtn.addEventListener('click', function () { startMatch(); });
 
-    var firstTouchBtn = el('button', { class: 'sh-play-btn ft-play-secondary', type: 'button' }, [
+    // Compact secondary: same shape as primary but tighter padding + smaller
+    // type so the chooser fits comfortably on a 700px mobile viewport.
+    var firstTouchBtn = el('button', { class: 'sh-play-btn ft-play-secondary ft-play-compact', type: 'button' }, [
       el('span', { class: 'sh-play-btn-main', text: 'Play First Touch' }),
       el('span', { class: 'sh-play-btn-sub', text: 'New to soccer? Start here.' }),
     ]);
@@ -341,7 +352,7 @@
     var screen = el('div', { class: 'screen screen-start' }, [
       startHeroEl(),
       el('div', { class: 'sh-start-eyebrow', text: 'Pregame · Shootout' }),
-      el('h1', { class: 'sh-start-title', text: '5 kicks.\n5 saves.' }),
+      el('h1', { class: 'sh-start-title', text: '5 kicks. 5 saves.' }),
       el('p', { class: 'sh-start-intro', text: '10 World Cup trivia questions in 60 seconds.' }),
       el('div', { class: 'sh-start-rules' }, [
         el('p', { class: 'sh-rule-line' }, [
@@ -386,6 +397,7 @@
     var kick = currentKick();
     if (!kick) { checkFullTime(); return; }
     clearRoot();
+    setRootMode(null);
     renderHud();
     var card = el('div', { class: 'sh-claim-card', 'data-card-id': kick.id }, [
       el('div', { class: 'sh-claim-eyebrow', text: 'Your kick' }),
@@ -452,6 +464,7 @@
     var bk = currentBreakaway();
     if (!bk) { checkFullTime(); return; }
     clearRoot();
+    setRootMode(null);
     renderHud();
 
     var tilesShuffled = shuffle(bk.in_set.concat([bk.imposter]), match.rng || mulberry32(Date.now()));
@@ -659,6 +672,7 @@
 
   function renderResult() {
     clearRoot();
+    setRootMode('is-result');
     var youScore = sum(match.you) + sum(match.sdYou);
     var themScore = sum(match.them) + sum(match.sdThem);
     var won = match.result === 'W';

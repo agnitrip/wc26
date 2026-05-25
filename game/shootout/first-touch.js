@@ -15,6 +15,10 @@
   var poolPromise = null;
   var match = null;
   var root = null;
+  // Session-scoped used-card tracking — avoids repeating cards across matches
+  // in the same session (parity with Shootout). Persists for the page life;
+  // wraps when the pool is exhausted so play can continue infinitely.
+  var sessionUsed = new Set();
 
   // ===== Storage =====
   var Storage = {
@@ -93,16 +97,31 @@
     return node;
   }
   function clearRoot() { while (root.firstChild) root.removeChild(root.firstChild); }
+  // Mirror Shootout's mode toggle so non-game screens can grow/scroll on mobile.
+  function setRootMode(mode) {
+    if (!root) return;
+    root.classList.remove('is-chooser', 'is-result');
+    if (mode) root.classList.add(mode);
+  }
 
   // ===== Match construction =====
   function createMatch() {
     var seed = Math.floor(Math.random() * 0x7fffffff);
     var rng = mulberry32(seed);
-    var shuffled = shuffle(pool, rng);
+    // Draw from cards not yet seen this session. If fewer than a full match
+    // remain, wrap the used set so play continues indefinitely.
+    var available = pool.filter(function (c) { return !sessionUsed.has(c.id); });
+    if (available.length < CARDS_PER_MATCH) {
+      sessionUsed.clear();
+      available = pool;
+    }
+    var shuffled = shuffle(available, rng);
+    var picked = shuffled.slice(0, CARDS_PER_MATCH);
+    picked.forEach(function (c) { sessionUsed.add(c.id); });
     return {
       seed: seed,
       rng: rng,
-      cards: shuffled.slice(0, CARDS_PER_MATCH),
+      cards: picked,
       step: 0,
       results: [],   // 1 = correct, 0 = wrong
       misses: [],    // full card objects the user got wrong, for recap
@@ -148,6 +167,7 @@
     var card = match.cards[match.step];
     if (!card) { finishMatch(); return; }
     clearRoot();
+    setRootMode(null);
     renderCounter();
 
     var claimCard = el('div', { class: 'sh-claim-card ft-claim-card', 'data-card-id': card.id }, [
@@ -242,6 +262,7 @@
 
   function renderResult(score, total) {
     clearRoot();
+    setRootMode('is-result');
     var perfect = score === total;
     var pass = score >= PASS_THRESHOLD;
     var store = Storage.load();

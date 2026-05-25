@@ -19,6 +19,22 @@
   color: rgba(255, 255, 255, 0.78);
 }
 
+/* Compact variant: tighter padding + slightly smaller type so the chooser
+   fits comfortably on a 700px mobile viewport alongside Play Shootout, the
+   3 rule lines, the streak panel, and the rest of the start-screen stack. */
+.ft-play-compact {
+  padding: 10px 18px;
+  min-height: 52px;
+}
+.ft-play-compact .sh-play-btn-main {
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+}
+.ft-play-compact .sh-play-btn-sub {
+  font-size: 0.72rem;
+  margin-top: 1px;
+}
+
 /* ===== In-match card screen (small spacing tweaks, reuses sh-claim-card) ===== */
 .ft-counter { top: 18px; }
 .ft-screen-card { padding-top: 56px; }
