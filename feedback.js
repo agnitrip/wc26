@@ -38,7 +38,7 @@
       clearTimeout(copyTimer);
       copyTimer = null;
       var copyBtn = document.getElementById('feedback-copy-btn');
-      if (copyBtn) copyBtn.textContent = 'Copy email';
+      if (copyBtn) copyBtn.textContent = 'Copy address';
     }
     if (lastFocused && typeof lastFocused.focus === 'function') {
       lastFocused.focus();
@@ -87,7 +87,7 @@
     copyBtn.textContent = 'Copied ✓';
     if (copyTimer) clearTimeout(copyTimer);
     copyTimer = setTimeout(function () {
-      copyBtn.textContent = 'Copy email';
+      copyBtn.textContent = 'Copy address';
       copyTimer = null;
     }, COPY_RESET_MS);
   }
@@ -100,7 +100,25 @@
     }
   }
 
+  // Inject a persistent floating feedback chip on every page (bottom-right).
+  // Captures feedback from anywhere on the page, not just users who scroll
+  // all the way to the footer. Same modal — just a more reachable trigger.
+  function injectFloatingChip() {
+    // Skip on pages without a feedback modal (e.g., 404) to avoid an opener
+    // that opens nothing.
+    if (!document.getElementById('feedback-modal')) return;
+    if (document.getElementById('feedback-fab')) return;
+    var fab = document.createElement('button');
+    fab.id = 'feedback-fab';
+    fab.type = 'button';
+    fab.setAttribute('data-feedback-open', '');
+    fab.setAttribute('aria-label', 'Send feedback');
+    fab.innerHTML = '<span aria-hidden="true">💬</span><span class="feedback-fab-label">Feedback</span>';
+    document.body.appendChild(fab);
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
+    injectFloatingChip();
     modal = document.getElementById('feedback-modal');
     if (!modal) return;
     card = modal.querySelector('.feedback-modal-card');

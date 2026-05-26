@@ -351,7 +351,6 @@
 
     var screen = el('div', { class: 'screen screen-start' }, [
       startHeroEl(),
-      el('div', { class: 'sh-start-eyebrow', text: 'Pregame · Shootout' }),
       el('h1', { class: 'sh-start-title', text: '5 kicks. 5 saves.' }),
       el('p', { class: 'sh-start-intro', text: '10 World Cup trivia questions.' }),
       el('div', { class: 'sh-start-rules' }, [

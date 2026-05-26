@@ -80,15 +80,6 @@
           <li><a href="/game/shootout" class="nav-shootout"><span class="nav-shootout-emoji" aria-hidden="true">🎮</span> <span class="nav-label-full">Play Shootout</span><span class="nav-label-short">Shootout</span></a></li>
         </ul>
       </nav>
-      <div class="pickers">
-        <div class="picker-group">
-          <button class="picker-chip" id="city-chip" aria-haspopup="true">
-            <span id="city-chip-label">📍 All cities</span>
-            <span class="caret">▼</span>
-          </button>
-          <div class="dropdown-menu" id="city-menu" hidden role="menu"></div>
-        </div>
-      </div>
     </div>
   </header>
 
@@ -106,7 +97,16 @@
 
     <div id="personalization-notice"></div>
 
-    <div id="proximity-toggle"></div>
+    <div class="wp-filters-row">
+      <div class="picker-group">
+        <button class="picker-chip" id="city-chip" aria-haspopup="true">
+          <span id="city-chip-label">📍 All cities</span>
+          <span class="caret">▼</span>
+        </button>
+        <div class="dropdown-menu" id="city-menu" hidden role="menu"></div>
+      </div>
+      <div id="proximity-toggle"></div>
+    </div>
 
     <div class="results-summary-row">
       <div id="results-summary" class="results-summary"></div>
@@ -141,8 +141,8 @@
       <p class="feedback-modal-body">Send feedback, bug reports, or venue suggestions to:</p>
       <div class="feedback-modal-email" tabindex="0">tripathi.agni@gmail.com</div>
       <div class="feedback-modal-actions">
-        <button type="button" class="feedback-modal-copy" id="feedback-copy-btn">Copy email</button>
-        <a href="mailto:tripathi.agni@gmail.com" class="feedback-modal-open">Open in email app</a>
+        <button type="button" class="feedback-modal-copy" id="feedback-copy-btn">Copy address</button>
+        <a href="mailto:tripathi.agni@gmail.com" class="feedback-modal-open">Compose email</a>
       </div>
       <p class="feedback-modal-footnote">Every message gets read.</p>
     </div>

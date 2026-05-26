@@ -79,7 +79,15 @@
     var stadiumChip = '';
     if (v.nearStadium && STADIUMS && STADIUMS[v.nearStadium]) {
       var s = STADIUMS[v.nearStadium];
-      stadiumChip = '<div class="venue-stadium">🏟 Near ' + s.name + '</div>';
+      // When the proximity filter is on, surface the walking time prominently
+      // (that's the filter's whole promise). Otherwise fall back to just the
+      // stadium name. walkTime is optional per venue — venues without it just
+      // show the bare stadium chip.
+      if (state.nearStadiumOnly && v.walkTime) {
+        stadiumChip = '<div class="venue-stadium venue-stadium-walk">🚶 ' + v.walkTime + ' to ' + s.name + '</div>';
+      } else {
+        stadiumChip = '<div class="venue-stadium">🏟 Near ' + s.name + '</div>';
+      }
     }
     return '<div class="venue' + (v.nearStadium ? ' venue-near-stadium' : '') + '">' +
       '<div class="venue-head">' +

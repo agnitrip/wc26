@@ -150,7 +150,7 @@ const VENUES = [
     id: 'redeye-grill-secaucus', name: 'Red Robin / Redd\'s Tavern', address: 'Plaza at Harmon Meadow',
     neighborhood: 'Secaucus, NJ', city: 'NYC', countries: ['GEN', 'USA'],
     description: 'Sports bar in the Harmon Meadow complex. ~10 min drive to MetLife. Pre-match crowd on stadium days.',
-    nearStadium: 'MET',
+    nearStadium: 'MET', walkTime: '10 min drive',
   },
   {
     id: 'mulligans-hoboken', name: "Mulligan's Bar", address: '159 First St',
@@ -196,7 +196,7 @@ const VENUES = [
     id: 'lockhart-inglewood', name: 'Lockhart Smokehouse', address: '11460 La Cienega Blvd',
     neighborhood: 'Inglewood', city: 'LA', countries: ['GEN'],
     description: 'Sports-bar-and-BBQ ~5 min from SoFi. Pre-match destination for stadium-bound fans.',
-    nearStadium: 'SOFI',
+    nearStadium: 'SOFI', walkTime: '5 min drive',
   },
   {
     id: 'cock-bull-la', name: 'Ye Olde Kings Head', address: '116 Santa Monica Blvd',
@@ -232,7 +232,7 @@ const VENUES = [
     id: 'pedros-santa-clara', name: "Pedro's Restaurant & Cantina", address: '3935 Freedom Cir',
     neighborhood: 'Santa Clara', city: 'SF', countries: ['MEX'],
     description: 'Mexican restaurant 5 minutes from Levi\'s. Spanish commentary on Mexico match days, big crowd.',
-    nearStadium: 'LEV',
+    nearStadium: 'LEV', walkTime: '5 min drive',
   },
   {
     id: 'kezar-pub-sf', name: 'Kezar Pub', address: '770 Stanyan St',
@@ -261,13 +261,13 @@ const VENUES = [
     id: 'texas-live-arlington', name: 'Texas Live!', address: '1650 E Randol Mill Rd',
     neighborhood: 'Arlington', city: 'DAL', countries: ['GEN', 'USA'],
     description: 'Massive entertainment complex literally adjacent to AT&T Stadium. PBR Texas, Live! Arena, and multiple bars. WC match-day destination.',
-    nearStadium: 'ATT',
+    nearStadium: 'ATT', walkTime: 'walk-up',
   },
   {
     id: 'humperdinks-arlington', name: "Humperdink's Bar & Grill", address: '700 Six Flags Dr',
     neighborhood: 'Arlington', city: 'DAL', countries: ['GEN'],
     description: 'Sports bar ~5 min from AT&T Stadium. Brewpub with big-screen setup, pre-match standard for stadium-bound fans.',
-    nearStadium: 'ATT',
+    nearStadium: 'ATT', walkTime: '5 min drive',
   },
   {
     id: 'londoner-dal', name: 'The Londoner', address: '5535 Greenville Ave',
@@ -369,7 +369,7 @@ const VENUES = [
     id: 'sports-and-social-atl', name: 'Sports & Social', address: '20 Centennial Olympic Park Dr',
     neighborhood: 'Downtown', city: 'ATL', countries: ['GEN', 'USA'],
     description: 'Mercedes-Benz Stadium-adjacent sports bar. Walk-up venue for any Atlanta-hosted WC match.',
-    nearStadium: 'MBZ',
+    nearStadium: 'MBZ', walkTime: 'walk-up',
   },
 
   // ===== BOSTON / NEW ENGLAND =====
@@ -392,7 +392,7 @@ const VENUES = [
     id: 'patriot-place-bos', name: 'Bar Louie at Patriot Place', address: '208 Patriot Pl',
     neighborhood: 'Foxborough', city: 'BOS', countries: ['GEN', 'USA'],
     description: 'Sports bar in the Patriot Place complex adjacent to Gillette Stadium. Pre-match destination on WC match days.',
-    nearStadium: 'GIL',
+    nearStadium: 'GIL', walkTime: 'walk-up',
   },
 
   // ===== PHILADELPHIA =====
@@ -415,7 +415,7 @@ const VENUES = [
     id: 'xfinity-live-phl', name: 'Xfinity Live!', address: '1100 Pattison Ave',
     neighborhood: 'South Philadelphia', city: 'PHL', countries: ['GEN', 'USA'],
     description: 'Sports/entertainment complex literally adjacent to Lincoln Financial Field. Multiple bars, big screens, match-day destination.',
-    nearStadium: 'LIN',
+    nearStadium: 'LIN', walkTime: 'walk-up',
   },
 
   // ===== KANSAS CITY =====
@@ -486,7 +486,7 @@ const VENUES = [
     id: 'local-liberty-village-tor', name: 'LOCAL Public Eatery Liberty Village', address: '171 E Liberty St',
     neighborhood: 'Liberty Village', city: 'TOR', countries: ['GEN'],
     description: 'Liberty Village gastropub with 20 taps, shuffleboard, big patio with CN Tower views, and screens throughout. Roughly a 10 minute walk to BMO Field.',
-    nearStadium: 'BMO',
+    nearStadium: 'BMO', walkTime: '10 min walk',
   },
 
   // ===== VANCOUVER =====
@@ -501,7 +501,7 @@ const VENUES = [
     id: 'red-card-van', name: 'Red Card Sports Bar + Eatery', address: '560 Smithe St',
     neighborhood: 'Downtown', city: 'VAN', countries: ['GEN', 'ENG', 'ITA'],
     description: 'European-style soccer bar with 16 TVs, two projectors, and wood-fired pizza. Reliable Premier League and WC crowd, about an 8 minute walk from BC Place.',
-    nearStadium: 'BCP',
+    nearStadium: 'BCP', walkTime: '8 min walk',
   },
   {
     id: 'shark-club-van', name: 'Shark Club Sports Bar & Grill', address: '180 W Georgia St',
@@ -513,13 +513,13 @@ const VENUES = [
     id: 'library-square-van', name: 'Library Square Public House', address: '300 W Georgia St',
     neighborhood: 'Downtown', city: 'VAN', countries: ['GEN', 'IRL'],
     description: 'Two blocks from BC Place with 10-plus screens, a projector, and an outdoor viewing area built out for the 2026 tournament. Home of the Vancouver Celtic FC supporters.',
-    nearStadium: 'BCP',
+    nearStadium: 'BCP', walkTime: '2 min walk',
   },
   {
     id: 'lamplighter-van', name: 'The Lamplighter Public House', address: '92 Water St',
     neighborhood: 'Gastown', city: 'VAN', countries: ['ENG'],
     description: "Vancouver's oldest pub and the official home of the Manchester United Supporters Club. Two projector screens, brick and chandelier setting, about a 15 minute walk from BC Place through Gastown.",
-    nearStadium: 'BCP',
+    nearStadium: 'BCP', walkTime: '15 min walk',
   },
 
   // ===== Mexico host cities (CDMX, GDL, MTY) =====

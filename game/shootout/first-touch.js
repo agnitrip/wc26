@@ -255,7 +255,10 @@
   function persistResult(score, total) {
     var store = Storage.load();
     store.lastResult = { score: score, total: total, timestamp: Date.now() };
-    store.factsLearnedTotal = (store.factsLearnedTotal || 0) + score;
+    // Count all cards seen (correct + missed). The recap on a loss surfaces
+    // the right answer for missed cards, so the user genuinely encounters
+    // every fact regardless of whether they got it right.
+    store.factsLearnedTotal = (store.factsLearnedTotal || 0) + total;
     if (score >= PASS_THRESHOLD) store.gradCount = (store.gradCount || 0) + 1;
     Storage.save(store);
   }
@@ -321,7 +324,7 @@
 
     if (store.factsLearnedTotal > 0) {
       var noun = store.factsLearnedTotal === 1 ? 'fact' : 'facts';
-      children.push(el('p', { class: 'ft-footnote', text: "You've learned " + store.factsLearnedTotal + ' World Cup ' + noun + ' on this device.' }));
+      children.push(el('p', { class: 'ft-footnote', text: "You've seen " + store.factsLearnedTotal + ' World Cup ' + noun + ' on this device.' }));
     }
 
     var screen = el('div', { class: 'screen screen-result ft-screen-result' }, children);

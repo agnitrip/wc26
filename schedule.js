@@ -371,14 +371,12 @@
     var scheduleHtml = '';
     var showFullSchedule = !hasTeams || state.filter === 'all';
     if (showFullSchedule) {
+      // Bulk-calendar buttons (All 104 / Knockouts only) live in the picker
+      // chip row at the top of the page so the schedule body opens straight
+      // into matches rather than into bulk-add controls. Handlers attached
+      // once at DOMContentLoaded — see init below.
       scheduleHtml = '<div class="full-schedule">' +
-        '<div class="full-header-row">' +
-          '<h2 class="full-header">All 104 matches</h2>' +
-          '<div class="bulk-actions">' +
-            '<button class="bulk-ics-btn" id="bulk-all-btn"><span class="btn-emoji" aria-hidden="true">📅</span>Add all 104</button>' +
-            '<button class="bulk-ics-btn" id="bulk-ko-btn"><span class="btn-emoji" aria-hidden="true">📅</span>Add knockouts only</button>' +
-          '</div>' +
-        '</div>';
+        '<h2 class="full-header">All 104 matches</h2>';
       sortedDays.forEach(function (key) {
         var matches = byDay[key];
         var header = formatDayHeader(matches[0].kickoffISO);
@@ -419,13 +417,11 @@
       });
     });
 
-    // Wire bulk buttons (only those that rendered)
+    // bulk-my-btn renders inside the pinned section (only when teams are picked)
+    // so its handler must re-attach on each render. bulk-all-btn and bulk-ko-btn
+    // are now static in the picker chip row and wired once at DOMContentLoaded.
     var bulkMy = document.getElementById('bulk-my-btn');
     if (bulkMy) bulkMy.addEventListener('click', bulkAddMyMatches);
-    var bulkAll = document.getElementById('bulk-all-btn');
-    if (bulkAll) bulkAll.addEventListener('click', bulkAddAll);
-    var bulkKo = document.getElementById('bulk-ko-btn');
-    if (bulkKo) bulkKo.addEventListener('click', bulkAddKnockouts);
   }
 
   // ----- Picker UIs -----
@@ -496,6 +492,12 @@
   // ----- Wire up -----
   document.addEventListener('DOMContentLoaded', function () {
     loadState();
+
+    // Static bulk-calendar chips in the picker row (wired once).
+    var bulkAll = document.getElementById('bulk-all-btn');
+    if (bulkAll) bulkAll.addEventListener('click', bulkAddAll);
+    var bulkKo = document.getElementById('bulk-ko-btn');
+    if (bulkKo) bulkKo.addEventListener('click', bulkAddKnockouts);
 
     // Zone chip / menu
     var zoneChip = document.getElementById('zone-chip');
