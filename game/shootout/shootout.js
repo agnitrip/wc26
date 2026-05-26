@@ -353,11 +353,11 @@
       startHeroEl(),
       el('div', { class: 'sh-start-eyebrow', text: 'Pregame · Shootout' }),
       el('h1', { class: 'sh-start-title', text: '5 kicks. 5 saves.' }),
-      el('p', { class: 'sh-start-intro', text: '10 World Cup trivia questions in 60 seconds.' }),
+      el('p', { class: 'sh-start-intro', text: '10 World Cup trivia questions.' }),
       el('div', { class: 'sh-start-rules' }, [
         el('p', { class: 'sh-rule-line' }, [
           el('strong', { text: 'Your 5 kicks:' }),
-          document.createTextNode(' TRUE or FALSE on a soccer claim. Correct = goal.'),
+          document.createTextNode(' TRUE or FALSE on a World Cup question. Correct = goal.'),
         ]),
         el('p', { class: 'sh-rule-line' }, [
           el('strong', { text: 'Their 5 kicks:' }),
@@ -368,7 +368,6 @@
           document.createTextNode(' the longer your win streak, the tougher the cards.'),
         ]),
       ]),
-      el('p', { class: 'sh-start-outcome', text: 'Most goals wins.' }),
       streakPanel,
       el('div', { class: 'sh-play-wrap' }, [playBtn, firstTouchBtn]),
     ]);

@@ -872,6 +872,11 @@
   .shootout-main { padding-left: 14px; padding-right: 14px; }
   .game-root { min-height: 620px; border-radius: 14px; }
   .sh-bk-track { min-height: 360px; }
+  /* Chooser screen: tighten so both Play CTAs land above the Safari URL bar
+     on iPhone 13 Pro-class viewports without forcing scroll. */
+  .screen-start { padding-top: 12px; padding-bottom: 12px; }
+  .sh-start-hero { font-size: clamp(56px, 16vw, 80px); margin-bottom: -2px; }
+  .sh-start-rules { gap: 2px; }
 }
 @media (max-height: 700px) {
   .game-root { min-height: 520px; }
