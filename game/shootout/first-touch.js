@@ -151,6 +151,15 @@
   }
 
   function beginMatch() {
+    // Reset body scroll BEFORE rendering. Same reason as Shootout's
+    // startMatch — after a result screen (which can grow taller than the
+    // 600px arena and trigger body scroll), starting a new match without
+    // resetting scroll leaves the gameplay arena's HUD + counter hidden
+    // behind the sticky header. See shootout.js startMatch comment.
+    if (typeof window !== 'undefined' && typeof window.scrollTo === 'function') {
+      try { window.scrollTo({ top: 0, behavior: 'auto' }); }
+      catch (_e) { window.scrollTo(0, 0); }
+    }
     match = createMatch();
     renderCard();
   }

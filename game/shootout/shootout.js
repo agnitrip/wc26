@@ -380,9 +380,24 @@
 
   // ===== Match flow =====
   function startMatch() {
+    // Reset body scroll BEFORE rendering. The previous result screen runs in
+    // is-result mode (flex column, overflow-y: auto) which lets the arena
+    // grow past 600px when the share grid + actions + cross-links + best-line
+    // stack tall. The body scrolls to accommodate. Without this reset, the
+    // new match's gameplay arena (which renders in absolute coordinates
+    // relative to game-root) lands with its HUD + kick-counter hidden behind
+    // the sticky header, since the body is still scrolled to where the user
+    // ended up on the result screen. Reproduced on iPhone 13 Pro 2026-05-25.
+    scrollToArena();
     match = createMatch();
     match.phase = 'your';
     renderYourKick();
+  }
+
+  function scrollToArena() {
+    if (typeof window === 'undefined' || typeof window.scrollTo !== 'function') return;
+    try { window.scrollTo({ top: 0, behavior: 'auto' }); }
+    catch (_e) { window.scrollTo(0, 0); }
   }
 
   function quitMatch() {
