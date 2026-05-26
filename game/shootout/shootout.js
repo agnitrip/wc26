@@ -446,8 +446,16 @@
     } else {
       match.you.push(record);
     }
+    // Check the math after recording the kick. If the game is already won/lost,
+    // we'll still play the reveal flash for this kick (the player deserves to
+    // see why they were right or wrong), then skip straight to the result.
+    var decided = regulationDecision();
     // On your kick: scored = correct, missed = wrong.
     showReveal(goal ? 'You scored' : 'You missed', goal, kick.explanation, function () {
+      if (decided) {
+        showBanner('GAME OVER', 'No need for the rest', function () { finishMatch(decided); });
+        return;
+      }
       if (match.phase === 'sd-your') {
         match.phase = 'sd-their';
         renderTheirKick();
@@ -572,8 +580,15 @@
     } else {
       match.them.push(record);
     }
+    // Same math check — after their kick, if the game is decided, jump straight
+    // to result after the reveal rather than advancing to the next round.
+    var decided = regulationDecision();
     // On their kick: saved = correct, they-scored = wrong.
     showReveal(kind === 'saved' ? 'You saved it' : 'They scored', kind === 'saved', bk.explanation, function () {
+      if (decided) {
+        showBanner('GAME OVER', 'No need for the rest', function () { finishMatch(decided); });
+        return;
+      }
       if (match.phase === 'sd-their') {
         evaluateSdRound();
       } else {
@@ -600,6 +615,24 @@
     } else {
       finishMatch(youScore > themScore ? 'W' : 'L');
     }
+  }
+
+  // Real-shootout rule: end regulation the moment the score is mathematically
+  // decided. If my lead exceeds your remaining kicks (or vice versa), the
+  // remaining cards aren't dealt — same as a keeper celebrating with kicks
+  // still on the docket. SD is excluded (each SD round is already one-shot).
+  // Returns 'W', 'L', or null if regulation should continue.
+  function regulationDecision() {
+    if (match.phase === 'sd-your' || match.phase === 'sd-their' || match.sdRound > 0) {
+      return null;
+    }
+    var youScore = sum(match.you);
+    var themScore = sum(match.them);
+    var yourRem = KICKS_PER_HALF - match.you.length;
+    var theirRem = KICKS_PER_HALF - match.them.length;
+    if (youScore > themScore + theirRem) return 'W';
+    if (themScore > youScore + yourRem) return 'L';
+    return null;
   }
 
   function startSdRound() {
