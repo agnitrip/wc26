@@ -5,7 +5,7 @@
   var STORAGE_KEY = 'pregame.first-touch.v1';
   var KICKS_URL = '/game/shootout/data/first-touch-kicks.json';
   var CARDS_PER_MATCH = 5;
-  var KICK_TIMER_MS = 5200;
+  var KICK_TIMER_MS = 6800;  // 30% slower than Shootout's 5200ms — First Touch is the newbie on-ramp, needs more read time
   var REVEAL_HOLD_MS = 5000;
   var SWIPE_THRESHOLD_PX = 70;
   var PASS_THRESHOLD = 3;
