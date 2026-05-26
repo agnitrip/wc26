@@ -190,12 +190,23 @@
   right: 0;
   text-align: center;
   font-size: 0.75rem;
-  letter-spacing: 0.16em;
+  /* Tightened from 0.16em -> 0.08em — same reason as the breakaway eyebrow:
+     wide spacing made the counter text blur on mobile, especially with the
+     tier label appended. Smaller spacing keeps the line readable as one
+     unit ("KICK 1 OF 5 · 🔥 HEATING UP" reads cleanly). */
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   opacity: 0.72;
   z-index: 3;
   pointer-events: none;
   font-weight: 700;
+}
+/* Streak-tier label appended to kick-counter when streak >= 3. Subtle warm-
+   yellow tint so it visually pairs with the heating-up chip on start/result
+   screens and reads as "your streak status, in-game". Inherits the counter's
+   opacity so it sits at the same chrome weight as "KICK X OF 5". */
+.sh-kick-counter-tier {
+  color: var(--sh-warn);
 }
 
 /* ===== Start screen ===== */

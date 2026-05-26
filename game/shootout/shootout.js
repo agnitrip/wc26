@@ -247,6 +247,17 @@
       var kickNum = Math.min(match.step + 1, KICKS_PER_HALF);
       counter.textContent = 'Kick ' + kickNum + ' of ' + KICKS_PER_HALF;
     }
+    // Surface the streak tier in-game when difficulty has shifted. Without
+    // this, players on a 6+ streak see noticeably harder cards but have no
+    // signal that the deck heated up — feels random instead of earned. We
+    // keep the warm-up tier (streak 0-2) silent since it's the baseline.
+    var tier = streakChip(match.streakAtPick);
+    if (tier) {
+      var flame = match.streakAtPick >= 10 ? '🔥🔥🔥'
+                : match.streakAtPick >= 6  ? '🔥🔥'
+                : '🔥';
+      counter.appendChild(el('span', { class: 'sh-kick-counter-tier', text: ' · ' + flame + ' ' + tier }));
+    }
     root.appendChild(hud);
     root.appendChild(counter);
   }
