@@ -343,7 +343,13 @@
 .sh-claim-card {
   width: 100%;
   max-width: 360px;
+  /* Hardcoded color values in addition to the CSS-var route — defends against
+     in-app browsers (notably WhatsApp's iOS WebView) that have shown CSS
+     variable resolution quirks, leaving the card empty-looking. The var still
+     wins where supported; the literal is the safety net. */
+  background: #ffffff;
   background: var(--sh-card);
+  color: #14241b;
   color: var(--sh-card-fg);
   border-radius: 18px;
   padding: 26px 22px;
@@ -358,6 +364,9 @@
   animation: sh-card-in 250ms ease-out;
   touch-action: none;
 }
+/* Force visible color on text children too — same defense in case a parent
+   color inheritance chain breaks somewhere down the WebView pipeline. */
+.sh-claim-text { color: #14241b; }
 .sh-claim-card.is-swiping {
   animation: none;
   transition: transform 0.12s ease;
@@ -636,15 +645,18 @@
 }
 .sh-reveal-skip-hint {
   position: absolute;
-  bottom: 18px;
+  /* Pulled away from the absolute bottom + made larger/more opaque after
+     iPhone testing: on mobile Safari the URL bar can eat the bottom 18px,
+     making the affordance invisible. The hint is now hard to miss. */
+  bottom: max(28px, env(safe-area-inset-bottom, 18px));
   left: 0;
   right: 0;
   text-align: center;
-  font-size: 0.72rem;
-  letter-spacing: 0.16em;
+  font-size: 0.82rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   font-weight: 700;
-  opacity: 0.7;
+  opacity: 0.9;
 }
 @keyframes sh-flash {
   0%   { opacity: 0; transform: scale(0.94); }
