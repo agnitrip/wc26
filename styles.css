@@ -189,14 +189,35 @@ nav a.active { color: var(--accent); background: var(--accent-soft); }
   font-size: 0.95rem;
   line-height: 1;
 }
+/* Dual-label markup: desktop shows the full label, mobile (below) swaps to
+   the short label so all 5 nav items fit on a single row at iPhone widths. */
+.nav-label-short { display: none; }
+
 @media (max-width: 600px) {
-  nav ul { gap: 4px; }
-  nav a { padding: 6px 10px; font-size: 0.9rem; }
-  .nav-shootout {
-    padding: 6px 12px !important;
-    font-size: 0.88rem;
+  /* Stack the header: brand on row 1 (centered), nav on row 2 (centered).
+     Saves ~180px of vertical real estate vs. the previous 2-row wrap layout
+     where brand competed with nav for horizontal space. */
+  header { padding: 10px 0; }
+  header .container {
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
   }
-  .nav-shootout-emoji { font-size: 0.9rem; }
+  .brand { font-size: 1.4rem; }
+  .brand-glyph { width: 22px !important; height: 22px !important; }
+  nav ul { justify-content: center; gap: 3px; }
+  nav a {
+    padding: 5px 8px;
+    font-size: 0.86rem;
+  }
+  .nav-shootout {
+    padding: 5px 11px !important;
+    font-size: 0.82rem;
+  }
+  .nav-shootout-emoji { font-size: 0.85rem; }
+  /* Swap to short labels: "Watch parties" -> "Bars", "Play Shootout" -> "Shootout". */
+  .nav-label-full { display: none; }
+  .nav-label-short { display: inline; }
 }
 
 main { padding-bottom: 24px; }
