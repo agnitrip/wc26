@@ -24,6 +24,14 @@
   // Persists across matches in the same session, regardless of win/loss. Resets
   // on page refresh. When a tier is fully exhausted, the relevant set wraps.
   var sessionUsed = { kicks: new Set(), breakaways: new Set() };
+  // Session game counter for replay tracking. Increments on each startMatch.
+  var sessionGameCount = 0;
+
+  function track(name, props) {
+    if (typeof window === 'undefined' || typeof window.plausible !== 'function') return;
+    if (props) window.plausible(name, { props: props });
+    else window.plausible(name);
+  }
 
   // ===== Streak-aware difficulty + narrative =====
   // Weights are easy/medium/hard percentages (sum 100). As the player's session
@@ -409,6 +417,9 @@
     // relative to game-root) lands with its HUD + kick-counter hidden behind
     // the sticky header, since the body is still scrolled to where the user
     // ended up on the result screen. Reproduced on iPhone 13 Pro 2026-05-25.
+    sessionGameCount += 1;
+    track('game_start');
+    if (sessionGameCount > 1) track('game_replay', { count: String(sessionGameCount) });
     scrollToArena();
     match = createMatch();
     match.phase = 'your';
@@ -725,6 +736,12 @@
     match.streakAfter = sessionStreak;
     // Pick the narrative once at match end so re-renders show the same line.
     match.narrativeText = result === 'W' ? streakNarrative(sessionStreak, match.rng) : null;
+    var roundsPlayed = (match.you ? match.you.length : 0) + (match.sdYou ? match.sdYou.length : 0);
+    track('game_finish', {
+      outcome: result === 'W' ? 'win' : 'lose',
+      rounds_played: String(roundsPlayed),
+      streak: String(sessionStreak),
+    });
     persistMatch();
     renderResult();
   }
@@ -750,9 +767,13 @@
       'aria-hidden': 'true',
       text: won ? '🏆' : '💔',
     });
-    var verdict = el('h1', {
-      class: 'sh-result-verdict ' + (won ? 'is-win' : 'is-loss'),
-      text: won ? 'You won.' : 'You lost.',
+    // On a win, the 🏆 hero + score line already communicate the outcome — the
+    // "You won." verdict was the most cuttable element on a dense result screen.
+    // Keep it on a loss: 💔 alone is more ambiguous than 🏆 and the text adds
+    // closure rather than redundancy.
+    var verdict = won ? null : el('h1', {
+      class: 'sh-result-verdict is-loss',
+      text: 'You lost.',
     });
     var scoreLine = el('div', { class: 'sh-result-score', text: youScore + ' - ' + themScore });
     var grid = buildShareGridDom();
@@ -795,8 +816,10 @@
 
     var actions = el('div', { class: 'sh-result-actions' }, [rematchBtn, shareBtn, backBtn]);
 
+    // Single cross-link instead of two. Watch-parties has the strongest mental
+    // adjacency to "I just played a game" (entertainment → social continuation).
+    // /streaming is reachable from the nav for anyone who needs it.
     var crossLinks = el('div', { class: 'sh-result-crosslinks' }, [
-      el('a', { href: '/streaming', text: 'Watching a match today? · Pick a stream' }),
       el('a', { href: '/watch-parties', text: 'Find a watch party near you' }),
     ]);
 
