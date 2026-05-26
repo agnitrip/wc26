@@ -54,12 +54,18 @@
   touch-action: auto;
   user-select: text;
   -webkit-user-select: text;
+  /* Flex so the inner .screen can fill the arena height — without this, the
+     screen sits at its natural content height, leaving empty pitch below it
+     when the content is shorter than the arena min-height. justify-content
+     on .screen-start then distributes the content top-to-bottom evenly. */
+  display: flex;
+  flex-direction: column;
 }
 .game-root.is-chooser .screen,
 .game-root.is-result .screen {
   position: relative;
   inset: auto;
-  min-height: 100%;
+  flex: 1 0 auto;
   height: auto;
 }
 /* Dim the pitch markings (center circle + halfway line) on chooser screen
