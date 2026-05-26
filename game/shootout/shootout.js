@@ -247,16 +247,17 @@
       var kickNum = Math.min(match.step + 1, KICKS_PER_HALF);
       counter.textContent = 'Kick ' + kickNum + ' of ' + KICKS_PER_HALF;
     }
-    // Surface the streak tier in-game when difficulty has shifted. Without
-    // this, players on a 6+ streak see noticeably harder cards but have no
-    // signal that the deck heated up — feels random instead of earned. We
-    // keep the warm-up tier (streak 0-2) silent since it's the baseline.
-    var tier = streakChip(match.streakAtPick);
-    if (tier) {
-      var flame = match.streakAtPick >= 10 ? '🔥🔥🔥'
-                : match.streakAtPick >= 6  ? '🔥🔥'
-                : '🔥';
-      counter.appendChild(el('span', { class: 'sh-kick-counter-tier', text: ' · ' + flame + ' ' + tier }));
+    // Surface the streak in-game so the player feels the carryover from the
+    // previous match. The first-win fork (streak 0 -> 1) is the highest-stakes
+    // moment in the loop and was previously invisible during gameplay — fixed
+    // by adding "STREAK 1" / "STREAK 2" labels for the warm-up tier. Once a
+    // tier kicks in (streak 3+) the named tier replaces the count, since the
+    // count is implicit in the tier name (heating = 3-5, hot = 6-9, boss = 10+).
+    var s = match.streakAtPick;
+    if (s >= 1) {
+      var flame = s >= 10 ? '🔥🔥🔥' : s >= 6 ? '🔥🔥' : '🔥';
+      var label = streakChip(s) || ('Streak ' + s);
+      counter.appendChild(el('span', { class: 'sh-kick-counter-tier', text: ' · ' + flame + ' ' + label }));
     }
     root.appendChild(hud);
     root.appendChild(counter);
