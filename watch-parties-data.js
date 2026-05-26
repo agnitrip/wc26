@@ -1,7 +1,11 @@
 // WC26 Pregame — watch parties data
-// Starter list of country-specific and soccer-friendly venues across the
-// 13 WC26 host cities in the US and Canada. Sourced from general knowledge
-// of well-known soccer bars + the active Reddit threads linked per city.
+// Starter list of country-specific and soccer-friendly venues across all
+// 16 WC26 host cities in the US, Canada, and Mexico. US + Canada venues
+// are sourced from general knowledge of well-known soccer bars and the
+// active Reddit threads linked per city. Mexico host-city listings are
+// mostly neighborhood-level pointers (public plazas where Mexico has
+// historically hosted big-screen viewings, plus known nightlife districts)
+// rather than specific bars — verify on arrival.
 //
 // IMPORTANT: This is a v0 starter list. Hours, screening plans, and even
 // "is this place still open" should be verified by phone before travel.
@@ -33,9 +37,12 @@ const CITIES = [
   { id: 'SEA', name: 'Seattle' },
   { id: 'TOR', name: 'Toronto' },
   { id: 'VAN', name: 'Vancouver' },
+  { id: 'CDMX', name: 'Mexico City' },
+  { id: 'GDL',  name: 'Guadalajara' },
+  { id: 'MTY',  name: 'Monterrey' },
 ];
 
-// Host stadiums across the US and Canada. Used to tag venues near a stadium
+// Host stadiums across the US, Canada, and Mexico. Used to tag venues near a stadium
 // for traveling supporters / fans planning to be in the stadium area on
 // match day.
 const STADIUMS = {
@@ -52,6 +59,9 @@ const STADIUMS = {
   LUM: { name: 'Lumen Field', city: 'Seattle, WA' },
   BMO: { name: 'BMO Field', city: 'Toronto, ON' },
   BCP: { name: 'BC Place', city: 'Vancouver, BC' },
+  AZT: { name: 'Estadio Azteca', city: 'Mexico City, MX' },
+  AKR: { name: 'Estadio Akron', city: 'Guadalajara, MX' },
+  BBV: { name: 'Estadio BBVA', city: 'Monterrey, MX' },
 };
 
 // Countries used on this page. GEN = general soccer pub (no specific country).
@@ -510,6 +520,60 @@ const VENUES = [
     neighborhood: 'Gastown', city: 'VAN', countries: ['ENG'],
     description: "Vancouver's oldest pub and the official home of the Manchester United Supporters Club. Two projector screens, brick and chandelier setting, about a 15 minute walk from BC Place through Gastown.",
     nearStadium: 'BCP',
+  },
+
+  // ===== Mexico host cities (CDMX, GDL, MTY) =====
+  // These are neighborhood + landmark pointers rather than specific verified
+  // bars. Mexico City has a long tradition of large outdoor public viewings
+  // for major Mexico matches; expect similar for WC26 home matches. Confirm
+  // specific venues on arrival via local sources.
+  {
+    id: 'zocalo-cdmx', name: 'Zócalo (Plaza de la Constitución)', address: 'Plaza de la Constitución',
+    neighborhood: 'Centro Histórico', city: 'CDMX', countries: ['MEX'],
+    description: "Mexico City's main public square. Big-screen public viewings have been a fixture during major Mexico matches and are expected for WC26 home games. Massive crowds, food vendors, family atmosphere.",
+  },
+  {
+    id: 'roma-condesa-cdmx', name: 'Roma Norte / Condesa bar district', address: 'Av. Álvaro Obregón / Av. Tamaulipas',
+    neighborhood: 'Roma Norte / Condesa', city: 'CDMX', countries: ['GEN'],
+    description: "Walkable bar and restaurant cluster with dozens of cantinas, beer halls, and gastro pubs showing matches. Many open early for European kickoffs. Pick on arrival — too many options to name one.",
+  },
+  {
+    id: 'azteca-area-cdmx', name: 'Estadio Azteca neighborhood', address: 'Calzada de Tlalpan 3465',
+    neighborhood: 'Santa Úrsula Coapa', city: 'CDMX', countries: ['GEN'],
+    description: "Bars, cantinas, and street vendors around the Azteca on match days. Walk the surrounding blocks for a fan-zone atmosphere before kickoff.",
+    nearStadium: 'AZT',
+  },
+  {
+    id: 'plaza-liberacion-gdl', name: 'Plaza de la Liberación', address: 'Plaza de la Liberación',
+    neighborhood: 'Centro Histórico', city: 'GDL', countries: ['MEX'],
+    description: "Guadalajara's historic central plaza, beside the Cathedral. Used for public viewings during major Mexico matches; open-air screen setups expected for WC26.",
+  },
+  {
+    id: 'chapultepec-gdl', name: 'Avenida Chapultepec', address: 'Av. Chapultepec',
+    neighborhood: 'Americana', city: 'GDL', countries: ['GEN'],
+    description: "Guadalajara's main nightlife strip — dozens of bars, cantinas, and restaurants with screens. Walk the avenue and pick a spot; many open early for European kickoffs.",
+  },
+  {
+    id: 'akron-area-gdl', name: 'Estadio Akron neighborhood', address: 'Periférico Manuel Gómez Morín 5000',
+    neighborhood: 'Zapopan', city: 'GDL', countries: ['GEN'],
+    description: "Bars and restaurants near the Chivas stadium. Expected match-day fan-zone activity for WC26; specific venues will firm up closer to kickoff.",
+    nearStadium: 'AKR',
+  },
+  {
+    id: 'macroplaza-mty', name: 'Macroplaza', address: 'Plaza Zaragoza',
+    neighborhood: 'Centro', city: 'MTY', countries: ['MEX'],
+    description: "Monterrey's central plaza — one of the largest in the world. Public-viewing setups expected during WC26 home matches, with crowds spilling into surrounding streets.",
+  },
+  {
+    id: 'barrio-antiguo-mty', name: 'Barrio Antiguo', address: 'Barrio Antiguo',
+    neighborhood: 'Centro', city: 'MTY', countries: ['GEN'],
+    description: "Historic bar district with dozens of pubs, lounges, and live-music venues. Many show matches and stay open late; walkable, dense, easy to find a spot.",
+  },
+  {
+    id: 'bbva-area-mty', name: 'Estadio BBVA neighborhood', address: 'Av. Pablo Livas 2011',
+    neighborhood: 'Guadalupe', city: 'MTY', countries: ['GEN'],
+    description: "Bars and restaurants around the Monterrey stadium. Expected match-day fan-zone activity for WC26; the area builds out closer to kickoff.",
+    nearStadium: 'BBV',
   },
 ];
 

@@ -172,7 +172,10 @@
 
     // Audience-priority order: largest diaspora populations + host-stadium visibility first.
     // Keeps data file canonical while controlling presentation here.
-    var CITY_PRIORITY = ['NYC', 'LA', 'TOR', 'SF', 'DAL', 'MIA', 'ATL', 'BOS', 'PHL', 'HOU', 'KC', 'VAN', 'SEA'];
+    // US + Canada first (primary US-diaspora audience), Mexico host cities at
+    // the end (smaller portion of the target audience but on-the-ground option
+    // for travelers and Mexican-American fans heading home for matches).
+    var CITY_PRIORITY = ['NYC', 'LA', 'TOR', 'SF', 'DAL', 'MIA', 'ATL', 'BOS', 'PHL', 'HOU', 'KC', 'VAN', 'SEA', 'CDMX', 'GDL', 'MTY'];
     var orderedCities = CITY_PRIORITY
       .map(function (id) { return data.CITIES.find(function (c) { return c.id === id; }); })
       .filter(Boolean);
