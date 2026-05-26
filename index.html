@@ -91,6 +91,14 @@
     inject();
     injectSpeedInsights();
   </script>
+
+  <!-- Plausible Analytics (cookieless, no PII; task-completion events; see analytics-event-schema.md) -->
+  <script async src="https://plausible.io/js/pa-0z6sUH-0Ks0_xUK3J5OKU.js"></script>
+  <script>
+    window.plausible = window.plausible || function () { (plausible.q = plausible.q || []).push(arguments) };
+    plausible.init = plausible.init || function (i) { plausible.o = i || {} };
+    plausible.init();
+  </script>
 </head>
 <body>
   <header>
@@ -122,8 +130,8 @@
         <h1 class="home-h1">Sort out your World Cup before kickoff.</h1>
         <p class="home-lede">Pick a streaming bundle, find a watch party, save the schedule. Free, no signup.</p>
         <div class="hero-ctas">
-          <a href="/streaming" class="hero-cta">Find your best streaming option <span class="hero-cta-arrow" aria-hidden="true">→</span></a>
-          <a href="/game/shootout" class="hero-cta hero-cta-secondary"><span class="hero-cta-emoji" aria-hidden="true">🎮</span> Play the Shootout <span class="hero-cta-arrow" aria-hidden="true">→</span></a>
+          <a href="/streaming" class="hero-cta plausible-event-name=hero_cta_click plausible-event-target=streaming">Find your best streaming option <span class="hero-cta-arrow" aria-hidden="true">→</span></a>
+          <a href="/game/shootout" class="hero-cta hero-cta-secondary plausible-event-name=hero_cta_click plausible-event-target=shootout"><span class="hero-cta-emoji" aria-hidden="true">🎮</span> Play the Shootout <span class="hero-cta-arrow" aria-hidden="true">→</span></a>
         </div>
       </div>
     </section>
@@ -145,13 +153,13 @@
             <span class="countdown-team"><span class="countdown-flag">🇿🇦</span> South Africa</span>
           </div>
           <div class="countdown-venue" id="countdown-context">Thu Jun 11 · 2:00 PM ET · Estadio Azteca, Mexico City</div>
-          <button class="countdown-cta" id="opening-ics-btn"><span class="btn-emoji" aria-hidden="true">📅</span>Add opening match to calendar</button>
+          <button class="countdown-cta plausible-event-name=opening_match_cal_add" id="opening-ics-btn"><span class="btn-emoji" aria-hidden="true">📅</span>Add opening match to calendar</button>
         </div>
       </div>
     </section>
 
     <section class="home-cards" aria-label="What you can do here">
-      <a href="/streaming" class="home-card">
+      <a href="/streaming" class="home-card plausible-event-name=nav_click plausible-event-target=streaming">
         <div class="home-card-head">
           <svg class="home-card-glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <rect width="20" height="15" x="2" y="7" rx="2"/>
@@ -169,7 +177,7 @@
         </div>
         <span class="home-card-cta">Take the quiz →</span>
       </a>
-      <a href="/schedule" class="home-card">
+      <a href="/schedule" class="home-card plausible-event-name=nav_click plausible-event-target=schedule">
         <div class="home-card-head">
           <svg class="home-card-glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M8 2v4"/>
@@ -183,7 +191,7 @@
         <div class="home-card-preview preview-matches" id="home-schedule-preview"></div>
         <span class="home-card-cta">See the schedule →</span>
       </a>
-      <a href="/watch-parties" class="home-card">
+      <a href="/watch-parties" class="home-card plausible-event-name=nav_click plausible-event-target=watch_parties">
         <div class="home-card-head">
           <svg class="home-card-glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/>

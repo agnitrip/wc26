@@ -314,6 +314,13 @@
     fourK: null,
   };
   var step = 1; // 1..7
+  var quizStarted = false; // analytics: fires quiz_start once per quiz instance
+
+  function track(name, props) {
+    if (typeof window === 'undefined' || typeof window.plausible !== 'function') return;
+    if (props) window.plausible(name, { props: props });
+    else window.plausible(name);
+  }
 
   function getPath() {
     // Returns the active step IDs based on stance + coverage + budget choices.
@@ -415,6 +422,7 @@
       cont.addEventListener('click', function () {
         if (state.teams.length === 0) return;
         saveTeamsToStorage();
+        track('quiz_answer', { question: String(step), key: 'teams', value: state.teams.join(',') });
         advance();
       });
     }
@@ -458,6 +466,7 @@
         } else {
           state.teams = [code];
           saveTeamsToStorage();
+          track('quiz_answer', { question: String(step), key: 'teams', value: code });
           advance();
         }
       });
@@ -466,7 +475,14 @@
 
   // ----- Advance / back -----
   function advance(key, value) {
-    if (key) state[key] = value;
+    if (key) {
+      state[key] = value;
+      if (!quizStarted) {
+        track('quiz_start');
+        quizStarted = true;
+      }
+      track('quiz_answer', { question: String(step), key: key, value: String(value) });
+    }
     if (step >= maxStep()) {
       showResult();
       return;
@@ -558,9 +574,16 @@
 
     document.getElementById('quiz').hidden = true;
     document.getElementById('result').hidden = false;
+
+    track('quiz_complete', {
+      bundle: pick.primary,
+      lang: state.lang || 'unset',
+      team: state.teams.length ? state.teams.join(',') : 'all',
+    });
   }
 
   function reset() {
+    track('quiz_restart');
     state.stance = null;
     state.teams = [];
     state.lang = null;
@@ -569,6 +592,7 @@
     state.multiview = null;
     state.fourK = null;
     step = 1;
+    quizStarted = false;
     document.getElementById('result').hidden = true;
     document.getElementById('quiz').hidden = false;
     loadTeamsFromStorage();
@@ -606,5 +630,26 @@
     if (retakeBtn) retakeBtn.addEventListener('click', reset);
 
     showStep(1);
+
+    // Viewport events: fire once when reference sections scroll into view.
+    // Distinguishes quiz-takers from skip-to-comparison readers, which is the
+    // counterfactual that makes quiz_complete interpretable.
+    if ('IntersectionObserver' in window) {
+      var observeOnce = function (selector, eventName) {
+        var node = document.querySelector(selector);
+        if (!node) return;
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              track(eventName);
+              io.disconnect();
+            }
+          });
+        }, { threshold: 0.4 });
+        io.observe(node);
+      };
+      observeOnce('#comparison', 'comparison_table_view');
+      observeOnce('#tldr', 'cheat_sheet_view');
+    }
   });
 })();

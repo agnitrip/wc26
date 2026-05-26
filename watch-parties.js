@@ -11,6 +11,12 @@
     crossPagePersonalized: false, // tracks whether country filter came from schedule teams
   };
 
+  function track(name, props) {
+    if (typeof window === 'undefined' || typeof window.plausible !== 'function') return;
+    if (props) window.plausible(name, { props: props });
+    else window.plausible(name);
+  }
+
   function loadCrossPage() {
     try {
       var teams = JSON.parse(localStorage.getItem('wc26_teams') || '[]');
@@ -23,6 +29,7 @@
         if (hasVenues && data.WP_COUNTRIES[code]) {
           state.countryFilter = code;
           state.crossPagePersonalized = true;
+          track('personalization_fired', { country: code });
           return;
         }
       }
@@ -49,6 +56,7 @@
   }
 
   function clearCrossPagePersonalization() {
+    track('personalization_cleared');
     state.crossPagePersonalized = false;
     state.countryFilter = 'all';
     saveLocalState();
@@ -125,6 +133,7 @@
     cityMenu.querySelectorAll('.menu-item').forEach(function (btn) {
       btn.addEventListener('click', function () {
         state.cityFilter = btn.getAttribute('data-city');
+        track('city_filter', { city: state.cityFilter });
         saveLocalState();
         renderAll();
         closeMenus();
@@ -218,6 +227,7 @@
     el.querySelectorAll('.toggle-btn').forEach(function (btn) {
       btn.addEventListener('click', function () {
         state.nearStadiumOnly = btn.getAttribute('data-near') === 'true';
+        track('proximity_toggle', { mode: state.nearStadiumOnly ? 'near_stadium' : 'all' });
         saveLocalState();
         renderAll();
       });

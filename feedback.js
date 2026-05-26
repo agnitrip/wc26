@@ -9,6 +9,18 @@
 
   var modal, card, lastFocused, copyTimer;
 
+  function track(name, props) {
+    if (typeof window === 'undefined' || typeof window.plausible !== 'function') return;
+    if (props) window.plausible(name, { props: props });
+    else window.plausible(name);
+  }
+
+  function currentSurface() {
+    var p = (window.location.pathname || '/').replace(/\/$/, '');
+    if (p === '' || p === '/') return 'home';
+    return p.replace(/^\//, '').replace(/\//g, '_');
+  }
+
   function getFocusables() {
     if (!card) return [];
     var nodes = card.querySelectorAll(
@@ -21,6 +33,7 @@
 
   function open() {
     if (!modal) return;
+    track('feedback_link_click', { surface: currentSurface() });
     lastFocused = document.activeElement;
     modal.hidden = false;
     document.body.style.overflow = 'hidden';

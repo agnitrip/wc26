@@ -39,6 +39,16 @@
     filter: 'mine', // 'mine' (default when teams picked) or 'all'
   };
 
+  function track(name, props) {
+    if (typeof window === 'undefined' || typeof window.plausible !== 'function') return;
+    if (props) window.plausible(name, { props: props });
+    else window.plausible(name);
+  }
+
+  // Tracks which scope is currently in flight in the bulk-export modal so that
+  // cal_export_cancel can report the same scope that cal_export_intent did.
+  var pendingExportScope = null;
+
   function loadState() {
     try {
       var z = localStorage.getItem('wc26_zone');
@@ -213,10 +223,13 @@
   function openConfirmModal(opts) {
     var overlay = document.getElementById('modal-overlay');
     if (!overlay) return;
+    pendingExportScope = opts.scope || null;
     document.getElementById('modal-title').textContent = opts.title;
     document.getElementById('modal-body').textContent = opts.body;
     document.getElementById('modal-confirm').textContent = opts.confirmLabel || 'Confirm';
     document.getElementById('modal-confirm').onclick = function () {
+      if (pendingExportScope) track('cal_export_confirm', { scope: pendingExportScope });
+      pendingExportScope = null;
       closeModal();
       opts.onConfirm();
     };
@@ -228,13 +241,19 @@
   function closeModal() {
     var overlay = document.getElementById('modal-overlay');
     if (!overlay) return;
+    if (pendingExportScope) {
+      track('cal_export_cancel', { scope: pendingExportScope });
+      pendingExportScope = null;
+    }
     overlay.hidden = true;
     document.body.style.overflow = '';
   }
 
   function bulkAddMyMatches() {
     var mine = window.WC26_DATA.MATCHES.filter(isMyTeam);
+    track('cal_export_intent', { scope: 'yours' });
     openConfirmModal({
+      scope: 'yours',
       title: 'Add your team matches to calendar?',
       body: mine.length + ' match' + (mine.length === 1 ? '' : 'es') + ' will be added as separate events. Your calendar app will open with the file ready to import.',
       confirmLabel: 'Add ' + mine.length + ' matches',
@@ -244,7 +263,9 @@
 
   function bulkAddAll() {
     var all = window.WC26_DATA.MATCHES;
+    track('cal_export_intent', { scope: 'all' });
     openConfirmModal({
+      scope: 'all',
       title: 'Add all 104 matches to calendar?',
       body: 'All 104 matches will be added as separate events across 39 days. This is a lot. Only do this if you want every single match in your calendar.',
       confirmLabel: 'Yes, add all 104',
@@ -256,7 +277,9 @@
     var ko = window.WC26_DATA.MATCHES.filter(function (m) {
       return ['R32', 'R16', 'QF', 'SF', '3rd', 'F'].indexOf(m.stage) !== -1;
     });
+    track('cal_export_intent', { scope: 'knockouts' });
     openConfirmModal({
+      scope: 'knockouts',
       title: 'Add all 32 knockout matches?',
       body: 'The Round of 32, Round of 16, Quarterfinals, Semifinals, 3rd-place, and Final will be added as separate events. Teams resolve as the group stage finishes.',
       confirmLabel: 'Add ' + ko.length + ' matches',
@@ -403,6 +426,7 @@
     document.querySelectorAll('.toggle-btn').forEach(function (btn) {
       btn.addEventListener('click', function () {
         state.filter = btn.getAttribute('data-filter');
+        track('filter_toggle', { mode: state.filter });
         saveState();
         renderSchedule();
       });
@@ -413,7 +437,10 @@
       btn.addEventListener('click', function () {
         var num = parseInt(btn.getAttribute('data-num'), 10);
         var m = MATCHES.find(function (x) { return x.num === num; });
-        if (m) downloadIcs(m);
+        if (m) {
+          track('cal_add_single', { match_phase: m.stage || 'group' });
+          downloadIcs(m);
+        }
       });
     });
 
@@ -440,6 +467,7 @@
     menu.querySelectorAll('.menu-item').forEach(function (btn) {
       btn.addEventListener('click', function () {
         state.zoneId = btn.getAttribute('data-zone');
+        track('tz_picker_use', { tz: state.zoneId });
         saveState();
         renderZoneChip();
         renderZoneMenu();
@@ -475,8 +503,13 @@
       btn.addEventListener('click', function () {
         var code = btn.getAttribute('data-code');
         var i = state.teams.indexOf(code);
-        if (i === -1) state.teams.push(code);
-        else state.teams.splice(i, 1);
+        if (i === -1) {
+          state.teams.push(code);
+          track('team_picker_use', { team: code, action: 'add' });
+        } else {
+          state.teams.splice(i, 1);
+          track('team_picker_use', { team: code, action: 'remove' });
+        }
         saveState();
         renderTeamChip();
         renderTeamMenu(document.getElementById('team-search').value);
