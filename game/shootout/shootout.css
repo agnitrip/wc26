@@ -464,13 +464,21 @@
 .screen-their-kick {
   align-items: stretch;
   justify-content: center;
-  padding-top: 90px;
+  /* Bumped from 90 -> 108 so the eyebrow (.sh-bk-category) clears the
+     kick-counter (.sh-kick-counter at top: 56px) with comfortable gap,
+     even on narrow mobile viewports where wide-letter-spacing text
+     blurred word boundaries when the two lines were near each other. */
+  padding-top: 108px;
   padding-bottom: 20px;
 }
 .sh-bk-category {
   text-align: center;
   font-size: 0.78rem;
-  letter-spacing: 0.16em;
+  /* Reduced letter-spacing 0.16em -> 0.06em. Wide spacing made words like
+     "Their kick · Spot the odd one out" read as individual characters on
+     mobile, where iPhone-class viewports + the wide spacing caused users
+     to perceive the text as jumbled / merged with the kick-counter above. */
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   opacity: 0.78;
   font-weight: 700;

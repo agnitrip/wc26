@@ -115,6 +115,20 @@
     fab.setAttribute('aria-label', 'Send feedback');
     fab.innerHTML = '<span aria-hidden="true">💬</span><span class="feedback-fab-label">Feedback</span>';
     document.body.appendChild(fab);
+
+    // Auto-hide the FAB when the footer feedback notice is in view — they're
+    // the same affordance, so showing both is redundant + the FAB visually
+    // overlapped "Tell us." in real-user testing. IntersectionObserver guard
+    // since older browsers fall back to "always visible".
+    var footerTrigger = document.querySelector('.footer-feedback-trigger');
+    if (footerTrigger && 'IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          fab.classList.toggle('is-redundant', e.isIntersecting);
+        });
+      }, { threshold: 0.1 });
+      io.observe(footerTrigger);
+    }
   }
 
   document.addEventListener('DOMContentLoaded', function () {

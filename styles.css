@@ -2170,6 +2170,14 @@ footer a:hover { color: var(--accent); }
   color: #fff;
 }
 #feedback-fab:active { transform: translateY(0); }
+/* Hidden when the in-page footer feedback notice is visible — same affordance,
+   showing both is redundant + the FAB visually overlapped "Tell us." in real
+   iPhone testing. Wired via IntersectionObserver in feedback.js. */
+#feedback-fab.is-redundant {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+}
 .feedback-fab-label {
   letter-spacing: 0.02em;
 }
