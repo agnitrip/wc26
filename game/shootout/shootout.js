@@ -495,12 +495,14 @@
     }
     // Check the math after recording the kick. If the game is already won/lost,
     // we'll still play the reveal flash for this kick (the player deserves to
-    // see why they were right or wrong), then skip straight to the result.
+    // see why they were right or wrong), then go straight to the result screen
+    // — no intermediate banner. The result hero (🏆 / 💔) + score + early-end
+    // share grid (fewer dots) carry the "we walked off" signal cleanly.
     var decided = regulationDecision();
     // On your kick: scored = correct, missed = wrong.
     showReveal(goal ? 'You scored' : 'You missed', goal, kick.explanation, function () {
       if (decided) {
-        showBanner('GAME OVER', 'No need for the rest', function () { finishMatch(decided); });
+        finishMatch(decided);
         return;
       }
       if (match.phase === 'sd-your') {
@@ -633,7 +635,7 @@
     // On their kick: saved = correct, they-scored = wrong.
     showReveal(kind === 'saved' ? 'You saved it' : 'They scored', kind === 'saved', bk.explanation, function () {
       if (decided) {
-        showBanner('GAME OVER', 'No need for the rest', function () { finishMatch(decided); });
+        finishMatch(decided);
         return;
       }
       if (match.phase === 'sd-their') {
