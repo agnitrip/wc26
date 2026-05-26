@@ -831,6 +831,17 @@
 .sh-streak-panel.is-live .sh-streak-chip {
   margin-left: 8px;
 }
+/* "N more to unlock [tier]" carrot — sits below the streak stat on the
+   result screen. Subtle (smaller, slightly faded) so it informs without
+   competing with the narrative + stat. */
+.sh-streak-next {
+  font-size: 0.78rem;
+  font-weight: 600;
+  opacity: 0.78;
+  letter-spacing: 0.01em;
+  margin-top: 2px;
+  text-align: center;
+}
 .sh-result-grid .grid-row { display: flex; align-items: center; gap: 10px; justify-content: space-between; }
 .sh-result-grid .grid-label { font-size: 0.78rem; opacity: 0.72; letter-spacing: 0.12em; text-transform: uppercase; font-family: var(--font-body); }
 .sh-result-stats {

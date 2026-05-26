@@ -42,6 +42,15 @@
     if (streak >= 3)  return 'Heating up';
     return null;
   }
+  // "Next tier in N wins" carrot — concrete progression target shown on the
+  // result screen below the streak stat. Null at and past the top tier.
+  function nextTierHint(streak) {
+    if (streak <= 0) return null;
+    if (streak < 3)  return (3 - streak) + (streak === 2 ? ' more to unlock 🔥 Heating Up' : ' more wins to unlock 🔥 Heating Up');
+    if (streak < 6)  return (6 - streak) + ' more to unlock 🔥🔥 Hot Pile';
+    if (streak < 10) return (10 - streak) + ' more to unlock 🔥🔥🔥 Boss Mode';
+    return "You're at the top tier · keep going";
+  }
   // Per-match-win narrative. 2 variants per tier so back-to-back games rotate.
   function streakNarrative(streak, rng) {
     var rand = rng || Math.random;
@@ -763,6 +772,11 @@
         children.push(el('div', { class: 'sh-streak-narrative', text: match.narrativeText }));
       }
       children.push(el('div', { class: 'sh-streak-stat' }, statChildren));
+      // "Next tier in N wins" carrot — turns "I won a game" into "I'm partway
+      // to something I haven't unlocked yet." Drives the multi-match session
+      // pattern from Wordle / Heardle (visible progress to next milestone).
+      var nextHint = nextTierHint(match.streakAfter);
+      if (nextHint) children.push(el('div', { class: 'sh-streak-next', text: nextHint }));
       streakLine = el('div', { class: 'sh-streak-line is-live' }, children);
     } else if (match.streakBefore > 0) {
       streakLine = el('div', { class: 'sh-streak-line is-ended' }, [
@@ -770,7 +784,7 @@
       ]);
     }
 
-    var rematchBtn = el('button', { class: 'sh-rematch', type: 'button', text: won ? 'Play next' : 'Play again' });
+    var rematchBtn = el('button', { class: 'sh-rematch', type: 'button', text: won ? 'Keep the streak going →' : 'Play again' });
     rematchBtn.addEventListener('click', startMatch);
 
     var shareBtn = el('button', { class: 'sh-share', type: 'button', text: nativeShareSupported() ? 'Share' : 'Copy result' });
