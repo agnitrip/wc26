@@ -153,10 +153,6 @@
     return '';
   }
 
-  function broadcastLabel(broadcast) {
-    return '📺 ' + broadcast.join(', ');
-  }
-
   // ----- .ics generation -----
   function pad2(n) { return n < 10 ? '0' + n : '' + n; }
   function icsDate(d) {
@@ -180,7 +176,7 @@
     var end = new Date(start.getTime() + 2.5 * 60 * 60 * 1000);
     var title = matchTitle(match, TEAMS);
     var loc = match.venue + ', ' + match.city;
-    var desc = 'Broadcast: ' + match.broadcast.join(', ') + '\\nVia WC26 Pregame (wc26pregame.com)';
+    var desc = 'Via WC26 Pregame (wc26pregame.com)';
     var uid = 'wc26-match-' + match.num + '@wc26pregame.com';
     return [
       'BEGIN:VEVENT',
@@ -303,7 +299,6 @@
       '<div class="match-meta">' +
         '<span class="' + stageClasses + '">' + stageChip(match) + '</span>' +
         ' · <span class="match-venue">' + match.venue + ', ' + match.city + '</span>' +
-        ' · <span class="match-broadcast">' + broadcastLabel(match.broadcast) + '</span>' +
       '</div>' +
       '<div class="match-actions"><button class="ics-btn" data-num="' + match.num + '"><span class="btn-emoji" aria-hidden="true">📅</span>Add to calendar</button></div>' +
       '</div>';
