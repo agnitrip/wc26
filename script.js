@@ -269,10 +269,21 @@
   function downloadCancelReminder(serviceId) {
     var svc = SERVICES[serviceId];
     if (!svc || !svc.canCancel) return;
-    var start = new Date('2026-06-20T17:00:00Z'); // 10am Pacific / 1pm Eastern
+    // Fire ~3 days before the Final, at ~10am Pacific (17:00 UTC). Computed at
+    // click time so the reminder is never created in the past — if the user
+    // lands here within 3 days of the Final (or after), it falls back to firing
+    // tomorrow. (Previously hard-coded to June 20, which silently produced a
+    // past-dated event for anyone subscribing after that date.)
+    var DAY_MS = 24 * 60 * 60 * 1000;
+    var FINAL_MS = Date.parse('2026-07-19T19:00:00Z'); // 3pm ET kickoff
+    var startMs = Math.max(FINAL_MS - 3 * DAY_MS, Date.now() + DAY_MS);
+    if (startMs >= FINAL_MS) startMs = Date.now() + DAY_MS;
+    var start = new Date(startMs);
+    start.setUTCHours(17, 0, 0, 0); // 10am Pacific / 1pm Eastern
     var end = new Date(start.getTime() + 30 * 60 * 1000);
+    var daysToFinal = Math.max(1, Math.round((FINAL_MS - start.getTime()) / DAY_MS));
     var title = 'Cancel ' + svc.name + ' subscription';
-    var desc = 'The WC Final is in 29 days. Cancel now to avoid the next auto-renewal charge.\\n\\nHow to cancel: ' + (svc.cancelPath || 'Open the service app and find Account or Subscription settings.') + '\\n\\nMost services keep your access through the end of the current billing period, so canceling now still preserves access through the knockouts and the Final.\\n\\nVia WC26 Pregame (wc26pregame.com)';
+    var desc = 'The WC Final is in ' + daysToFinal + ' day' + (daysToFinal === 1 ? '' : 's') + '. Cancel now to avoid the next auto-renewal charge.\\n\\nHow to cancel: ' + (svc.cancelPath || 'Open the service app and find Account or Subscription settings.') + '\\n\\nMost services keep your access through the end of the current billing period, so canceling now still preserves access through the knockouts and the Final.\\n\\nVia WC26 Pregame (wc26pregame.com)';
     var uid = 'wc26-cancel-' + serviceId + '@wc26pregame.com';
     var lines = [
       'BEGIN:VCALENDAR',

@@ -87,6 +87,7 @@ const WP_COUNTRIES = {
   SEN: { name: 'Senegal', flag: '🇸🇳' },
   JPN: { name: 'Japan', flag: '🇯🇵' },
   KOR: { name: 'South Korea', flag: '🇰🇷' },
+  AUS: { name: 'Australia', flag: '🇦🇺' },
 };
 
 // Per-city Reddit/community resources (where users find more venues).

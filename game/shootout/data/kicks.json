@@ -743,9 +743,9 @@
   },
   {
     "id": "k-143",
-    "statement": "MetLife Stadium will host more 2026 World Cup matches than any other venue.",
+    "statement": "AT&T Stadium in Dallas will host more 2026 World Cup matches than any other venue.",
     "truth": true,
-    "explanation": "MetLife is scheduled for 8 matches including the final.",
+    "explanation": "AT&T Stadium is scheduled for 9 matches, the most of any venue; MetLife hosts 8 including the final.",
     "difficulty": "hard"
   },
   {

@@ -2767,3 +2767,9 @@ footer a:hover { color: var(--accent); }
   text-decoration: none;
 }
 .lede-cross-link a:hover { color: var(--accent-hover); text-decoration: underline; }
+
+.lede-note {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
