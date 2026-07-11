@@ -84,6 +84,11 @@ function km(num, dateStr, kickoffISO, venue, city, stage, pa, pb) {
   return { num, date: dateStr, kickoffISO, venue, city, stage, group: null,
     teamA: { placeholder: pa }, teamB: { placeholder: pb } };
 }
+// Knockout match with both teams resolved (earlier rounds finished).
+function kr(num, dateStr, kickoffISO, venue, city, stage, a, b) {
+  return { num, date: dateStr, kickoffISO, venue, city, stage, group: null,
+    teamA: { code: a }, teamB: { code: b } };
+}
 
 const MATCHES = [
   // Group stage (chronological, match 1 = opening match)
@@ -177,45 +182,49 @@ const MATCHES = [
   gm(71, '2026-06-27', '2026-06-27T21:00:00-05:00', 'Arrowhead Stadium', 'Kansas City, USA', 'J', 'ALG', 'AUT'),
   gm(72, '2026-06-27', '2026-06-27T21:00:00-05:00', 'AT&T Stadium', 'Dallas, USA', 'J', 'JOR', 'ARG'),
 
-  // Knockout stage
+  // Knockout stage. Teams resolved through semifinal 101 as of 2026-07-11
+  // (sources: CBS Sports bracket + Al Jazeera R16 schedule + Yahoo QF
+  // reports, cross-checked against bracket lineage — see git history for
+  // the original placeholder slots). Matches 102-104 resolve after the
+  // July 11 quarter-finals and July 14-15 semifinals.
   // Round of 32
-  km(73, '2026-06-28', '2026-06-28T12:00:00-07:00', 'SoFi Stadium', 'Los Angeles, USA', 'R32', 'Runner-up Group A', 'Runner-up Group B'),
-  km(74, '2026-06-29', '2026-06-29T16:30:00-04:00', 'Gillette Stadium', 'Boston, USA', 'R32', 'Winner Group E', 'Best 3rd: A/B/C/D/F'),
-  km(75, '2026-06-29', '2026-06-29T19:00:00-06:00', 'Estadio BBVA', 'Monterrey, MEX', 'R32', 'Winner Group F', 'Runner-up Group C'),
-  km(76, '2026-06-29', '2026-06-29T12:00:00-05:00', 'NRG Stadium', 'Houston, USA', 'R32', 'Winner Group C', 'Runner-up Group F'),
-  km(77, '2026-06-30', '2026-06-30T17:00:00-04:00', 'MetLife Stadium', 'New York/NJ, USA', 'R32', 'Winner Group I', 'Best 3rd: C/D/F/G/H'),
-  km(78, '2026-06-30', '2026-06-30T12:00:00-05:00', 'AT&T Stadium', 'Dallas, USA', 'R32', 'Runner-up Group E', 'Runner-up Group I'),
-  km(79, '2026-06-30', '2026-06-30T19:00:00-06:00', 'Estadio Azteca', 'Mexico City, MEX', 'R32', 'Winner Group A', 'Best 3rd: C/E/F/H/I'),
-  km(80, '2026-07-01', '2026-07-01T12:00:00-04:00', 'Mercedes-Benz Stadium', 'Atlanta, USA', 'R32', 'Winner Group L', 'Best 3rd: E/H/I/J/K'),
-  km(81, '2026-07-01', '2026-07-01T17:00:00-07:00', 'Levi\'s Stadium', 'San Francisco, USA', 'R32', 'Winner Group D', 'Best 3rd: B/E/F/I/J'),
-  km(82, '2026-07-01', '2026-07-01T13:00:00-07:00', 'Lumen Field', 'Seattle, USA', 'R32', 'Winner Group G', 'Best 3rd: A/E/H/I/J'),
-  km(83, '2026-07-02', '2026-07-02T19:00:00-04:00', 'BMO Field', 'Toronto, CAN', 'R32', 'Runner-up Group K', 'Runner-up Group L'),
-  km(84, '2026-07-02', '2026-07-02T12:00:00-07:00', 'SoFi Stadium', 'Los Angeles, USA', 'R32', 'Winner Group H', 'Runner-up Group J'),
-  km(85, '2026-07-02', '2026-07-02T20:00:00-07:00', 'BC Place', 'Vancouver, CAN', 'R32', 'Winner Group B', 'Best 3rd: E/F/G/I/J'),
-  km(86, '2026-07-03', '2026-07-03T18:00:00-04:00', 'Hard Rock Stadium', 'Miami, USA', 'R32', 'Winner Group J', 'Runner-up Group H'),
-  km(87, '2026-07-03', '2026-07-03T20:30:00-05:00', 'Arrowhead Stadium', 'Kansas City, USA', 'R32', 'Winner Group K', 'Best 3rd: D/E/I/J/L'),
-  km(88, '2026-07-03', '2026-07-03T13:00:00-05:00', 'AT&T Stadium', 'Dallas, USA', 'R32', 'Runner-up Group D', 'Runner-up Group G'),
+  kr(73, '2026-06-28', '2026-06-28T12:00:00-07:00', 'SoFi Stadium', 'Los Angeles, USA', 'R32', 'RSA', 'CAN'),
+  kr(74, '2026-06-29', '2026-06-29T16:30:00-04:00', 'Gillette Stadium', 'Boston, USA', 'R32', 'GER', 'PAR'),
+  kr(75, '2026-06-29', '2026-06-29T19:00:00-06:00', 'Estadio BBVA', 'Monterrey, MEX', 'R32', 'NED', 'MAR'),
+  kr(76, '2026-06-29', '2026-06-29T12:00:00-05:00', 'NRG Stadium', 'Houston, USA', 'R32', 'BRA', 'JPN'),
+  kr(77, '2026-06-30', '2026-06-30T17:00:00-04:00', 'MetLife Stadium', 'New York/NJ, USA', 'R32', 'FRA', 'SWE'),
+  kr(78, '2026-06-30', '2026-06-30T12:00:00-05:00', 'AT&T Stadium', 'Dallas, USA', 'R32', 'CIV', 'NOR'),
+  kr(79, '2026-06-30', '2026-06-30T19:00:00-06:00', 'Estadio Azteca', 'Mexico City, MEX', 'R32', 'MEX', 'ECU'),
+  kr(80, '2026-07-01', '2026-07-01T12:00:00-04:00', 'Mercedes-Benz Stadium', 'Atlanta, USA', 'R32', 'ENG', 'COD'),
+  kr(81, '2026-07-01', '2026-07-01T17:00:00-07:00', 'Levi\'s Stadium', 'San Francisco, USA', 'R32', 'USA', 'BIH'),
+  kr(82, '2026-07-01', '2026-07-01T13:00:00-07:00', 'Lumen Field', 'Seattle, USA', 'R32', 'BEL', 'SEN'),
+  kr(83, '2026-07-02', '2026-07-02T19:00:00-04:00', 'BMO Field', 'Toronto, CAN', 'R32', 'POR', 'CRO'),
+  kr(84, '2026-07-02', '2026-07-02T12:00:00-07:00', 'SoFi Stadium', 'Los Angeles, USA', 'R32', 'ESP', 'AUT'),
+  kr(85, '2026-07-02', '2026-07-02T20:00:00-07:00', 'BC Place', 'Vancouver, CAN', 'R32', 'SUI', 'ALG'),
+  kr(86, '2026-07-03', '2026-07-03T18:00:00-04:00', 'Hard Rock Stadium', 'Miami, USA', 'R32', 'ARG', 'CPV'),
+  kr(87, '2026-07-03', '2026-07-03T20:30:00-05:00', 'Arrowhead Stadium', 'Kansas City, USA', 'R32', 'COL', 'GHA'),
+  kr(88, '2026-07-03', '2026-07-03T13:00:00-05:00', 'AT&T Stadium', 'Dallas, USA', 'R32', 'AUS', 'EGY'),
   // Round of 16
-  km(89, '2026-07-04', '2026-07-04T17:00:00-04:00', 'Lincoln Financial Field', 'Philadelphia, USA', 'R16', 'Winner 74', 'Winner 77'),
-  km(90, '2026-07-04', '2026-07-04T12:00:00-05:00', 'NRG Stadium', 'Houston, USA', 'R16', 'Winner 73', 'Winner 75'),
-  km(91, '2026-07-05', '2026-07-05T16:00:00-04:00', 'MetLife Stadium', 'New York/NJ, USA', 'R16', 'Winner 76', 'Winner 78'),
-  km(92, '2026-07-05', '2026-07-05T18:00:00-06:00', 'Estadio Azteca', 'Mexico City, MEX', 'R16', 'Winner 79', 'Winner 80'),
-  km(93, '2026-07-06', '2026-07-06T14:00:00-05:00', 'AT&T Stadium', 'Dallas, USA', 'R16', 'Winner 83', 'Winner 84'),
-  km(94, '2026-07-06', '2026-07-06T17:00:00-07:00', 'Lumen Field', 'Seattle, USA', 'R16', 'Winner 81', 'Winner 82'),
-  km(95, '2026-07-07', '2026-07-07T12:00:00-04:00', 'Mercedes-Benz Stadium', 'Atlanta, USA', 'R16', 'Winner 86', 'Winner 88'),
-  km(96, '2026-07-07', '2026-07-07T13:00:00-07:00', 'BC Place', 'Vancouver, CAN', 'R16', 'Winner 85', 'Winner 87'),
+  kr(89, '2026-07-04', '2026-07-04T17:00:00-04:00', 'Lincoln Financial Field', 'Philadelphia, USA', 'R16', 'PAR', 'FRA'),
+  kr(90, '2026-07-04', '2026-07-04T12:00:00-05:00', 'NRG Stadium', 'Houston, USA', 'R16', 'CAN', 'MAR'),
+  kr(91, '2026-07-05', '2026-07-05T16:00:00-04:00', 'MetLife Stadium', 'New York/NJ, USA', 'R16', 'BRA', 'NOR'),
+  kr(92, '2026-07-05', '2026-07-05T18:00:00-06:00', 'Estadio Azteca', 'Mexico City, MEX', 'R16', 'MEX', 'ENG'),
+  kr(93, '2026-07-06', '2026-07-06T14:00:00-05:00', 'AT&T Stadium', 'Dallas, USA', 'R16', 'POR', 'ESP'),
+  kr(94, '2026-07-06', '2026-07-06T17:00:00-07:00', 'Lumen Field', 'Seattle, USA', 'R16', 'USA', 'BEL'),
+  kr(95, '2026-07-07', '2026-07-07T12:00:00-04:00', 'Mercedes-Benz Stadium', 'Atlanta, USA', 'R16', 'ARG', 'EGY'),
+  kr(96, '2026-07-07', '2026-07-07T13:00:00-07:00', 'BC Place', 'Vancouver, CAN', 'R16', 'SUI', 'COL'),
   // Quarter-finals
-  km(97, '2026-07-09', '2026-07-09T16:00:00-04:00', 'Gillette Stadium', 'Boston, USA', 'QF', 'Winner 89', 'Winner 90'),
-  km(98, '2026-07-10', '2026-07-10T12:00:00-07:00', 'SoFi Stadium', 'Los Angeles, USA', 'QF', 'Winner 93', 'Winner 94'),
-  km(99, '2026-07-11', '2026-07-11T17:00:00-04:00', 'Hard Rock Stadium', 'Miami, USA', 'QF', 'Winner 91', 'Winner 92'),
-  km(100, '2026-07-11', '2026-07-11T20:00:00-05:00', 'Arrowhead Stadium', 'Kansas City, USA', 'QF', 'Winner 95', 'Winner 96'),
+  kr(97, '2026-07-09', '2026-07-09T16:00:00-04:00', 'Gillette Stadium', 'Boston, USA', 'QF', 'FRA', 'MAR'),
+  kr(98, '2026-07-10', '2026-07-10T12:00:00-07:00', 'SoFi Stadium', 'Los Angeles, USA', 'QF', 'ESP', 'BEL'),
+  kr(99, '2026-07-11', '2026-07-11T17:00:00-04:00', 'Hard Rock Stadium', 'Miami, USA', 'QF', 'NOR', 'ENG'),
+  kr(100, '2026-07-11', '2026-07-11T20:00:00-05:00', 'Arrowhead Stadium', 'Kansas City, USA', 'QF', 'ARG', 'SUI'),
   // Semifinals
-  km(101, '2026-07-14', '2026-07-14T14:00:00-05:00', 'AT&T Stadium', 'Dallas, USA', 'SF', 'Winner 97', 'Winner 98'),
-  km(102, '2026-07-15', '2026-07-15T15:00:00-04:00', 'Mercedes-Benz Stadium', 'Atlanta, USA', 'SF', 'Winner 99', 'Winner 100'),
+  kr(101, '2026-07-14', '2026-07-14T14:00:00-05:00', 'AT&T Stadium', 'Dallas, USA', 'SF', 'FRA', 'ESP'),
+  km(102, '2026-07-15', '2026-07-15T15:00:00-04:00', 'Mercedes-Benz Stadium', 'Atlanta, USA', 'SF', 'Norway / England', 'Argentina / Switzerland'),
   // Third place
-  km(103, '2026-07-18', '2026-07-18T17:00:00-04:00', 'Hard Rock Stadium', 'Miami, USA', '3rd', 'Loser 101', 'Loser 102'),
+  km(103, '2026-07-18', '2026-07-18T17:00:00-04:00', 'Hard Rock Stadium', 'Miami, USA', '3rd', 'Semifinal 1 loser', 'Semifinal 2 loser'),
   // Final
-  km(104, '2026-07-19', '2026-07-19T15:00:00-04:00', 'MetLife Stadium', 'New York/NJ, USA', 'F', 'Winner 101', 'Winner 102'),
+  km(104, '2026-07-19', '2026-07-19T15:00:00-04:00', 'MetLife Stadium', 'New York/NJ, USA', 'F', 'France / Spain', 'Semifinal 2 winner'),
 ];
 
 // Expose to window for schedule.js
