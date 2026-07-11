@@ -111,6 +111,44 @@
       '</div>';
   }
 
+  // ----- Remaining-match host cities -----
+  // Derived live from schedule-data.js (loaded on this page) so the badges and
+  // city ordering track the bracket without a hand-maintained list: they pick
+  // up resolved teams automatically and expire as matches are played.
+  var STADIUM_CITY = {
+    'Gillette Stadium': 'BOS', 'MetLife Stadium': 'NYC', 'Lincoln Financial Field': 'PHL',
+    'Mercedes-Benz Stadium': 'ATL', 'Hard Rock Stadium': 'MIA', 'AT&T Stadium': 'DAL',
+    'NRG Stadium': 'HOU', 'Arrowhead Stadium': 'KC', "Levi's Stadium": 'SF',
+    'SoFi Stadium': 'LA', 'Lumen Field': 'SEA', 'BMO Field': 'TOR', 'BC Place': 'VAN',
+    'Estadio Azteca': 'CDMX', 'Estadio Akron': 'GDL', 'Estadio BBVA': 'MTY',
+  };
+  var STAGE_NAMES = { R32: 'Round of 32', R16: 'Round of 16', QF: 'Quarter-final', SF: 'Semifinal', '3rd': 'Third-place game', F: 'The Final' };
+
+  // Next knockout match still to be played in a city, or null.
+  function nextMatchIn(cityId) {
+    var sd = window.WC26_DATA;
+    if (!sd || !sd.MATCHES) return null;
+    var now = Date.now();
+    var upcoming = sd.MATCHES.filter(function (m) {
+      return m.stage !== 'group' && STADIUM_CITY[m.venue] === cityId &&
+        new Date(m.kickoffISO).getTime() + 2.5 * 3600000 > now;
+    });
+    upcoming.sort(function (a, b) { return new Date(a.kickoffISO) - new Date(b.kickoffISO); });
+    return upcoming[0] || null;
+  }
+
+  function hostingBadge(cityId) {
+    var m = nextMatchIn(cityId);
+    if (!m) return '';
+    var sd = window.WC26_DATA;
+    var teams = '';
+    if (m.teamA.code && m.teamB.code && sd.TEAMS[m.teamA.code] && sd.TEAMS[m.teamB.code]) {
+      teams = sd.TEAMS[m.teamA.code].name + ' v ' + sd.TEAMS[m.teamB.code].name + ' · ';
+    }
+    var when = new Date(m.kickoffISO).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+    return ' <span class="city-hosting">🏟 ' + (STAGE_NAMES[m.stage] || 'Match') + ' here · ' + teams + when + '</span>';
+  }
+
   function cityThreadsHtml(cityId) {
     var threads = (window.WC26_WP.CITY_THREADS || {})[cityId];
     if (!threads || !threads.length) return '';
@@ -201,11 +239,26 @@
       if (CITY_PRIORITY.indexOf(c.id) === -1) orderedCities.push(c);
     });
 
+    // Cities still hosting a knockout match jump the queue, soonest match
+    // first; everything else keeps diaspora-priority order (sort is stable).
+    var hostTs = {};
+    orderedCities.forEach(function (c) {
+      var m = nextMatchIn(c.id);
+      if (m) hostTs[c.id] = new Date(m.kickoffISO).getTime();
+    });
+    orderedCities.sort(function (a, b) {
+      var ha = hostTs[a.id], hb = hostTs[b.id];
+      if (ha && hb) return ha - hb;
+      if (ha) return -1;
+      if (hb) return 1;
+      return 0;
+    });
+
     var html = '';
     orderedCities.forEach(function (city) {
       if (!byCity[city.id]) return;
       html += '<section class="city-section">' +
-        '<h2 class="city-header">' + city.name + ' <span class="city-count">(' + byCity[city.id].length + ')</span></h2>' +
+        '<h2 class="city-header">' + city.name + ' <span class="city-count">(' + byCity[city.id].length + ')</span>' + hostingBadge(city.id) + '</h2>' +
         '<div class="venues-grid">' +
           byCity[city.id].map(function (v) { return venueCard(v, data.WP_COUNTRIES, data.STADIUMS); }).join('') +
         '</div>' +

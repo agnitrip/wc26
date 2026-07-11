@@ -1706,6 +1706,22 @@ footer a:hover { color: var(--accent); }
   font-weight: 500;
   letter-spacing: 0;
 }
+.city-hosting {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--warm-soft);
+  color: var(--warm-deep);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+@media (max-width: 560px) {
+  .city-hosting { display: block; margin: 6px 0 0; width: fit-content; white-space: normal; }
+}
 
 .venues-grid {
   display: grid;
