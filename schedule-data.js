@@ -220,11 +220,11 @@ const MATCHES = [
   kr(100, '2026-07-11', '2026-07-11T20:00:00-05:00', 'Arrowhead Stadium', 'Kansas City, USA', 'QF', 'ARG', 'SUI'),
   // Semifinals
   kr(101, '2026-07-14', '2026-07-14T14:00:00-05:00', 'AT&T Stadium', 'Dallas, USA', 'SF', 'FRA', 'ESP'),
-  km(102, '2026-07-15', '2026-07-15T15:00:00-04:00', 'Mercedes-Benz Stadium', 'Atlanta, USA', 'SF', 'Norway / England', 'Argentina / Switzerland'),
+  kr(102, '2026-07-15', '2026-07-15T15:00:00-04:00', 'Mercedes-Benz Stadium', 'Atlanta, USA', 'SF', 'ENG', 'ARG'),
   // Third place
   km(103, '2026-07-18', '2026-07-18T17:00:00-04:00', 'Hard Rock Stadium', 'Miami, USA', '3rd', 'Semifinal 1 loser', 'Semifinal 2 loser'),
   // Final
-  km(104, '2026-07-19', '2026-07-19T15:00:00-04:00', 'MetLife Stadium', 'New York/NJ, USA', 'F', 'France / Spain', 'Semifinal 2 winner'),
+  km(104, '2026-07-19', '2026-07-19T15:00:00-04:00', 'MetLife Stadium', 'New York/NJ, USA', 'F', 'France / Spain', 'England / Argentina'),
 ];
 
 // Expose to window for schedule.js
