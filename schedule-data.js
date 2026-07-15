@@ -221,10 +221,12 @@ const MATCHES = [
   // Semifinals
   kr(101, '2026-07-14', '2026-07-14T14:00:00-05:00', 'AT&T Stadium', 'Dallas, USA', 'SF', 'FRA', 'ESP'),
   kr(102, '2026-07-15', '2026-07-15T15:00:00-04:00', 'Mercedes-Benz Stadium', 'Atlanta, USA', 'SF', 'ENG', 'ARG'),
-  // Third place
-  km(103, '2026-07-18', '2026-07-18T17:00:00-04:00', 'Hard Rock Stadium', 'Miami, USA', '3rd', 'Semifinal 1 loser', 'Semifinal 2 loser'),
-  // Final
-  km(104, '2026-07-19', '2026-07-19T15:00:00-04:00', 'MetLife Stadium', 'New York/NJ, USA', 'F', 'France / Spain', 'England / Argentina'),
+  // Third place (France = SF1 loser; second slot resolves after SF2)
+  { num: 103, date: '2026-07-18', kickoffISO: '2026-07-18T17:00:00-04:00', venue: 'Hard Rock Stadium', city: 'Miami, USA', stage: '3rd', group: null,
+    teamA: { code: 'FRA' }, teamB: { placeholder: 'England / Argentina' } },
+  // Final (Spain = SF1 winner; second slot resolves after SF2)
+  { num: 104, date: '2026-07-19', kickoffISO: '2026-07-19T15:00:00-04:00', venue: 'MetLife Stadium', city: 'New York/NJ, USA', stage: 'F', group: null,
+    teamA: { code: 'ESP' }, teamB: { placeholder: 'England / Argentina' } },
 ];
 
 // Expose to window for schedule.js
